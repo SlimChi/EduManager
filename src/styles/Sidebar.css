@@ -1,0 +1,121 @@
+/* Sidebar Container */
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f0f4ff, #ffffff);
+    border-right: 1px solid #e0e0e0;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+/* Main Nav Items */
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    color: #34495e;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    background-color: transparent;
+    margin-bottom: 0.3rem;
+}
+
+.sidebar .nav-link span {
+    display: flex;
+    align-items: center;
+}
+
+/* Active Menu */
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    box-shadow: 0 2px 6px rgba(29, 78, 216, 0.15);
+    transform: translateX(4px);
+}
+
+/* Submenu Items */
+.sub-menu {
+    padding-left: 0.5rem;
+    margin-left: 1rem;
+    border-left: 2px dashed #cbd5e1;
+    animation: slideDown 0.3s ease-in-out;
+}
+
+.sub-menu .nav-link {
+    font-size: 0.9rem;
+    padding-left: 2rem;
+    margin-top: 0.2rem;
+    color: #6b7280;
+}
+
+.sub-menu .nav-link:hover,
+.sub-menu .nav-link.sub-active {
+    color: #0ea5e9;
+    background-color: #e0f2fe;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+/* Chevron animation */
+.rotate-90 {
+    transform: rotate(90deg);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* CCF Link */
+.sidebar .nav-link[href='/ccf'] {
+    font-weight: bold;
+    background-color: #fff0f5;
+    color: #be185d;
+    margin-bottom: 1rem;
+}
+
+.sidebar .nav-link[href='/ccf']:hover {
+    background-color: #fbcfe8;
+    color: #9d174d;
+}
+
+/* Slide down animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive - Optional */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+        padding: 1rem 0.5rem;
+    }
+
+    .sidebar .nav-link {
+        justify-content: center;
+    }
+
+    .sidebar .sidebar-header {
+        font-size: 1.1rem;
+    }
+}

@@ -1,0 +1,75 @@
+/* act1proba-print.css */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+
+    .print-page {
+        padding: 5mm;
+        page-break-after: always;
+        break-after: page;
+    }
+
+    .print-page:last-child {
+        page-break-after: avoid;
+    }
+
+    .tp-header, .math-chapter-box, .tp-section {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .question {
+        margin-bottom: 8pt;
+    }
+
+    .answer-input {
+        border: 1pt solid #ccc !important;
+        background: white !important;
+        color: black !important;
+    }
+
+    .correction-btnoptic {
+        display: none !important;
+    }
+
+    .info-bubble {
+        border: 1pt solid #ddd;
+        background: #f9f9f9 !important;
+    }
+}
+@media print {
+    .print-actions,
+    .correction-btn,
+    .correction-btnoptic {
+        display: none !important;
+    }
+
+    /* Conserver ces styles pour l'impression */
+    body, .print-page {
+        visibility: visible;
+    }
+}
+@media print {
+    .print-page {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        overflow: visible !important;
+        height: auto !important;
+    }
+
+    #proba-content {
+        display: block !important;
+        height: auto !important;
+    }
+
+    .tp-footer {
+        position: relative !important;
+        bottom: auto !important;
+    }
+}

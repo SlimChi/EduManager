@@ -1,0 +1,246 @@
+/* Layout général */
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/*!* Sidebar amélioré *!*/
+/*.sidebar {*/
+/*    width: 280px;*/
+/*    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);*/
+/*    color: white;*/
+/*    height: calc(100vh - 56px);*/
+/*    position: sticky;*/
+/*    top: 56px;*/
+/*    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);*/
+/*    transition: all 0.3s ease;*/
+/*}*/
+
+/*.sidebar-header {*/
+/*    padding: 1.5rem 1.5rem 1rem;*/
+/*    border-bottom: 1px solid rgba(255, 255, 255, 0.1);*/
+/*}*/
+
+/*.sidebar-header h3 {*/
+/*    font-size: 1.1rem;*/
+/*    font-weight: 600;*/
+/*    color: #ecf0f1;*/
+/*    margin: 0;*/
+/*}*/
+
+/*.nav-link {*/
+/*    color: #bdc3c7 !important;*/
+/*    padding: 0.75rem 1.5rem !important;*/
+/*    margin: 0.15rem 0;*/
+/*    border-left: 3px solid transparent;*/
+/*    transition: all 0.3s ease;*/
+/*}*/
+
+/*.nav-link:hover {*/
+/*    color: #ecf0f1 !important;*/
+/*    background-color: rgba(255, 255, 255, 0.05) !important;*/
+/*    border-left: 3px solid #3498db;*/
+/*}*/
+
+/*.nav-link.active {*/
+/*    color: white !important;*/
+/*    background-color: rgba(52, 152, 219, 0.2) !important;*/
+/*    border-left: 3px solid #3498db;*/
+/*    font-weight: 500;*/
+/*}*/
+
+/*.sub-menu {*/
+/*    background-color: rgba(0, 0, 0, 0.1);*/
+/*    overflow: hidden;*/
+/*    transition: all 0.3s ease;*/
+/*}*/
+
+/*.sub-menu .nav-link {*/
+/*    padding-left: 3.5rem !important;*/
+/*    font-size: 0.9rem;*/
+/*}*/
+
+/*.sub-menu .nav-link:hover {*/
+/*    background-color: rgba(255, 255, 255, 0.03) !important;*/
+/*}*/
+
+/*.sub-menu .nav-link.sub-active {*/
+/*    color: #3498db !important;*/
+/*    background-color: transparent !important;*/
+/*    font-weight: 500;*/
+/*}*/
+
+/*!* Animation des icônes *!*/
+/*.nav-link svg {*/
+/*    transition: transform 0.2s ease;*/
+/*}*/
+
+/*.nav-link:hover svg {*/
+/*    transform: scale(1.1);*/
+/*}*/
+
+/*!* Effet de profondeur *!*/
+/*.sidebar::after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    right: -5px;*/
+/*    width: 5px;*/
+/*    height: 100%;*/
+/*    background: linear-gradient(to right, rgba(0,0,0,0.1), transparent);*/
+/*}*/
+
+/* Contenu principal */
+.main-content {
+    display: flex;
+    flex: 1;
+}
+
+.page-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: white;
+    margin: 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Styles pour les pages */
+.page-title {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f1f1f1;
+}
+
+/*!* Styles pour les boutons *!*/
+/*.btn-primary {*/
+/*    background-color: #3498db;*/
+/*    border-color: #3498db;*/
+/*}*/
+
+/*.btn-danger {*/
+/*    background-color: #e74c3c;*/
+/*    border-color: #e74c3c;*/
+/*}*/
+
+/*.btn-success {*/
+/*    background-color: #2ecc71;*/
+/*    border-color: #2ecc71;*/
+/*}*/
+
+/*!* Cartes Bootstrap améliorées *!*/
+/*.card {*/
+/*    border: none;*/
+/*    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);*/
+/*    transition: transform 0.3s, box-shadow 0.3s;*/
+/*}*/
+
+/*.card:hover {*/
+/*    transform: translateY(-5px);*/
+/*    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);*/
+/*}*/
+
+/*!* Formulaire *!*/
+/*.form-control:focus {*/
+/*    border-color: #3498db;*/
+/*    box-shadow: 0 0 0 0.25rem rgba(219, 52, 66, 0.25);*/
+/*}*/
+/*!* Styles pour les cartes de discipline *!*/
+/*.discipline-card {*/
+/*    transition: all 0.3s ease;*/
+/*    border: 1px solid #e0e0e0;*/
+/*}*/
+
+/*.discipline-card:hover {*/
+/*    transform: translateY(-5px);*/
+/*    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*.icon-container {*/
+/*    transition: all 0.3s ease;*/
+/*}*/
+
+/*.discipline-card:hover .icon-container {*/
+/*    transform: scale(1.1);*/
+/*    background-color: rgba(0, 0, 0, 0.05);*/
+/*}*/
+/*!* Dans main.css *!*/
+/*.programme-chapitre {*/
+/*    transition: all 0.3s ease;*/
+/*    border-left: 4px solid transparent;*/
+/*}*/
+
+/*.programme-chapitre:hover {*/
+/*    background-color: #f8f9fa;*/
+/*    border-left: 4px solid #3498db;*/
+/*}*/
+
+/*.chapitre-header {*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.chapitre-details {*/
+/*    background-color: #f8f9fa;*/
+/*    border-radius: 0.25rem;*/
+/*    padding: 1rem;*/
+/*    margin-top: 0.5rem;*/
+/*}*/
+/*!* Programme Page *!*/
+/*.programme-container {*/
+/*    max-width: 1200px;*/
+/*}*/
+
+/*.programme-title {*/
+/*    color: #2c3e50;*/
+/*    border-bottom: 2px solid #3498db;*/
+/*    padding-bottom: 10px;*/
+/*}*/
+
+/*.preambule-card {*/
+/*    border-left: 4px solid #3498db;*/
+/*}*/
+
+/*.preambule-card .accordion-button {*/
+/*    font-weight: 600;*/
+/*    background-color: rgba(52, 152, 219, 0.1);*/
+/*}*/
+
+/*.chapitres-grid {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));*/
+/*    gap: 20px;*/
+/*}*/
+
+/*.chapitre-card {*/
+/*    transition: all 0.3s ease;*/
+/*    cursor: pointer;*/
+/*    border-top: 3px solid #3498db;*/
+/*}*/
+
+/*.chapitre-card:hover {*/
+/*    transform: translateY(-5px);*/
+/*    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);*/
+/*}*/
+
+/*.section-title {*/
+/*    color: #34495e;*/
+/*    padding-bottom: 5px;*/
+/*    border-bottom: 1px dashed #bdc3c7;*/
+/*}*/
+
+/*.complement-item {*/
+/*    transition: all 0.2s ease;*/
+/*}*/
+
+/*.complement-item:hover {*/
+/*    background-color: #f8f9fa;*/
+/*    border-left: 3px solid #3498db;*/
+/*}*/
+
+/*!* Icônes *!*/
+/*.bi {*/
+/*    vertical-align: middle;*/
+/*}*/

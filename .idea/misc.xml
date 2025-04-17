@@ -3,4 +3,9 @@
   <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="StyledComponentsInjections">
+    <option name="prefixes">
+      <array />
+    </option>
+  </component>
 </project>

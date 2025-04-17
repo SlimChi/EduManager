@@ -1,0 +1,32 @@
+/* TPCommon.css - Styles communs à tous les TP */
+.tp-container .print-page {
+    background: url('../assets/son.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.tp-container .print-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(252, 252, 252, 0.85);
+    z-index: 0;
+}
+
+.tp-container .print-page > * {
+    position: relative;
+    z-index: 1;
+}
+
+@media print {
+    .tp-container .print-page {
+        background: none !important;
+    }
+
+    .tp-container .print-page::before {
+        display: none !important;
+    }
+}

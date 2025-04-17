@@ -1,0 +1,314 @@
+/* Styles pour le CCF */
+.ccf-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.ccf-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.ccf-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.header-icon {
+    font-size: 2rem;
+    margin-right: 15px;
+}
+
+.print-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.print-btn:hover {
+    background-color: #2980b9;
+}
+
+.ccf-intro {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.theme-box {
+    display: flex;
+    align-items: center;
+    background-color: #e3f2fd;
+    padding: 15px;
+    border-left: 5px solid #1976d2;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.theme-icon {
+    color: #1976d2;
+    font-size: 1.8rem;
+    margin-right: 15px;
+}
+
+.theme-box h2 {
+    margin: 0;
+    color: #0d47a1;
+}
+
+.ccf-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.ccf-section h3 {
+    color: #2c3e50;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.objectives-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.objectives-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    display: flex;
+    align-items: center;
+}
+
+.objectives-list li:before {
+    content: "•";
+    color: #3498db;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.situation-box {
+    background-color: #fff8e1;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.composition-box {
+    background-color: #e8f5e9;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+
+.composition-box h4 {
+    margin-top: 0;
+    color: #2e7d32;
+}
+
+.material-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.material-list li {
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+}
+
+.material-list li:before {
+    content: "•";
+    color: #3498db;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.question p:first-child {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 40px;
+}
+
+.experiment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.experiment-table th, .experiment-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.experiment-table th {
+    background-color: #f2f2f2;
+}
+
+.experiment-table input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.annexe-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.annexe-table th, .annexe-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.annexe-table th {
+    background-color: #f2f2f2;
+}
+
+.ccf-footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+/* Styles d'impression optimisés */
+@media print {
+    body, .ccf-container {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        background: white !important;
+        color: black !important;
+        font-size: 8pt !important;
+        line-height: 1.3 !important;
+    }
+
+    .print-page {
+        page-break-after: always;
+        break-after: page;
+        height: 277mm;
+        padding: 10mm !important;
+        margin: 0 !important;
+        box-sizing: border-box;
+    }
+
+    .ccf-section {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin: 0 0 10px 0 !important;
+        padding: 10px !important;
+        border: 1px solid #ddd !important;
+        background: white !important;
+    }
+
+    .print-btn, .header-icon {
+        display: none !important;
+    }
+
+    textarea {
+        border: 1px solid #999 !important;
+        background: #f9f9f9 !important;
+    }
+
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
+}
+
+/* Styles pour l'affichage écran */
+.print-page {
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: white;
+}
+/* Fond pour les pages de TP */
+.ccf-container .print-page {
+    background: url('../../src/assets/fond.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.ccf-container .print-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(243, 245, 248, 0.85); /* Opacité pour lisibilité */
+    z-index: 0;
+}
+
+.ccf-container .print-page > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ajustements pour l'impression */
+@media print {
+    .ccf-container .print-page {
+        background: none !important;
+    }
+
+    .ccf-container .print-page::before {
+        display: none !important;
+    }
+}
+    .hover-effect:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    }
