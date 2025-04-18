@@ -52,7 +52,6 @@
     border: none;
     border-radius: 12px;
     padding: 20px;
-    margin: 25px 0;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     border-left: 5px solid #6a11cb;
     transition: transform 0.3s ease, box-shadow 0.3s ease;

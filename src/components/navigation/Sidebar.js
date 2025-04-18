@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Nav } from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Link, useLocation} from 'react-router-dom';
+import {Nav} from 'react-bootstrap';
 import {
     BiBookAlt,
     BiAtom,
@@ -9,6 +9,8 @@ import {
     BiCalculator, BiMath, BiShapeTriangle, BiLineChart,
 } from 'react-icons/bi';
 import "../../styles/Sidebar.css"
+import {FaCode} from "react-icons/fa";
+
 const Sidebar = () => {
     const location = useLocation();
     const [openMenu, setOpenMenu] = useState(null);
@@ -17,44 +19,54 @@ const Sidebar = () => {
         {
             name: 'Classes',
             path: '/classes',
-            icon: <BiBookAlt size={18} className="me-2" />
+            icon: <BiBookAlt size={18} className="me-2"/>
         },
         {
             name: 'Disciplines',
             path: '/disciplines',
-            icon: <BiAtom size={18} className="me-2" />,
+            icon: <BiAtom size={18} className="me-2"/>,
             subItems: []
         },
         {
             name: 'LIVRES EXTERN PDF',
             path: '/LIVRES',
-            icon: <BiBook size={18} className="me-2" />,
+            icon: <BiBook size={18} className="me-2"/>,
+        },
+        {
+            name: 'OpenIapi',
+            path: '/outils',
+            icon: <FaCode size={18} className="me-2"/>,
         },
         {
             name: 'Outils',
             path: '/outils',
-            icon: <BiCalculator size={18} className="me-2" />,
+            icon: <BiCalculator size={18} className="me-2"/>,
             subItems: [
                 {
                     name: "Résolveur d'équations",
                     path: '/equation-solver',
-                    icon: <BiMath size={16} className="me-2" />
+                    icon: <BiMath size={16} className="me-2"/>
                 },
                 {
                     name: "Calculateur géométrique",
                     path: '/geometry-calculator',
-                    icon: <BiShapeTriangle size={16} className="me-2" />
+                    icon: <BiShapeTriangle size={16} className="me-2"/>
                 },
                 {
                     name: "Grapheur de fonctions",
                     path: '/function-grapher',
-                    icon: <BiLineChart size={16} className="me-2" />
+                    icon: <BiLineChart size={16} className="me-2"/>
                 },
                 {
                     name: "Calculatrice",
                     path: '/calculator',
-                    icon: <BiCalculator size={16} className="me-2" />
-                }
+                    icon: <BiCalculator size={16} className="me-2"/>
+                },
+                {
+                    name: "IA For Free",
+                    path: '/deep-seek',
+                    icon: <BiBook size={16} className="me-2"/>
+                },
             ]
         }
     ];
@@ -64,7 +76,6 @@ const Sidebar = () => {
     };
 
 
-
     return (
         <div className="sidebar">
             <div className="sidebar-header">
@@ -72,7 +83,7 @@ const Sidebar = () => {
             </div>
 
             <Nav.Link as={Link} to="/ccf">
-                <BiBook />  CCF
+                <BiBook/> CCF
             </Nav.Link>
             <Nav className="flex-column">
                 {menuItems.map((item) => (
@@ -92,7 +103,7 @@ const Sidebar = () => {
                                     {item.name}
                                 </span>
                                 {item.subItems && item.subItems.length > 0 && (
-                                    <BiChevronRight size={16} className={openMenu === item.name ? 'rotate-90' : ''} />
+                                    <BiChevronRight size={16} className={openMenu === item.name ? 'rotate-90' : ''}/>
                                 )}
                             </Nav.Link>
                         </Nav.Item>

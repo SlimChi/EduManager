@@ -464,8 +464,7 @@ const GeometrieAct1 = () => {
                             <div className="question-card">
                                 <div className="question-number2">8</div>
                                 <p>
-                                    Calculer l'aire de la partie principale du salon (partie
-                                    orange).
+                                    Calculer l'aire de la partie principale du salon (partie bleue).
                                 </p>
                                 <div className="answer-area">
                                     <AutoResizeTextarea
@@ -490,7 +489,7 @@ const GeometrieAct1 = () => {
 
                                 <p>
                                     Calculer l'aire de la partie « Coin détente » (partie
-                                    bleue). Arrondir à 0,1 m².
+                                    violette). Arrondir à 0,1 m².
                                 </p>
                                 <div className="answer-area">
                                     <AutoResizeTextarea
