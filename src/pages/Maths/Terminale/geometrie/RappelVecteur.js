@@ -116,8 +116,7 @@ const RappelVecteur = () => {
                         <div className="vect-header">
                             <h4 className="vect-header-title">📊 Coordonnées et norme dans un repère orthonormé</h4>
                         </div>
-                        <h4 className="vect-title">📐 Caractéristiques d'un vecteur <InlineMath
-                            math="\overrightarrow{AB}"/></h4>
+                        <h4 className="vect-title">📐 Caractéristiques d'un vecteur </h4>
                         <div className="vector-properties-list">
                             <div className="property-card direction-card">
                                 <div className="property-content">
@@ -333,20 +332,21 @@ const RappelVecteur = () => {
                                     <li>Colinéarité : coordonnées proportionnelles</li>
                                 </ol>
                             </div>
-                        </div>) : (<div className="vector-cards-grid">
-                            {/* Cartes vides pour réponse */}
-                            <div className="vector-card" style={{
-                                border: '2px dashed #ccc', minHeight: '150px', // Environ 5 lignes
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999'
-                            }}>
-                            </div>
+                        </div>) : (
+                            <div className="vector-cards-grid">
+                                {/* Cartes vides pour réponse */}
+                                <div className="vector-card" style={{
+                                    border: '2px dashed #ccc', minHeight: '150px', // Environ 5 lignes
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999'
+                                }}>
+                                </div>
 
-                            <div className="vector-card" style={{
-                                border: '2px dashed #ccc', minHeight: '150px', // Environ 5 lignes
-                                display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999'
-                            }}>
-                            </div>
-                        </div>)}
+                                <div className="vector-card" style={{
+                                    border: '2px dashed #ccc', minHeight: '150px', // Environ 5 lignes
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999'
+                                }}>
+                                </div>
+                            </div>)}
                     </div>
                 </div>
 

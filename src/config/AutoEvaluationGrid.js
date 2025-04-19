@@ -13,10 +13,10 @@ const EvaluationCard = styled.div`
 
 const Title = styled.h2`
   text-align: center;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  padding-bottom: 8px;
   letter-spacing: 0.5px;
+  margin-top: -20px;
 `;
 
 const StyledTable = styled.table`
@@ -91,12 +91,11 @@ const AutoEvaluationGrid = ({
                                     }
                                 ]
                             }) => {
-    const levels = ['TM', 'BM', 'PM', 'NM']; // Ordre inversé
+    const levels = ['NM', 'PM', 'BM', 'TM']; // Ordre inversé
 
     return (
         <EvaluationContainer>
             <EvaluationCard>
-                <Title>GRILLE D'AUTO-ÉVALUATION</Title>
                 <StyledTable>
                     <thead>
                     <tr>

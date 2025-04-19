@@ -9,7 +9,7 @@ import 'katex/dist/katex.min.css';
 import {BlockMath, InlineMath} from 'react-katex';
 import {Card} from "react-bootstrap";
 import ModalImage from "../../../../utils/ModalImage";
-import telepherique from "../../../../assets/telepherique.avif";
+import telepherique from "../../../../assets/telecabine.png";
 import schemaTelepherique from "../../../../assets/telephShema.png";
 import AutoEvaluationGrid from "../../../../config/AutoEvaluationGrid";
 
@@ -23,56 +23,40 @@ const Act2Geometrie = () => {
 
     // États pour les réponses et corrections
     const [answers, setAnswers] = useState({
-        question1: '',
-        question2: '',
-        question3: '',
-        question4: '',
-        question5: '',
+        question1: '', question2: '', question3: '', question4: '', question5: '',
     });
 
     const [showCorrections, setShowCorrections] = useState({
-        question1: false,
-        question2: false,
-        question3: false,
-        question4: false,
-        question5: false,
+        question1: false, question2: false, question3: false, question4: false, question5: false,
     });
 
     // Réponses attendues avec notation mathématique
     const correctAnswers = {
         question1: {
-            text: "A1B1 = (10, 10, 5)\nB1C1 = (6, 3, 2)",
-            formatted: <div>
+            text: "A1B1 = (10, 10, 5)\nB1C1 = (6, 3, 2)", formatted: <div>
                 <BlockMath
-                    math="\vec{A_1B_1} = \begin{pmatrix} 13-3 \\ 15-5 \\ 11-6 \end{pmatrix} = \begin{pmatrix} 10 \\ 10 \\ 5 \end{pmatrix}"/>
+                    math="\vec{A_1B_1} = \begin{pmatrix} 10-0 \\ 10-0 \\ 5-0 \end{pmatrix} = \begin{pmatrix} 10 \\ 10 \\ 5 \end{pmatrix}"/>
                 <BlockMath
-                    math="\vec{B_1C_1} = \begin{pmatrix} 19-13 \\ 18-15 \\ 13-11 \end{pmatrix} = \begin{pmatrix} 6 \\ 3 \\ 2 \end{pmatrix}"/>
+                    math="\vec{B_1C_1} = \begin{pmatrix} 16-10 \\ 13-10 \\ 7-5 \end{pmatrix} = \begin{pmatrix} 6 \\ 3 \\ 2 \end{pmatrix}"/>
             </div>
-        },
-        question2: {
-            text: "C1D1 = (20, 20, 10)",
-            formatted: <BlockMath
-                math="\vec{C_1D_1} = \begin{pmatrix} 39-19 \\ 38-18 \\ 23-13 \end{pmatrix} = \begin{pmatrix} 20 \\ 20 \\ 10 \end{pmatrix}"/>
-        },
-        question3: {
-            text: "2 × A1B1 = (20, 20, 10)\nOn remarque que 2 × A1B1 = C1D1",
-            formatted: <div>
+        }, question2: {
+            text: "C1D1 = (20, 20, 10)", formatted: <BlockMath
+                math="\vec{C_1D_1} = \begin{pmatrix} 36-16 \\ 33-13 \\ 17-7 \end{pmatrix} = \begin{pmatrix} 20 \\ 20 \\ 10 \end{pmatrix}"/>
+        }, question3: {
+            text: "2 × A1B1 = (20, 20, 10)\nOn remarque que 2 × A1B1 = C1D1", formatted: <div>
                 <BlockMath
                     math="2 \times \vec{A_1B_1} = 2 \times \begin{pmatrix} 10 \\ 10 \\ 5 \end{pmatrix} = \begin{pmatrix} 20 \\ 20 \\ 10 \end{pmatrix}"/>
                 <p>On remarque que <InlineMath math="2 \times \vec{A_1B_1} = \vec{C_1D_1}"/></p>
             </div>
-        },
-        question4: {
+        }, question4: {
             text: "Direction : Même direction (vecteurs colinéaires)\nSens : Même sens (coefficient positif)\nNorme : ||C1D1|| = 2 × ||A1B1||",
             formatted: <div>
                 <p><strong>Direction :</strong> Même direction (vecteurs colinéaires)</p>
                 <p><strong>Sens :</strong> Même sens (coefficient multiplicateur positif)</p>
                 <p><strong>Norme :</strong> <InlineMath math="\|\vec{C_1D_1}\| = 2 \times \|\vec{A_1B_1}\|"/></p>
             </div>
-        },
-        question5: {
-            text: "C1D1 = 2 × A1B1",
-            formatted: <BlockMath math="\vec{C_1D_1} = 2 \times \vec{A_1B_1}"/>
+        }, question5: {
+            text: "C1D1 = 2 × A1B1", formatted: <BlockMath math="\vec{C_1D_1} = 2 \times \vec{A_1B_1}"/>
         },
     };
     // Gestionnaires d'événements
@@ -93,9 +77,7 @@ const Act2Geometrie = () => {
     };
 
     const [modalState, setModalState] = useState({
-        show: false,
-        imageUrl: '',
-        altText: '',
+        show: false, imageUrl: '', altText: '',
     });
 
     const openModal = (imageUrl, altText) => {
@@ -142,22 +124,13 @@ const Act2Geometrie = () => {
                                 téléphérique 🚠 le long du flanc de la montagne. Le tout est modélisé dans un repère
                                 orthonormé où
                                 chaque unité correspond à 1 km (<InlineMath math="1 \text{ unité} = 1 \text{ km}"/>).
-                                Les coordonnées des points d'ancrage sont les suivantes :
-                            </p>
-                            <p>
-                                <strong><InlineMath math="A_1(3; 5; 6)"/> ; </strong>
-                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                <strong><InlineMath math="B_1(13; 15; 11)"/>;</strong>
-                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                <strong><InlineMath math="C_1(19; 18; 13)"/>;</strong>
-                                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                <strong><InlineMath math="D_1(39; 38; 23)"/></strong>
+                                Les coordonnées reportées sur le schéma correspondent à des mesures en kilomètre.
                             </p>
 
                         </div>
                     </div>
                     <div className="flex-shrink-0"
-                         style={{maxWidth: '360px', cursor: 'pointer', marginTop: '30px'}}>
+                         style={{maxWidth: '360px', cursor: 'pointer', marginTop: '10px'}}>
                         <img
                             src={telepherique}
                             alt="Téléphérique de montagne"
@@ -165,10 +138,9 @@ const Act2Geometrie = () => {
                             onClick={() => openModal(telepherique, 'Téléphérique de montagne')}
                         />
                     </div>
-                    <div className="objectif-box" style={{marginTop: '-30px'}}>
-                        <p><strong> Objectif :</strong> 🎯 "L’objectif est de calculer la longueur de câble 🔌 requise
-                            pour
-                            l’installation du téléphérique 🚠 ."</p>
+                    <div className="objectif-box" style={{marginTop: '-10px'}}>
+                        <p><strong> Objectif :</strong> 🎯 " L’objectif est de déterminer la longueur de câble 🔌 que la
+                            station de ski 🚠 devra acheter pour installer ce téléphérique."</p>
                     </div>
 
                 </div>
@@ -204,8 +176,7 @@ const Act2Geometrie = () => {
                                     className="img-fluid rounded shadow-sm compact-img"
                                     onClick={() => openModal(schemaTelepherique, 'Schéma du téléphérique')}
                                     style={{
-                                        maxWidth: '480px',
-                                        height: 'auto'
+                                        maxWidth: '480px', height: 'auto'
 
                                     }}
                                 />
@@ -227,11 +198,9 @@ const Act2Geometrie = () => {
                             >
                                 <FaCheck/> {showCorrections.question1 ? 'Masquer la correction' : 'Afficher la correction'}
                             </button>
-                            {showCorrections.question1 && (
-                                <div className="correction-box">
-                                    {correctAnswers.question1.formatted}
-                                </div>
-                            )}
+                            {showCorrections.question1 && (<div className="correction-box">
+                                {correctAnswers.question1.formatted}
+                            </div>)}
                         </div>
                     </div>
                 </div>
@@ -254,11 +223,9 @@ const Act2Geometrie = () => {
                             >
                                 <FaCheck/> {showCorrections.question2 ? 'Masquer la correction' : 'Afficher la correction'}
                             </button>
-                            {showCorrections.question2 && (
-                                <div className="correction-box">
-                                    {correctAnswers.question2.formatted}
-                                </div>
-                            )}
+                            {showCorrections.question2 && (<div className="correction-box">
+                                {correctAnswers.question2.formatted}
+                            </div>)}
                         </div>
                     </div>
                 </div>
@@ -287,11 +254,9 @@ const Act2Geometrie = () => {
                                 >
                                     <FaCheck/> {showCorrections.question3 ? 'Masquer la correction' : 'Afficher la correction'}
                                 </button>
-                                {showCorrections.question3 && (
-                                    <div className="correction-box">
-                                        {correctAnswers.question3.formatted}
-                                    </div>
-                                )}
+                                {showCorrections.question3 && (<div className="correction-box">
+                                    {correctAnswers.question3.formatted}
+                                </div>)}
                             </div>
                         </div>
                     </div>
@@ -317,11 +282,9 @@ const Act2Geometrie = () => {
                                 >
                                     <FaCheck/> {showCorrections.question4 ? 'Masquer la correction' : 'Afficher la correction'}
                                 </button>
-                                {showCorrections.question4 && (
-                                    <div className="correction-box">
-                                        {correctAnswers.question4.formatted}
-                                    </div>
-                                )}
+                                {showCorrections.question4 && (<div className="correction-box">
+                                    {correctAnswers.question4.formatted}
+                                </div>)}
                             </div>
                         </div>
                     </div>
@@ -345,11 +308,9 @@ const Act2Geometrie = () => {
                             >
                                 <FaCheck/> {showCorrections.question5 ? 'Masquer la correction' : 'Afficher la correction'}
                             </button>
-                            {showCorrections.question5 && (
-                                <div className="correction-box">
-                                    {correctAnswers.question5.formatted}
-                                </div>
-                            )}
+                            {showCorrections.question5 && (<div className="correction-box">
+                                {correctAnswers.question5.formatted}
+                            </div>)}
                         </div>
                     </div>
                 </div>
@@ -367,61 +328,56 @@ const Act2Geometrie = () => {
                         </div>
 
                         <div className="vector-summary-container">
-                            {showSummary ? (
-                                <div className="vector-cards-grid">
-                                    <div className="vector-card vector-geometry-card"
-                                         style={{fontFamily: 'Cambria Math'}}>
-                                        <h4>Vecteurs égaux et colinéaires</h4>
+                            {showSummary ? (<div className="vector-cards-grid">
+                                <div className="vector-card vector-geometry-card"
+                                     style={{fontFamily: 'Cambria Math'}}>
+                                    <h4>Vecteurs égaux et colinéaires</h4>
 
-                                        <p>Deux vecteurs <InlineMath math="\vec{AB}"/> et <InlineMath
-                                            math="\vec{CD}"/> égaux ont :</p>
-                                        <ul>
-                                            <li>La même direction, le même sens et la même norme</li>
-                                            <li>Les mêmes coordonnées : <BlockMath math="\vec{AB} = \vec{CD}"/></li>
-                                        </ul>
+                                    <p>Deux vecteurs <InlineMath math="\vec{AB}"/> et <InlineMath
+                                        math="\vec{CD}"/> égaux ont :</p>
+                                    <ul>
+                                        <li>La même direction, le même sens et la même norme</li>
+                                        <li>Les mêmes coordonnées : <BlockMath math="\vec{AB} = \vec{CD}"/></li>
+                                    </ul>
 
-                                        <p>Deux vecteurs <InlineMath math="\vec{AB}"/> et <InlineMath
-                                            math="\vec{CD}"/> colinéaires :</p>
-                                        <ul>
-                                            <li>Ont la même direction, mais pas nécessairement le même sens ni la même
-                                                norme
-                                            </li>
-                                            <li>Ont des coordonnées proportionnelles :
-                                                <BlockMath
-                                                    math="\vec{AB} = k \times \vec{CD} \quad \text{ou} \quad \vec{CD} = k \times \vec{AB}"/>
-                                                avec <InlineMath math="k \in \mathbb{R}"/>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <p>Deux vecteurs <InlineMath math="\vec{AB}"/> et <InlineMath
+                                        math="\vec{CD}"/> colinéaires :</p>
+                                    <ul>
+                                        <li>Ont la même direction, mais pas nécessairement le même sens ni la même
+                                            norme
+                                        </li>
+                                        <li>Ont des coordonnées proportionnelles :
+                                            <BlockMath
+                                                math="\vec{AB} = k \times \vec{CD} \quad \text{ou} \quad \vec{CD} = k \times \vec{AB}"/>
+                                            avec <InlineMath math="k \in \mathbb{R}"/>
+                                        </li>
+                                    </ul>
                                 </div>
-                            ) : (
-                                <div className="vector-cards-grid">
-                                    <div className="vector-card" style={{
-                                        border: '2px dashed #ccc',
-                                        minHeight: '250px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        color: '#999'
-                                    }}>
-                                    </div>
+                            </div>) : (<div className="vector-cards-grid">
+                                <div className="vector-card" style={{
+                                    border: '2px dashed #ccc',
+                                    minHeight: '250px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: '#999'
+                                }}>
                                 </div>
-                            )}
+                            </div>)}
                         </div>
                     </div>
 
                 </div>
+                <div className="print-page" style={{marginTop: '20px'}}>
+                    <AutoEvaluationGrid/>
+                </div>
             </div>
 
             {/* PAGE 3 */}
-            <div className="print-page">
-                <AutoEvaluationGrid/>
 
-                <footer className="tp-footer">
-                    <p>Activité de géométrie vectorielle - Téléphérique de montagne</p>
-                </footer>
-            </div>
-
+            <footer className="tp-footer">
+                <p>Activité de géométrie vectorielle - Téléphérique de montagne</p>
+            </footer>
             {modalState.show && (<ModalImage
                 imageUrl={modalState.imageUrl}
                 altText={modalState.altText}

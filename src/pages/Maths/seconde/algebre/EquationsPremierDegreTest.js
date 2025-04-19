@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {FaCheck, FaCode} from 'react-icons/fa';
+import {FaCheck, FaCode, FaEquals} from 'react-icons/fa';
 import {IoMdSchool} from 'react-icons/io';
 import '../../../../styles/activites.css';
 import {useLocation, useParams} from 'react-router-dom';
@@ -124,39 +124,37 @@ const EquationsPremierDegreTest = () => {
                         <IoMdSchool className="header-icon"/>
                         <h1>🧩 Équations premier degré - Classe Seconde Mathématiques</h1>
                     </header>
-                    <div className="tp-intro">
-                        <div className="math-chapter-box blue">
-                            <FaCode className="math-chapter-icon"/>
-                            <span style={{fontSize: '2rem', marginRight: '20px'}}>💻</span>
-                            <h2
-                                className="math-chapter-title-test"
-                                style={{color: '#your-color', fontSize: 'your-size'}}
-                            >
-                                Mission Code : Déchiffre le Message Secret !{' '}
-                            </h2>
-                            <div className="math-chapter-decoration">
-                                <svg width="100" height="80" viewBox="0 0 24 24" fill="none">
-                                    <path
-                                        d="M12 2L2 7L12 12L22 7L12 2Z M12 12L22 7 M12 12L2 7 M12 12V22 M22 7V17L12 22L2 17V7"
-                                        stroke="#ff9500"
-                                        strokeWidth="2"
-                                    />
-                                    <circle
-                                        cx="12"
-                                        cy="12"
-                                        r="10"
-                                        stroke="#ff5e00"
-                                        strokeWidth="1.5"
-                                    />
-                                    <path
-                                        d="M12 8V16 M8 12H16"
-                                        stroke="#ff9500"
-                                        strokeWidth="2"
-                                    />
-                                </svg>
-                            </div>
+
+                    <div className="math-chapter-box blue">
+                        <FaCode className="math-chapter-icon"/>
+                        <span style={{fontSize: '2rem', marginRight: '20px'}}>💻</span>
+                        <h2 className="math-chapter-title-test"
+                            style={{color: '#your-color', fontSize: 'your-size'}}>
+                            Mission Code : Déchiffre le Message Secret !{' '}
+                        </h2>
+                        <div className="math-chapter-decoration">
+                            <svg width="100" height="80" viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M12 2L2 7L12 12L22 7L12 2Z M12 12L22 7 M12 12L2 7 M12 12V22 M22 7V17L12 22L2 17V7"
+                                    stroke="#ff9500"
+                                    strokeWidth="2"
+                                />
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="#ff5e00"
+                                    strokeWidth="1.5"
+                                />
+                                <path
+                                    d="M12 8V16 M8 12H16"
+                                    stroke="#ff9500"
+                                    strokeWidth="2"
+                                />
+                            </svg>
                         </div>
                     </div>
+
                     <div className="activity-header">
                         <span className="activity-badge">ACTIVITÉ 1</span>
                         <div className="activity-title">
@@ -180,9 +178,8 @@ const EquationsPremierDegreTest = () => {
                                     <p> ⭐🎴 ⬛🔺 💀🖤🌙⭐</p>
                                 </p>
                             </div>
-                            <div className="problem-box">
-                                <h3>🧠 Objectif</h3>
-                                <p>
+                            <div className="objectif-box" style={{marginTop: '-10px', marginBottom: '20px'}}>
+                                <p><strong> Objectif :</strong> 🎯
                                     Résoudre des équations simples pour découvrir la signification
                                     cachée d’un message codé.
                                 </p>
@@ -195,7 +192,7 @@ const EquationsPremierDegreTest = () => {
                             style={{
                                 maxWidth: '350px',
                                 cursor: 'pointer',
-                                marginTop: '90px',
+                                marginTop: '50px',
                             }}
                         >
                             <img
@@ -371,6 +368,16 @@ const EquationsPremierDegreTest = () => {
                             </tbody>
                         </table>
                     </section>
+                    <div className="equation-card">
+                        <h3 className="equation-title">
+                            <FaEquals className="equation-icon"/> Qu'est-ce qu'une équation ?
+                        </h3>
+                        <p className="equation-text">
+                            Une équation est une phrase mathématique où <span className="highlight2">deux expressions sont égales</span>.
+                            On cherche la valeur de l'inconnue qui rend cette égalité <span
+                            className="highlight2">vraie</span>.
+                        </p>
+                    </div>
                 </div>
                 {/* Page 2 */}
                 <div className="print-page">
@@ -383,7 +390,7 @@ const EquationsPremierDegreTest = () => {
                                 le message :
                             </p>
 
-                            <table className="measurement-table printable-table">
+                            <table className="measurement-table printable-table" style={{maxHeight: '71%'}}>
                                 <thead>
                                 <tr>
                                     <th>Lettre</th>
@@ -470,7 +477,7 @@ const EquationsPremierDegreTest = () => {
                                 </tbody>
                             </table>
 
-                            <div className="answer-container" style={{marginTop: '20px'}}>
+                            <div className="answer-container">
                                 <p>🧮 Message décrypté :</p>
                                 <input
                                     type="text"
@@ -487,49 +494,81 @@ const EquationsPremierDegreTest = () => {
                                 </button>
                             </div>
                         </div>
-                    </section>
-                    <section className="tp-section2">
-                        <h3>🧠 Je retiens</h3>
-                        <div className="retien-box">
-                            <button
-                                className="toggle-summary-btn"
-                                onClick={() => toggleStep(1)} // On utilise toujours toggleStep pour garder la logique existante
-                            >
-                                {activeSteps.includes(1) ? 'Masquer' : 'Afficher'} ce qu'il faut
-                                retenir
-                            </button>
 
-                            {activeSteps.includes(1) && (
-                                <div className="summary-content">
-                                    <div className="definition-box">
-                                        <h4>📝 C'est quoi une équation ?</h4>
-                                        <p>
-                                            Une équation est une égalité mathématique qui contient une
-                                            inconnue (souvent notée x).
-                                            <br/>
-                                            <strong>Exemple :</strong> 3x + 5 = 20
-                                        </p>
+                        <div>
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                marginTop: '-10px'
+                            }}>
+                                <h3>🧠 Je retiens</h3>
+                                <button
+                                    className="correction-btn"
+                                    onClick={() => toggleStep(1)}
+                                    style={{marginLeft: '10px'}}
+                                >
+                                    {activeSteps.includes(1) ? 'Masquer' : 'Afficher'} les informations
+                                </button>
+                            </div>
+
+                            <div className="vector-summary-container">
+                                {activeSteps.includes(1) ? (
+                                    <div className="vector-cards-grid">
+                                        <div className="vector-card">
+                                            <h4>📝 C'est quoi une équation ?</h4>
+                                            <p>
+                                                Une équation est une égalité mathématique qui contient une
+                                                inconnue.
+                                                <br/>
+                                                <strong>Exemple :</strong> 3x + 5 = 20
+                                            </p>
+                                        </div>
+                                        <div className="vector-card">
+                                            <h4>💡 En pratique</h4>
+                                            <p>
+                                                Une équation permet de trouver une valeur inconnue en
+                                                respectant l'égalité.
+                                                <br/>
+                                                <em>Vérification :</em> 3×5 + 5 = 20 → 15 + 5 = 20 ✔️
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="conclusion-box">
-                                        <h4>💡 En pratique</h4>
-                                        <p>
-                                            Une équation permet de trouver une valeur inconnue en
-                                            respectant l'égalité.
-                                            <br/>
-                                            <em>Vérification :</em> 3×5 + 5 = 20 → 15 + 5 = 20 ✔️
-                                        </p>
-                                    </div>
-                                </div>
-                            )}
+                                ) : (
+                                    <div className="vector-cards-grid" style={{marginTop: '-20px'}}>
+                                        {/* Cartes vides pour réponse */}
+                                        <div className="vector-card" style={{
+                                            border: '2px dashed #ccc',
+                                            minHeight: '150px', // Environ 5 lignes
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            color: '#999'
+                                        }}>
+                                        </div>
+
+                                        <div className="vector-card" style={{
+                                            border: '2px dashed #ccc',
+                                            minHeight: '150px', // Environ 5 lignes
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            color: '#999'
+                                        }}>
+                                        </div>
+                                    </div>)}
+                            </div>
                         </div>
+                        <AutoEvaluationGrid/>
                     </section>
-                    <footer className="tp-footer">
-                        <p>
-                            © 2025 - Mathématiques : équations premier degré - Tous droits
-                            réservés
-                        </p>
-                    </footer>
+
                 </div>
+                <footer className="tp-footer">
+                    <p>
+                        © 2025 - Mathématiques : équations premier degré - Tous droits
+                        réservés
+                    </p>
+                </footer>
                 {modalState.show && (
                     <ModalImage
                         imageUrl={modalState.imageUrl}

@@ -1,63 +1,83 @@
 import React, {useState, useEffect} from 'react';
-import {FaRandom, FaCalculator, FaStar, FaTrophy, FaLightbulb, FaClock} from 'react-icons/fa';
-import {FcCheckmark, FcCancel, FcOk, FcHighPriority} from "react-icons/fc";
+import {FaRandom, FaSearch, FaLightbulb, FaClock} from 'react-icons/fa';
+import {FcOk, FcHighPriority} from "react-icons/fc";
 import {AutomatismesDataDB} from "./AutomatismesDataDB";
 import './Automatismes.css';
-import smartgif from '../assets/spongebob.gif';
+import defaultGif from '../assets/spongebob.gif';
 
 const Automatismes = () => {
+    // États
     const [selectedQuestions, setSelectedQuestions] = useState([]);
     const [showAnswers, setShowAnswers] = useState(Array(4).fill(false));
     const [userAnswers, setUserAnswers] = useState(Array(4).fill(''));
     const [score, setScore] = useState({correct: 0, total: 0});
     const [streak, setStreak] = useState(0);
-    const [timeLeft, setTimeLeft] = useState(300); // 5 minutes en secondes
+    const [timeLeft, setTimeLeft] = useState(300);
     const [isActive, setIsActive] = useState(true);
-    useEffect(() => {
-        const img = new Image();
-        img.src = '../assets/smart.gif';
-    }, []);
-    useEffect(() => {
-        generateNewQuestions();
-    }, []);
+    const [currentGif, setCurrentGif] = useState(defaultGif);
+    const [sessionSeed, setSessionSeed] = useState(null);
+    const [searchInput, setSearchInput] = useState('');
 
-    useEffect(() => {
-        let timer;
-        if (isActive && timeLeft > 0) {
-            timer = setInterval(() => {
-                setTimeLeft(prevTime => prevTime - 1);
-            }, 1000);
-        } else if (timeLeft === 0) {
-            setIsActive(false);
+    // Génère un seed aléatoire
+    const generateSeed = () => Math.floor(Math.random() * 1000000);
+
+    // Charge un GIF aléatoire
+    const loadRandomGif = () => {
+        try {
+            const randomNum = Math.floor(Math.random() * 14) + 1;
+            return require(`../assets/gif/${randomNum}.gif`);
+        } catch (e) {
+            console.error("Erreur de chargement du GIF", e);
+            return defaultGif;
         }
-        return () => clearInterval(timer);
-    }, [isActive, timeLeft]);
+    };
 
-    const generateNewQuestions = () => {
-        const shuffled = [...AutomatismesDataDB].sort(() => 0.5 - Math.random());
+    // Génère des questions de manière reproductible
+    const generateQuestions = (seed) => {
+        const shuffled = [...AutomatismesDataDB].sort((a, b) => {
+            const hashA = String(a.id + seed).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+            const hashB = String(b.id + seed).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+            return hashA - hashB;
+        });
+
         setSelectedQuestions(shuffled.slice(0, 4));
         setShowAnswers(Array(4).fill(false));
         setUserAnswers(Array(4).fill(''));
-        setTimeLeft(300);
-        setIsActive(true);
+        setCurrentGif(loadRandomGif());
+        setSessionSeed(seed);
     };
 
-    const checkAnswer = (index) => {
-        const correctAnswer = String(selectedQuestions[index].answer).trim().toLowerCase();
-        const userAnswer = userAnswers[index].trim().toLowerCase();
-        const isCorrect = userAnswer === correctAnswer;
+    // Nouvelle série de questions
+    const handleNewMission = () => {
+        const newSeed = generateSeed();
+        setTimeLeft(300);
+        setIsActive(true);
+        generateQuestions(newSeed);
+    };
 
-        if (isCorrect) {
-            setScore(prev => ({correct: prev.correct + 1, total: prev.total + 1}));
-            setStreak(prev => prev + 1);
-        } else {
-            setScore(prev => ({...prev, total: prev.total + 1}));
-            setStreak(0);
+    // Recherche une série existante
+    const handleSearch = () => {
+        if (searchInput) {
+            generateQuestions(Number(searchInput));
         }
+    };
+
+    // Vérifie une réponse
+    const checkAnswer = (index) => {
+        const correct = String(selectedQuestions[index].answer).trim().toLowerCase();
+        const userAnswer = userAnswers[index].trim().toLowerCase();
+        const isCorrect = userAnswer === correct;
+
+        setScore(prev => ({
+            correct: isCorrect ? prev.correct + 1 : prev.correct,
+            total: prev.total + 1
+        }));
+        setStreak(isCorrect ? prev => prev + 1 : 0);
 
         return isCorrect;
     };
 
+    // Affiche/masque la réponse
     const toggleAnswer = (index) => {
         const isCorrect = checkAnswer(index);
         const newShowAnswers = [...showAnswers];
@@ -73,105 +93,109 @@ const Automatismes = () => {
         }
     };
 
-    const handleAnswerChange = (index, value) => {
-        const newUserAnswers = [...userAnswers];
-        newUserAnswers[index] = value;
-        setUserAnswers(newUserAnswers);
-    };
+    // Gestion du temps
+    useEffect(() => {
+        let timer;
+        if (isActive && timeLeft > 0) {
+            timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
+        } else if (timeLeft === 0) {
+            setIsActive(false);
+        }
+        return () => clearInterval(timer);
+    }, [isActive, timeLeft]);
 
-    const getRandomEmoji = () => {
-        const emojis = ["🚀", "👾", "🎮", "🔮", "⚡", "🧩", "🤖"];
-        return emojis[Math.floor(Math.random() * emojis.length)];
-    };
-
-    const formatTime = (seconds) => {
-        const mins = Math.floor(seconds / 60);
-        const secs = seconds % 60;
-        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    };
+    // Initialisation
+    useEffect(() => {
+        handleNewMission();
+    }, []);
 
     return (
         <div className="automatismes-container">
             <div className="automatismes-header">
                 <div className="title-section">
-                    <h2><FaRandom/> MATH CHALLENGE {getRandomEmoji()}</h2>
+                    <h2><FaRandom/> MATH CHALLENGE</h2>
                     <p>Débloquez vos super-pouvoirs mathématiques !</p>
                 </div>
-
             </div>
 
             <div className="generate-btn-container">
-                <button onClick={generateNewQuestions} className="generate-btn">
+                <button onClick={handleNewMission} className="generate-btn">
                     <FaRandom/> NOUVELLE MISSION
                 </button>
+
+
+            </div>
+            <div className="search-box no-print">
+                <input
+                    type="number"
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    placeholder="Code de série"
+                />
+                <button onClick={handleSearch} className="search-btn">
+                    <FaSearch/> CHARGER
+                </button>
+            </div>
+
+            <div className="print-only reference-code">
+                {sessionSeed && `Code : ${sessionSeed}`}
             </div>
 
             <div className="questions-grid">
                 {selectedQuestions.map((question, index) => (
                     <div
                         id={`card-${index}`}
-                        key={question.id}
+                        key={`${sessionSeed}-${question.id}`}
                         className="question-card"
-                        style={{
-                            borderTop: `4px solid ${question.color}`,
-                            '--order': index
-                        }}
+                        style={{borderTop: `4px solid ${question.color}`}}
                     >
                         <div className="question-header">
-                            <span className="question-icon" style={{color: question.color}}>
-                                {question.icon || <FaLightbulb/>}
-                            </span>
+              <span className="question-icon" style={{color: question.color}}>
+                {question.icon || <FaLightbulb/>}
+              </span>
                             <h3>{question.title}</h3>
                         </div>
 
                         <div className="question-content">
-                            <div className="question-text">
-                                {question.question}
-                            </div>
-                            <div className="answer-input-area">
-                                <textarea
-                                    value={userAnswers[index]}
-                                    onChange={(e) => handleAnswerChange(index, e.target.value)}
-                                    className="user-answer-input"
-                                />
-                            </div>
+                            <div className="question-text">{question.question}</div>
+
+                            <textarea
+                                value={userAnswers[index]}
+                                onChange={(e) => {
+                                    const newAnswers = [...userAnswers];
+                                    newAnswers[index] = e.target.value;
+                                    setUserAnswers(newAnswers);
+                                }}
+                                className="user-answer-input"
+                                placeholder="Votre réponse..."
+                            />
 
                             <div className="card-footer">
                                 <button
                                     onClick={() => toggleAnswer(index)}
                                     className="answer-btn"
-                                    aria-label={showAnswers[index] ? "Cacher la réponse" : "Vérifier la réponse"}
                                 >
-                                    {showAnswers[index] ?
-                                        <FcHighPriority size={24}/> :
-                                        <FcOk size={24}/>}
+                                    {showAnswers[index] ? (
+                                        <FcHighPriority size={20}/>
+                                    ) : (
+                                        <FcOk size={20}/>
+                                    )}
                                     <span>{showAnswers[index] ? "Cacher" : "Vérifier"}</span>
                                 </button>
                             </div>
 
                             {showAnswers[index] && (
                                 <div className="answer-display">
-                                    <span className="answer-label">Réponse :</span>
-                                    <div className="math-answer">
-                                        {String(selectedQuestions[index].answer)}
+                                    <div className="correct-answer">
+                                        <span>Réponse :</span> {selectedQuestions[index].answer}
                                     </div>
-
-                                    {selectedQuestions[index].detailedAnswer && (
-                                        <div className="detailed-answer">
-                                            <span className="explanation-label">Explication :</span>
-                                            <div className="math-explanation">
-                                                {selectedQuestions[index].detailedAnswer}
-                                            </div>
-                                        </div>
-                                    )}
-
                                     {userAnswers[index] && (
-                                        <div className={`user-answer-comparison ${
+                                        <div className={`user-feedback ${
                                             userAnswers[index].trim().toLowerCase() ===
                                             String(selectedQuestions[index].answer).trim().toLowerCase()
                                                 ? 'correct' : 'incorrect'
                                         }`}>
-                                            <span>Ta réponse: {userAnswers[index]}</span>
+                                            Votre réponse: {userAnswers[index]}
                                         </div>
                                     )}
                                 </div>
@@ -182,25 +206,17 @@ const Automatismes = () => {
             </div>
 
             <div className="countdown-container no-print">
-                <div
-                    className={`countdown-timer ${timeLeft <= 30 ? 'warning' : ''} ${timeLeft === 0 ? 'time-up' : ''}`}>
-                    <FaClock className="clock-icon"/>
-                    <span>{formatTime(timeLeft)}</span>
+                <div className={`countdown-timer ${timeLeft <= 30 ? 'warning' : ''}`}>
+                    <FaClock/> {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
                 </div>
-                {timeLeft === 0 && (
-                    <div className="time-up-message">
-                        Temps écoulé ! Génère une nouvelle série pour continuer.
-                    </div>
-                )}
             </div>
-            {/* Ajout du GIF animé */}
+
             <div className="smart-gif-container">
                 <img
-                    src={smartgif}  // Utilisez la variable importée
-                    alt="Animation intelligente"
+                    src={currentGif}
+                    alt="Animation"
                     className="smart-gif"
-                    onLoad={() => console.log("GIF chargé")}  // Pour debug
-                    onError={(e) => console.error("Erreur de chargement", e)}  // Pour debug
+                    onError={() => setCurrentGif(defaultGif)}
                 />
             </div>
         </div>

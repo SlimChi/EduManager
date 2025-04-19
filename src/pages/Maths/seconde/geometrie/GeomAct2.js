@@ -120,12 +120,7 @@ const GeomAct2 = () => {
             />
             {/* Page 1 - Chapitre et formules */}
             <div className="print-page" id="page1-start">
-                <header className="tp-header">
-                    <IoMdSchool className="header-icon"/>
-                    <h1>Calculs d'aires et de volumes - Classe 2nde Mathématiques</h1>
-                </header>
                 {/* Page 1 */}
-
                 <div className="math-chapter-box blue">
                     <span style={{marginRight: '10px', fontSize: '30px'}}>📐</span>
 
@@ -133,7 +128,7 @@ const GeomAct2 = () => {
                         Volumes et formes dans l'espace
                     </h2>
                 </div>
-                <div className="activity-header">
+                <div className="activity-header" style={{marginTop: '-10px'}}>
                     <span className="activity-badge">ACTIVITÉ 2</span>
                     <div className="activity-title">
                 <span className="course-title">
@@ -148,13 +143,10 @@ const GeomAct2 = () => {
 
                 <div className="d-flex align-items-start" style={{gap: '20px'}}>
                     <div style={{flex: 1, fontSize: '14px'}}>
-                        <div className="renovation-contexte">
+                        <div className="renovation-contexte" style={{marginTop: '-10px'}}>
                             <p
                                 style={{
-                                    fontFamily: 'Georgia, serif',
-                                    fontSize: '1rem',
-                                    lineHeight: '1.6',
-                                    color: '#2c3e50',
+                                    fontFamily: 'Georgia, serif', fontSize: '1rem', lineHeight: '1.6', color: '#2c3e50',
                                 }}
                             >
                                 <strong>Angela</strong> 🧰, une élève en bac pro menuiserie,
@@ -186,7 +178,7 @@ const GeomAct2 = () => {
                     <div
                         className="flex-shrink-0"
                         style={{
-                            maxWidth: '350px', cursor: 'pointer', margin: '0 auto', marginTop: '70px',
+                            maxWidth: '350px', cursor: 'pointer', margin: '0 auto', marginTop: '50px',
                         }}
                     >
                         <img
@@ -286,13 +278,11 @@ const GeomAct2 = () => {
                                     type="text"
                                     className={`answer-input ${showCorrections.questionII3a ? 'correction-active' : ''}`}
                                     value={answers.questionII3a}
-                                    onChange={(e) => handleInputChange('questionII3a', e.target.value)}
-                                />
+                                    onChange={(e) => handleInputChange('questionII3a', e.target.value)}/>
                             </div>
                             {!showCorrections.questionII3a && (<button
                                 className="correction-btn"
-                                onClick={() => toggleCorrection('questionII3a')}
-                            >
+                                onClick={() => toggleCorrection('questionII3a')}>
                                 <FaCheck/> Correction
                             </button>)}
                         </div>
@@ -319,49 +309,59 @@ const GeomAct2 = () => {
                         </div>
                     </div>
                 </div>
+                <div className="card">
+                    <div className="questions-row" style={{
+                        display: 'flex', gap: '1rem', alignItems: 'stretch', flexWrap: 'wrap'
+                    }}>
+                        <div className="question-card" style={{
+                            flex: '1', display: 'flex', flexDirection: 'column'
+                        }}>
+                            <div className="question-number2">4a</div>
+                            <p>Le rayon moyen d'un disque :</p>
+                            <div className="answer-container">
+                                <input
+                                    type="text"
+                                    className={`answer-input ${showCorrections.questionII4a ? 'correction-active' : ''}`}
+                                    value={answers.questionII4a}
+                                    onChange={(e) => handleInputChange('questionII4a', e.target.value)}
+                                />
+                            </div>
+                            {!showCorrections.questionII4a && (<button
+                                className="correction-btn"
+                                onClick={() => toggleCorrection('questionII4a')}
+                            >
+                                <FaCheck/> Correction
+                            </button>)}
+                        </div>
+
+                        <div className="question-card" style={{
+                            flex: '1', display: 'flex', flexDirection: 'column', height: '100%'
+                        }}>
+                            <div className="question-number2">4b</div>
+                            <p>Le rayon de la sphère :</p>
+                            <div className="answer-container">
+                                <input
+                                    type="text"
+                                    className={`answer-input ${showCorrections.questionII4b ? 'correction-active' : ''}`}
+                                    value={answers.questionII4b}
+                                    onChange={(e) => handleInputChange('questionII4b', e.target.value)}
+                                />
+                            </div>
+                            {!showCorrections.questionII4b && (<button
+                                className="correction-btn"
+                                onClick={() => toggleCorrection('questionII4b')}
+                            >
+                                <FaCheck/> Correction
+                            </button>)}
+                        </div>
+                    </div>
+                </div>
             </div>
             {/* Page 2 - Questions  */}
             <div className="print-page" id="page2-start">
                 <section className="tp-section compact">
                     <div className="card-container">
                         <div className="card">
-                            <div className="question-card wide">
-                                <div className="question-number2">4a</div>
-                                <p>Le rayon moyen d'un disque :</p>
-                                <div className="answer-container">
-                                    <input
-                                        type="text"
-                                        className={`answer-input ${showCorrections.questionII4a ? 'correction-active' : ''}`}
-                                        value={answers.questionII4a}
-                                        onChange={(e) => handleInputChange('questionII4a', e.target.value)}
-                                    />
-                                </div>
-                                {!showCorrections.questionII4a && (<button
-                                    className="correction-btn"
-                                    onClick={() => toggleCorrection('questionII4a')}
-                                >
-                                    <FaCheck/> Correction
-                                </button>)}
-                            </div>
-
-                            <div className="question-card wide">
-                                <div className="question-number2">4b</div>
-                                <p>Le rayon de la sphère :</p>
-                                <div className="answer-container">
-                                    <input
-                                        type="text"
-                                        className={`answer-input ${showCorrections.questionII4b ? 'correction-active' : ''}`}
-                                        value={answers.questionII4b}
-                                        onChange={(e) => handleInputChange('questionII4b', e.target.value)}
-                                    />
-                                </div>
-                                {!showCorrections.questionII4b && (<button
-                                    className="correction-btn"
-                                    onClick={() => toggleCorrection('questionII4b')}
-                                >
-                                    <FaCheck/> Correction
-                                </button>)}
-                            </div>
                             <div className="question-card wide">
                                 <div className="question-number2">5a</div>
                                 <p>Calculer les aires des surfaces (en arrondissant au dixème) :</p>
@@ -399,7 +399,6 @@ const GeomAct2 = () => {
                                     <FaCheck/> Correction
                                 </button>)}
                             </div>
-
                         </div>
 
                         <div class="card">
@@ -440,27 +439,27 @@ const GeomAct2 = () => {
                                 </div>
 
 
-                                <div className="question-card wide">
-                                    <div className="question-number2">7</div>
-                                    <p>Rédiger une réponse au problème.</p>
-                                    <div className="answer-container">
-                                        <AutoResizeTextarea
-                                            id={`textarea-questionII7`}
-                                            className={`answer-input ${showCorrections.questionII7 ? 'correction-active' : ''}`}
-                                            value={answers.questionII7}
-                                            onChange={(e) => handleInputChange('questionII7', e.target.value)}
-                                            minRows={4}
-                                            maxRows={13}
-                                        />
-                                        {!showCorrections.questionII7 && (<button
-                                            className="correction-btn"
-                                            onClick={() => toggleCorrection('questionII7')}
-                                        >
-                                            <FaCheck/> Correction
-                                        </button>)}
-                                    </div>
+                            </div>
 
-                                </div>
+                        </div>
+                        <div className="question-card wide">
+                            <div className="question-number2">7</div>
+                            <p>Rédiger une réponse au problème.</p>
+                            <div className="answer-container">
+                                <AutoResizeTextarea
+                                    id={`textarea-questionII7`}
+                                    className={`answer-input ${showCorrections.questionII7 ? 'correction-active' : ''}`}
+                                    value={answers.questionII7}
+                                    onChange={(e) => handleInputChange('questionII7', e.target.value)}
+                                    minRows={4}
+                                    maxRows={13}
+                                />
+                                {!showCorrections.questionII7 && (<button
+                                    className="correction-btn"
+                                    onClick={() => toggleCorrection('questionII7')}
+                                >
+                                    <FaCheck/> Correction
+                                </button>)}
                             </div>
                         </div>
                     </div>

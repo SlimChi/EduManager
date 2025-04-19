@@ -299,14 +299,11 @@ const Act1GeometrieVecteur = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
 
             {/* PAGE 3 */}
             <div className="print-page">
                 <div className="tp-section">
-
-
                     <div className="question-card">
                         <div className="question-number2">5</div>
                         <div className="question-content">

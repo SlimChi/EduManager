@@ -1,5 +1,4 @@
 import React from 'react';
-import {useReactToPrint} from 'react-to-print';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import {FaFilePdf, FaPrint} from 'react-icons/fa';
@@ -24,7 +23,7 @@ const PrintManager = ({
             page.style.height = 'auto';
             page.style.overflow = 'visible';
 
-            await new Promise((resolve) => setTimeout(resolve, 300)); // Allow for rendering
+            await new Promise((resolve) => setTimeout(resolve, 300));
 
             const canvas = await html2canvas(page, {
                 scale: quality === '4k' ? 4 : quality === 'hd' ? 2 : 1.5,
@@ -50,7 +49,7 @@ const PrintManager = ({
 
             // Center vertically if content is shorter than page
 
-            const yPos = 2;
+            const yPos = 5;
 
             pdf.addImage(imgData, 'PNG', 10, yPos, pdfWidth, pdfHeight);
 

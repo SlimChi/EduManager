@@ -1221,7 +1221,6 @@
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 700px;
-    margin: 20px auto;
     border-left: 5px solid #3a7bd5;
 }
 
@@ -2255,4 +2254,39 @@ body.printing button {
     margin-bottom: 0;
     font-style: italic;
     font-weight: 500;
+}
+
+.equation-card {
+    width: 100%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #d9efd3 100%);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(190, 227, 156, 0.1);
+    border-left: 5px solid #4e54c8;
+    margin: 10px 0;
+    margin-top: 20px;
+}
+
+.equation-title {
+    color: #4e54c8;
+    margin-top: 0;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.equation-icon {
+    margin-right: 8px;
+}
+
+.equation-text {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.highlight2 {
+    font-weight: 600;
+    color: #4e54c8;
 }
