@@ -15,15 +15,12 @@ import {
     FaCalculator,
     FaCertificate,
 } from 'react-icons/fa';
-import {BsFillQuestionCircleFill} from 'react-icons/bs';
-import {IoMdSchool} from 'react-icons/io';
 import '../../../../styles/act1geometrie.css';
 import {useLocation, useParams} from 'react-router-dom';
 import BackButton from '../../../../components/navigation/BackButton';
 import imageAct1 from '../../../../assets/act1geofigures.png';
 import cuisine from '../../../../assets/benggers.png';
 import ModalImage from '../../../../utils/ModalImage';
-import spherebois from '../../../../assets/shpereenboisfille.jpg';
 import '../../../../styles/AireFiguresCard.css';
 import carre from '../../../../assets/carre2.png';
 import cercle from '../../../../assets/cercle2.png';
@@ -34,10 +31,6 @@ import PrintManager from '../../../../utils/PrintManager';
 import AutoEvaluationGrid from '../../../../config/AutoEvaluationGrid';
 import AutoResizeTextarea from '../../../../config/AutoResizeTextarea';
 import {FcCalculator} from 'react-icons/fc';
-import {WhiteFlag} from 'fluent-emoji';
-import {
-    FaArrowsToCircle, FaRectangleAd, FaTriangleExclamation, FaUsersRectangle,
-} from 'react-icons/fa6';
 
 const GeometrieAct1 = () => {
     const {classId} = useParams();
