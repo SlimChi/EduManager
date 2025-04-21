@@ -1,27 +1,29 @@
-import React from 'react';
-import {useParams, useNavigate} from 'react-router-dom';
-import {ListGroup} from 'react-bootstrap';
+// ...
+import {SPECIAL_ACTIVITIES} from "../config/activityConfig";
+import {useNavigate, useParams} from "react-router-dom";
+import {ListGroup} from "react-bootstrap";
+import {FaBook} from "react-icons/fa";
 import BackButton from "../components/navigation/BackButton";
-import {SPECIAL_ACTIVITIES} from '../config/activityConfig';
-import {FaBook} from 'react-icons/fa';
-import '../styles/chapitreactconfig.css';
 
 const ChapitreActivitiesPage = () => {
     const {discipline, classId, programmeType, chapitreId} = useParams();
     const navigate = useNavigate();
 
-    // Récupère les données spécifiques au chapitre
+    // Récupération des données générales du chapitre
     const chapitreData = SPECIAL_ACTIVITIES[discipline]?.[classId]?.[programmeType]?.[chapitreId] || {};
     const {chapter, activities = []} = chapitreData;
     const statsActivities = chapitreData?.stats?.activities || [];
     const probasActivities = chapitreData?.probas?.activities || [];
+
+    // Ajout : gestion des catégories cointervention
+    const mrcActivities = chapitreId === 'cointervention' ? chapitreData?.mrc?.activities || [] : [];
+    const maintenanceActivities = chapitreId === 'cointervention' ? chapitreData?.maintenances?.activities || [] : [];
 
     const handleSelectActivity = (path, e) => {
         if (e) e.stopPropagation();
         navigate(`/programmes/${discipline}/${classId}/${programmeType}/activites/${path}`);
     };
 
-    // Icône personnalisée selon le type d'activité
     const getActivityIcon = (activityType) => {
         switch (activityType) {
             case 'stats':
@@ -31,7 +33,7 @@ const ChapitreActivitiesPage = () => {
             case 'algebre':
                 return <span className="emoji me-2">🔢</span>;
             case 'algo':
-                return <span className="emoji">💻</span>;
+                return <span className="emoji me-2">💻</span>;
             case 'Calculs_commerciaux':
                 return <span className="emoji me-2">💰</span>;
             case 'volumes':
@@ -46,6 +48,8 @@ const ChapitreActivitiesPage = () => {
                 return <span className="emoji me-2">🎲</span>;
             case 'acoustique':
                 return <span className="emoji me-2">🎧</span>;
+            case 'cointervention':
+                return <span className="emoji me-2">🤝</span>;
             default:
                 return <span className="emoji me-2">📚</span>;
         }
@@ -111,11 +115,7 @@ const ChapitreActivitiesPage = () => {
                                 <span className="fw-bold">Activité {index + 1}:</span>
                                 <span className="ms-2">{activity.title}</span>
                             </div>
-                            <span
-                                className="text-primary d-flex align-items-center"
-                                style={{cursor: 'pointer'}}
-                                onClick={(e) => handleSelectActivity(activity.path, e)}
-                            >
+                            <span className="text-primary d-flex align-items-center" style={{cursor: 'pointer'}}>
                                 <FaBook className="me-1"/>
                                 Commencer
                             </span>
@@ -123,6 +123,7 @@ const ChapitreActivitiesPage = () => {
                     ))}
                 </ListGroup>
 
+                {/* Statistiques & Probabilités */}
                 {chapitreId === 'stats' && (
                     <>
                         <h3 className="title-statistiques mb-4">Statistiques <span className="emoji">📊</span></h3>
@@ -140,17 +141,15 @@ const ChapitreActivitiesPage = () => {
                                         <span className="fw-bold">Activité {index + 1} - Statistiques :</span>
                                         <span className="ms-2">{activity.title}</span>
                                     </div>
-                                    <span
-                                        className="text-primary d-flex align-items-center"
-                                        style={{cursor: 'pointer'}}
-                                        onClick={(e) => handleSelectActivity(activity.path, e)}
-                                    >
+                                    <span className="text-primary d-flex align-items-center"
+                                          style={{cursor: 'pointer'}}>
                                         <FaBook className="me-1"/>
                                         Commencer
                                     </span>
                                 </ListGroup.Item>
                             ))}
                         </ListGroup>
+
                         <h3 className="title-probabilites mb-4">Probabilités <span className="emoji">🎲</span></h3>
                         <ListGroup>
                             {probasActivities.map((activity, index) => (
@@ -163,14 +162,68 @@ const ChapitreActivitiesPage = () => {
                                 >
                                     <div className="d-flex align-items-center">
                                         {getActivityIcon('probabilités')}
-                                        <span className="fw-bold"> Activité {index + 1} - Probabilités :</span>
+                                        <span className="fw-bold">Activité {index + 1} - Probabilités :</span>
                                         <span className="ms-2">{activity.title}</span>
                                     </div>
-                                    <span
-                                        className="text-success d-flex align-items-center"
-                                        style={{cursor: 'pointer'}}
-                                        onClick={(e) => handleSelectActivity(activity.path, e)}
-                                    >
+                                    <span className="text-success d-flex align-items-center"
+                                          style={{cursor: 'pointer'}}>
+                                        <FaBook className="me-1"/>
+                                        Commencer
+                                    </span>
+                                </ListGroup.Item>
+                            ))}
+                        </ListGroup>
+                    </>
+                )}
+
+                {/* Co-intervention - MRC */}
+                {chapitreId === 'cointervention' && mrcActivities.length > 0 && (
+                    <>
+                        <h3 className="mb-4">Co-intervention - MRC <span className="emoji">📘</span></h3>
+                        <ListGroup className="mb-4">
+                            {mrcActivities.map((activity, index) => (
+                                <ListGroup.Item
+                                    key={`mrc-${activity.id}`}
+                                    action
+                                    onClick={() => handleSelectActivity(activity.path)}
+                                    className="d-flex justify-content-between align-items-center mb-3 p-3 shadow-sm rounded"
+                                    style={{borderLeft: '4px solid #6f42c1'}}
+                                >
+                                    <div className="d-flex align-items-center">
+                                        {getActivityIcon('cointervention')}
+                                        <span className="fw-bold">Activité MRC {index + 1}:</span>
+                                        <span className="ms-2">{activity.title}</span>
+                                    </div>
+                                    <span className="text-purple d-flex align-items-center" style={{cursor: 'pointer'}}>
+                                        <FaBook className="me-1"/>
+                                        Commencer
+                                    </span>
+                                </ListGroup.Item>
+                            ))}
+                        </ListGroup>
+                    </>
+                )}
+
+                {/* Co-intervention - Maintenance */}
+                {chapitreId === 'cointervention' && maintenanceActivities.length > 0 && (
+                    <>
+                        <h3 className="mb-4">Co-intervention - Maintenance <span className="emoji">🛠️</span></h3>
+                        <ListGroup>
+                            {maintenanceActivities.map((activity, index) => (
+                                <ListGroup.Item
+                                    key={`maintenance-${activity.id}`}
+                                    action
+                                    onClick={() => handleSelectActivity(activity.path)}
+                                    className="d-flex justify-content-between align-items-center mb-3 p-3 shadow-sm rounded"
+                                    style={{borderLeft: '4px solid #fd7e14'}}
+                                >
+                                    <div className="d-flex align-items-center">
+                                        {getActivityIcon('cointervention')}
+                                        <span className="fw-bold">Activité Maintenance {index + 1}:</span>
+                                        <span className="ms-2">{activity.title}</span>
+                                    </div>
+                                    <span className="text-warning d-flex align-items-center"
+                                          style={{cursor: 'pointer'}}>
                                         <FaBook className="me-1"/>
                                         Commencer
                                     </span>

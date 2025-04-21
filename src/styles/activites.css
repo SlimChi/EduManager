@@ -520,7 +520,7 @@
 .answer-input {
     width: 100%;
     padding: 15px;
-    border: 1px solid #c4cff1;
+    border: 0.2px solid #c4cff1;
     border-radius: 8px;
     resize: none;
     line-height: 1.6;
@@ -582,7 +582,7 @@
     font-size: 1.1rem;
     padding: 12px;
     background-color: #ffffff;
-    border: 2px solid #3b82f6;
+    border: 0.2px solid #a1beee;
 }
 
 .tp-section.compact .correction-active {
@@ -2289,4 +2289,66 @@ body.printing button {
 .highlight2 {
     font-weight: 600;
     color: #4e54c8;
+}
+
+/* Ajoutez cette règle CSS pour définir la bordure plus épaisse */
+.table-bordered {
+    border: 0.1px solid rgba(194, 194, 204, 0.66) !important; /* Définir la bordure extérieure du tableau en noir et plus épaisse */
+}
+
+.table-bordered th, .table-bordered td {
+    border: 0.1px solid rgba(198, 198, 211, 0.66) !important; /* Définir des bordures noires plus épaisses pour les cellules */
+    text-align: center; /* Centrer le texte des cellules */
+}
+
+.message-sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.message-sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    gap: 10px;
+}
+
+.message-sidebar li {
+    padding: 8px 16px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.message-sidebar li:hover {
+    background-color: #d0d0d0;
+}
+
+.message-sidebar li.active {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+}
+
+
+@media print {
+    .message-sidebar {
+        display: none;
+    }
+
+    .tp-main-content {
+        margin-left: 0;
+        width: 100%;
+    }
 }

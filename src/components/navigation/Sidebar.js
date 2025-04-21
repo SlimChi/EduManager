@@ -32,11 +32,11 @@ const Sidebar = () => {
             path: '/LIVRES',
             icon: <BiBook size={18} className="me-2"/>,
         },
-        {
-            name: 'OpenIapi',
-            path: '/outils',
-            icon: <FaCode size={18} className="me-2"/>,
-        },
+        // {
+        //     name: 'CV',
+        //     path: '/cv',
+        //     icon: <FaCode size={18} className="me-2"/>,
+        // },
         {
             name: 'Outils',
             path: '/outils',
@@ -61,11 +61,6 @@ const Sidebar = () => {
                     name: "Calculatrice",
                     path: '/calculator',
                     icon: <BiCalculator size={16} className="me-2"/>
-                },
-                {
-                    name: "IA For Free",
-                    path: '/deep-seek',
-                    icon: <BiBook size={16} className="me-2"/>
                 },
             ]
         }

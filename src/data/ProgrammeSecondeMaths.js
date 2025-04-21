@@ -1,16 +1,16 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Badge, Card, Accordion, ListGroup } from 'react-bootstrap';
+import {useParams, useNavigate} from 'react-router-dom';
+import {Container, Badge, Card, Accordion, ListGroup} from 'react-bootstrap';
 import {
     FiBook, FiClock, FiList, FiArrowRight, FiBarChart2,
     FiPercent, FiCode, FiDollarSign, FiShapes, FiCheckCircle,
     FiAward, FiActivity, FiUsers, FiEdit, FiLayers
 } from 'react-icons/fi';
 import BackButton from "../components/navigation/BackButton";
-import { motion } from 'framer-motion';
+import {motion} from 'framer-motion';
 
 const ProgrammeSecondeMaths = () => {
-    const { classId } = useParams();
+    const {classId} = useParams();
     const navigate = useNavigate();
 
     // Structure du programme avec ajout d'icônes et couleurs
@@ -29,7 +29,7 @@ const ProgrammeSecondeMaths = () => {
                 {
                     title: "Intentions majeures",
                     emoji: "🎯",
-                    icon: <FiAward size={18} />,
+                    icon: <FiAward size={18}/>,
                     content: [
                         "Consolider le socle commun de connaissances, compétences et culture",
                         "Former à l'activité mathématique et scientifique",
@@ -42,7 +42,7 @@ const ProgrammeSecondeMaths = () => {
                 {
                     title: "Compétences travaillées",
                     emoji: "💪",
-                    icon: <FiActivity size={18} />,
+                    icon: <FiActivity size={18}/>,
                     content: [
                         "S'approprier (rechercher, extraire et organiser l'information)",
                         "Analyser/Raisonner (émettre des conjectures, proposer des méthodes)",
@@ -54,7 +54,7 @@ const ProgrammeSecondeMaths = () => {
                 {
                     title: "Lignes directrices",
                     emoji: "🧭",
-                    icon: <FiEdit size={18} />,
+                    icon: <FiEdit size={18}/>,
                     content: [
                         "La bivalence (cohérence entre mathématiques et physique-chimie)",
                         "La maîtrise de la langue française",
@@ -71,7 +71,7 @@ const ProgrammeSecondeMaths = () => {
             title: "Organisation du programme",
             emoji: "🗂️",
             color: "#ff6b6b",
-            icon: <FiLayers size={18} />,
+            icon: <FiLayers size={18}/>,
             content: [
                 "Statistique et probabilités (2 modules)",
                 "Algèbre - Analyse (3 modules)",
@@ -84,7 +84,7 @@ const ProgrammeSecondeMaths = () => {
                 id: "stats",
                 title: "Statistique et probabilités",
                 emoji: "📊",
-                icon: <FiBarChart2 size={18} />,
+                icon: <FiBarChart2 size={18}/>,
                 color: "#ff6b6b",
                 duration: "20h",
                 sequences: 3
@@ -93,7 +93,7 @@ const ProgrammeSecondeMaths = () => {
                 id: "algebre",
                 title: "Algèbre – Analyse",
                 emoji: "➗",
-                icon: <FiPercent size={18} />,
+                icon: <FiPercent size={18}/>,
                 color: "#48dbfb",
                 duration: "30h",
                 sequences: 8
@@ -102,7 +102,7 @@ const ProgrammeSecondeMaths = () => {
                 id: "geometrie",
                 title: "Géométrie",
                 emoji: "📐",
-                icon: <FiArrowRight size={18} />,
+                icon: <FiArrowRight size={18}/>,
                 color: "#1dd1a1",
                 duration: "15h",
                 sequences: 4
@@ -111,16 +111,25 @@ const ProgrammeSecondeMaths = () => {
                 id: "algo",
                 title: "Algorithmique",
                 emoji: "💻",
-                icon: <FiCode size={18} />,
+                icon: <FiCode size={18}/>,
                 color: "#5f27cd",
                 duration: "10h",
                 sequences: 3
             },
             {
                 id: "Calculs_commerciaux",
-                title: "Calculs financiers",
+                title: "Calculs commerciaux",
                 emoji: "💰",
-                icon: <FiDollarSign size={18} />,
+                icon: <FiDollarSign size={18}/>,
+                color: "#feca57",
+                duration: "10h",
+                sequences: 3
+            },
+            {
+                id: "cointervention",
+                title: "Co-Intevention",
+                emoji: "🧑‍🤝‍🧑",
+                icon: <FiDollarSign size={18}/>,
                 color: "#feca57",
                 duration: "10h",
                 sequences: 3
@@ -227,12 +236,12 @@ const ProgrammeSecondeMaths = () => {
             },
             {
                 id: "Calculs_commerciaux",
-                title: "Calculs financiers",
+                title: "Calculs commerciaux",
                 emoji: "💰",
                 color: "#feca57",
                 modules: [
                     {
-                        title: "Calculs financiers",
+                        title: "Calculs commerciaux",
                         emoji: "💸",
                         objectifs: [
                             "Maîtriser les pourcentages dans des contextes professionnels",
@@ -246,6 +255,33 @@ const ProgrammeSecondeMaths = () => {
                         connaissances: [
                             "Pourcentages et coefficients multiplicateurs",
                             "Capital, taux, intérêt, valeur acquise"
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "cointervention",
+                title: "Co-intervention",
+                emoji: "🤝",
+                color: "#48dbfb",
+                modules: [
+                    {
+                        title: "Co-intervention pédagogique",
+                        emoji: "👨‍🏫🔁📚",
+                        objectifs: [
+                            "Donner une dimension concrète aux apprentissages",
+                            "Permettre une vision globale et transversale des enseignements",
+                            "Mettre en œuvre des situations contextualisées en lien avec le référentiel professionnel"
+                        ],
+                        capacites: [
+                            "Acquérir simultanément des compétences professionnelles et des savoirs scientifiques",
+                            "Réinvestir des capacités et connaissances en mathématiques ou physique-chimie dans un nouveau contexte professionnel",
+                            "Réutiliser des compétences professionnelles pour aborder des notions scientifiques"
+                        ],
+                        connaissances: [
+                            "Méthodologie d’analyse de situations problématisées",
+                            "Croisement entre référentiel professionnel et programmes scientifiques",
+                            "Transversalité des savoirs et compétences"
                         ]
                     }
                 ]
@@ -286,7 +322,7 @@ const ProgrammeSecondeMaths = () => {
                 title: "Algorithmique",
                 emoji: "💻",
                 color: "#5f27cd",
-                icon: <FiCode size={18} />,
+                icon: <FiCode size={18}/>,
                 content: [
                     "Consolider les compétences en algorithmique",
                     "Passer progressivement à Python",
@@ -303,7 +339,7 @@ const ProgrammeSecondeMaths = () => {
                 title: "Automatismes",
                 emoji: "⚡",
                 color: "#ff9ff3",
-                icon: <FiCheckCircle size={18} />,
+                icon: <FiCheckCircle size={18}/>,
                 content: [
                     "Calcul de fréquences et pourcentages",
                     "Calculs avec puissances de 10",
@@ -320,7 +356,7 @@ const ProgrammeSecondeMaths = () => {
                 title: "Vocabulaire logique",
                 emoji: "🔤",
                 color: "#48dbfb",
-                icon: <FiBook size={18} />,
+                icon: <FiBook size={18}/>,
                 content: [
                     "Notations ensemblistes (∈, ⊂, ∩, ∪)",
                     "Intervalles de nombres réels",
@@ -348,17 +384,17 @@ const ProgrammeSecondeMaths = () => {
 
     return (
         <Container className="programme-container py-4">
-            <BackButton />
+            <BackButton/>
 
             {/* En-tête du programme */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                initial={{opacity: 0, y: 20}}
+                animate={{opacity: 1, y: 0}}
+                transition={{duration: 0.5}}
             >
-                <Card className="mb-4 border-0 shadow-sm" style={{ backgroundColor: '#f8f9fa' }}>
+                <Card className="mb-4 border-0 shadow-sm" style={{backgroundColor: '#f8f9fa'}}>
                     <Card.Body className="d-flex align-items-center">
-                        <div className="me-3 display-4" style={{ color: programme.description.color }}>
+                        <div className="me-3 display-4" style={{color: programme.description.color}}>
                             {programme.description.emoji}
                         </div>
                         <div>
@@ -371,9 +407,9 @@ const ProgrammeSecondeMaths = () => {
 
             {/* Préambule */}
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{delay: 0.2, duration: 0.5}}
             >
                 <Accordion className="mb-4">
                     <Accordion.Item eventKey="0" className="border-0">
@@ -389,7 +425,7 @@ const ProgrammeSecondeMaths = () => {
                                         color: programme.preambule.color
                                     }}
                                 >
-                                    <span style={{ fontSize: "20px" }}>{programme.preambule.emoji}</span>
+                                    <span style={{fontSize: "20px"}}>{programme.preambule.emoji}</span>
                                 </div>
                                 <h4 className="mb-0">{programme.preambule.title}</h4>
                             </div>
@@ -409,14 +445,15 @@ const ProgrammeSecondeMaths = () => {
                                                     color: programme.preambule.color
                                                 }}
                                             >
-                                                <span style={{ fontSize: "18px" }}>{section.emoji}</span>
+                                                <span style={{fontSize: "18px"}}>{section.emoji}</span>
                                             </div>
                                             <h5 className="mb-0">{section.title}</h5>
                                         </div>
                                         <ul className="mb-0">
                                             {section.content.map((item, i) => (
                                                 <li key={i} className="mb-2 d-flex align-items-start">
-                                                    <span className="me-2" style={{ color: programme.preambule.color }}>•</span>
+                                                    <span className="me-2"
+                                                          style={{color: programme.preambule.color}}>•</span>
                                                     {item}
                                                 </li>
                                             ))}
@@ -431,9 +468,9 @@ const ProgrammeSecondeMaths = () => {
 
             {/* Organisation du programme */}
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{delay: 0.3, duration: 0.5}}
             >
                 <Card className="mb-4 border-0 shadow-sm">
                     <Card.Body>
@@ -448,7 +485,7 @@ const ProgrammeSecondeMaths = () => {
                                     color: programme.organisation.color
                                 }}
                             >
-                                <span style={{ fontSize: "20px" }}>{programme.organisation.emoji}</span>
+                                <span style={{fontSize: "20px"}}>{programme.organisation.emoji}</span>
                             </div>
                             <h4 className="mb-0">{programme.organisation.title}</h4>
                         </div>
@@ -456,7 +493,7 @@ const ProgrammeSecondeMaths = () => {
                         <ul className="mb-0">
                             {programme.organisation.content.map((item, index) => (
                                 <li key={index} className="mb-2 d-flex align-items-start">
-                                    <span className="me-2" style={{ color: programme.organisation.color }}>•</span>
+                                    <span className="me-2" style={{color: programme.organisation.color}}>•</span>
                                     {item}
                                 </li>
                             ))}
@@ -467,12 +504,12 @@ const ProgrammeSecondeMaths = () => {
 
             {/* Chapitres principaux */}
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{delay: 0.4, duration: 0.5}}
             >
                 <h3 className="mb-4 d-flex align-items-center">
-                    <FiBook className="me-2" />
+                    <FiBook className="me-2"/>
                     Chapitres du Programme
                 </h3>
 
@@ -505,7 +542,7 @@ const ProgrammeSecondeMaths = () => {
                                                 color: chapitre.color
                                             }}
                                         >
-                                            <span style={{ fontSize: "24px" }}>{chapitre.emoji}</span>
+                                            <span style={{fontSize: "24px"}}>{chapitre.emoji}</span>
                                         </div>
                                         <div>
                                             <h5 className="mb-0 fw-bold">{chapitre.title}</h5>
@@ -514,16 +551,17 @@ const ProgrammeSecondeMaths = () => {
 
                                     <div className="d-flex justify-content-between mb-3">
                                         <Badge pill bg="light" text="dark" className="d-flex align-items-center">
-                                            <FiClock className="me-1" /> {chapitre.duration}
+                                            <FiClock className="me-1"/> {chapitre.duration}
                                         </Badge>
                                         <Badge pill bg="light" text="dark" className="d-flex align-items-center">
-                                            <FiList className="me-1" /> {chapitre.sequences} séq.
+                                            <FiList className="me-1"/> {chapitre.sequences} séq.
                                         </Badge>
                                     </div>
 
                                     <div className="mt-auto text-end">
-                                        <small className="text-primary fw-bold d-flex align-items-center justify-content-end">
-                                            Explorer <FiArrowRight className="ms-1" />
+                                        <small
+                                            className="text-primary fw-bold d-flex align-items-center justify-content-end">
+                                            Explorer <FiArrowRight className="ms-1"/>
                                         </small>
                                     </div>
                                 </Card.Body>
@@ -535,12 +573,12 @@ const ProgrammeSecondeMaths = () => {
 
             {/* Domaines du programme */}
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{delay: 0.5, duration: 0.5}}
             >
                 <h3 className="mt-5 mb-4 d-flex align-items-center">
-                    <FiBook className="me-2" />
+                    <FiBook className="me-2"/>
                     Domaines du Programme
                 </h3>
 
@@ -560,7 +598,7 @@ const ProgrammeSecondeMaths = () => {
                                                 color: domaine.color
                                             }}
                                         >
-                                            <span style={{ fontSize: "24px" }}>{domaine.emoji}</span>
+                                            <span style={{fontSize: "24px"}}>{domaine.emoji}</span>
                                         </div>
                                         <div>
                                             <h5 className="mb-0 fw-bold">{domaine.title}</h5>
@@ -569,10 +607,12 @@ const ProgrammeSecondeMaths = () => {
 
                                     <Accordion flush>
                                         {domaine.modules.map((module, i) => (
-                                            <Accordion.Item key={`module-${i}`} eventKey={i.toString()} className="border-0">
+                                            <Accordion.Item key={`module-${i}`} eventKey={i.toString()}
+                                                            className="border-0">
                                                 <Accordion.Header className="p-0 bg-transparent">
                                                     <div className="d-flex align-items-center">
-                                                        <span className="me-2" style={{ fontSize: "18px" }}>{module.emoji}</span>
+                                                        <span className="me-2"
+                                                              style={{fontSize: "18px"}}>{module.emoji}</span>
                                                         <small className="fw-bold">{module.title}</small>
                                                     </div>
                                                 </Accordion.Header>
@@ -614,12 +654,12 @@ const ProgrammeSecondeMaths = () => {
 
             {/* Compléments */}
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{delay: 0.6, duration: 0.5}}
             >
                 <h3 className="mt-5 mb-4 d-flex align-items-center">
-                    <FiBook className="me-2" />
+                    <FiBook className="me-2"/>
                     Compléments
                 </h3>
 
@@ -639,7 +679,7 @@ const ProgrammeSecondeMaths = () => {
                                                 color: complement.color
                                             }}
                                         >
-                                            <span style={{ fontSize: "24px" }}>{complement.emoji}</span>
+                                            <span style={{fontSize: "24px"}}>{complement.emoji}</span>
                                         </div>
                                         <div>
                                             <h5 className="mb-0 fw-bold">{complement.title}</h5>

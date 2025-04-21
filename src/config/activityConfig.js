@@ -50,23 +50,17 @@ export const SPECIAL_ACTIVITIES = {
                         {
                             id: 1,
                             title: 'Équations du premier degré',
-                            path: 'algebre/equations-premier-degre',
-                            component: 'EquationsPremierDegre',
-                        },
-                        {
-                            id: 2,
-                            title: 'Équations du second degré test',
                             path: 'algebre/equations-second-degre-test',
                             component: 'EquationsPremierDegreTest',
                         },
                         {
-                            id: 3,
-                            title: 'Fonctions affines',
-                            path: 'algebre/fonctions-affines',
-                            component: 'FonctionsAffines',
+                            id: 2,
+                            title: 'Activite 2',
+                            path: 'algebre/equations-premier-degre',
+                            component: 'Act3EquationsPremierDegre',
                         },
                         {
-                            id: 4,
+                            id: 3,
                             title: 'Fonctions carre',
                             path: 'algebre/fonction-carre',
                             component: 'FonctionCarre',
@@ -107,6 +101,28 @@ export const SPECIAL_ACTIVITIES = {
                             component: 'GeomAct4Thales',
                         },
                     ],
+                },
+                cointervention: {
+                    mrc: {
+                        activities: [
+                            {
+                                id: 1,
+                                title: 'Co-intervention Calculs commerciaux ',
+                                path: 'cointervention/cointervention1',
+                                component: 'CalculCommerciauxCoIntervention',
+                            },
+                        ],
+                    },
+                    maintenances: {
+                        activities: [
+                            {
+                                id: 1,
+                                title: 'Co-intervention maintenances',
+                                path: 'cointervention/cointervention2',
+                                component: 'MaintenancesCoIntervention',
+                            },
+                        ],
+                    },
                 },
             },
         },

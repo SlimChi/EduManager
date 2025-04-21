@@ -23,7 +23,6 @@ import StatUneVariableAct3 from './pages/Maths/seconde/statistiques/statistiques
 import CCF2ToBM from './pages/CCF/CCF2ToBM';
 import BookExtern from './pages/bookextern';
 import ChapitreActivitiesPage from './pages/ChapitreActivitiesPage';
-import EquationsPremierDegre from './pages/Maths/seconde/algebre/EquationsPremierDegre';
 import FonctionsAffines from './pages/Maths/seconde/algebre/FonctionsAffines';
 import GeomAct3Quellogochoisir from './pages/Maths/seconde/geometrie/GeomAct3Quellogochoisir';
 import GeomAct4Thales from './pages/Maths/seconde/geometrie/GeomAct4Thales';
@@ -44,8 +43,8 @@ import EquationsPremierDegreTest from './pages/Maths/seconde/algebre/EquationsPr
 import RappelVecteur from "./pages/Maths/Terminale/geometrie/RappelVecteur";
 import Act1GeometrieVecteur from "./pages/Maths/Terminale/geometrie/Act1GeometrieVecteur";
 import Act2Geometrie from "./pages/Maths/Terminale/geometrie/Act2Geometrie";
-
-// import SequencesPage from "./pages/SequencesPage";
+import Act3Equation1erDegre from "./pages/Maths/seconde/algebre/Act3Equation1erDegre";
+import CalculCommerciauxCoIntervention from "./pages/Maths/seconde/cointervention/CalculCommerciauxCoIntervention";
 
 
 function App() {
@@ -121,13 +120,12 @@ function App() {
                             element={<Act2proba/>}
                         />
                         <Route
-                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/equations-premier-degre"
-                            element={<EquationsPremierDegre/>}
-                        />
-                        <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/equations-second-degre-test"
                             element={<EquationsPremierDegreTest/>}
                         />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/equations-premier-degre"
+                            element={<Act3Equation1erDegre/>}/>
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/fonctions-affines"
                             element={<FonctionsAffines/>}
@@ -155,6 +153,10 @@ function App() {
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/geometrie/chapitre9pythagor"
                             element={<Chapitre9pythagor/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/cointervention1"
+                            element={<CalculCommerciauxCoIntervention/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/acoustique/tp-son"
@@ -187,6 +189,7 @@ function App() {
                         />
                         {/* Routes pour les CCF */}
                         <Route path="/ccf" element={<CCFPage/>}/>
+                        {/*<Route path="/cv" element={<CvWalid/>}/>*/}
                         <Route path="/ccf/:ccfId" element={<CCF2ToBM/>}/>
                         <Route
                             path="/ccf/engrais-liquide"
