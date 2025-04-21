@@ -34,7 +34,6 @@ import PrintManager from '../../../../utils/PrintManager';
 import AutoEvaluationGrid from '../../../../config/AutoEvaluationGrid';
 import AutoResizeTextarea from '../../../../config/AutoResizeTextarea';
 import {FcCalculator} from 'react-icons/fc';
-import {WhiteFlag} from 'fluent-emoji';
 import {
     FaArrowsToCircle, FaRectangleAd, FaTriangleExclamation, FaUsersRectangle,
 } from 'react-icons/fa6';
