@@ -1,0 +1,38 @@
+.programme-container {
+    max-width: 1200px;
+}
+
+.chapitre-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.chapitre-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+}
+
+.accordion-button {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: transparent;
+    color: inherit;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-body {
+    font-size: 0.85rem;
+}
+
+ul {
+    padding-left: 1.2rem;
+}
+
+li {
+    margin-bottom: 0.3rem;
+}

@@ -1,0 +1,2354 @@
+/* ============================================= */
+/*               STRUCTURE GLOBALE               */
+/* ============================================= */
+.tp-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.activities-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.activities-row {
+    display: flex;
+    gap: 20px;
+}
+
+.print-page {
+    page-break-after: always;
+    padding: 20px;
+    background: white;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .tp-container, .tp-container * {
+        visibility: visible;
+    }
+
+    .tp-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .print-page {
+        page-break-after: always;
+        padding: 20px;
+    }
+}
+
+/* ============================================= */
+/*                 EN-TÊTE TP                    */
+/* ============================================= */
+.tp-header {
+    background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+    color: white;
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 5px solid rgba(255, 255, 255, 0.3);
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease-in-out;
+
+}
+
+/* Animation de lumière subtile en fond */
+.tp-header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    animation: shine 6s infinite linear;
+    z-index: 0;
+}
+
+@keyframes shine {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.tp-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.4;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    font-family: "Times New Roman", serif;
+    text-align: center;
+}
+
+.tp-header .h1-sub {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    opacity: 0.9;
+}
+
+
+/* Icône stylée */
+.header-icon {
+    font-size: 2.8rem;
+    flex-shrink: 0;
+    z-index: 1;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.6rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.tp-header:hover .header-icon {
+    transform: scale(1.1) rotate(-3deg);
+}
+
+/* PrintManager à droite */
+.tp-header > *:last-child {
+    z-index: 1;
+}
+
+
+.highlight1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ffffff, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 0.8px;
+    line-height: 1.2;
+    display: inline-block;
+    padding-bottom: 5px;
+    font-style: italic;
+}
+
+.highlight1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, rgb(231, 137, 58), transparent);
+}
+
+.class-info1 {
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+    font-style: italic;
+    letter-spacing: 0.3px;
+    margin-top: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+}
+
+.class-info1::before {
+    content: "↳";
+    margin-right: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+.math-decoration {
+    position: absolute;
+    right: 20px;
+    opacity: 0.1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* ============================================= */
+/*                SECTIONS TP                    */
+/* ============================================= */
+.tp-intro {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.tp-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.tp-section h3 {
+    color: #2c3e50;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tp-section2 {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tp-section.compact .flex-grow-1 {
+    background: linear-gradient(145deg, #f8f9fa, #ffffff);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #4e73df;
+    margin-bottom: 25px;
+}
+
+.tp-section.compact .flex-grow-1 p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #2d3748;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+}
+
+.tp-section.compact .flex-grow-1 p:before {
+    content: "•";
+    color: #4e73df;
+    font-size: 1.8rem;
+    position: absolute;
+    left: 0;
+    top: -5px;
+}
+
+/* ============================================= */
+/*                BOÎTES D'ALERTE               */
+/* ============================================= */
+.warning-box {
+    display: flex;
+    align-items: center;
+    background-color: #fff3cd;
+    padding: 15px;
+    border-left: 5px solid #ffc107;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.warning-icon {
+    color: #ffc107;
+    font-size: 1.8rem;
+    margin-right: 15px;
+}
+
+.warning-box h2 {
+    margin: 0;
+    color: #856404;
+}
+
+.info-bubble {
+    background: linear-gradient(135deg, #f6f9ff, #e6f0ff);
+    border-radius: 12px;
+    padding: 18px;
+    margin: 20px 0;
+    border: 1px solid #d1e3ff;
+    box-shadow: 0 4px 12px rgba(74, 115, 223, 0.1);
+}
+
+/* Ajout de l'icône à gauche du titre */
+.info-bubble-title svg {
+    color: #3498db; /* Couleur bleue de l'icône */
+    font-size: 22px;
+}
+
+.info-bubble-title {
+    font-weight: 700;
+    color: #4e73df;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-bubble p {
+    font-size: 1.05rem;
+    color: #4a5568;
+    line-height: 1.7;
+}
+
+.info-bubble.definition {
+    border-left: 5px solid #1cc88a;
+    background: linear-gradient(135deg, #f0fff4, #e6ffed);
+}
+
+.info-bubble.definition .info-bubble-title {
+    color: #1cc88a;
+}
+
+.info-bubble.property {
+    border-left: 5px solid #f6c23e;
+    background: linear-gradient(135deg, #fffaf0, #fff2d9);
+}
+
+.info-bubble.property .info-bubble-title {
+    color: #f6c23e;
+}
+
+.info-bubble.warning {
+    border-left: 5px solid #e74a3b;
+    background: linear-gradient(135deg, #fff5f5, #ffebeb);
+}
+
+.info-bubble.warning .info-bubble-title {
+    color: #e74a3b;
+}
+
+/* ============================================= */
+/*                LISTES ET TABLES               */
+/* ============================================= */
+.material-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.material-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    display: flex;
+    align-items: center;
+}
+
+.material-list li:before {
+    content: "•";
+    color: #3498db;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.protocol-step {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.step-number {
+    background-color: #3498db;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.step-content h4 {
+    margin-top: 0;
+    color: #2980b9;
+}
+
+.measurement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.measurement-table th, .measurement-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.measurement-table th {
+    background-color: #f2f2f2;
+}
+
+.measurement-table input {
+    width: 80px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.reference-table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 15px auto;
+}
+
+.reference-table th, .reference-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.reference-table th {
+    background-color: #f2f2f2;
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 5px;
+    margin: 15px 0;
+}
+
+.data-cell {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.time-data {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 5px;
+    margin: 15px 0;
+}
+
+/* ============================================= */
+/*                QUESTIONS & RÉPONSES           */
+/* ============================================= */
+.question {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-family: "Cambria Math", serif;
+}
+
+.question-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px
+}
+
+.question strong {
+    color: #e74c3c;
+}
+
+.question-bubble {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 25px;
+    font-weight: bold;
+    margin-right: 1px;
+    vertical-align: middle;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.question-number2 {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 25px;
+    font-weight: bold;
+    margin-right: 10px;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.question-number3 {
+
+    background-color: #3498db;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 25px;
+    font-weight: bold;
+    margin-top: -20px;
+}
+
+.answer-area {
+    margin-top: 15px;
+}
+
+.answer-input {
+    width: 100%;
+    padding: 15px;
+    border: 0.2px solid #c4cff1;
+    border-radius: 8px;
+    resize: none;
+    line-height: 1.6;
+    font-family: 'Cambria Math', serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    overflow-y: auto !important;
+    background-color: white;
+    overflow: hidden;
+    min-height: 60px;
+}
+
+.hidden-answer {
+    background-color: white !important;
+    color: transparent !important;
+    caret-color: transparent; /* cache le curseur */
+    border-color: #ffffff;
+}
+
+.hidden-answer:focus {
+    border-color: #bcccee;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+    background-color: #ffffff;
+}
+
+.hidden-answer:hover {
+    border-color: #d3ddf1;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+    background-color: #ffffff;
+}
+
+.answer-input:focus {
+    border-color: #c6d4f5;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+    background-color: #ffffff;
+}
+
+.correction-active {
+    border-color: #10b981;
+    background-color: #f0fdf4;
+    color: #065f46;
+    font-weight: bold;
+}
+
+/* Pour les textarea spécifiquement */
+.answer-input[type="textarea"] {
+    min-height: 100px;
+    font-size: 1.1rem;
+    background-color: white;
+}
+
+/* Style pour les questions compactes */
+.tp-section.compact .answer-input {
+    font-size: 1.1rem;
+    padding: 12px;
+    background-color: #ffffff;
+    border: 0.2px solid #a1beee;
+}
+
+.tp-section.compact .correction-active {
+    background-color: #ecfdf5;
+    border-color: #10b981;
+}
+
+.answer-inputEq1deg {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: none;
+    line-height: 1.5;
+    font-family: "Times New Roman";
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    overflow-y: auto !important;
+}
+
+/* Style du texte informatif */
+.info-text {
+    font-size: 18px;
+    color: #34495e; /* Gris foncé pour le texte principal */
+    line-height: 1.6;
+    margin-top: 8px;
+    font-weight: 500;
+    text-align: left; /* Alignement du texte à gauche pour une meilleure lisibilité */
+    border-left: 3px solid #3498db; /* Ligne bleue à gauche du texte pour marquer l'information */
+    padding-left: 12px; /* Espacement après la ligne pour aérer le texte */
+}
+
+.sub-question {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #eee;
+}
+
+.answer-space {
+    min-height: 100px;
+    margin: 15px 0;
+    border: 1px dashed #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.empty-space {
+    height: 100px;
+}
+
+/* ============================================= */
+/*                CARTES D'ACTIVITÉS            */
+/* ============================================= */
+.activity-card {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.activity-card-wide {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.activity-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.activity-bubble {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-weight: bold;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.bubble-blue {
+    background-color: #3498db;
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2);
+}
+
+.bubble-green {
+    background-color: #2ecc71;
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.2);
+}
+
+.bubble-orange {
+    background-color: #e67e22;
+    box-shadow: 0 0 0 4px rgba(230, 126, 34, 0.2);
+}
+
+.activity-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.activity-content-wide {
+    display: flex;
+    gap: 30px;
+}
+
+.question-column {
+    flex: 1;
+}
+
+/* ============================================= */
+/*                CARTES D'EXERCICES            */
+/* ============================================= */
+.exercices-section {
+    margin: 40px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.exercices-section2 {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.section-title .icon {
+    margin-right: 10px;
+    color: #3498db;
+}
+
+.exercices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.exercice-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid transparent;
+}
+
+.exercice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.square-card {
+    border-top-color: #4CAF50;
+}
+
+.rectangle-card {
+    border-top-color: #2196F3;
+}
+
+.circle-card {
+    border-top-color: #9C27B0;
+}
+
+.triangle-card {
+    border-top-color: #FF9800;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.card-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.square-card .card-icon {
+    color: #4CAF50;
+}
+
+.rectangle-card .card-icon {
+    color: #2196F3;
+}
+
+.circle-card .card-icon {
+    color: #9C27B0;
+}
+
+.triangle-card .card-icon {
+    color: #FF9800;
+}
+
+.card-content {
+    margin-bottom: 15px;
+    min-height: 100px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
+    gap: 20px; /* Espacement entre les cartes */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-content p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+/* ============================================= */
+/*                CARTES DE FORMULES             */
+/* ============================================= */
+.formulas-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.formula-card {
+    flex: 1;
+    min-width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    background: white;
+}
+
+.formula-card:hover {
+    transform: translateY(-5px);
+}
+
+.triangle-card {
+    border-top: 5px solid #4CAF50;
+}
+
+.circle-card {
+    border-top: 5px solid #2196F3;
+}
+
+.perimeter-card {
+    border-top: 5px solid #FF9800;
+}
+
+.formula-card h4 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+}
+
+.formula-content {
+    margin-top: 15px;
+}
+
+.math-formula {
+    font-size: 1.2em;
+    font-family: 'Cambria Math', serif;
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.math-formula-act-vecteur {
+    font-family: 'Cambria Math', serif;
+}
+
+.math-proportion {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.3rem;
+    margin: 15px 0;
+}
+
+.equals {
+    padding: 0 5px;
+    color: #3a0ca3;
+    font-weight: bold;
+}
+
+/* Styles existants des fractions */
+.fraction {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 3px;
+    font-family: 'Cambria Math', 'Latin Modern Math', serif;
+}
+
+.numerator {
+    border-bottom: 1px solid #2c3e50;
+    padding: 0 7px;
+    font-size: 1.1em;
+}
+
+.denominator {
+    padding: 0 7px;
+    font-size: 1.1em;
+}
+
+
+.fraction span:first-child {
+    border-bottom: 1px solid #333;
+    padding: 0 5px;
+}
+
+.fraction span:last-child {
+    padding: 0 5px;
+}
+
+/* ============================================= */
+/*                CORRECTIONS                    */
+/* ============================================= */
+.correction {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border-left: 3px solid #4CAF50;
+    transition: background-color 0.3s;
+}
+
+.correction p {
+    margin: 5px 0;
+    font-family: 'Courier New', monospace;
+}
+
+.correction p:first-of-type {
+    color: #208a02;
+    margin-bottom: 3px;
+}
+
+.correction p:not(:first-of-type) {
+    margin-top: 0;
+    padding-left: 20px;
+}
+
+.correction-btn1 {
+    margin-left: 85%;
+    right: 10px;
+    bottom: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    z-index: 2;
+}
+
+.correction-btn:hover {
+    background-color: #45a049;
+}
+
+.correction-btn svg {
+    margin-right: 3px;
+}
+
+.correction-btn3 {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+    margin-left: 29%;
+}
+
+.correction-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 5px;
+    transition: background-color 0.3s;
+    margin-left: auto;
+}
+
+.correction-btn:hover {
+    background-color: #2980b9;
+}
+
+.formula-box {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.formula-text {
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+.result-text {
+    color: #208a02;
+    padding-left: 20px;
+    margin: 5px 0;
+    font-family: 'Courier New', monospace;
+}
+
+/* ============================================= */
+/*                BOUTONS                        */
+/* ============================================= */
+.print-btn {
+    background: rgba(255, 255, 255, 0.9);
+    color: #3a7bd5;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    bottom: 85%;
+    right: 30px;
+    z-index: 2;
+}
+
+.print-btn:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================= */
+/*                ÉLÉMENTS SPÉCIFIQUES           */
+/* ============================================= */
+.warm-up-title {
+    background-color: rgba(246, 230, 5, 0.56);
+    color: #163d0b;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    width: fit-content;
+    margin: 20px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    border: 2px dashed #2d56fb;
+    transition: transform 0.2s ease-in-out;
+}
+
+.warm-up-title:hover {
+    transform: scale(1.05);
+}
+
+.frequency-input {
+    width: 80px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.frequency-input2 {
+    width: 70px;
+    padding: 3px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.conclusion {
+    background-color: #f8f9fa;
+    border-left: 5px solid #6c757d;
+}
+
+/* Styles pour la nouvelle section "Je retiens" */
+.toggle-summary-btn {
+    background: linear-gradient(135deg, #4361ee, #3a0ca3);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 auto 15px;
+    transition: all 0.3s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-summary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.summary-content {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    border-top: 4px solid #4361ee;
+}
+
+.definition-box, .method-box, .conclusion-box {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #dee2e6;
+}
+
+.definition-box h4, .method-box h4, .conclusion-box h4 {
+    color: #3a0ca3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.method-box ol {
+    padding-left: 25px;
+}
+
+.method-box li {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.method-box li::before {
+    position: absolute;
+    left: -20px;
+    color: #f72585;
+    font-weight: bold;
+}
+
+.conclusion-box em {
+    color: #d2690f;
+    font-style: normal;
+    font-weight: 600;
+    font-family: "Cambria Math", serif;
+
+}
+
+.tp-footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.header-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.diagram-placeholder {
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.renovation-contexte {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    border-left: 5px solid #3a7bd5;
+}
+
+.renovation-contexte h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 2px dashed #3498db;
+    padding-bottom: 10px;
+}
+
+.renovation-contexte p {
+    color: #34495e;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.objectif-phrase {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.questions-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.questions-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.question-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #3498db;
+    position: relative;
+}
+
+.wide {
+    grid-column: span 2;
+}
+
+.question-number {
+    position: absolute;
+    top: 30px;
+    left: 5px;
+    background: #3498db;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.question-number2 {
+    position: absolute;
+    top: 10%;
+    left: 5px;
+    background: #3498db;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.question-card .question-number2 + p {
+    margin-left: 8%;
+}
+
+.question-content {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+
+.compact-title {
+    font-size: 1.5rem;
+    color: #2d3748;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #4e73df;
+    display: inline-block;
+}
+
+/* ============================================= */
+/*                CHAPITRES MATH                 */
+/* ============================================= */
+.math-chapter-box {
+    background: linear-gradient(135deg, #fff9f0 0%, #ffe8cc 100%);
+    border-left: 6px solid #ff9500;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(255, 149, 0, 0.15);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    justify-content: center;
+}
+
+.math-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    color: #2C3E50;
+    background: linear-gradient(135deg, #f4f6f9 0%, #e0e8f0 100%);
+    padding: 1.6rem 2rem;
+    border-left: 6px solid #3498DB;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 850px;
+    margin: 1.5rem auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.math-chapter-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 149, 0, 0.2);
+}
+
+.math-chapter-icon {
+    color: #ff9500;
+    font-size: 2.5rem;
+    margin-right: 20px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+
+}
+
+.math-chapter-box:hover .math-chapter-icon {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.math-chapter-title {
+    text-align: center;
+    color: #2d3748;
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(90deg, #4e71be, #1861e8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+    font-style: italic;
+}
+
+.math-chapter-title-test {
+    text-align: center;
+    color: #1358ce;
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    -webkit-background-clip: text;
+
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+    font-style: italic;
+}
+
+.math-chapter-decoration {
+    position: absolute;
+    right: 20px;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.math-chapter-box.blue {
+    background: linear-gradient(135deg, #f0f8ff 0%, #d0e4ff 100%);
+    border-left-color: #3a7bd5;
+    box-shadow: 0 4px 12px rgba(58, 123, 213, 0.15);
+}
+
+.math-chapter-box.blue .math-chapter-icon {
+    color: #3a7bd5;
+}
+
+.math-chapter-box.green {
+    background: linear-gradient(135deg, #f0fff4 0%, #28ec55 100%);
+    border-left-color: #38a169;
+    box-shadow: 0 4px 12px rgba(56, 161, 105, 0.15);
+}
+
+.math-chapter-box.green .math-chapter-icon {
+    color: #38a169;
+}
+
+.math-chapter-box.purple {
+    background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
+    border-left-color: #9f7aea;
+    box-shadow: 0 4px 12px rgba(159, 122, 234, 0.15);
+}
+
+.math-chapter-box.purple .math-chapter-icon {
+    color: #9f7aea;
+}
+
+.math-chapter-box.purple .math-chapter-title {
+    background: linear-gradient(90deg, #9f7aea, #805ad5);
+}
+
+.math-chapter-box.red {
+    background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+    border-left-color: #3ee5df;
+    box-shadow: 0 4px 12px rgba(229, 62, 62, 0.15);
+}
+
+.math-chapter-box.red .math-chapter-icon {
+    color: #e53e3e;
+}
+
+
+/* ============================================= */
+/*                SECTION "JE RETIENS"           */
+/* ============================================= */
+.retien-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.step-container {
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.step-header {
+    padding: 10px 15px;
+    background-color: #437ede;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.step-header:hover {
+    background-color: #ff4f4f;
+}
+
+.step-content {
+    padding: 15px;
+    background-color: #f9f9f9;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.activity-header {
+    position: relative;
+    height: 60px;
+    margin-top: 1.5rem;
+}
+
+.activity-badge {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #0d6efd; /* Bootstrap primary */
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.activity-title {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.course-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #34495e;
+    border-bottom: 3px solid #e74c3c;
+    padding-bottom: 5px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ============================================= */
+/*                QCM                            */
+/* ============================================= */
+.qcm-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.qcm-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.qcm-option:hover {
+    background-color: #f5f5f5;
+}
+
+.qcm-option input[type="radio"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.correction-text {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border-left: 3px solid #28a745;
+}
+
+/* ============================================= */
+/*                MÉDIAS QUERIES                 */
+/* ============================================= */
+
+/* Pour les écrans moyens (tablettes) */
+@media (max-width: 992px) {
+    .tp-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .header-icon {
+        margin-bottom: 1rem;
+        width: 80px;
+    }
+
+    .formulas-cards {
+        flex-direction: column;
+    }
+
+    .activity-content-wide {
+        flex-direction: column;
+    }
+
+    .reference-table {
+        width: 100%;
+    }
+}
+
+/* Pour les petits écrans (mobiles) */
+@media (max-width: 768px) {
+    .tp-container {
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .tp-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .highlight1 {
+        font-size: 2rem;
+    }
+
+    .questions-container {
+        flex-direction: column;
+    }
+
+    .protocol-step {
+        flex-direction: column;
+    }
+
+    .step-number {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .math-chapter-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .math-chapter-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+
+/* Pour les très petits écrans */
+@media (max-width: 576px) {
+    .tp-header {
+        padding: 0.8rem;
+    }
+
+    .highlight1 {
+        font-size: 1.8rem;
+    }
+
+    .class-info1 {
+        font-size: 1rem;
+    }
+
+    .data-grid {
+        grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    }
+
+    .measurement-table th,
+    .measurement-table td {
+        padding: 5px;
+        font-size: 0.9rem;
+    }
+
+    .correction-btn {
+        margin-left: 70%;
+        padding: 5px 10px;
+    }
+}
+
+/* Mode portrait spécifique */
+@media (max-width: 768px) and (orientation: portrait) {
+    .activities-container {
+        gap: 15px;
+    }
+
+    .activity-card,
+    .activity-card-wide {
+        padding: 15px;
+    }
+
+    .math-formula {
+        font-size: 1rem;
+        padding: 8px;
+        font-weight: bold;
+    }
+}
+
+/* Mode paysage spécifique */
+@media (max-width: 992px) and (orientation: landscape) {
+    .tp-header {
+        padding: 1rem 1.5rem;
+    }
+
+    .activities-row {
+        gap: 15px;
+    }
+}
+
+/* Hauteur spécifique */
+@media (max-height: 600px) {
+    .tp-header {
+        padding: 1rem;
+    }
+
+    .activity-card {
+        padding: 15px;
+    }
+
+    .answer-input {
+        min-height: 80px;
+    }
+}
+
+/* Impression haute résolution */
+@media print and (min-resolution: 300dpi) {
+    .tp-header {
+        background: none !important;
+        color: #000 !important;
+    }
+
+    .highlight1 {
+        background: none !important;
+        color: #000 !important;
+        -webkit-text-fill-color: initial !important;
+    }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    .tp-container {
+        background-color: #222;
+        color: #eee;
+    }
+
+    .tp-section,
+    .activity-card {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .warning-box {
+        background-color: #443300;
+        color: #ffcc00;
+    }
+}
+
+.compact-content {
+    margin-top: -10px;
+}
+
+.compact-paragraph {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    font-family: "Cambria Math", serif;
+}
+
+.compact-question {
+    margin-top: -1.5rem;
+    line-height: 1.4;
+    margin-bottom: 10px !important;
+}
+
+.compact-info {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.compact-title {
+    margin-bottom: 0.75rem;
+}
+
+/* Styles for printing */
+@media print {
+    .no-print,
+    .print-actions,
+    .correction-btn,
+    button {
+        display: none !important;
+    }
+}
+
+/* Alternative method using body class */
+body.printing .no-print,
+body.printing .print-actions,
+body.printing .correction-btn,
+body.printing button {
+    display: none !important;
+}
+
+.variation-table {
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.variation-table th, .variation-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+.variation-table th:first-child,
+.variation-table td:first-child {
+    background-color: #dce6f1; /* couleur bleue claire */
+    font-weight: bold;
+}
+
+.variation-table .fx {
+    border-top: 1px solid black;
+}
+
+.variation-table .fx td {
+    border-top: none;
+    border-bottom: none;
+    height: 50px; /* espace pour dessiner à la main */
+}
+
+/* Styles pour le modal du graphique */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 70%;
+    max-height: 100%;
+    overflow: auto;
+    position: relative;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close-btn:hover {
+    background: #d32f2f;
+}
+
+.graph-modal-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Dans votre fichier CSS */
+/* Main Container */
+.vector-summary-container {
+    margin: 1.5rem 0;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Cards Grid Layout */
+.vector-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+/* Base Card Style */
+.vector-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid;
+    transition: all 0.3s ease;
+}
+
+/* Card Header */
+.vector-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.vector-card-icon {
+    flex-shrink: 0;
+}
+
+.vector-card-title {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #2d3748;
+    font-weight: 600;
+}
+
+/* Card Body */
+.vector-card-body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Definition Card Specific */
+.vector-definition-card {
+    border-top-color: #4e73df;
+    background-color: #f8f9fe;
+}
+
+.vector-definition {
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.vector-properties-list {
+    padding-left: 1.25rem;
+    margin: 0.75rem 0;
+    color: #4a5568;
+    font-family: 'Cambria Math', serif;
+}
+
+.vector-properties-list li {
+    margin-bottom: 0.5rem;
+    font-family: 'Cambria Math', serif;
+
+}
+
+.vector-notation {
+    margin-top: 0.75rem;
+    font-style: italic;
+    color: #4a5568;
+    font-family: 'Cambria Math', serif;
+}
+
+/* Operations Card Specific */
+.vector-operations-card {
+    border-top-color: #1cc88a;
+    background-color: #f0f9f5;
+}
+
+.vector-operations-list {
+    padding-left: 1.25rem;
+    margin: 0.75rem 0;
+    color: #4a5568;
+    font-family: 'Cambria Math', serif;
+}
+
+.vector-operations-list li {
+    margin-bottom: 0.75rem;
+    font-family: 'Cambria Math', serif;
+}
+
+/* Hover Effects */
+.vector-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+    .vector-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vector-card {
+        padding: 1rem;
+    }
+}
+
+.vect-coords-section {
+    background-color: #f9fbfc;
+    border: 1px solid #e1e8ed;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 760px;
+    margin: 40px auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.vect-header h4 {
+    font-size: 1.5rem;
+    color: #1d3557;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.vect-formula-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 4px solid #457b9d;
+    margin-bottom: 30px;
+}
+
+.vect-formula-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.vect-formula-label {
+    font-weight: 600;
+    color: #457b9d;
+    min-width: 130px;
+    font-size: 1rem;
+}
+
+.vect-example-box {
+    background-color: rgba(225, 229, 231, 0.34);
+    border-left: 5px solid #06d6a0;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.02);
+}
+
+.vect-example-box h5 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #118ab2;
+    font-weight: 600;
+}
+
+.vect-example-box p {
+    margin-bottom: 16px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.vect-calculation-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.vect-step {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 12px 18px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.vect-header-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #12223a;
+    margin-bottom: 24px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    position: relative;
+    font-family: "Cambria Math", serif;
+}
+
+
+.vect-title {
+    font-size: 1.1rem; /* Taille petite mais lisible */
+    font-weight: 600; /* Mettre le titre en gras mais pas trop */
+    color: #333; /* Couleur douce pour le texte */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacement entre l'emoji et le texte */
+    text-transform: uppercase; /* Optionnel, pour donner un effet plus net */
+    margin-bottom: 15px; /* Un peu d'espace en dessous */
+}
+
+.vect-title span {
+    padding: 6px 12px; /* Espacement autour du texte */
+    background-color: #E0F7FA; /* Couleur douce mais claire (par exemple, bleu clair) */
+    border-radius: 50px; /* Forme arrondie pour la bulle */
+    font-size: 0.9rem; /* Taille un peu plus petite pour que ça soit compact */
+    color: #00796B; /* Couleur du texte dans la bulle, pour le contraste */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Légère ombre pour donner un effet flottant */
+    display: inline-block; /* Pour que la bulle entoure juste le mot */
+}
+
+.vect-image-text-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+}
+
+.imageVecteur {
+    maxWidth: 320px;
+    cursor: pointer;
+    display: flex;
+    flexDirection: column;
+    alignItems: center;
+    justifyContent: center;
+    textAlign: center;
+}
+
+.vect-image-wrapper {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.vecteur-diagram {
+    max-width: 250px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.vecteur-diagram2 {
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.vecteur-diagram:hover {
+    transform: scale(1.02);
+}
+
+.vector-card {
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.vector-cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.problem-box2 {
+    background: linear-gradient(135deg, rgba(253, 247, 247, 0.98) 0%, rgba(253, 253, 253, 0.95) 100%) !important;
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #6a11cb;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 600;
+    color: #333 !important; /* Couleur de texte plus foncée */
+    margin-bottom: 5px;
+    margin-top: -3.5%;
+}
+
+.objectif-box {
+    background: linear-gradient(135deg, rgba(253, 247, 247, 0.98) 0%, rgba(253, 253, 253, 0.95) 100%) !important;
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #6a11cb;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 600;
+    color: #333 !important; /* Couleur de texte plus foncée */
+}
+
+@media print {
+    .problem-box2 {
+        background: white !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        box-shadow: none !important;
+        border-left: 5px solid #6a11cb !important;
+        break-inside: avoid;
+    }
+
+    .problem-box h3,
+    .problem-box p {
+        color: black !important;
+    }
+}
+
+@media print {
+    .objectif-box {
+        background-color: #e3f2fd;
+        border-left: 6px solid #2196f3;
+        padding: 15px 20px;
+        border-radius: 8px;
+        font-size: 18px;
+        margin-top: 10px;
+        page-break-before: always; /* Force un saut de page avant l'objectif */
+    }
+
+    .objectif-box p {
+        color: #2196f3; /* Pour que le texte de l'objectif soit visible et coloré */
+        font-weight: bold;
+    }
+
+    /* Masquer tout ce qui est inutile à l'impression (optionnel) */
+    .no-print {
+        display: none;
+    }
+}
+
+.objectif-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+
+.objectif-box p {
+    color: #495057;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    margin-bottom: 0;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.equation-card {
+    width: 100%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #d9efd3 100%);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(190, 227, 156, 0.1);
+    border-left: 5px solid #4e54c8;
+    margin: 10px 0;
+    margin-top: 20px;
+}
+
+.equation-title {
+    color: #4e54c8;
+    margin-top: 0;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.equation-icon {
+    margin-right: 8px;
+}
+
+.equation-text {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.highlight2 {
+    font-weight: 600;
+    color: #4e54c8;
+}
+
+/* Ajoutez cette règle CSS pour définir la bordure plus épaisse */
+.table-bordered {
+    border: 0.1px solid rgba(194, 194, 204, 0.66) !important; /* Définir la bordure extérieure du tableau en noir et plus épaisse */
+}
+
+.table-bordered th, .table-bordered td {
+    border: 0.1px solid rgba(198, 198, 211, 0.66) !important; /* Définir des bordures noires plus épaisses pour les cellules */
+    text-align: center; /* Centrer le texte des cellules */
+}
+
+.message-sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.message-sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    gap: 10px;
+}
+
+.message-sidebar li {
+    padding: 8px 16px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.message-sidebar li:hover {
+    background-color: #d0d0d0;
+}
+
+.message-sidebar li.active {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+}
+
+
+@media print {
+    .message-sidebar {
+        display: none;
+    }
+
+    .tp-main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}

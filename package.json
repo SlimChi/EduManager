@@ -2,6 +2,7 @@
   "name": "cours_react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://slimchi.github.io/EduMangerSchool",
   "dependencies": {
     "@mui/icons-material": "^7.0.1",
     "@mui/material": "^7.0.1",
@@ -47,9 +48,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "set NODE_OPTIONS=--max_old_space_size=8192 && react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -71,8 +72,13 @@
   },
   "devDependencies": {
     "babel-plugin-prismjs": "^2.1.0",
-    "electron": "^35.1.5",
+    "electron": "^35.2.0",
+    "gh-pages": "^6.3.0",
     "or": "^0.2.0",
     "prettier": "3.5.3"
+  },
+  "resolutions": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   }
 }
