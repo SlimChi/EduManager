@@ -32,6 +32,7 @@ import AutoEvaluationGrid from '../../../../config/AutoEvaluationGrid';
 import AutoResizeTextarea from '../../../../config/AutoResizeTextarea';
 import {FcCalculator} from 'react-icons/fc';
 
+
 const GeometrieAct1 = () => {
     const {classId} = useParams();
     const location = useLocation();
