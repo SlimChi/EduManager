@@ -42,11 +42,12 @@ const Act1GeometrieVecteur = () => {
 
     // Réponses attendues
     const correctAnswers = {
-        question1: 'H(20 ; 20 ; 0)\nE(20 ; 20 ; 29)\nF(20 ; 20 ; 40)',
-        question2: 'EA→ = (-20; -20; -29)\nEB→ = (20; -20; -29)\nEC→ = (20; 20; -29)\nED→ = (-20; 20; -29)',
-        question3: 'EA ≈ 40,50 m\nEB ≈ 40,50 m\nEC ≈ 40,50 m\nED ≈ 40,50 m',
-        question4: 'Les quatre longueurs sont égales (≈ 40,50 m), ce qui est logique car les haubans sont attachés de façon symétrique par rapport au centre.',
-        question5: 'La longueur totale de câble nécessaire est : 4 × 40,50 = 162,00 mètres (à 0,01 m près)',
+        // C(40;40;0)</strong> et <strong>D(0;40;0)
+        question1: 'H(20 ; 20 ; 0)\nE(20 ; 20 ; 40)\nF(20 ; 20 ; 50)',
+        question2: 'EA→ = (-20; -20; -40)\nEB→ = (20; -20; -40)\nEC→ = (20; 20; -40)\nED→ = (-20; 20; -40)',
+        question3: 'EA ≈ 49 m\nEB ≈ 49 m\nEC ≈ 49 m\nED ≈ 49 m',
+        question4: 'Les quatre longueurs sont égales (≈ 49 m), ce qui est logique car les haubans sont attachés de façon symétrique par rapport au centre.',
+        question5: 'La longueur totale de câble nécessaire est : 4 × 49 = 196,00 mètres (à 0,01 m près)',
     };
 
     // Gestionnaires d'événements
