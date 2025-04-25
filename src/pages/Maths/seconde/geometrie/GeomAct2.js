@@ -3,7 +3,7 @@ import {
     FaPrint, FaCheck, FaRuler, FaHome, FaPalette, FaRulerCombined, FaCircle, FaShapes, FaSquare, FaThLarge, FaDice,
 } from 'react-icons/fa';
 import {IoMdSchool} from 'react-icons/io';
-import '../../../../styles/act1geometrie.css';
+import '../../../../styles/activites.css';
 import {useLocation, useParams} from 'react-router-dom';
 import BackButton from '../../../../components/navigation/BackButton';
 import ModalImage from '../../../../utils/ModalImage';
@@ -178,7 +178,7 @@ const GeomAct2 = () => {
                     <div
                         className="flex-shrink-0"
                         style={{
-                            maxWidth: '350px', cursor: 'pointer', margin: '0 auto', marginTop: '50px',
+                            maxWidth: '350px', cursor: 'pointer', margin: '0 auto', marginTop: '20px',
                         }}
                     >
                         <img
@@ -189,7 +189,7 @@ const GeomAct2 = () => {
                         />
                     </div>
                 </div>
-                <section className="formulas-cards" style={{marginTop: '-10px', marginBottom: '20px'}}>
+                <section className="formulas-cards" style={{marginTop: '10px', marginBottom: '20px'}}>
                     <div className="formula-card triangle-card">
                         <h4>
                             <FaShapes/> Aire d’un disque de rayon R.

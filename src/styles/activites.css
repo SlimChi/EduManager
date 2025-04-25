@@ -3,9 +3,9 @@
 /* ============================================= */
 .tp-container {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    max-width: 900px;
+    max-width: 910px;
     margin: 0 auto;
-    padding: 5px;
+    padding: 1px;
     background-color: #f9f9f9;
     color: #333;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -16,17 +16,17 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .activities-row {
     display: flex;
-    gap: 20px;
+    gap: 10px;
 }
 
 .print-page {
     page-break-after: always;
-    padding: 20px;
+    padding: 0;
     background: white;
 }
 
@@ -202,7 +202,7 @@
 
 .tp-section {
     background-color: white;
-    padding: 20px;
+    padding: 10px;
     border-radius: 5px;
     margin-bottom: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -1191,8 +1191,8 @@
     text-align: center;
     font-size: 0.9rem;
     color: #7f8c8d;
-    margin-top: 30px;
-    padding-top: 15px;
+    margin-top: 15px;
+    padding-top: 5px;
     border-top: 1px solid #eee;
 }
 
@@ -1217,11 +1217,23 @@
 .renovation-contexte {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
+    max-width: 600px;
     border-left: 5px solid #3a7bd5;
+
+}
+
+.renovation-contexte2 {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    border-left: 5px solid #3a7bd5;
+    margin-bottom: 10px;
 }
 
 .renovation-contexte h2 {
@@ -1235,8 +1247,8 @@
 
 .renovation-contexte p {
     color: #34495e;
-    line-height: 1.6;
-    font-size: 1.1rem;
+    line-height: 1.4;
+    font-size: 1rem;
 }
 
 .objectif-phrase {
@@ -1692,6 +1704,10 @@
         margin-left: 70%;
         padding: 5px 10px;
     }
+
+    .question.compact:after {
+        content: none !important;
+    }
 }
 
 /* Mode portrait spécifique */
@@ -1726,7 +1742,7 @@
 /* Hauteur spécifique */
 @media (max-height: 600px) {
     .tp-header {
-        padding: 1rem;
+        padding: 0.8rem;
     }
 
     .activity-card {
@@ -2351,4 +2367,64 @@ body.printing button {
         margin-left: 0;
         width: 100%;
     }
+}
+
+.activity-card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+    padding: 1rem;
+}
+
+.activity-title {
+    color: #1d4ed8;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.activity-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #374151;
+}
+
+.styled-table {
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+.styled-table th,
+.styled-table td {
+    border: 1px solid #cbd5e1;
+    padding: 0.4rem;
+}
+
+.styled-table thead {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.modern-question {
+    background-color: #fefefe;
+    border-left: 6px solid #4b7bec;
+}
+
+.answer-blank2 {
+    letter-spacing: 2px;
+    color: #999;
+    font-family: monospace;
+}
+
+.answer-text2 {
+    color: #333;
+    font-weight: 500;
+}
+
+.sources-list2 {
+    font-size: 16px;
+    line-height: 1.6;
 }

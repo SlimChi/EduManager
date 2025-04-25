@@ -1,11 +1,11 @@
 import React from 'react';
 
-const GraphComponent = ({ showCorrection = false }) => {
-    const width = 700;
-    const height = 450;
+const GraphComponent = ({showCorrection = false}) => {
+    const width = 580;
+    const height = 380;
     const xLabels = [0, 20, 40, 60, 80, 100];
     const yLabels = [2000, 4000, 6000, 8000, 10000, 12000];
-    const marginLeft = 60;
+    const marginLeft = 70;
     const marginBottom = 40;
     const gridHeight = height - 2 * marginBottom;
     const gridWidth = width - marginLeft - marginBottom;
@@ -24,7 +24,7 @@ const GraphComponent = ({ showCorrection = false }) => {
     };
 
     return (
-        <svg width={width} height={height} style={{ backgroundColor: 'white', fontFamily: 'Arial, sans-serif' }}>
+        <svg width={width} height={height} style={{backgroundColor: 'white', fontFamily: 'Arial, sans-serif'}}>
             {/* Grid lines horizontales (sans le zéro) */}
             {yLabels.map((val, index) => {
                 const y = height - marginBottom - yStep * (index + 1);
@@ -81,8 +81,9 @@ const GraphComponent = ({ showCorrection = false }) => {
 
             {/* Flèches axes */}
             <defs>
-                <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
-                    <path d="M0,0 L0,6 L9,3 z" fill="black" />
+                <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto"
+                        markerUnits="strokeWidth">
+                    <path d="M0,0 L0,6 L9,3 z" fill="black"/>
                 </marker>
             </defs>
 

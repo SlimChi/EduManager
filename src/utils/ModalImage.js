@@ -1,7 +1,7 @@
 import React from 'react';
-import { FaTimes } from 'react-icons/fa';
+import {FaTimes} from 'react-icons/fa';
 
-const ModalImage = ({ imageUrl, altText, onClose }) => {
+const ModalImage = ({imageUrl, altText, onClose}) => {
     return (
         <div
             style={{
@@ -22,8 +22,8 @@ const ModalImage = ({ imageUrl, altText, onClose }) => {
             <div
                 style={{
                     position: 'relative',
-                    maxWidth: '90%',
-                    maxHeight: '90%'
+                    maxWidth: '120%',
+                    maxHeight: '120%'
                 }}
                 onClick={e => e.stopPropagation()}
             >
@@ -40,7 +40,7 @@ const ModalImage = ({ imageUrl, altText, onClose }) => {
                     }}
                     onClick={onClose}
                 >
-                    <FaTimes />
+                    <FaTimes/>
                 </button>
                 <img
                     src={imageUrl}
@@ -52,7 +52,7 @@ const ModalImage = ({ imageUrl, altText, onClose }) => {
                         borderRadius: '8px'
                     }}
                 />
-                <p style={{ color: 'white', textAlign: 'center', marginTop: '10px' }}>
+                <p style={{color: 'white', textAlign: 'center', marginTop: '10px'}}>
                     {altText} - Cliquez en dehors pour fermer
                 </p>
             </div>

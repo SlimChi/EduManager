@@ -45,6 +45,10 @@ import Act1GeometrieVecteur from "./pages/Maths/Terminale/geometrie/Act1Geometri
 import Act2Geometrie from "./pages/Maths/Terminale/geometrie/Act2Geometrie";
 import Act3Equation1erDegre from "./pages/Maths/seconde/algebre/Act3Equation1erDegre";
 import CalculCommerciauxCoIntervention from "./pages/Maths/seconde/cointervention/CalculCommerciauxCoIntervention";
+import EvaluationAcoustic from "./pages/SciencePhysiqueChimie/seconde/Acoustique/EvaluationAcoustic";
+import CalculsCommerciauxCoIntervention2 from "./pages/Maths/seconde/cointervention/CalculsCommerciauxCoIntervention2";
+import Act1ForceMeca from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act1ForceMeca";
+import Act1Signaux from "./pages/SciencePhysiqueChimie/Terminale/Act1Signaux";
 
 
 function App() {
@@ -159,8 +163,16 @@ function App() {
                             element={<CalculCommerciauxCoIntervention/>}
                         />
                         <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/cointervention2"
+                            element={<CalculsCommerciauxCoIntervention2/>}
+                        />
+                        <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/acoustique/tp-son"
                             element={<TPSon/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/acoustique/evaluation-son"
+                            element={<EvaluationAcoustic/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/optique/tp-optique"
@@ -169,6 +181,14 @@ function App() {
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/optique/tp-optique2"
                             element={<TP2Optique/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeTerminalePhysique_3/activites/signaux/act1signaux"
+                            element={<Act1Signaux/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/force"
+                            element={<Act1ForceMeca/>}
                         />
                         <Route path="/calculator" element={<CalculatorPage/>}/>
                         {/*<Route*/}

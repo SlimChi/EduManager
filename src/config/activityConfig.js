@@ -111,6 +111,12 @@ export const SPECIAL_ACTIVITIES = {
                                 path: 'cointervention/cointervention1',
                                 component: 'CalculCommerciauxCoIntervention',
                             },
+                            {
+                                id: 2,
+                                title: 'Co-intervention statistiques',
+                                path: 'cointervention/cointervention2',
+                                component: 'CalculsCommerciauxCoIntervention2',
+                            },
                         ],
                     },
                     maintenances: {
@@ -165,6 +171,12 @@ export const SPECIAL_ACTIVITIES = {
                             path: 'acoustique/tp-son',
                             component: 'TPSon',
                         },
+                        {
+                            id: 2,
+                            title: 'ÉVALUATION : Comment isoler une pièce du bruit ?',
+                            path: 'acoustique/evaluation-son',
+                            component: 'EvaluationAcoustic.js',
+                        },
                     ],
                 },
                 optique: {
@@ -180,6 +192,30 @@ export const SPECIAL_ACTIVITIES = {
                             title: 'TP2 : Synthèse soustractive des couleurs ',
                             path: 'optique/tp-optique2',
                             component: 'TP2Optique',
+                        },
+                    ],
+                },
+                mecanique: {
+                    activities: [
+                        {
+                            id: 1,
+                            title: 'Représenter et caractériser une action mécanique',
+                            path: 'mecanique/force',
+                            component: 'Act1ForceMeca',
+                        },
+                    ],
+                }
+            },
+        },
+        Terminale: {
+            ProgrammeTerminalePhysique_3: {
+                signaux: {
+                    activities: [
+                        {
+                            id: 1,
+                            title: 'TP : Synthèse soustractive des couleurs',
+                            path: 'signaux/act1signaux',
+                            component: 'Act1Signaux',
                         },
                     ],
                 },

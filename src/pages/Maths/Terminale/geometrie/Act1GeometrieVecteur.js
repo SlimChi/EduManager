@@ -111,7 +111,7 @@ const Act1GeometrieVecteur = () => {
                             <p style={{textAlign: 'justify', textJustify: 'inter-word', fontSize: '16px'}}>
                                 Pour solidifier les pylônes du mont <strong>Chamonix</strong>, des haubans en acier
                                 ont été installés. Ces
-                                câbles, fixés au sol, sont attachés au pylône à <strong>29 m</strong> de hauteur. Chaque
+                                câbles, fixés au sol, sont attachés au pylône à <strong>50 m</strong> de hauteur. Chaque
                                 pylône mesure <strong>40 m</strong>. Pour déterminer la longueur des haubans, on
                                 modélise la
                                 situation dans un repère orthonormé (<strong>1 unité = 1 m</strong>). Les points
@@ -309,8 +309,10 @@ const Act1GeometrieVecteur = () => {
                         <div className="question-number2">5</div>
                         <div className="question-content">
                             <h4 className="vect-title"><span>Communiquer</span></h4>
-                            <p>Répondre à la problématique : Quelle est la longueur totale de câble nécessaire pour un
-                                pylône du mont Aigoual ?</p>
+                            <p>Répondre à la problématique : Quelle est la
+                                longueur totale de câble
+                                nécessaire pour un pylône du
+                                mont Chamonix. ?</p>
 
                             <div className="answer-area">
                                 <textarea

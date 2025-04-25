@@ -15,7 +15,7 @@ import {
     FaCalculator,
     FaCertificate,
 } from 'react-icons/fa';
-import '../../../../styles/act1geometrie.css';
+import '../../../../styles/activites.css';
 import {useLocation, useParams} from 'react-router-dom';
 import BackButton from '../../../../components/navigation/BackButton';
 import imageAct1 from '../../../../assets/act1geofigures.png';
@@ -217,7 +217,7 @@ const GeometrieAct1 = () => {
                     <div
                         className="flex-shrink-0"
                         style={{
-                            maxWidth: '300px', cursor: 'pointer', margin: '0 auto', marginTop: '5%',
+                            maxWidth: '300px', cursor: 'pointer', margin: '0 auto'
                         }}
                     >
                         <img

@@ -281,13 +281,10 @@ const EquationsPremierDegreTest = () => {
                                         stroke="#ff9500"
                                         strokeWidth="2"
                                     />
-                                    <circle
-                                        cx="12"
-                                        cy="12"
-                                        r="10"
-                                        stroke="#ff5e00"
-                                        strokeWidth="1.5"
-                                    />
+                                    <circle cx="12"
+                                            cy="12"
+                                            r="10" stroke="#ff5e00"
+                                            strokeWidth="1.5"/>
                                     <path
                                         d="M12 8V16 M8 12H16"
                                         stroke="#ff9500"
@@ -305,10 +302,8 @@ const EquationsPremierDegreTest = () => {
                                 </span>
                             </div>
                         </div>
-                        <div
-                            className="d-flex align-items-start flex-wrap"
-                            style={{gap: '20px'}}
-                        >
+                        <div className="d-flex align-items-start flex-wrap"
+                             style={{gap: '20px'}}>
                             {/* Partie gauche : texte */}
                             <div style={{flex: 1, minWidth: '300px'}}>
                                 <div className="renovation-contexte">
