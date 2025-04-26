@@ -10,14 +10,17 @@
     <!-- CSP mise à jour -->
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-           connect-src 'self' https://api.deepseek.com https://deepseek-api.p.rapidapi.com;
-           script-src 'self' https://www.numworks.com 'unsafe-inline' 'unsafe-eval';
-           frame-src 'self' https://www.numworks.com;
-           style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-           font-src 'self' data: https://fonts.gstatic.com;
-           img-src 'self' data: blob:;
-           manifest-src 'self';
-           worker-src 'self' blob:;">
+       connect-src 'self' https://api.deepseek.com https://deepseek-api.p.rapidapi.com;
+       script-src 'self' https://www.numworks.com 'unsafe-inline' 'unsafe-eval';
+       frame-src 'self' https://www.numworks.com;
+       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+       font-src 'self' data: https://fonts.gstatic.com;
+       img-src 'self' data: blob:;
+       manifest-src 'self';
+       worker-src 'self' blob:;
+       base-uri 'self';
+       form-action 'self';
+       object-src 'none'">
 
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png"/>
     <!-- Supprimer une des deux déclarations du manifest -->
