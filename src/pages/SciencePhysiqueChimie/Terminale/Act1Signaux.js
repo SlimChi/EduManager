@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {FaPrint, FaCheck, FaLightbulb, FaPlus, FaEquals, FaCode} from 'react-icons/fa';
+import {FaPrint, FaCheck, FaLightbulb, FaPlus, FaEquals, FaCode, FaYoutube} from 'react-icons/fa';
 import {IoMdSchool} from 'react-icons/io';
 import '../../../styles/activites.css';
 import {useLocation, useParams} from 'react-router-dom';
@@ -7,13 +7,15 @@ import BackButton from '../../../components/navigation/BackButton';
 import PrintManager from '../../../utils/PrintManager';
 import 'katex/dist/katex.min.css';
 import {BlockMath, InlineMath} from 'react-katex';
-import {Card} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 import ModalImage from "../../../utils/ModalImage";
 import spectreLampes from "../../../assets/led2.jpg";
 import schemaLaser from "../../../assets/laserfuseau.png";
 import laser2 from "../../../assets/2laser.png";
 import infra from "../../../assets/infra.png";
+import spectre from "../../../assets/spectrel.png";
 import AutoEvaluationGrid from "../../../config/AutoEvaluationGrid";
+import {FcStart} from "react-icons/fc";
 
 const Act1Signaux = () => {
     const {classId} = useParams();
@@ -100,12 +102,12 @@ const Act1Signaux = () => {
 
             {/* PAGE 1 - ACTIVITÉ 1 */}
             <div className="print-page">
-                <div className="math-chapter-box blue" style={{padding: '0'}}>
+                <div className="math-chapter-box blue mt-0" style={{padding: '0'}}>
                     <span style={{marginRight: '10px', fontSize: '30px'}}>💡</span>
                     <h2 className="math-chapter-title-test">Activité 1 : Caractérisation des sources lumineuses</h2>
                 </div>
 
-                <div className="activity-header">
+                <div className="activity-header mt-0">
                     <span className="activity-badge">ACTIVITÉ 1</span>
                     <div className="activity-title">
                       <span className="course-title">
@@ -139,14 +141,21 @@ const Act1Signaux = () => {
                 </div>
 
                 {/* Question 1 */}
-                <div className="question-card" style={{marginTop: '20px'}}>
-                    <div className="question-number2">1</div>
+                <div className="question-card mt-0 p-1">
                     <div className="question-content">
                         <h4 className="vect-title"><span>Analyser/Raisonner</span></h4>
-                        <p>On donne le spectre d'émission de trois types de lampes. Une source chaude de lumière
+                        <p>1 . On donne le spectre d'émission de trois types de lampes. Une source chaude de lumière
                             a un spectre d'émission continu (contient les couleurs à la suite et sans interruption).</p>
-
-                        <p>En utilisant les spectres et vos connaissances, compléter :</p>
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '100%', cursor: 'pointer', marginBottom: '10px'}}>
+                            <img
+                                src={spectre}
+                                alt="Spectres de différentes lampes"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(spectre, 'Spectres de lampes')}
+                            />
+                        </div>
+                        <p>2 . En utilisant les spectres et vos connaissances, compléter :</p>
 
                         <div className="sources-list2" style={{margin: '15px 0'}}>
                             <p style={{marginBottom: '10px'}}>
@@ -172,14 +181,13 @@ const Act1Signaux = () => {
                             <FaCheck/> {showSourcesCorrection ? 'Masquer la correction' : 'Afficher la correction'}
                         </button>
                     </div>
-                </div>
-
-                {/* Question 2 */}
-                <div className="question-card">
-                    <div className="question-number2">2</div>
                     <div className="question-content">
-                        <h4 className="vect-title"><span>Réaliser</span></h4>
-                        <p>La surface éclairée par la lampe est S = 4πd² (surface d'une sphère). Calculer S en m² pour d
+
+                        <h4 className="vect-title">
+
+                            <span>Réaliser</span></h4>
+                        <p>3 . La surface éclairée par la lampe est S = 4πd² (surface d'une sphère). Calculer S en m²
+                            pour d
                             = 20 cm.</p>
 
                         <div className="answer-area" style={{marginTop: '10px'}}>
@@ -198,14 +206,9 @@ const Act1Signaux = () => {
                             </button>
                         </div>
                     </div>
-                </div>
-
-                {/* Question 3-8 (Tableau) */}
-                <div className="question-card">
-                    <div className="question-number2">3-8</div>
                     <div className="question-content">
                         <h4 className="vect-title"><span>Réaliser/Valider</span></h4>
-                        <p>Compléter le tableau suivant avec les calculs demandés :</p>
+                        <p>4 . Compléter le tableau suivant avec les calculs demandés :</p>
 
                         <div className="table-responsive" style={{margin: '20px 0'}}>
                             <table className="table table-bordered">
@@ -253,11 +256,9 @@ const Act1Signaux = () => {
                         </div>
 
                         <div className="answer-area" style={{marginTop: '15px'}}>
-                            <p><strong>Questions complémentaires :</strong></p>
-
                             <div style={{marginBottom: '15px'}}>
                                 <p>
-                                    <strong>4. Quelle lampe offre la meilleure efficacité énergétique ?</strong><br/>
+                                    <strong>5 . Quelle lampe offre la meilleure efficacité énergétique ?</strong><br/>
                                     {showTableCorrection ? (
                                         <span className="answer-text">La lampe fluocompacte offre la meilleure efficacité énergétique (9,3 contre 6,6 pour la LED et 1 pour l'incandescence).</span>) : (
                                         <span
@@ -267,7 +268,7 @@ const Act1Signaux = () => {
 
                             <div style={{marginBottom: '15px'}}>
                                 <p>
-                                    <strong>5. Yanis a-t-il raison de conseiller les LED ? Justifiez.</strong><br/>
+                                    <strong>6 . Yanis a-t-il raison de conseiller les LED ? Justifiez.</strong><br/>
                                     {showTableCorrection ? (
                                         <span className="answer-text">Yanis a raison de conseiller les LED car elles sont 6,6 fois plus efficaces énergétiquement qu'une lampe à incandescence, même si les fluocompactes sont encore plus efficaces.</span>) : (
                                         <span className="answer-blank">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .<br/>
@@ -338,11 +339,48 @@ const Act1Signaux = () => {
                 </div>
                 {/* Question 1 */}
                 <div className="question-card">
+
                     <div className="question-content">
                         <h4 className="vect-title"><span>Analyser/Raisonner</span></h4>
-                        <p>1 . Sans allumer le laser, comment peut-on connaître sa couleur ?</p>
-                        <div className="flex-shrink-0"
-                             style={{maxWidth: '100%', cursor: 'pointer', marginBottom: '10px'}}>
+                        <div className="container my-4 d-flex justify-content-between align-items-center"
+                             style={{maxWidth: '100%'}}>
+                            <p className="mb-0" style={{fontSize: '14px', fontWeight: '500'}}>
+                                1. Sans allumer le laser, comment peut-on connaître sa couleur ?
+                            </p>
+
+                            <Card
+                                className="border-0 shadow-sm ms-3"
+                                style={{
+                                    maxWidth: '220px',
+                                    borderRadius: '12px',
+                                    background: 'rgba(191,209,243,0.41)',
+                                    padding: '8px 12px',
+                                    flexShrink: 0
+                                }}
+                            >
+                                <a
+                                    href="https://www.lienmini.fr/4935-202"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="d-flex align-items-center text-decoration-none"
+                                    style={{color: '#FF0000', fontWeight: 'bold', fontSize: '12px'}}
+                                >
+                                    <FaYoutube size={20} className="me-2"/>
+                                    <span>
+                                    Comment fonctionne<br/>
+                                    le laser ?
+                                  </span>
+                                </a>
+                            </Card>
+                        </div>
+                        <div
+                            className="flex-shrink-0 mx-auto"
+                            style={{
+                                maxWidth: '80%',
+                                cursor: 'pointer',
+                                marginBottom: '10px'
+                            }}
+                        >
                             <img
                                 src={infra}
                                 alt="Spectres de différentes lampes"
@@ -350,6 +388,7 @@ const Act1Signaux = () => {
                                 onClick={() => openModal(infra, 'Spectres de lampes')}
                             />
                         </div>
+
                         <div className="answer-area">
                             <textarea
                                 className="answer-input"
@@ -367,10 +406,6 @@ const Act1Signaux = () => {
                             </button>
                         </div>
                     </div>
-                </div>
-
-                {/* Question 2 */}
-                <div className="question-card">
                     <div className="question-content">
                         <h4 className="vect-title"><span>Analyser/Raisonner</span></h4>
                         <p>2 . Le faisceau du laser peut-il donner un spectre ? Justifier la réponse.</p>
@@ -380,8 +415,8 @@ const Act1Signaux = () => {
                                 className="answer-input"
                                 value={showCorrections.act2_q2 ? "Le faisceau du laser donnera un spectre avec une seule raie de la même couleur que le laser." : ""}
                                 readOnly
-                                rows={3}
-                                placeholder={showCorrections.act2_q2 ? "" : "Cliquez sur 'Afficher la correction' pour voir la réponse"}
+                                rows={1}
+                                placeholder={showCorrections.act2_q2 ? "" : ""}
                             ></textarea>
                             <button
                                 className="correction-btnoptic"
@@ -391,16 +426,16 @@ const Act1Signaux = () => {
                             </button>
                         </div>
                     </div>
+                    <h4 className="vect-title"><span>Réaliser</span></h4>
+                    <p><strong>Consigne de sécurité :</strong> Attention, il ne faut jamais se placer dans l'axe du
+                        faisceau laser !</p>
                 </div>
 
+            </div>
+            <div className="print-page">
                 {/* Question 3-4 */}
-                <div className="question-card">
+                <div className="question-card mt-0">
                     <div className="question-content">
-                        <h4 className="vect-title"><span>Réaliser</span></h4>
-                        <p><strong>Consigne de sécurité :</strong> Attention, il ne faut jamais se placer dans l'axe du
-                            faisceau laser !</p>
-
-                        <p>Mesures expérimentales :</p>
                         <ul>
                             <li>3 . Placer un écran blanc à 5 cm du faisceau laser, allumer le laser puis mesurer le
                                 diamètre D du faisceau obtenu.
@@ -409,15 +444,14 @@ const Act1Signaux = () => {
                                 diamètre D' de la tache obtenue.
                             </li>
                         </ul>
-
                         <div className="answer-area">
                             <p>Résultats des mesures :</p>
                             <textarea
                                 className="answer-input"
                                 value={showCorrections.act2_q4 ? "Distance laser-mur : d' = 7 m\nDiamètre de la tache à 7 m : D' = 5 mm" : ""}
                                 readOnly
-                                rows={3}
-                                placeholder={showCorrections.act2_q4 ? "" : "Cliquez sur 'Afficher la correction' pour voir les mesures"}
+                                rows={1}
+                                placeholder={showCorrections.act2_q4 ? "" : ""}
                             ></textarea>
                             <button
                                 className="correction-btnoptic"
@@ -427,21 +461,26 @@ const Act1Signaux = () => {
                             </button>
                         </div>
                     </div>
-                </div>
-                {/* Question 5-7 */}
-                <div className="question-card">
                     <div className="question-content">
-                        <h4 className="vect-title"><span>Valider/Communiquer</span></h4>
+                        <div className="d-flex justify-content-between align-items-center flex-wrap my-3">
+                            <h4 className="vect-title mb-0 me-3"
+                                style={{fontWeight: 'bold', fontSize: '18px', color: '#2c3e50'}}>
+                                <span>Valider / Communiquer</span>
+                            </h4>
+
+                            <p className="mb-0" style={{fontSize: '16px', flex: 1}}>
+                                5. À l'aide des mesures précédentes, dire quel est le schéma correct. Justifier la
+                                réponse.
+                            </p>
+                        </div>
 
                         <div className="answer-area">
-                            <p>5 . À l'aide des mesures précédentes, dire quel est le schéma correct. Justifier la
-                                réponse.</p>
                             <textarea
                                 className="answer-input"
                                 value={showCorrections.act2_q5 ? "C'est le schéma 2 qui est correct car quand la distance augmente, le diamètre du faisceau augmente légèrement." : ""}
                                 readOnly
                                 rows={2}
-                                placeholder={showCorrections.act2_q5 ? "" : "Cliquez sur 'Afficher les corrections' pour voir la réponse"}
+                                placeholder={showCorrections.act2_q5 ? "" : ""}
                             ></textarea>
 
                             <p>6 . Qui a raison entre Naïma et Léo ?</p>
@@ -450,7 +489,7 @@ const Act1Signaux = () => {
                                 value={showCorrections.act2_q6 ? "C'est Léo qui a raison." : ""}
                                 readOnly
                                 rows={1}
-                                placeholder={showCorrections.act2_q6 ? "" : "Cliquez sur 'Afficher les corrections' pour voir la réponse"}
+                                placeholder={showCorrections.act2_q6 ? "" : ""}
                             ></textarea>
 
                             <p>7 . Est-il raisonnable d'affirmer qu'un faisceau laser est très directif ? Expliquer.</p>
@@ -458,8 +497,8 @@ const Act1Signaux = () => {
                                 className="answer-input"
                                 value={showCorrections.act2_q7 ? "Oui, un faisceau laser est très directif car même à 7 m de distance, le diamètre du faisceau ne s'élargit que très peu (de 2 mm à 5 mm)." : ""}
                                 readOnly
-                                rows={3}
-                                placeholder={showCorrections.act2_q7 ? "" : "Cliquez sur 'Afficher les corrections' pour voir la réponse"}
+                                rows={2}
+                                placeholder={showCorrections.act2_q7 ? "" : ""}
                             ></textarea>
 
                             <button
@@ -478,7 +517,7 @@ const Act1Signaux = () => {
                 </div>
 
                 {/* À retenir */}
-                <div style={{padding: '20px'}}>
+                <div style={{padding: '20px', marginTop: '0'}}>
                     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                         <h3>📌 À retenir</h3>
                         <button
@@ -490,38 +529,68 @@ const Act1Signaux = () => {
                         </button>
                     </div>
 
-                    <div className="vector-summary-container">
-                        {showSummary ? (<div className="vector-cards-grid">
-                            <div className="vector-card vector-geometry-card">
-                                <h4>Sources lumineuses</h4>
-                                <p><strong>Sources chaudes</strong> : spectre continu (ex: incandescence, Soleil)
-                                </p>
-                                <p><strong>Sources froides</strong> : spectre discontinu (ex: LED, laser)</p>
-                                <p><strong>Rendement lumineux</strong> : Φ/P (lm/W)</p>
-                                <p><strong>Efficacité énergétique</strong> : rapport des rendements par rapport à
-                                    l'incandescence</p>
+                    <div className="vector-summary-container mt-0 mb-0">
+                        {showSummary ? (
+                            <div className="vector-cards-grid d-flex flex-wrap justify-content-center gap-4">
+                                <div
+                                    className="vector-card vector-geometry-card p-3 shadow rounded-4"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)',
+                                        maxWidth: '350px',
+                                        color: '#2c3e50'
+                                    }}
+                                >
+                                    <h4 className="fw-bold mb-3">💡 Sources lumineuses</h4>
+                                    <p>🔥 <strong>Sources chaudes</strong> : spectre continu (ex : incandescence, Soleil)
+                                    </p>
+                                    <p>❄️ <strong>Sources froides</strong> : spectre discontinu (ex : LED, laser)</p>
+                                    <p>📊 <strong>Rendement lumineux</strong> : Φ / P (lm/W)</p>
+                                    <p>⚡ <strong>Efficacité énergétique</strong> : comparaison au rendement de
+                                        l'incandescence</p>
+                                </div>
+
+                                <div
+                                    className="vector-card vector-geometry-card p-3 shadow rounded-4"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #fdfbfb 0%, #e1f5fe 100%)',
+                                        maxWidth: '350px',
+                                        color: '#2c3e50'
+                                    }}
+                                >
+                                    <h4 className="fw-bold mb-3">🔴 Propriétés du laser</h4>
+                                    <p>🌈 <strong>Monochromatique</strong> : une seule longueur d'onde</p>
+                                    <p>🎯 <strong>Directif</strong> : faible divergence du faisceau</p>
+                                    <p>🔗 <strong>Cohérent</strong> : ondes en phase</p>
+                                </div>
                             </div>
-                            <div className="vector-card vector-geometry-card">
-                                <h4>Propriétés du laser</h4>
-                                <p><strong>Monochromatique</strong> : une seule longueur d'onde</p>
-                                <p><strong>Directif</strong> : faible divergence du faisceau</p>
-                                <p><strong>Cohérent</strong> : ondes en phase</p>
+                        ) : (
+                            <div className="vector-cards-grid d-flex justify-content-center">
+                                <div
+                                    className="vector-card"
+                                    style={{
+                                        border: '2px dashed #ccc',
+                                        minHeight: '200px',
+                                        width: '80%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        color: '#999',
+                                        borderRadius: '15px',
+                                        background: '#f8f9fa'
+                                    }}
+                                >
+
+                                </div>
                             </div>
-                        </div>) : (<div className="vector-cards-grid">
-                            <div className="vector-card" style={{
-                                border: '2px dashed #ccc',
-                                minHeight: '250px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: '#999'
-                            }}>
-                            </div>
-                        </div>)}
+                        )}
                     </div>
+                    <div style={{maxHeight: '70%', display: 'flex', justifyContent: 'center'}}>
+                        <AutoEvaluationGrid/>
+                    </div>
+
                 </div>
 
-                <AutoEvaluationGrid/>
+
                 <footer className="tp-footer">
                     <p>Activité sur les signaux lumineux - Chapitre 15 : Choisir une source lumineuse</p>
                 </footer>
