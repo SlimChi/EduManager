@@ -8,8 +8,8 @@ import DisciplinesPage from './pages/DisciplinesPage';
 import './styles/main.css';
 import ClassesEnCour from './pages/ClassesEnCour';
 import ProgrammeSecondeMaths from './data/ProgrammeSecondeMaths';
-import ProgrammeTerminalePhysique_3 from './data/ProgrammeTerminalePhysique_3';
-import ProgrammeTerminaleMaths_B from './data/ProgrammeTerminaleMaths_B';
+import ProgrammeTerminalePhysique3 from './data/ProgrammeTerminalePhysique3';
+import ProgrammeTerminaleMathsB from './data/ProgrammeTerminaleMathsB';
 import ProgrammeSecondeMathsMRC from './data/ProgrammeSecondeMathsMRC';
 import ProgrammeSecondePhysique from './data/ProgrammeSecondePhysique';
 import ProgrammeCAPMaths from './data/ProgrammeCAPMaths';
@@ -76,8 +76,8 @@ function App() {
                             element={<ProgrammeSecondeMathsMRC/>}
                         />
                         <Route
-                            path="/programmes/math/:classId/ProgrammeTerminaleMaths_B"
-                            element={<ProgrammeTerminaleMaths_B/>}
+                            path="/programmes/math/:classId/ProgrammeTerminaleMathsB"
+                            element={<ProgrammeTerminaleMathsB/>}
                         />
                         <Route
                             path="/programmes/math/:classId/ProgrammeCAPMaths"
@@ -88,8 +88,8 @@ function App() {
                             element={<ProgrammeSecondePhysique/>}
                         />
                         <Route
-                            path="/programmes/science/:classId/ProgrammeTerminalePhysique_3"
-                            element={<ProgrammeTerminalePhysique_3/>}
+                            path="/programmes/science/:classId/ProgrammeTerminalePhysique3"
+                            element={<ProgrammeTerminalePhysique3/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeCAPPhysique"
@@ -183,7 +183,7 @@ function App() {
                             element={<TP2Optique/>}
                         />
                         <Route
-                            path="/programmes/science/:classId/ProgrammeTerminalePhysique_3/activites/signaux/act1signaux"
+                            path="/programmes/science/:classId/ProgrammeTerminalePhysique3/activites/signaux/act1signaux"
                             element={<Act1Signaux/>}
                         />
                         <Route
@@ -196,15 +196,15 @@ function App() {
                         {/*    element={<SequencesPage/>}*/}
                         {/*/>*/}
                         <Route
-                            path="/programmes/math/:classId/ProgrammeTerminaleMaths_B/activites/geometrie/rappel-vecteur"
+                            path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/rappel-vecteur"
                             element={<RappelVecteur/>}
                         />
                         <Route
-                            path="/programmes/math/:classId/ProgrammeTerminaleMaths_B/activites/geometrie/act1-pylones"
+                            path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/act1-pylones"
                             element={<Act1GeometrieVecteur/>}
                         />
                         <Route
-                            path="/programmes/math/:classId/ProgrammeTerminaleMaths_B/activites/geometrie/act2-telepherique"
+                            path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/act2-telepherique"
                             element={<Act2Geometrie/>}
                         />
                         {/* Routes pour les CCF */}

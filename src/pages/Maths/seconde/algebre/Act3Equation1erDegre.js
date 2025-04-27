@@ -178,14 +178,14 @@ const Act3Equation1erDegre = () => {
                             <p>• Le <strong>coût d'entretien</strong> pour chaque article vendu est estimé
                                 à <strong>2 €</strong>.</p>
                         </div>
-                        <div className="objectif-box" style={{marginTop: '-10px', marginBottom: '10px'}}>
+                        <div className="objectif-box" style={{marginTop: '10px', marginBottom: '10px'}}>
                             <p><strong> Question :</strong> 🎯 " Combien d'articles doivent-ils vendre pour obtenir un
                                 bénéfice net de 100 € ?"</p>
                         </div>
                     </div>
 
                     <div className="flex-shrink-0"
-                         style={{maxWidth: '350px', cursor: 'pointer', marginTop: '50px'}}>
+                         style={{maxWidth: '350px', cursor: 'pointer', marginTop: '5px'}}>
                         <img
                             src={shop}
                             alt="Magasin d'accessoires"
@@ -393,7 +393,7 @@ const Act3Equation1erDegre = () => {
                         </div>
 
                         <div className="flex-shrink-0"
-                             style={{maxWidth: '250px', cursor: 'pointer', marginTop: '40px'}}>
+                             style={{maxWidth: '220px', cursor: 'pointer'}}>
                             <img
                                 src={magazine}
                                 alt="Magazine de musique"

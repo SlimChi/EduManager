@@ -133,7 +133,7 @@ export const SPECIAL_ACTIVITIES = {
             },
         },
         Terminale: {
-            ProgrammeTerminaleMaths_B: {
+            ProgrammeTerminaleMathsB: {
                 geometrie: {
                     chapter: {
                         id: 0,
@@ -208,7 +208,7 @@ export const SPECIAL_ACTIVITIES = {
             },
         },
         Terminale: {
-            ProgrammeTerminalePhysique_3: {
+            ProgrammeTerminalePhysique3: {
                 signaux: {
                     activities: [
                         {

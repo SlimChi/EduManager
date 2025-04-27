@@ -10,7 +10,7 @@ import BackButton from "../components/navigation/BackButton";
 import {motion} from 'framer-motion';
 import "../styles/programmeBo.css"
 
-const ProgrammeTerminaleMaths_B = () => {
+const ProgrammeTerminaleMathsB = () => {
     const {classId} = useParams();
     const navigate = useNavigate();
 
@@ -391,7 +391,7 @@ const ProgrammeTerminaleMaths_B = () => {
     };
 
     const handleChapitreClick = (chapitreId) => {
-        navigate(`/programmes/math/${classId}/ProgrammeTerminaleMaths_B/sequences/${chapitreId}`);
+        navigate(`/programmes/math/${classId}/ProgrammeTerminaleMathsB/sequences/${chapitreId}`);
     };
 
     // Animation variants
@@ -793,4 +793,4 @@ const ProgrammeTerminaleMaths_B = () => {
     );
 };
 
-export default ProgrammeTerminaleMaths_B;
+export default ProgrammeTerminaleMathsB;

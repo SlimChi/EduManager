@@ -175,7 +175,7 @@ const Act1Proba = () => {
                                     sortie du côté <strong> PILE</strong> de la pièce.
                                 </p>
                             </div>
-                            <div className="problem-box">
+                            <div className="problem-box" style={{marginTop: '10px'}}>
                                 <h3>Objectif</h3>
                                 <p>
                                     L'objectif est de déterminer si le lot de pièces contient des
@@ -186,16 +186,12 @@ const Act1Proba = () => {
 
                         {/* Partie droite : image */}
                         <div
-                            className="flex-shrink-0"
-                            style={{
-                                maxWidth: '350px',
-                                cursor: 'pointer',
-                                marginTop: '25px',
-                            }}
+                            className="flex-shrink-0" style={{
+                            maxWidth: '270px', cursor: 'pointer',
+                        }}
                         >
                             <img
-                                src={pieceprobact1}
-                                alt="Lancer de Dés"
+                                src={pieceprobact1} alt="Lancer de Dés"
                                 className="img-fluid rounded shadow-sm compact-img"
                                 onClick={() => openModal(pieceprobact1, 'Lancer de Dés')}
                             />

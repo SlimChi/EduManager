@@ -1,10 +1,10 @@
 import ProgrammeSecondeMaths from './ProgrammeSecondeMaths';
-import  ProgrammeTerminaleMaths_B  from './ProgrammeTerminaleMaths_B';
-import ProgrammeSecondeMathsMRC  from './ProgrammeSecondeMathsMRC';
-import ProgrammeCAPMaths  from './ProgrammeCAPMaths';
-import ProgrammeSecondePhysique  from './ProgrammeSecondePhysique';
-import ProgrammeTerminalePhysique_3  from './ProgrammeTerminalePhysique_3';
-import ProgrammeCAPPhysique  from './ProgrammeCAPPhysique';
+import ProgrammeTerminaleMathsB from './ProgrammeTerminaleMathsB';
+import ProgrammeSecondeMathsMRC from './ProgrammeSecondeMathsMRC';
+import ProgrammeCAPMaths from './ProgrammeCAPMaths';
+import ProgrammeSecondePhysique from './ProgrammeSecondePhysique';
+import ProgrammeTerminalePhysique3 from './ProgrammeTerminalePhysique3';
+import ProgrammeCAPPhysique from './ProgrammeCAPPhysique';
 import CCFPage from "../pages/CCFPage";
 
 // Configuration complète des classes pour chaque discipline
@@ -29,7 +29,7 @@ export const CLASSES_CONFIG = {
             color: '#569ae1',
             niveau: 'Terminale',
             component: 'ProgrammeTerminaleMaths_B',
-            programmeComponent: ProgrammeTerminaleMaths_B
+            programmeComponent: ProgrammeTerminaleMathsB
         },
         'CAP': {
             icon: 'BiCalculator',  // Gardée pour CAP
@@ -59,7 +59,7 @@ export const CLASSES_CONFIG = {
             color: '#56be3f',
             niveau: 'Terminale',
             component: 'ProgrammeTerminalePhysique_3',
-            programmeComponent: ProgrammeTerminalePhysique_3
+            programmeComponent: ProgrammeTerminalePhysique3
         },
         'CAP': {
             icon: 'BiAtom',  // Gardée pour CAP

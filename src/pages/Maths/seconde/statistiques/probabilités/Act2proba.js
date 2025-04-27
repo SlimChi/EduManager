@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {FaPrint, FaCheck, FaDice, FaChartLine, FaHome} from 'react-icons/fa';
+import {FaPrint, FaCheck, FaDice, FaChartLine, FaHome, FaBullseye} from 'react-icons/fa';
 import {BsFillQuestionCircleFill} from 'react-icons/bs';
 import {IoMdSchool} from 'react-icons/io';
 import '../../../../../styles/act1proba.css';
@@ -148,25 +148,31 @@ const Act2Proba = () => {
                     >
                         <div style={{flex: 1}}>
                             <div className="renovation-contexte">
-                                <p>
-                                    <strong>Slimane</strong> et <strong>Samy</strong> participent
-                                    à un tournoi de jeux de stratégie où il faut obtenir un total
-                                    de <strong>21</strong> points en un seul lancer pour gagner le
-                                    bonus spécial.
+                                <p style={{fontSize: '16px', color: '#2c3e50'}}>
+                                    🎯 <strong>Slimane</strong> et <strong>Samy</strong> participent à un tournoi de jeux
+                                    de stratégie !
+                                    Leur objectif : atteindre exactement <span
+                                    style={{color: '#e74c3c', fontWeight: 'bold'}}>21 points</span> en un seul lancer
+                                    pour décrocher le <strong>🏆 bonus spécial</strong>.
                                 </p>
-                                <p>
-                                    Slimane lance simultanément deux dés cubiques (dont les faces
-                                    sont numérotées de <strong>1 à 6</strong>), tandis que Samy
-                                    lance un dé à <strong>12</strong> faces numérotées de{' '}
-                                    <strong>1 à 12</strong>.
+
+                                <p style={{fontSize: '16px', color: '#2c3e50'}}>
+                                    🎲 <strong>Slimane</strong> lance <strong>deux dés cubiques</strong> (faces
+                                    numérotées de <strong>1 à 6</strong>).
+                                    <br/>
+                                    🎲 <strong>Samy</strong> utilise un <strong>dé à 12 faces</strong> numérotées
+                                    de <strong>1 à 12</strong>.
                                 </p>
                             </div>
+                            <div className="problem-box" style={{marginTop: '10px'}}>
+                                <div className="d-flex align-items-center mb-2">
+                                    <FaBullseye size={24} style={{color: '#3498db', marginRight: '10px'}}/>
+                                    <h3 className="mb-0">Objectif :</h3>
+                                </div>
 
-                            <div className="problem-box">
-                                <h3>Objectif</h3>
-                                <p>
-                                    L'objectif est de déterminer si Samy a plus de chances de
-                                    gagner le bonus que Slimane.
+                                <p style={{fontSize: '16px', color: '#2c3e50'}}>
+                                    🎯 Déterminer si <strong>Samy</strong> a plus de chances
+                                    que <strong>Slimane</strong> de gagner le <strong>bonus spécial</strong> 🏆.
                                 </p>
                             </div>
                         </div>
@@ -174,9 +180,9 @@ const Act2Proba = () => {
                         <div
                             className="flex-shrink-0"
                             style={{
-                                maxWidth: '350px',
+                                maxWidth: '280px',
                                 cursor: 'pointer',
-                                marginTop: '40px',
+                                marginTop: '10px',
                             }}
                         >
                             <img

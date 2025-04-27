@@ -1,25 +1,26 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Card, Container, Row, Col } from 'react-bootstrap';
+import {useParams, useNavigate} from 'react-router-dom';
+import {Card, Container, Row, Col} from 'react-bootstrap';
 import * as Icons from 'react-icons/bi';
-import { motion } from 'framer-motion';
+import {motion} from 'framer-motion';
 import BackButton from "../components/navigation/BackButton";
-import { CLASSES_CONFIG } from '../data/programmes';
+import {CLASSES_CONFIG} from '../data/programmes';
 import "../styles/ClassesEnCour.css"
+
 const ClassesEnCour = () => {
-    const { discipline } = useParams();
+    const {discipline} = useParams();
     const navigate = useNavigate();
 
     // Configuration des programmes par discipline et niveau
     const PROGRAMME_COMPONENTS = {
         math: {
             'Seconde': 'ProgrammeSecondeMaths',
-            'Terminale': 'ProgrammeTerminaleMaths_B',
+            'Terminale': 'ProgrammeTerminaleMathsB',
             'CAP': 'ProgrammeCAPMaths'
         },
         science: {
             'Seconde': 'ProgrammeSecondePhysique',
-            'Terminale': 'ProgrammeTerminalePhysique_3',
+            'Terminale': 'ProgrammeTerminalePhysique3',
             'CAP': 'ProgrammeCAPPhysique'
         }
     };
@@ -31,7 +32,7 @@ const ClassesEnCour = () => {
     const classes = Object.entries(classesForDiscipline).map(([id, config]) => ({
         id,
         name: id,
-        icon: React.createElement(Icons[config.icon] || Icons.BiQuestionMark, { size: 40 }),
+        icon: React.createElement(Icons[config.icon] || Icons.BiQuestionMark, {size: 40}),
         emoji: config.emoji || "🏫",
         color: config.color || "#5f27cd",
         bgColor: `${config.color}20` || "rgba(95, 39, 205, 0.1)",
@@ -51,7 +52,7 @@ const ClassesEnCour = () => {
                 throw new Error('Type de programme non défini');
             }
             navigate(`/programmes/${discipline}/${classe.id}/${programmeType}`, {
-                state: { className: classe.name }
+                state: {className: classe.name}
             });
         } catch (error) {
             console.error('Erreur de navigation:', error);
@@ -61,7 +62,7 @@ const ClassesEnCour = () => {
 
     // Animations
     const containerVariants = {
-        hidden: { opacity: 0 },
+        hidden: {opacity: 0},
         visible: {
             opacity: 1,
             transition: {
@@ -71,7 +72,7 @@ const ClassesEnCour = () => {
     };
 
     const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
+        hidden: {y: 20, opacity: 0},
         visible: {
             y: 0,
             opacity: 1,
@@ -96,7 +97,7 @@ const ClassesEnCour = () => {
             className="page-container"
         >
             <Container className="page-content py-5">
-                <BackButton />
+                <BackButton/>
                 <motion.div variants={itemVariants}>
                     <div className="d-flex justify-content-between align-items-center mb-4">
                         <div>
@@ -139,19 +140,20 @@ const ClassesEnCour = () => {
                                                     color: classe.color
                                                 }}
                                             >
-                                                <span className="emoji me-2" style={{ fontSize: '24px' }}>{classe.emoji}</span>
+                                                <span className="emoji me-2"
+                                                      style={{fontSize: '24px'}}>{classe.emoji}</span>
                                                 {classe.icon}
                                             </div>
                                             <Card.Title
                                                 className="fw-bold mb-0"
-                                                style={{ color: classe.color }}
+                                                style={{color: classe.color}}
                                             >
                                                 {classe.name}
                                             </Card.Title>
                                         </div>
                                         <div className="mt-auto text-end">
                                             <motion.div
-                                                whileHover={{ x: 5 }}
+                                                whileHover={{x: 5}}
                                                 className="fw-bold"
                                                 style={{
                                                     color: classe.color,

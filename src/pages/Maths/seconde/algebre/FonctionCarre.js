@@ -69,7 +69,7 @@ const FonctionCarre = () => {
         question1b: "La représentation graphique est une parabole orientée vers le haut, passant par les points (30,900), (50,2500), etc.",
         question1c1: "0",
         question1c2: "12100",
-        question1d: "a ≈ 0.006 (valeur exacte à déterminer avec la calculatrice)",
+        question1d: "a ≈ 1 (valeur exacte à déterminer avec la calculatrice)",
         question1e: "La distance de freinage à 130 km/h est d'environ 101.4 mètres",
         question2a1: "50",
         question2a2: "200",
