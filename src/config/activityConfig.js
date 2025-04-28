@@ -157,9 +157,15 @@ export const SPECIAL_ACTIVITIES = {
                         },
                         {
                             id: 2,
-                            title: 'Téléphérique',
+                            title: 'Téléphérique 🚠',
                             path: 'geometrie/act2-telepherique',
                             component: 'Act2Geometrie',
+                        },
+                        {
+                            id: 3,
+                            title: 'Une histoire de tipi 🏕️',
+                            path: 'geometrie/act3-tipi',
+                            component: 'Act3Geometrie',
                         },
                     ],
                 },

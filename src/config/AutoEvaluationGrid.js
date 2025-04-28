@@ -30,7 +30,7 @@ const StyledTable = styled.table`
 const TableHeader = styled.th`
   padding: 12px;
   text-align: center;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   font-weight: 600;
   background-color: #f5f5f5;
   border-bottom: 2px solid #ccc;
@@ -38,7 +38,7 @@ const TableHeader = styled.th`
 
 const TableCell = styled.td`
   padding: 14px 12px;
-  font-size: 0.92rem;
+  font-size: 0.8rem;
   border-bottom: 1px solid #eee;
   vertical-align: top;
   background-color: #fff;

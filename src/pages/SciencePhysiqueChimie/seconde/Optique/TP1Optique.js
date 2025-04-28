@@ -41,17 +41,17 @@ import prismLaser from "../../../../assets/prismlaser.png";
 const TP1Optique = () => {
     const [experimentData, setExperimentData] = useState({
         prismColors: [
-            { name: 'rouge', hex: '#ff0000' },
-            { name: 'orange', hex: '#ff7f00' },
-            { name: 'jaune', hex: '#ffff00' },
-            { name: 'vert', hex: '#00ff00' },
-            { name: 'bleu', hex: '#0000ff' },
-            { name: 'violet', hex: '#9400d3' }
+            {name: 'rouge', hex: '#ff0000'},
+            {name: 'orange', hex: '#ff7f00'},
+            {name: 'jaune', hex: '#ffff00'},
+            {name: 'vert', hex: '#00ff00'},
+            {name: 'bleu', hex: '#0000ff'},
+            {name: 'violet', hex: '#9400d3'}
         ],
         networkComparison: '',
         laserResults: {
-            laser1: { color: '', observation: '' },
-            laser2: { color: '', observation: '' }
+            laser1: {color: '', observation: ''},
+            laser2: {color: '', observation: ''}
         },
         activeTab: 'prism'
     });
@@ -148,6 +148,7 @@ const TP1Optique = () => {
         };
         return colors[colorName.toLowerCase()] || '#6a0dad';
     }
+
     function getContrastColor(hexColor) {
         // Convertir la couleur hex en RVB
         const r = parseInt(hexColor.substr(1, 2), 16);
@@ -160,6 +161,7 @@ const TP1Optique = () => {
         // Retourner noir ou blanc selon la luminosité
         return brightness > 128 ? '#000' : '#fff';
     }
+
     const setActiveTab = (tab) => {
         setExperimentData(prev => ({
             ...prev,
@@ -167,33 +169,33 @@ const TP1Optique = () => {
         }));
     };
     const openModal = (imageUrl, altText) => {
-        setModalState({ show: true, imageUrl, altText });
+        setModalState({show: true, imageUrl, altText});
     };
     const contentRef = useRef();
     const closeModal = () => {
-        setModalState(prev => ({ ...prev, show: false }));
+        setModalState(prev => ({...prev, show: false}));
     };
     if (className === 'optique') {
         return <div>Cette activité n'est pas disponible pour cette classe.</div>;
     }
     return (
         <>
-            <BackButton />
+            <BackButton/>
 
             <div className="tp-optique-container" id="tp-content" ref={contentRef}>
                 {/* Page 1 */}
                 <PrintManager
-                contentRef={contentRef}
-                activityName="Proba_Pieces"
-                pageCount={2}
-                quality="hd"
-            />
+                    contentRef={contentRef}
+                    activityName="Proba_Pieces"
+                    pageCount={2}
+                    quality="hd"
+                />
                 <div className="print-page">
                     <header className="tp-header">
                         <div className="header-content">
-                            <GiSpectacleLenses className="header-icon" />
+                            <GiSpectacleLenses className="header-icon"/>
                             <h1>
-                                <FcIdea />   TP1 : Décomposition de la lumière blanche <br />
+                                <FcIdea/> TP1 : Décomposition de la lumière blanche <br/>
                                 <span className="h1-sub">Optique physique - Dispersion lumineuse</span>
                             </h1>
 
@@ -210,17 +212,20 @@ const TP1Optique = () => {
                     <div className="tp-intro-optique">
                         <div className="science-card">
                             <div className="card-header1">
-                                <GiPrism className="card-icon" />
-                                <h2 className="m-0" style={{ fontSize: "1.4rem" }}>Décomposition spectrale de la lumière</h2>
+                                <GiPrism className="card-icon"/>
+                                <h2 className="m-0" style={{fontSize: "1.4rem"}}>Décomposition spectrale de la
+                                    lumière</h2>
                             </div>
 
-                            <div className="card-body d-flex flex-column flex-md-row align-items-center justify-content-between">
+                            <div
+                                className="card-body d-flex flex-column flex-md-row align-items-center justify-content-between">
                                 {/* Texte à gauche */}
-                                <div className="card-text" style={{ flex: 1, fontSize: '1rem', color: '#333' }}>
+                                <div className="card-text" style={{flex: 1, fontSize: '1rem', color: '#333'}}>
                                     <p className="mb-0">
-                                        <FaLightbulb className="text-icon me-2" style={{ color: "#f0c419" }} />
-                                        La lumière blanche contient toutes les couleurs 🌈.<br />
-                                        Dans ce TP, vous allez découvrir ce phénomène en utilisant différents objets optiques.
+                                        <FaLightbulb className="text-icon me-2" style={{color: "#f0c419"}}/>
+                                        La lumière blanche contient toutes les couleurs 🌈.<br/>
+                                        Dans ce TP, vous allez découvrir ce phénomène en utilisant différents objets
+                                        optiques.
                                     </p>
                                 </div>
 
@@ -252,22 +257,22 @@ const TP1Optique = () => {
                         <div className="objectives-grid">
                             <div className="objective-card">
                                 <div className="objective-icon">
-                                    <GiAce />
+                                    <GiAce/>
                                 </div>
                                 <h3>Objectifs</h3>
                                 <ul>
-                                    <li><FaChevronRight /> Réaliser la décomposition de la lumière blanche</li>
-                                    <li><FaChevronRight /> Identifier les couleurs du spectre visible</li>
-                                    <li><FaChevronRight /> Comparer prisme et réseau</li>
-                                    <li><FaChevronRight /> Étudier la lumière laser</li>
+                                    <li><FaChevronRight/> Réaliser la décomposition de la lumière blanche</li>
+                                    <li><FaChevronRight/> Identifier les couleurs du spectre visible</li>
+                                    <li><FaChevronRight/> Comparer prisme et réseau</li>
+                                    <li><FaChevronRight/> Étudier la lumière laser</li>
                                 </ul>
                             </div>
 
                             <div className="material-card">
                                 <div className="material-icon">
-                                    <FaFlask />
+                                    <FaFlask/>
                                 </div>
-                                <h3><GiLightProjector /> Matériel</h3>
+                                <h3><GiLightProjector/> Matériel</h3>
                                 <div className="material-list">
                                     <div className="material-item">
                                         <span className="material-bullet">•</span>
@@ -306,7 +311,7 @@ const TP1Optique = () => {
                                 </div>
 
                                 <div className="image-caption">
-                                    <BsDropletHalf /> Figure 1 : Générateur de lumière blanche
+                                    <BsDropletHalf/> Figure 1 : Générateur de lumière blanche
                                 </div>
                             </div>
                         </div>
@@ -317,26 +322,31 @@ const TP1Optique = () => {
                             className={`tab-btn ${experimentData.activeTab === 'prism' ? 'active' : ''}`}
                             onClick={() => setActiveTab('prism')}
                         >
-                            <GiPrism /> Expérience 1: Prisme
+                            <GiPrism/> Expérience 1: Prisme
                         </button>
                         <button
                             className={`tab-btn ${experimentData.activeTab === 'network' ? 'active' : ''}`}
                             onClick={() => setActiveTab('network')}
                         >
-                            <FaGripLines /> Expérience 2: Réseau
+                            <FaGripLines/> Expérience 2: Réseau
                         </button>
                         <button
                             className={`tab-btn ${experimentData.activeTab === 'laser' ? 'active' : ''}`}
                             onClick={() => setActiveTab('laser')}
                         >
-                            <BsLightningFill /> Expérience 3: Laser
+                            <BsLightningFill/> Expérience 3: Laser
                         </button>
                     </div>
 
+
+                </div>
+
+                {/* Page 2 */}
+                <div className="print-page">
                     {experimentData.activeTab === 'prism' && (
                         <section className="experiment-section prism-experiment">
                             <h2 className="experiment-title">
-                                <GiPrism /> Expérience 1 : Décomposition par un prisme
+                                <GiPrism/> Expérience 1 : Décomposition par un prisme
                             </h2>
 
                             <div className="protocol-steps">
@@ -366,11 +376,11 @@ const TP1Optique = () => {
 
                                         <div className="observation-box">
                                             <div className="observation-header">
-                                                <FaPalette className="observation-icon" />
+                                                <FaPalette className="observation-icon"/>
                                                 <h5>Spectre observé</h5>
                                             </div>
 
-                                            <p style={{ fontSize: '1.2rem' }}>Représentez l'ordre des couleurs :</p>
+                                            <p style={{fontSize: '1.2rem'}}>Représentez l'ordre des couleurs :</p>
 
                                             <div className="spectrum-display">
                                                 {experimentData.prismColors.map((color, index) => (
@@ -384,7 +394,8 @@ const TP1Optique = () => {
                                                         }}
                                                         title={showColors ? color.name : ''}
                                                     >
-                                                        {showColors && <span className="color-label">{color.name}</span>}
+                                                        {showColors &&
+                                                            <span className="color-label">{color.name}</span>}
                                                     </div>
                                                 ))}
 
@@ -396,12 +407,12 @@ const TP1Optique = () => {
                                                     toggleColors();
                                                 }}
                                             >
-                                                <FaCheck /> Voir correction
+                                                <FaCheck/> Voir correction
                                             </button>
                                             {/* Nouvelle question ajoutée */}
                                             <div className="coloring-task">
-                                                <p style={{ fontSize: '1.2rem' }}>
-                                                    <FaPaintBrush className="task-icon" />
+                                                <p style={{fontSize: '1.2rem'}}>
+                                                    <FaPaintBrush className="task-icon"/>
                                                     Colorier correctement les rayons sortant du prisme :
                                                 </p>
                                                 <div className="coloring-image-container">
@@ -409,7 +420,7 @@ const TP1Optique = () => {
                                                         src={showColoredPrism ? prismColored : prismBlank}
                                                         alt={showColoredPrism ? "Schéma corrigé" : "Schéma à colorier"}
                                                         className="coloring-image"
-                                                        style={{ display: 'block' }}
+                                                        style={{display: 'block'}}
                                                         onClick={() =>
                                                             openModal(
                                                                 showColoredPrism ? prismColored : prismBlank,
@@ -418,14 +429,15 @@ const TP1Optique = () => {
                                                 <button
                                                     className="correction-btnoptic"
                                                     onClick={() => setShowColoredPrism(!showColoredPrism)}
-                                                    style={{ marginTop: '10px' }}
+                                                    style={{marginTop: '10px'}}
                                                 >
-                                                    <FaCheck /> {showColoredPrism ? "Masquer la correction" : "Voir la correction"}
+                                                    <FaCheck/> {showColoredPrism ? "Masquer la correction" : "Voir la correction"}
                                                 </button>
                                             </div>
 
                                             <div className="answer-field">
-                                                <p style={{ fontSize: '1.2rem' }}>Décrivez comment la lumière blanche se décompose :</p>
+                                                <p style={{fontSize: '1.2rem'}}>Décrivez comment la lumière blanche se
+                                                    décompose :</p>
                                                 <div className="answer-container">
                                                       <textarea
                                                           className={`answer-input ${showCorrections.prismObservation1 ? 'correction-active' : ''}`}
@@ -437,7 +449,7 @@ const TP1Optique = () => {
                                                         className="correction-btnoptic"
                                                         onClick={() => toggleCorrection('prismObservation1')}
                                                     >
-                                                        <FaCheck /> Voir correction
+                                                        <FaCheck/> Voir correction
                                                     </button>
                                                 </div>
                                             </div>
@@ -448,13 +460,11 @@ const TP1Optique = () => {
                         </section>
                     )}
                 </div>
-
-                {/* Page 2 */}
                 <div className="print-page">
                     {experimentData.activeTab === 'network' && (
                         <section className="experiment-section network-experiment">
                             <h2 className="experiment-title">
-                                <FaGripLines /> Expérience 2 : Décomposition par un réseau
+                                <FaGripLines/> Expérience 2 : Décomposition par un réseau
                             </h2>
 
                             <div className="protocol-steps">
@@ -471,13 +481,14 @@ const TP1Optique = () => {
 
                                             </ol>
 
-                                            <div className="image-container flex-shrink-0" style={{ width: '200px', marginTop: '-30px' }}>
+                                            <div className="image-container flex-shrink-0"
+                                                 style={{width: '200px', marginTop: '-30px'}}>
                                                 <img
                                                     src={prismImage2}
                                                     alt="Expérience avec un prisme"
                                                     className="img-optique img-fluid"
                                                     onClick={() => openModal(prismImage2, "Figure 2 : Prisme")}
-                                                    style={{ maxWidth: '100%', height: 'auto' }}
+                                                    style={{maxWidth: '100%', height: 'auto'}}
                                                 />
                                             </div>
                                         </div>
@@ -498,7 +509,7 @@ const TP1Optique = () => {
                                                         className="correction-btnoptic"
                                                         onClick={() => toggleCorrection('networkComparison')}
                                                     >
-                                                        <FaCheck /> Voir correction
+                                                        <FaCheck/> Voir correction
                                                     </button>
                                                 </div>
                                             </div>
@@ -508,20 +519,21 @@ const TP1Optique = () => {
                             </div>
                         </section>
                     )}
-
+                </div>
+                <div className="print-page">
                     {experimentData.activeTab === 'laser' && (
                         <section className="experiment-section laser-experiment">
                             <h2 className="experiment-title">
-                                <BsLightningFill /> Expérience 3 : Étude de la lumière laser
+                                <BsLightningFill/> Expérience 3 : Étude de la lumière laser
                             </h2>
 
                             <div className="safety-warning-box">
                                 <div className="warning-header">
-                                    <FaExclamationTriangle className="warning-icon" />
-                                    <h4><FaShieldAlt /> Consignes de sécurité LASER</h4>
+                                    <FaExclamationTriangle className="warning-icon"/>
+                                    <h4><FaShieldAlt/> Consignes de sécurité LASER</h4>
                                 </div>
                                 <div className="warning-content">
-                                    <p><FcRedo /> Avant toute manipulation, cochez les précautions à respecter :</p>
+                                    <p><FcRedo/> Avant toute manipulation, cochez les précautions à respecter :</p>
 
                                     <div className="safety-grid">
                                         <div className="safety-item">
@@ -532,7 +544,7 @@ const TP1Optique = () => {
                                                 onChange={() => handleSafetyCheck('noEyes')}
                                             />
                                             <label htmlFor="noEyes">
-                                                <FaEye /> Ne pas diriger vers les yeux
+                                                <FaEye/> Ne pas diriger vers les yeux
                                             </label>
                                         </div>
                                         <div className="safety-item">
@@ -543,7 +555,7 @@ const TP1Optique = () => {
                                                 onChange={() => handleSafetyCheck('noSkin')}
                                             />
                                             <label htmlFor="noSkin">
-                                                <FaExclamationTriangle /> Éviter la peau
+                                                <FaExclamationTriangle/> Éviter la peau
                                             </label>
                                         </div>
                                         <div className="safety-item">
@@ -554,7 +566,7 @@ const TP1Optique = () => {
                                                 onChange={() => handleSafetyCheck('noReflective')}
                                             />
                                             <label htmlFor="noReflective">
-                                                <GiArtificialIntelligence /> Pas de surfaces réfléchissantes
+                                                <GiArtificialIntelligence/> Pas de surfaces réfléchissantes
                                             </label>
                                         </div>
                                         <div className="safety-item">
@@ -565,7 +577,7 @@ const TP1Optique = () => {
                                                 onChange={() => handleSafetyCheck('teacherApproval')}
                                             />
                                             <label htmlFor="teacherApproval">
-                                                <BsFillQuestionCircleFill /> Autorisation requise
+                                                <BsFillQuestionCircleFill/> Autorisation requise
                                             </label>
                                         </div>
                                     </div>
@@ -584,7 +596,7 @@ const TP1Optique = () => {
                                                 className="correction-btnoptic"
                                                 onClick={() => toggleCorrection('safetyExplanation')}
                                             >
-                                                <FaCheck /> Voir correction
+                                                <FaCheck/> Voir correction
                                             </button>
                                         </div>
                                     </div>
@@ -603,8 +615,9 @@ const TP1Optique = () => {
                                             <li>👀📝 Observer et noter les résultats.</li>
 
                                             <div className="laser-card1">
-                                                <div className="laser-card-header1" style={{ backgroundColor: '#ff3e3e20', borderColor: '#ff3e3e' }}>
-                                                    <BsLightningFill className="laser-icon1" />
+                                                <div className="laser-card-header1"
+                                                     style={{backgroundColor: '#ff3e3e20', borderColor: '#ff3e3e'}}>
+                                                    <BsLightningFill className="laser-icon1"/>
                                                     <h3>Laser 1</h3>
                                                     <div
                                                         className="laser-color-tag1"
@@ -620,7 +633,7 @@ const TP1Optique = () => {
                                                     <div className="form-row1">
                                                         <div className="form-group1 color-input-group">
                                                             <label>
-                                                                <FaPalette /> Couleur :
+                                                                <FaPalette/> Couleur :
                                                             </label>
                                                             <input
                                                                 type="text"
@@ -632,7 +645,7 @@ const TP1Optique = () => {
                                                         </div>
                                                         <div className="form-group1 observation-group">
                                                             <label>
-                                                                <FaEye /> Observation :
+                                                                <FaEye/> Observation :
                                                             </label>
                                                             <input
                                                                 type="text"
@@ -657,58 +670,60 @@ const TP1Optique = () => {
                                         </ol>
 
                                         <div className="laser-experiment-results">
-                                            <p style={{ fontSize: '1.1rem' }}>6. Remplacer le laser utilisé par un laser d’une autre couleur :<br/>
-                                                <FcRedo /> Dessiner, en couleur, la figure obtenue sur l’écran.
+                                            <p style={{fontSize: '1.1rem'}}>6. Remplacer le laser utilisé par un laser
+                                                d’une autre couleur :<br/>
+                                                <FcRedo/> Dessiner, en couleur, la figure obtenue sur l’écran.
                                             </p>
 
-                                                <div className="laser-card1">
-                                                    <div className="laser-card-header1" style={{ backgroundColor: '#3eccff20', borderColor: '#3eccff' }}>
-                                                        <BsLightningFill className="laser-icon1" />
-                                                        <h3>Laser 2</h3>
-                                                        <div
-                                                            className="laser-color-tag1"
-                                                            style={{
-                                                                backgroundColor: experimentData.laserResults.laser2.color ? getColorHex(experimentData.laserResults.laser2.color) : '#f0f0f0',
-                                                                color: experimentData.laserResults.laser2.color ? getContrastColor(getColorHex(experimentData.laserResults.laser2.color)) : '#333'
-                                                            }}
-                                                        >
-                                                            {experimentData.laserResults.laser2.color || "Couleur"}
-                                                        </div>
+                                            <div className="laser-card1">
+                                                <div className="laser-card-header1"
+                                                     style={{backgroundColor: '#3eccff20', borderColor: '#3eccff'}}>
+                                                    <BsLightningFill className="laser-icon1"/>
+                                                    <h3>Laser 2</h3>
+                                                    <div
+                                                        className="laser-color-tag1"
+                                                        style={{
+                                                            backgroundColor: experimentData.laserResults.laser2.color ? getColorHex(experimentData.laserResults.laser2.color) : '#f0f0f0',
+                                                            color: experimentData.laserResults.laser2.color ? getContrastColor(getColorHex(experimentData.laserResults.laser2.color)) : '#333'
+                                                        }}
+                                                    >
+                                                        {experimentData.laserResults.laser2.color || "Couleur"}
                                                     </div>
-                                                    <div className="laser-card-body1">
-                                                        <div className="form-row1">
-                                                            <div className="form-group1 color-input-group">
-                                                                <label>
-                                                                    <FaPalette /> Couleur :
-                                                                </label>
-                                                                <input
-                                                                    type="text"
-                                                                    value={experimentData.laserResults.laser2.color}
-                                                                    onChange={(e) => handleLaserResult('laser2', 'color', e.target.value)}
-                                                                    className="laser-color-input1"
+                                                </div>
+                                                <div className="laser-card-body1">
+                                                    <div className="form-row1">
+                                                        <div className="form-group1 color-input-group">
+                                                            <label>
+                                                                <FaPalette/> Couleur :
+                                                            </label>
+                                                            <input
+                                                                type="text"
+                                                                value={experimentData.laserResults.laser2.color}
+                                                                onChange={(e) => handleLaserResult('laser2', 'color', e.target.value)}
+                                                                className="laser-color-input1"
 
-                                                                />
-                                                            </div>
-                                                            <div className="form-group1 observation-group">
-                                                                <label>
-                                                                    <FaEye /> Observation :
-                                                                </label>
-                                                                <input
-                                                                    type="text"
-                                                                    value={experimentData.laserResults.laser2.observation}
-                                                                    onChange={(e) => handleLaserResult('laser2', 'observation', e.target.value)}
-                                                                    className="laser-observation-input1"
+                                                            />
+                                                        </div>
+                                                        <div className="form-group1 observation-group">
+                                                            <label>
+                                                                <FaEye/> Observation :
+                                                            </label>
+                                                            <input
+                                                                type="text"
+                                                                value={experimentData.laserResults.laser2.observation}
+                                                                onChange={(e) => handleLaserResult('laser2', 'observation', e.target.value)}
+                                                                className="laser-observation-input1"
 
-                                                                />
-                                                            </div>
+                                                            />
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
                                         </div>
 
                                         <div className="answer-field">
-                                            <label><FcRedo /> Conclusion  :</label>
+                                            <label><FcRedo/> Conclusion :</label>
                                             <div className="answer-container">
                                                 <textarea
                                                     className={`answer-input ${showCorrections.laserObservation ? 'correction-active' : ''}`}
@@ -721,7 +736,7 @@ const TP1Optique = () => {
                                                     className="correction-btnoptic"
                                                     onClick={() => toggleCorrection('laserObservation')}
                                                 >
-                                                    <FaCheck /> Voir correction
+                                                    <FaCheck/> Voir correction
                                                 </button>
                                             </div>
                                         </div>
@@ -731,18 +746,25 @@ const TP1Optique = () => {
                         </section>
                     )}
 
-                    <section className="info-section">
+                    {/* Info Section */}
+                    <div className="print-page">
                         <div className="info-card">
-                            <div className="info-header" style={{ background: 'linear-gradient(to right, #e74c3c, #f39c12)' }}>
-                                <FaExclamationTriangle className="info-icon" />
+                            <div className="info-header"
+                                 style={{background: 'linear-gradient(to right, #e74c3c, #f39c12)'}}>
+                                <FaExclamationTriangle className="info-icon"/>
                                 <h3>LASER et SÉCURITÉ</h3>
                             </div>
                             <div className="info-content">
                                 <div className="info-text">
-                                    <p><strong>LASER</strong> = Light Amplification by Stimulated Emission of Radiation</p>
-                                    <p style={ { marginLeft: '4.7rem', color: 'green',fontStyle: 'italic' }}> « Amplification de la lumière par émission
+                                    <p><strong>LASER</strong> = Light Amplification by Stimulated Emission of
+                                        Radiation
+                                    </p>
+                                    <p style={{marginLeft: '4.7rem', color: 'green', fontStyle: 'italic'}}> «
+                                        Amplification de la lumière par émission
                                         stimulée de rayonnement » </p>
-                                    <p><FcRedo /> Le laser est une source lumineuse qui possède trois caractéristiques clés:</p>
+                                    <p><FcRedo/> Le laser est une source lumineuse qui possède trois
+                                        caractéristiques
+                                        clés:</p>
                                     <div className="laser-properties">
                                         <div className="property" data-aos="fade-up" data-aos-delay="100">
                                             <div className="property-icon">
@@ -751,9 +773,12 @@ const TP1Optique = () => {
                                             </div>
                                             <h3 className="property-title">Monochromatique</h3>
                                             <p className="property-description">
-                                                Il émet un rayonnement monochromatique (une seule longueur d’onde) <br/>(Δλ ≈ 0.1nm)
+                                                Il émet un rayonnement monochromatique (une seule longueur
+                                                d’onde) <br/>(Δλ
+                                                ≈ 0.1nm)
                                             </p>
                                             <div className="property-wave"></div>
+                                            
                                         </div>
 
                                         <div className="property" data-aos="fade-up" data-aos-delay="200">
@@ -770,96 +795,217 @@ const TP1Optique = () => {
 
 
                                     </div>
-                                    <div className="property" data-aos="fade-up" data-aos-delay="300" style={ { margin:'auto' }} >
+                                    <div className="property" data-aos="fade-up" data-aos-delay="300"
+                                         style={{margin: 'auto'}}>
                                         <div className="property-icon">
                                             <span className="icon-symbol">⚡</span>
                                             <div className="icon-shock"></div>
                                         </div>
                                         <h3 className="property-title">Énergétique</h3>
                                         <p className="property-description">
-                                            Le faisceau de lumière laser possède une très grande densité d’énergie, lui conférant
+                                            Le faisceau de lumière laser possède une très grande densité d’énergie,
+                                            lui
+                                            conférant
                                             son caractère dangereux.
                                         </p>
                                         <div className="property-energy"></div>
                                     </div>
                                     <div className="laser-pictogram">
                                         <p>
-                                            Il existe un pictogramme spécifique pour signaler un danger lié au laser.
+                                            Il existe un pictogramme spécifique pour signaler un danger lié au
+                                            laser.
                                         </p>
                                         <img
                                             src={laserPictogram}
                                             alt="Pictogramme de danger laser"
                                         />
                                     </div>
-                                    <h4 style={{ marginTop: '1.5rem', color: '#e74c3c' }}>Classes de laser</h4>
+                                    <h4 style={{marginTop: '1.5rem', color: '#e74c3c'}}>Classes de laser</h4>
 
-                                    <div style={{ overflowX: 'auto', margin: '1rem 0' }}>
-                                        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center' }}>
+                                    <div style={{overflowX: 'auto', margin: '1rem 0'}}>
+                                        <table style={{
+                                            width: '100%',
+                                            borderCollapse: 'collapse',
+                                            textAlign: 'center'
+                                        }}>
                                             <thead>
-                                            <tr style={{ backgroundColor: '#f8f9fa' }}>
-                                                <th style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Classe</th>
-                                                <th style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Puissance</th>
-                                                <th style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Danger</th>
-                                                <th style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Protection</th>
+                                            <tr style={{backgroundColor: '#f8f9fa'}}>
+                                                <th style={{
+                                                    padding: '0.8rem',
+                                                    border: '1px solid #ddd'
+                                                }}>Classe
+                                                </th>
+                                                <th style={{
+                                                    padding: '0.8rem',
+                                                    border: '1px solid #ddd'
+                                                }}>Puissance
+                                                </th>
+                                                <th style={{
+                                                    padding: '0.8rem',
+                                                    border: '1px solid #ddd'
+                                                }}>Danger
+                                                </th>
+                                                <th style={{
+                                                    padding: '0.8rem',
+                                                    border: '1px solid #ddd'
+                                                }}>Protection
+                                                </th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr style={{ backgroundColor: '#e8f5e9' }}>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd', fontWeight: 'bold' }}>1</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>&lt; 0.39 mW</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Sans danger</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Aucune</td>
+                                            <tr style={{backgroundColor: '#e8f5e9'}}>
+                                                <td style={{
+                                                    padding: '0.8rem',
+                                                    border: '1px solid #ddd',
+                                                    fontWeight: 'bold'
+                                                }}>1
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>&lt; 0.39
+                                                    mW
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>Sans
+                                                    danger
+                                                </td>
+                                                <td style={{
+                                                    padding: '0.8rem',
+                                                    border: '1px solid #ddd'
+                                                }}>Aucune
+                                                </td>
                                             </tr>
-                                            <tr style={{ backgroundColor: '#fffde7' }}>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd', fontWeight: 'bold' }}>2</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>0.4 - 1 mW</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Danger si exposition prolongée</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Éviter regard direct</td>
+                                            <tr style={{backgroundColor: '#fffde7'}}>
+                                                <td style={{
+                                                    padding: '0.8rem',
+                                                    border: '1px solid #ddd',
+                                                    fontWeight: 'bold'
+                                                }}>2
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>0.4 - 1 mW
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>Danger si
+                                                    exposition prolongée
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>Éviter
+                                                    regard
+                                                    direct
+                                                </td>
                                             </tr>
-                                            <tr style={{ backgroundColor: '#fff3e0' }}>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd', fontWeight: 'bold' }}>3A</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>1 - 5 mW</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Danger pour la vue</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Lunettes obligatoires</td>
+                                            <tr style={{backgroundColor: '#fff3e0'}}>
+                                                <td style={{
+                                                    padding: '0.8rem',
+                                                    border: '1px solid #ddd',
+                                                    fontWeight: 'bold'
+                                                }}>3A
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>1 - 5 mW
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>Danger
+                                                    pour la
+                                                    vue
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>Lunettes
+                                                    obligatoires
+                                                </td>
                                             </tr>
-                                            <tr style={{ backgroundColor: '#ffebee' }}>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd', fontWeight: 'bold' }}>3B</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>5 - 500 mW</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Danger immédiat</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Protection stricte</td>
+                                            <tr style={{backgroundColor: '#ffebee'}}>
+                                                <td style={{
+                                                    padding: '0.8rem',
+                                                    border: '1px solid #ddd',
+                                                    fontWeight: 'bold'
+                                                }}>3B
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>5 - 500 mW
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>Danger
+                                                    immédiat
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>Protection
+                                                    stricte
+                                                </td>
                                             </tr>
-                                            <tr style={{ backgroundColor: '#fce4ec' }}>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd', fontWeight: 'bold' }}>4</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>&gt; 500 mW</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Danger peau et yeux</td>
-                                                <td style={{ padding: '0.8rem', border: '1px solid #ddd' }}>Environnement contrôlé</td>
+                                            <tr style={{backgroundColor: '#fce4ec'}}>
+                                                <td style={{
+                                                    padding: '0.8rem',
+                                                    border: '1px solid #ddd',
+                                                    fontWeight: 'bold'
+                                                }}>4
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>&gt; 500
+                                                    mW
+                                                </td>
+                                                <td style={{padding: '0.8rem', border: '1px solid #ddd'}}>Danger
+                                                    peau et
+                                                    yeux
+                                                </td>
+                                                <td style={{
+                                                    padding: '0.8rem',
+                                                    border: '1px solid #ddd'
+                                                }}>Environnement
+                                                    contrôlé
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
 
-                                    <div className="warning-message1" style={{ marginTop: '1.5rem' }}>
-                                        <FaExclamationTriangle /> <strong>Protection des yeux :</strong> À partir de la classe 2,
-                                        le laser peut provoquer des brûlures irréparables de la rétine. Portez des lunettes de protection adaptées.
+                                    <div className="warning-message1" style={{marginTop: '1.5rem'}}>
+                                        <FaExclamationTriangle/> <strong>Protection des yeux :</strong> À partir de
+                                        la
+                                        classe 2,
+                                        le laser peut provoquer des brûlures irréparables de la rétine. Portez des
+                                        lunettes de protection adaptées.
                                     </div>
 
-                                    <div style={{ marginTop: '1.5rem' }}>
-                                        <h4 style={{ color: '#e74c3c' }}>Consignes de sécurité impératives :</h4>
-                                        <ul style={{ paddingLeft: '1.5rem' }}>
-                                            <li style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'flex-start' }}>
-                                                <FaChevronRight style={{ color: '#e74c3c', marginRight: '0.5rem', marginTop: '0.2rem' }} />
+                                    <div style={{marginTop: '1.5rem'}}>
+                                        <h4 style={{color: '#e74c3c'}}>Consignes de sécurité impératives :</h4>
+                                        <ul style={{paddingLeft: '1.5rem'}}>
+                                            <li style={{
+                                                marginBottom: '0.5rem',
+                                                display: 'flex',
+                                                alignItems: 'flex-start'
+                                            }}>
+                                                <FaChevronRight style={{
+                                                    color: '#e74c3c',
+                                                    marginRight: '0.5rem',
+                                                    marginTop: '0.2rem'
+                                                }}/>
                                                 Laisser le laser posé sur la table - ne pas le tenir en main
                                             </li>
-                                            <li style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'flex-start' }}>
-                                                <FaChevronRight style={{ color: '#e74c3c', marginRight: '0.5rem', marginTop: '0.2rem' }} />
-                                                Ne jamais diriger le faisceau vers une personne, en particulier vers le visage
+                                            <li style={{
+                                                marginBottom: '0.5rem',
+                                                display: 'flex',
+                                                alignItems: 'flex-start'
+                                            }}>
+                                                <FaChevronRight style={{
+                                                    color: '#e74c3c',
+                                                    marginRight: '0.5rem',
+                                                    marginTop: '0.2rem'
+                                                }}/>
+                                                Ne jamais diriger le faisceau vers une personne, en particulier vers
+                                                le
+                                                visage
                                             </li>
-                                            <li style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'flex-start' }}>
-                                                <FaChevronRight style={{ color: '#e74c3c', marginRight: '0.5rem', marginTop: '0.2rem' }} />
+                                            <li style={{
+                                                marginBottom: '0.5rem',
+                                                display: 'flex',
+                                                alignItems: 'flex-start'
+                                            }}>
+                                                <FaChevronRight style={{
+                                                    color: '#e74c3c',
+                                                    marginRight: '0.5rem',
+                                                    marginTop: '0.2rem'
+                                                }}/>
                                                 Éviter le port de bijoux, montres et objets réfléchissants
                                             </li>
-                                            <li style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'flex-start' }}>
-                                                <FaChevronRight style={{ color: '#e74c3c', marginRight: '0.5rem', marginTop: '0.2rem' }} />
+                                            <li style={{
+                                                marginBottom: '0.5rem',
+                                                display: 'flex',
+                                                alignItems: 'flex-start'
+                                            }}>
+                                                <FaChevronRight style={{
+                                                    color: '#e74c3c',
+                                                    marginRight: '0.5rem',
+                                                    marginTop: '0.2rem'
+                                                }}/>
                                                 Attendre l'autorisation du professeur avant toute manipulation
                                             </li>
                                         </ul>
@@ -868,8 +1014,8 @@ const TP1Optique = () => {
 
                             </div>
                         </div>
-                    </section>
 
+                    </div>
                     <footer className="tp-footer compact">
                         <div className="footer-content">
                             <p>Travail Pratique d'Optique Physique </p>

@@ -50,6 +50,7 @@ import CalculsCommerciauxCoIntervention2 from "./pages/Maths/seconde/cointervent
 import Act1ForceMeca from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act1ForceMeca";
 import Act1Signaux from "./pages/SciencePhysiqueChimie/Terminale/Act1Signaux";
 import ExercicesFonctionCarre from "./pages/Maths/seconde/algebre/ExercicesFonctionCarre";
+import Act3Geometrie from "./pages/Maths/Terminale/geometrie/Act3Geometrie";
 
 
 function App() {
@@ -211,6 +212,10 @@ function App() {
                         <Route
                             path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/act2-telepherique"
                             element={<Act2Geometrie/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/act3-tipi"
+                            element={<Act3Geometrie/>}
                         />
                         {/* Routes pour les CCF */}
                         <Route path="/ccf" element={<CCFPage/>}/>
