@@ -1,8 +1,8 @@
 import React from 'react';
 
 const GraphRadiateur = ({showCorrection = false}) => {
-    const width = 600;
-    const height = 400;
+    const width = 550;
+    const height = 350;
     const xLabels = [0, 40, 80, 120, 160, 200, 240];
     const yLabels = [0, 1000, 2000, 3000, 4000, 5000, 6000];
     const marginLeft = 70;

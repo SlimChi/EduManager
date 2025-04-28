@@ -207,7 +207,6 @@
 
 .sample-table {
     width: 100%;
-    max-width: 650px;
     border-collapse: collapse;
     margin: 0 auto;
     table-layout: fixed;
