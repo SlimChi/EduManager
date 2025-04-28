@@ -65,6 +65,12 @@ export const SPECIAL_ACTIVITIES = {
                             path: 'algebre/fonction-carre',
                             component: 'FonctionCarre',
                         },
+                        {
+                            id: 4,
+                            title: 'Exercices fonctions carre',
+                            path: 'algebre/exercices-fonction-carre',
+                            component: 'ExercicesFonctionCarre',
+                        },
                     ],
                 },
                 geometrie: {

@@ -49,6 +49,7 @@ import EvaluationAcoustic from "./pages/SciencePhysiqueChimie/seconde/Acoustique
 import CalculsCommerciauxCoIntervention2 from "./pages/Maths/seconde/cointervention/CalculsCommerciauxCoIntervention2";
 import Act1ForceMeca from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act1ForceMeca";
 import Act1Signaux from "./pages/SciencePhysiqueChimie/Terminale/Act1Signaux";
+import ExercicesFonctionCarre from "./pages/Maths/seconde/algebre/ExercicesFonctionCarre";
 
 
 function App() {
@@ -137,6 +138,10 @@ function App() {
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/fonction-carre"
                             element={<FonctionCarre/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/exercices-fonction-carre"
+                            element={<ExercicesFonctionCarre/>}
                         />
                         <Route
                             path={'/programmes/math/:classId/ProgrammeSecondeMaths/activites/geometrie/GeometrieAct1'}
