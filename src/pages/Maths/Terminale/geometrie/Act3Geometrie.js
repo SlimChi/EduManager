@@ -156,33 +156,33 @@ const Act3Geometrie = () => {
                       </span>
                     </div>
                 </div>
-                <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
-                    <div>
-                        <div
-                            className="renovation-contexte">
-                            <p style={{textAlign: 'justify', textJustify: 'inter-word'}}>
-                                🛠️ <strong>Hugo</strong>, un jeune <strong>charpentier</strong>, a été appelé
-                                pour construire un joli <strong>tipi</strong> 🏕️, comme montré ci-dessus.
-                                <br/><br/>
-                                Pour que le toit tienne bien, Hugo doit poser des <span
-                                style={{color: '#d35400', fontWeight: 'bold'}}>poutres inclinées</span> 🔺, visibles en
-                                rouge sur le dessin.
-                                Il se demande alors : <em><strong>quelle longueur doit faire chaque poutre
-                                ?</strong></em> 📏
-                                <br/><br/>
-                                Comme toutes les poutres doivent être de la même taille, Hugo choisit d’en étudier une
-                                seule :
-                                celle qui relie les points<br/>
-                                <span style={{color: '#8e44ad', fontWeight: 'bold'}}> B(6,5 ; 6,5 ; 4)</span>,
-                                <span style={{color: '#8e44ad', fontWeight: 'bold'}}> C(6,5 ; 4,5 ; 6) </span>
-                                et
-                                <span style={{color: '#8e44ad', fontWeight: 'bold'}}> D(6,5 ; 1,5 ; 7) </span>,
-                                dans un repère orthonormé 📈 où l’unité est le <strong>mètre</strong> (m).
-                            </p>
-                        </div>
+                <div
+                    className="d-flex align-items-center flex-wrap"
+                    style={{gap: '20px', justifyContent: 'center'}}
+                >
+                    <div className="renovation-contexte" style={{flex: '1 1 600px', maxWidth: '600px'}}>
+                        <p style={{textAlign: 'justify', textJustify: 'inter-word'}}>
+                            🛠️ <strong>Hugo</strong>, un jeune <strong>charpentier</strong>, a été appelé
+                            pour construire un joli <strong>tipi</strong> 🏕️, comme montré ci-dessus.
+                            <br/><br/>
+                            Pour que le toit tienne bien, Hugo doit poser des <span
+                            style={{color: '#d35400', fontWeight: 'bold'}}>poutres inclinées</span> 🔺, visibles
+                            en rouge sur le dessin.
+                            Il se demande alors : <em><strong>quelle longueur doit faire chaque poutre
+                            ?</strong></em> 📏
+                            <br/><br/>
+                            Comme toutes les poutres doivent être de la même taille, Hugo choisit d’en étudier une
+                            seule :
+                            celle qui relie les points<br/>
+                            <span style={{color: '#8e44ad', fontWeight: 'bold'}}> B(6,5 ; 6,5 ; 4)</span>,
+                            <span style={{color: '#8e44ad', fontWeight: 'bold'}}> C(6,5 ; 4,5 ; 6) </span>
+                            et
+                            <span style={{color: '#8e44ad', fontWeight: 'bold'}}> D(6,5 ; 1,5 ; 7) </span>,
+                            dans un repère orthonormé 📈 où l’unité est le <strong>mètre</strong> (m).
+                        </p>
                     </div>
-                    <div className="flex-shrink-0"
-                         style={{maxWidth: '200px', cursor: 'pointer'}}>
+
+                    <div className="flex-shrink-0" style={{flex: '0 0 auto', maxWidth: '250px', cursor: 'pointer'}}>
                         <img
                             src={tipi}
                             alt="Modélisation d'un tipi"
@@ -190,6 +190,7 @@ const Act3Geometrie = () => {
                             onClick={() => openModal(tipi, 'Modélisation d\'un tipi')}
                         />
                     </div>
+
 
                     <div className="vect-image-text-container" style={{
                         display: 'flex', justifyContent: 'center', alignItems: 'center'

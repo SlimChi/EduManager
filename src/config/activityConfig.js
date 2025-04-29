@@ -167,6 +167,12 @@ export const SPECIAL_ACTIVITIES = {
                             path: 'geometrie/act3-tipi',
                             component: 'Act3Geometrie',
                         },
+                        {
+                            id: 4,
+                            title: 'Découpe avec une fraiseuse 🏕️',
+                            path: 'geometrie/act4-fraiseuse',
+                            component: 'Act4Geometrie',
+                        },
                     ],
                 },
             },

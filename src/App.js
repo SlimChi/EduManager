@@ -51,6 +51,7 @@ import Act1ForceMeca from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act1F
 import Act1Signaux from "./pages/SciencePhysiqueChimie/Terminale/Act1Signaux";
 import ExercicesFonctionCarre from "./pages/Maths/seconde/algebre/ExercicesFonctionCarre";
 import Act3Geometrie from "./pages/Maths/Terminale/geometrie/Act3Geometrie";
+import Act4Geometrie from "./pages/Maths/Terminale/geometrie/Act4Geometrie";
 
 
 function App() {
@@ -216,6 +217,10 @@ function App() {
                         <Route
                             path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/act3-tipi"
                             element={<Act3Geometrie/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/act4-fraiseuse"
+                            element={<Act4Geometrie/>}
                         />
                         {/* Routes pour les CCF */}
                         <Route path="/ccf" element={<CCFPage/>}/>
