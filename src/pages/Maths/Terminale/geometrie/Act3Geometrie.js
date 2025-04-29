@@ -361,7 +361,7 @@ const Act3Geometrie = () => {
 
                                 <h4 className="vect-title" style={{marginTop: '15px'}}><span>Communiquer, Analyser/Raisonner</span>
                                 </h4>
-                                <p>c. Compléter l'égalité entre vecteurs suivante : <InlineMath
+                                <p>c. Compléter l'égalité entre vecteurs suivante :<br/> <InlineMath
                                     math="\vec{BC} + \vec{CD} = \ldots"/></p>
 
                                 <div className="answer-area">

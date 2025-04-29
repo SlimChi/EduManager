@@ -74,7 +74,7 @@ const EquationsPremierDegreTest = () => {
         {
             id: 3,
             name: "Message 4",
-            coded: "🎴🌙 ⭐💀 🔺🖤💙",
+            coded: "🎴🌙 ⭐💀 🔺⭐⭐💙",
             parts: ["🎴🌙⭐💀", "🔺⭐⭐💙"],
             equations: {
                 symbole1: {equation: "🎴 + 4 = 24", answer: "🎴 = 20"},
