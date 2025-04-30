@@ -52,6 +52,7 @@ import Act1Signaux from "./pages/SciencePhysiqueChimie/Terminale/Act1Signaux";
 import ExercicesFonctionCarre from "./pages/Maths/seconde/algebre/ExercicesFonctionCarre";
 import Act3Geometrie from "./pages/Maths/Terminale/geometrie/Act3Geometrie";
 import Act4Geometrie from "./pages/Maths/Terminale/geometrie/Act4Geometrie";
+import Act2et3ForceMecanique from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act2et3ForceMecanique";
 
 
 function App() {
@@ -196,6 +197,10 @@ function App() {
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/force"
                             element={<Act1ForceMeca/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/force2"
+                            element={<Act2et3ForceMecanique/>}
                         />
                         <Route path="/calculator" element={<CalculatorPage/>}/>
                         {/*<Route*/}

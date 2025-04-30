@@ -221,6 +221,12 @@ export const SPECIAL_ACTIVITIES = {
                             path: 'mecanique/force',
                             component: 'Act1ForceMeca',
                         },
+                        {
+                            id: 2,
+                            title: 'inventaire des actions mécaniques et conditions d’équilibre',
+                            path: 'mecanique/force2',
+                            component: 'Act2et3ForceMecanique',
+                        },
                     ],
                 }
             },

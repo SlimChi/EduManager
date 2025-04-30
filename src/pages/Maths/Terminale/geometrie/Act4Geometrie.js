@@ -41,7 +41,7 @@ const Act4Geometrie = () => {
     // Réponses attendues avec notation mathématique
     const correctAnswers = {
         question1: {
-            text: "I(20, 10, 0)\nJ(40, 10, 0)\nK(40, 30, 0)\nL(20, 30, 0)",
+
             formatted: <div style={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -50,14 +50,14 @@ const Act4Geometrie = () => {
                 margin: 0,
                 gap: '20px' // Espace horizontal et vertical
             }}>
-                <BlockMath math="\text{I} = \begin{pmatrix} 20 \\ 10 \\ 0 \end{pmatrix}"/>
+                <BlockMath math="\text{I} = \begin{pmatrix} 10 \\ 10 \\ 0 \end{pmatrix}"/>
                 <BlockMath math="\text{J} = \begin{pmatrix} 40 \\ 10 \\ 0 \end{pmatrix}"/>
-                <BlockMath math="\text{K} = \begin{pmatrix} 40 \\ 30 \\ 0 \end{pmatrix}"/>
-                <BlockMath math="\text{L} = \begin{pmatrix} 20 \\ 30 \\ 0 \end{pmatrix}"/>
+                <BlockMath math="\text{K} = \begin{pmatrix} 50 \\ 50 \\ 0 \end{pmatrix}"/>
+                <BlockMath math="\text{L} = \begin{pmatrix} 20 \\ 40 \\ -10 \end{pmatrix}"/>
             </div>
         },
         question2: {
-            text: "M(20, 10, -10)\nN(40, 10, -10)\nO(40, 30, -10)\nP(20, 30, -10)",
+
             formatted: <div style={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -66,22 +66,19 @@ const Act4Geometrie = () => {
                 margin: 0,
                 gap: '20px' // Espace horizontal et vertical
             }}>
-                <BlockMath math="\text{M} = \begin{pmatrix} 20 \\ 10 \\ -10 \end{pmatrix}"/>
-                <BlockMath math="\text{N} = \begin{pmatrix} 40 \\ 10 \\ -10 \end{pmatrix}"/>
-                <BlockMath math="\text{O} = \begin{pmatrix} 40 \\ 30 \\ -10 \end{pmatrix}"/>
-                <BlockMath math="\text{P} = \begin{pmatrix} 20 \\ 30 \\ -10 \end{pmatrix}"/>
+                <BlockMath math="\text{M} = \begin{pmatrix} 10 \\ 10 \\ 10 \end{pmatrix}"/>
+                <BlockMath math="\text{N} = \begin{pmatrix} 40 \\ 10 \\ 10 \end{pmatrix}"/>
+                <BlockMath math="\text{O} = \begin{pmatrix} 50 \\ 50 \\ 10 \end{pmatrix}"/>
+                <BlockMath math="\text{P} = \begin{pmatrix} 20 \\ 40 \\ 0 \end{pmatrix}"/>
             </div>
         },
         question3: {
-            text: "S(20, 10, 20)",
-            formatted: <BlockMath math="\text{S} = \begin{pmatrix} 20 \\ 10 \\ 20 \end{pmatrix}"/>
+            formatted: <BlockMath math="\text{S} = \begin{pmatrix} 10 \\ 10 \\ 40 \end{pmatrix}"/>
         },
         question4: {
-            text: "RS = (20, 10, -20)",
-            formatted: <BlockMath math="\overrightarrow{\mathrm{RS}} = \begin{pmatrix} 20 \\ 10 \\ -20 \end{pmatrix}"/>
+            formatted: <BlockMath math="\overrightarrow{\mathrm{RS}} = \begin{pmatrix} 10 \\ 10 \\ 0 \end{pmatrix}"/>
         },
         question5: {
-            text: "1. RS = (20, 10, -20)\n2. SI = (0, 0, -20)\n3. IJ = (20, 0, 0)\n4. JK = (0, 20, 0)\n5. KL = (-20, 0, 0)\n6. LI = (0, -20, 0)\n7. IS = (0, 0, 20)\n8. SR = (-20, -10, 20)",
             formatted: <div>
                 <p><strong>Instructions pour la fraiseuse :</strong></p>
                 <ol style={{
@@ -90,28 +87,28 @@ const Act4Geometrie = () => {
                     listStyle: 'none',
                     padding: 0,
                     margin: 0,
-                    gap: '20px' // Espace horizontal et vertical
+                    gap: '20px'
                 }}>
-                    <li><BlockMath math="\overrightarrow{\mathrm{RS}} = \begin{pmatrix} 20 \\ 10 \\ -20 \end{pmatrix}"/>
+                    <li><BlockMath math="\overrightarrow{\mathrm{RS}} = \begin{pmatrix} 10 \\ 10 \\ 0 \end{pmatrix}"/>
                     </li>
-                    <li><BlockMath math="\overrightarrow{\mathrm{SI}} = \begin{pmatrix} 0 \\ 0 \\ -20 \end{pmatrix}"/>
+                    <li><BlockMath math="\overrightarrow{\mathrm{SI}} = \begin{pmatrix} 0 \\ 0 \\ -40 \end{pmatrix}"/>
                     </li>
-                    <li><BlockMath math="\overrightarrow{\mathrm{IJ}} = \begin{pmatrix} 20 \\ 0 \\ 0 \end{pmatrix}"/>
+                    <li><BlockMath math="\overrightarrow{\mathrm{IJ}} = \begin{pmatrix} 30 \\ 0 \\ 0 \end{pmatrix}"/>
                     </li>
-                    <li><BlockMath math="\overrightarrow{\mathrm{JK}} = \begin{pmatrix} 0 \\ 20 \\ 0 \end{pmatrix}"/>
-                    </li>
-                    <li><BlockMath math="\overrightarrow{\mathrm{KL}} = \begin{pmatrix} -20 \\ 0 \\ 0 \end{pmatrix}"/>
-                    </li>
-                    <li><BlockMath math="\overrightarrow{\mathrm{LI}} = \begin{pmatrix} 0 \\ -20 \\ 0 \end{pmatrix}"/>
-                    </li>
-                    <li><BlockMath math="\overrightarrow{\mathrm{IS}} = \begin{pmatrix} 0 \\ 0 \\ 20 \end{pmatrix}"/>
+                    <li><BlockMath math="\overrightarrow{\mathrm{JK}} = \begin{pmatrix} 10 \\ 40 \\ 0 \end{pmatrix}"/>
                     </li>
                     <li><BlockMath
-                        math="\overrightarrow{\mathrm{SR}} = \begin{pmatrix} -20 \\ -10 \\ 20 \end{pmatrix}"/></li>
+                        math="\overrightarrow{\mathrm{KL}} = \begin{pmatrix} -30 \\ -10 \\ -10 \end{pmatrix}"/></li>
+                    <li><BlockMath
+                        math="\overrightarrow{\mathrm{LI}} = \begin{pmatrix} -10 \\ -30 \\ 10 \end{pmatrix}"/></li>
+                    <li><BlockMath math="\overrightarrow{\mathrm{IS}} = \begin{pmatrix} 0 \\ 0 \\ 40 \end{pmatrix}"/>
+                    </li>
+                    <li><BlockMath math="\overrightarrow{\mathrm{SR}} = \begin{pmatrix} -10 \\ -10 \\ 0 \end{pmatrix}"/>
+                    </li>
                 </ol>
-
             </div>
-        },
+        }
+        ,
     };
 
     // Gestionnaires d'événements
@@ -174,16 +171,30 @@ const Act4Geometrie = () => {
                 <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
                     <div>
                         <div className="renovation-contexte" style={{maxWidth: '100%'}}>
-                            <p style={{textAlign: 'justify', textJustify: 'inter-word'}}>
-                                ⚙️ <strong>Problème technique :</strong> On souhaite utiliser une <strong>fraiseuse à
-                                commande numérique</strong> (FCN) pour usiner, dans un bloc d'aluminium de 10 mm
-                                d'épaisseur, le contour de la forme en bleu représentée ci-après (cycle de contournage
-                                extérieur).
-                                <br/><br/>
-                                Les mesures du repère sont données en <strong>millimètre</strong>. Au départ du
-                                programme, le point de programmation (pointe de l'outil) se situe en « position haute »
-                                au point <InlineMath math="\text{R}(0;0;40)"/>.
+                            <p style={{
+                                textAlign: 'justify',
+                                textJustify: 'inter-word',
+                                fontSize: '16px',
+
+                                padding: '15px',
+                                borderRadius: '10px',
+                                color: '#333',
+                                lineHeight: '1.6',
+
+                            }}>
+                                ⚙️ <strong style={{color: '#1b5e20'}}>Problème technique</strong> : On souhaite utiliser
+                                une <strong style={{color: '#00695c'}}>fraiseuse à commande numérique (FCN) </strong>
+                                pour usiner, dans un bloc d'aluminium de <strong>10 mm</strong> d'épaisseur, le contour
+                                de la forme en bleu représentée ci-après
+                                (cycle de contournage extérieur).<br/>
+
+                                📐 Les mesures du repère sont données en millimètre. Au départ du programme, le point de
+                                programmation
+                                (pointe de l'outil) se situe en « <strong style={{color: '#d32f2f'}}>position
+                                haute</strong> » au point
+                                <strong style={{color: '#0288d1'}}> R(0 ; 0 ; 40)</strong>.
                             </p>
+
                         </div>
                     </div>
 
@@ -234,12 +245,14 @@ const Act4Geometrie = () => {
                                         value={answers.question1}
                                         onChange={(e) => handleInputChange('question1', e.target.value)}
                                         rows={4}
-                                    ></textarea>
+                                    >
+
+                                    </textarea>
                                     <button
                                         className="correction-btnoptic"
                                         onClick={() => toggleCorrection('question1')}
                                     >
-                                        <FaCheck/> {showCorrections.question1 ? 'Masquer la correction' : 'Afficher la correction'}
+                                        <FaCheck/> {showCorrections.question1.formatted ? 'Masquer la correction' : 'Afficher la correction'}
                                     </button>
                                     {showCorrections.question1 && (
                                         <div className="correction-box">
