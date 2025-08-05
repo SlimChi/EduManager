@@ -24,7 +24,7 @@ const GraphTensionTempsImpur = () => {
     return (<Container className="mt-5" style={{marginLeft: "13%"}}>
         <Row>
             <Col>
-                <ResponsiveContainer width="60%" height={170}>
+                <ResponsiveContainer width="70%" height={190}>
                     <LineChart data={noisyData} margin={{right: 30}}>
                         <CartesianGrid strokeDasharray="3 3"/>
 

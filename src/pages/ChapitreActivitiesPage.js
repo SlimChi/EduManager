@@ -232,6 +232,7 @@ const ChapitreActivitiesPage = () => {
                         </ListGroup>
                     </>
                 )}
+                
             </div>
         </>
     );

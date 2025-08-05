@@ -167,7 +167,7 @@ const Automatismes = () => {
                                     setUserAnswers(newAnswers);
                                 }}
                                 className="user-answer-input"
-                                placeholder="Votre réponse..."
+                                rows={7}
                             />
 
                             <div className="card-footer">

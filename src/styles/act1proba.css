@@ -1,6 +1,6 @@
 /* Styles spécifiques à l'activité proba */
 .act1-container {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Cambria Math', 'Latin Modern Math', 'STIX Two Math', serif;
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
@@ -48,7 +48,7 @@
 }
 
 .problem-box {
-    background: linear-gradient(135deg, rgba(253, 247, 247, 0.98) 0%, rgba(253, 253, 253, 0.95) 100%) !important;
+    background: linear-gradient(135deg, rgba(186, 193, 225, 0.98) 0%, rgb(255, 255, 255) 100%) !important;
     border: none;
     border-radius: 12px;
     padding: 20px;
@@ -247,6 +247,50 @@
     }
 }
 
+@media print {
+    body {
+        font-weight: 500 !important;
+    }
+}
+
+@media print {
+    /* Solution ultime contre le flou d'impression */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        text-shadow: none !important;
+    }
+
+    /* Optimisation spécifique pour le texte en gras */
+    strong, .problem-box strong, .problem-box span {
+        font-weight: 900 !important;
+        color: #000 !important;
+        text-rendering: geometricPrecision !important;
+        letter-spacing: 0.3px !important;
+    }
+
+    /* Contrôle précis des bordures et arrière-plans */
+    .problem-box {
+        border-left: 5px solid #000 !important;
+        background: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Force le rendu des couleurs pour les contextes */
+    .renovation-contexte3, .renovation-contexte4 {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background: white !important;
+    }
+
+    .renovation-contexte4 {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background: white !important;
+    }
+}
+
 /* Ajoutez ces styles */
 .conclusion-container {
     position: relative;
@@ -258,6 +302,82 @@
     background-color: rgba(248, 249, 250, 0.5);
     border-radius: 12px;
     border: 2px dashed #dee2e6;
+}
+
+@media print {
+    /* Solution ultime contre le flou */
+    body * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        text-shadow: none !important;
+        color-adjust: exact !important;
+    }
+
+    /* Optimisation spécifique pour le texte en gras */
+    strong, b, .problem-box strong, .print-bold-optimized {
+        font-weight: 900 !important;
+        color: #000 !important;
+        text-rendering: geometricPrecision !important;
+        letter-spacing: 0.3px !important;
+        -webkit-text-stroke: 0.45px transparent !important;
+    }
+
+    /* Contrôle précis des bordures et arrière-plans */
+    .problem-box {
+        background: white !important;
+        border-left: 5px solid #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        box-shadow: none !important;
+    }
+
+    /* Force le rendu des couleurs */
+    .renovation-contexte3, .renovation-contexte4 {
+        background: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        box-shadow: none !important;
+    }
+
+    /* Optimisation des polices */
+    body {
+        font-family: "Arial", "Helvetica", sans-serif !important;
+        font-weight: 500 !important;
+    }
+}
+
+@font-face {
+    font-family: 'PrintBold';
+    src: local('Arial Bold'), local('Helvetica Bold');
+    font-weight: 900;
+}
+
+@media print {
+    .problem-box strong {
+        font-family: 'PrintBold', sans-serif !important;
+    }
+}
+
+@media print {
+    /* Force le rendu précis */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        text-shadow: none !important;
+        color-adjust: exact !important;
+    }
+
+    /* Optimisation des polices */
+    body {
+        font-family: "Arial", "Helvetica", sans-serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Contrôle des marges */
+    @page {
+        size: auto;
+        margin: 15mm 15mm 15mm 15mm;
+    }
 }
 
 .toggle-conclusion-btn {
@@ -283,4 +403,619 @@
 
 .toggle-conclusion-btn svg {
     font-size: 0.9em;
+}
+
+.renovation-contexte3 {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    border-left: 5px solid #3a7bd5;
+    borderRadius: 15px;
+    color: #2c3e50;
+    fontSize: 16px;
+    lineHeight: 1.8;
+    font-family: 'Cambria Math', 'Latin Modern Math', 'STIX Two Math', serif;
+}
+
+.renovation-contexte4 {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    border-left: 5px solid #3a7bd5;
+    borderRadius: 15px;
+    color: #2c3e50;
+    fontSize: 16px;
+    lineHeight: 1.8;
+    font-family: 'Cambria Math', 'Latin Modern Math', 'STIX Two Math', serif;
+}
+
+/* Styles pour les instructions Excel */
+.instruction-box {
+    background-color: #f8f9fa;
+    border-left: 4px solid #3498db;
+    padding: 10px 15px;
+    margin: 15px 0;
+    border-radius: 4px;
+}
+
+.instruction-title {
+    color: #2c3e50;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.excel-instruction {
+    font-family: 'Courier New', monospace;
+    background-color: #f1f1f1;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.excel-formula-btn {
+    background-color: #e3e3e3;
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-family: 'Courier New', monospace;
+    color: #c7254e;
+    font-weight: bold;
+    margin: 0 2px;
+    cursor: default;
+    display: inline-block;
+    min-width: 40px;
+    text-align: center;
+}
+
+.math-formula1 {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 1rem;
+    margin-left: 70px;
+    margin-bottom: 10px;
+}
+
+.fraction1 {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 3px;
+    font-family: 'Cambria Math', 'Latin Modern Math', serif;
+}
+
+.numerator1 {
+    margin-bottom: 0.1rem;
+}
+
+.denominator1 {
+    margin-top: 0.1rem;
+}
+
+.modern-table-container {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modern-table {
+    margin: 0;
+    background: white;
+}
+
+.modern-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-align: center;
+}
+
+.modern-table td, .modern-table th {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #dee2e6;
+}
+
+.question-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 15px;
+}
+
+.question-text {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.qcm-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.qcm-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.qcm-option:hover {
+    background: #e9ecef;
+}
+
+.correct-answer {
+    background-color: #e8f5e9;
+}
+
+.horizontal-qcm-options {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.horizontal-qcm-options .qcm-option {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s;
+}
+
+.horizontal-qcm-options .qcm-option:hover {
+    background: #f0f0f0;
+}
+
+.horizontal-qcm-options .correct-answer {
+    background-color: #e8f5e9;
+    border-color: #4caf50;
+}
+
+.correction-btnoptic {
+    margin-top: 5px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 0;
+}
+
+.correction-box {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border-left: 3px solid #4caf50;
+}
+
+@media (max-width: 992px) {
+    .d-flex {
+        flex-direction: column;
+    }
+
+    .flex-grow-1 {
+        min-width: 100% !important;
+    }
+}
+
+.simulation-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap; /* Permet de passer en colonne sur petit écran */
+}
+
+.answer-area2 {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+
+.answer-input2.small2 {
+    width: 100px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    font-size: 0.8rem;
+    margin-right: 10px;
+}
+
+.answer-input3 {
+    width: 100%;
+    padding: 15px;
+    border: 0.2px solid #c4cff1;
+    border-radius: 8px;
+    resize: none;
+    line-height: 1.6;
+    font-family: 'Cambria Math', serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    overflow-y: auto !important;
+    background-color: white;
+    overflow: hidden;
+    min-height: 95px;
+}
+
+.instructions-text {
+    flex: 1;
+    min-width: 250px;
+}
+
+.generated-numbers-card {
+    min-width: 250px;
+}
+
+.number-card {
+    width: fit-content;
+    border-radius: 5px;
+    background-color: #e2e3e5;
+    padding: 2px;
+    font-size: 0.8rem;
+}
+
+.number-col {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.number-line {
+    font-family: monospace;
+    margin-bottom: 1px;
+}
+
+.math-card {
+    background-color: #faf9f9; /* Rouge très très clair */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #ffdddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.math-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.instruction-container {
+    display: flex;
+    gap: 20px; /* espace entre les deux blocs */
+    justify-content: center; /* centre horizontalement */
+    align-items: flex-start; /* aligne en haut */
+}
+
+.instruction-box {
+    flex: 1; /* même taille (partage l'espace disponible également) */
+    max-width: 400px; /* largeur max si tu veux limiter */
+    padding: 1rem;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.toggle-button {
+    margin-bottom: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Styles pour l'alignement des questions */
+.compact-question {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.flex-grow-1 {
+    flex: 1;
+    min-width: 0; /* Empêche le débordement */
+}
+
+.gap-3 > div {
+    gap: 1rem; /* Espacement entre les colonnes */
+}
+
+/* Styles spécifiques pour l'impression */
+@media print {
+    .problem-box.print-optimized {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background: white !important;
+        border: 1px solid #000 !important;
+        color: black !important;
+    }
+
+    .print-icon {
+        color: #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .print-title {
+        font-weight: 700 !important;
+        color: #000 !important;
+        text-shadow: none !important;
+        -webkit-text-stroke: 0.5px transparent;
+    }
+
+    .print-text {
+        font-size: 16pt !important;
+        color: #000 !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.5px;
+    }
+}
+
+/* Styles pour l'écran */
+.problem-box {
+    background: linear-gradient(135deg, rgba(253, 247, 247, 0.98) 0%, rgba(253, 253, 253, 0.95) 100%) !important;
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 600;
+    color: #333 !important;
+}
+
+/* Styles spécifiques pour le QCM Optique */
+.qcm-optique .math-chapter-box.gradient {
+    background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+    color: white;
+}
+
+.qcm-optique .exercise-box {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 4px solid #4b6cb7;
+}
+
+.qcm-optique .exercise-box:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.qcm-optique .question-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+.qcm-optique .question-category {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #163d0b;
+}
+
+.qcm-optique .question-category[data-category="Couleurs"] {
+    background-color: #4b6cb7;
+}
+
+.qcm-optique .question-category[data-category="Spectre"] {
+    background-color: #6b4bb7;
+}
+
+.qcm-optique .question-category[data-category="Applications"] {
+    background-color: #b74b6c;
+}
+
+.qcm-optique .question-points {
+    color: #6c757d;
+    font-weight: bold;
+}
+
+.qcm-optique .question-text {
+    font-size: 1.05em;
+    margin-bottom: 15px;
+}
+
+.qcm-optique .multiple-hint {
+    font-size: 0.8em;
+    color: #6b4bb7;
+    font-style: italic;
+    margin-left: 5px;
+}
+
+.qcm-optique .options-container {
+    margin-left: 10px;
+}
+
+.qcm-optique .option-item {
+    margin-bottom: 8px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+
+.qcm-optique .option-item:hover {
+    background-color: #f8f9fa;
+}
+
+.qcm-optique .option-item label {
+    cursor: pointer;
+    margin-left: 8px;
+    width: calc(100% - 30px);
+}
+
+.qcm-optique .form-check-input {
+    cursor: pointer;
+}
+
+.qcm-optique .answer-textarea {
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 8px;
+    resize: vertical;
+}
+
+.qcm-optique .correction-box {
+    background-color: #f8f9fa;
+    border-left: 3px solid #28a745;
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+}
+
+.qcm-optique .correction-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #28a745;
+}
+
+.qcm-optique .correction-icon {
+    margin-right: 8px;
+}
+
+.qcm-optique .correct-answers {
+    color: #28a745;
+    font-weight: 500;
+}
+
+.qcm-optique .correction-explanation {
+    margin-top: 8px;
+    font-size: 0.95em;
+    color: #495057;
+}
+
+.qcm-optique .model-answer {
+    font-weight: 500;
+    color: #28a745;
+    margin-bottom: 5px;
+}
+
+.qcm-optique .model-answer-text {
+    white-space: pre-wrap;
+    font-size: 0.95em;
+    background-color: white;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+.qcm-optique .instructions-box {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #6c757d;
+}
+
+.qcm-optique .legend {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.qcm-optique .legend-item {
+    display: flex;
+    align-items: center;
+}
+
+.qcm-optique .legend-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.qcm-optique .legend-color.colors {
+    background-color: #4b6cb7;
+}
+
+.qcm-optique .legend-color.spectrum {
+    background-color: #6b4bb7;
+}
+
+.qcm-optique .legend-color.apps {
+    background-color: #b74b6c;
+}
+
+.qcm-optique .controls-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.qcm-optique .toggle-corrections-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background-color: #4b6cb7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.qcm-optique .toggle-corrections-btn:hover {
+    background-color: #3a5a9e;
+    transform: translateY(-2px);
+}
+
+.qcm-optique .toggle-corrections-btn.active {
+    background-color: #28a745;
+}
+
+.qcm-optique .score-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1em;
+}
+
+.qcm-optique .score-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.qcm-optique .score-value {
+    font-weight: bold;
+    color: #4b6cb7;
+    font-size: 1.2em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .qcm-optique .left-column,
+    .qcm-optique .right-column {
+        padding: 0;
+    }
 }

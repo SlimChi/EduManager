@@ -1,0 +1,154 @@
+.tp-container {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.print-page {
+    background-color: white;
+    padding: 30px;
+    margin: 0 auto;
+    max-width: 1200px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.section-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+    background-color: #4e73df;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 12px 20px;
+}
+
+.question {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #4e73df;
+}
+
+.exercise {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #f0f7ff;
+    border-radius: 8px;
+}
+
+.inline-input {
+    display: inline-block;
+    width: auto;
+    margin: 0 5px;
+}
+
+.laser-diagram {
+    position: relative;
+    height: 100px;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.laser-source {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.laser-beam {
+    position: absolute;
+    left: 80px;
+    top: 50%;
+    width: calc(100% - 160px);
+    height: 2px;
+    background: linear-gradient(90deg, rgba(220, 53, 69, 0.5), rgba(220, 53, 69, 0.2));
+    transform: translateY(-50%);
+}
+
+.laser-target {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #6c757d;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.product-card {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 300px;
+}
+
+.product-header {
+    background-color: #4e73df;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.product-body {
+    padding: 15px;
+}
+
+.product-spec {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #dee2e6;
+}
+
+.spec-value {
+    font-weight: bold;
+}
+
+.spec-label {
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+.table {
+    margin-bottom: 20px;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.btn-info {
+    background-color: #36b9cc;
+    border-color: #36b9cc;
+}
+
+.btn-info:hover {
+    background-color: #2c9faf;
+    border-color: #2a96a5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .print-page {
+        padding: 15px;
+    }
+
+    .question, .exercise {
+        padding: 10px;
+    }
+}

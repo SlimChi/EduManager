@@ -321,8 +321,9 @@
 
 .coefficient-highlight {
     animation: pulse-color 2s infinite;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
+
 .calculation-step {
     font-family: 'Courier New', monospace;
     font-size: 1.8rem;
@@ -337,7 +338,7 @@
 
 .step-content {
     margin-left: 15px;
-    color: #34495e;
+    color: #000000;
     font-size: 1.6rem;
     line-height: 1.6;
 }

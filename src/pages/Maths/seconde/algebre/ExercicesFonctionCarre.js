@@ -9,11 +9,11 @@ import ModalImage from "../../../../utils/ModalImage";
 import AutoResizeTextarea from "../../../../config/AutoResizeTextarea";
 import Automatismes from "../../../../config/Automatismes";
 import PrintManager from "../../../../utils/PrintManager";
-import GraphComponent from "../../../../components/Outils/GraphComponent";
+import GraphComponent from "../../../../components/Outils/GrapheCompenent/GraphComponent";
 import {Button, Card, Row, Col, Form} from 'react-bootstrap';
 import fonctioncarre from "../../../../assets/fonctioncarre.png";
-import GraphRadiateur from "../../../../components/Outils/GraphRadiateur";
-import GraphEolienne from "../../../../components/Outils/GraphEolienne";
+import GraphRadiateur from "../../../../components/Outils/GrapheCompenent/GraphRadiateur";
+import GraphEolienne from "../../../../components/Outils/GrapheCompenent/GraphEolienne";
 import AutoEvaluationGrid from "../../../../config/AutoEvaluationGrid";
 
 const ExercicesFonctionCarre = () => {

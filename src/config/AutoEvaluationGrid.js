@@ -98,11 +98,7 @@ const AutoEvaluationGrid = ({
             <EvaluationCard>
                 <StyledTable>
                     <thead>
-                    <tr>
-                        <TableHeader>Compétence</TableHeader>
-                        <TableHeader>Critère d’évaluation</TableHeader>
-                        <TableHeader colSpan={4}>Niveau d’acquisition</TableHeader>
-                    </tr>
+
                     <LevelRowHeader>
                         <TableHeader colSpan={2}></TableHeader>
                         {levels.map(level => (

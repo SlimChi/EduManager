@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const SoundLevelBar = () => {
     return (
-        <Container className="mt-0 mb-5">
-            <Row>
+        <Container className="mt-2 mb-5">
+            <Row style={{marginTop: "3%"}}>
                 <Col>
                     <div style={{display: "flex", alignItems: "center"}}>
                         <div style={{
@@ -14,6 +14,7 @@ const SoundLevelBar = () => {
                             background: "linear-gradient(to right, #d3d3d3 0%, #a8d5ba 20%, #fddc88 40%, #f7a278 60%, #ff5e5e 80%, #d50000 100%)",
                             position: "relative",
                             borderRadius: "10px 0 0 10px"
+
                         }}>
                             {[0, 20, 40, 60, 80, 100, 120, 130].map((val, idx) => (
                                 <div

@@ -247,7 +247,7 @@
 .experiment-tabs {
     display: flex;
     margin: 0 2rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgb(250, 250, 250);
 }
 
 .tab-btn {
@@ -276,10 +276,6 @@
     color: #6a0dad;
 }
 
-/*.experiment-section {*/
-/*    padding: 0 2rem 2rem;*/
-/*}*/
-
 .experiment-title {
     color: #4b7bec;
     font-size: 1.6rem;
@@ -295,20 +291,20 @@
 
 /* Container for Protocol Steps */
 .protocol-steps {
-    margin-top: 2rem;
+    margin-top: 1rem;
     background-color: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(243, 240, 240, 0.65);
 }
 
 /* Step styling */
-.step {
+.step2 {
     display: flex;
 
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border-left: 5px solid #6a0dad;
 
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border-radius: 8px;
 
     transition: all 0.3s ease;
@@ -369,24 +365,24 @@
 }
 
 /* Step Content Styling */
-.step-content {
+.step-content2 {
     flex: 1;
 }
 
-.step-content h4 {
+.step-content2 h4 {
     margin-top: 0;
     color: #6a0dad;
     font-size: 1.6rem;
     font-weight: 600;
 }
 
-.step-content ol {
+.step-content2 ol {
     padding-left: 1.5rem;
     margin: 1rem 0;
     list-style-type: decimal;
 }
 
-.step-content li {
+.step-content2 li {
     margin-bottom: 0.8rem;
     line-height: 1.6;
     font-size: 1.1rem;
@@ -786,10 +782,6 @@
 }
 
 
-.info-section {
-    padding: 0 2rem 2rem;
-}
-
 .info-card {
     background: white;
     border-radius: 15px;
@@ -1165,6 +1157,7 @@
     .experiment-section {
         display: block !important;
         page-break-inside: avoid;
+        background-color: transparent !important;
     }
 
     .answer-input.correction-active {
@@ -1323,7 +1316,7 @@
     }
 
     /* Éviter les coupures dans les éléments importants */
-    .protocol-steps, .observation-box, .laser-card,
+    .protocol-steps, .step2, .observation-box, .laser-card,
     .info-card, .material-card, .objective-card {
         page-break-inside: avoid !important;
     }
@@ -1444,11 +1437,81 @@
     }
 }
 
+/* Ajouter ces règles à la fin du fichier CSS */
+
 @media print {
+    /* Amélioration de la qualité d'impression */
+    body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        zoom: 100% !important;
+    }
+
+    /* Amélioration de la lisibilité du texte */
+    .step-content2, .protocol-steps, .observation-box {
+        color: #000 !important;
+        background: white !important;
+        font-size: 12pt !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Contraste amélioré pour les tableaux */
+    .results-table {
+        border: 1px solid #000 !important;
+    }
+
+    .results-table th {
+        background: #f0f0f0 !important;
+        color: #000 !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    .results-table td {
+        border: 1px solid #ddd !important;
+    }
+
+    /* Amélioration des images */
+    img {
+        max-width: 90% !important;
+        height: auto !important;
+        image-rendering: crisp-edges !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Correction du flou */
+    * {
+        text-shadow: none !important;
+        box-shadow: none !important;
+        filter: none !important;
+    }
+
+    /* Mise en page des étapes */
+    .step2 {
+        display: block !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-bottom: 15pt !important;
+    }
+
+    .step-number {
+        float: left;
+        margin-right: 10pt;
+        margin-bottom: 10pt;
+    }
+
+    .step-content2 {
+        overflow: hidden;
+    }
+
+    /* Espacement amélioré */
+    .protocol-steps {
+        margin-top: 15pt !important;
+        margin-bottom: 15pt !important;
+    }
+
+    /* Contraste des boutons (même s'ils sont cachés) */
     .correction-btnoptic {
         display: none !important;
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
     }
 }

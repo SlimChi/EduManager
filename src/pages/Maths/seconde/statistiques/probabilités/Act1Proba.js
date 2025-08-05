@@ -109,6 +109,7 @@ const Act1Proba = () => {
     return (
         <>
             <BackButton/>
+            <Automatismes/>
             <CoinFlip/>
             <div className="tp-container" id="proba-content" ref={contentRef}>
                 {/* Page 1 */}

@@ -12,7 +12,7 @@ import PrintManager from "../../../../utils/PrintManager";
 import voituredrift from "../../../../assets/driftvoiture.png";
 import reperefocntioncarre2 from "../../../../assets/act2fonctioncarre.png";
 import reperefocntioncarre from "../../../../assets/reperefocntioncarre.png";
-import GraphComponent from "../../../../components/Outils/GraphComponent";
+import GraphComponent from "../../../../components/Outils/GrapheCompenent/GraphComponent";
 import {Button, Card, Row, Col, Form} from 'react-bootstrap';
 
 const FonctionCarre = () => {

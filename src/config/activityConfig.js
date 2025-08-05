@@ -42,6 +42,49 @@ export const SPECIAL_ACTIVITIES = {
                                 path: 'probabilites/Act2proba',
                                 component: 'Act2proba',
                             },
+                            {
+                                id: 3,
+                                title: 'Probabilités',
+                                path: 'probabilites/Act3proba',
+                                component: 'EchantillonsAleatoiresAct1',
+                            },
+                            {
+                                id: 4,
+                                title: 'Activite 4',
+                                path: 'probabilites/Act4proba',
+                                component: 'EvaluerProbabiliteEvenement',
+                            },
+                            {
+                                id: 5,
+                                title: 'Activite 5',
+                                path: 'probabilites/Act5proba',
+                                component: 'ActDénombrerDonnéesArbre',
+                            },
+                            {
+                                id: 6,
+                                title: 'Bilan & exercices',
+                                path: 'probabilites/Act6proba',
+                                component: 'bilanExercicesProba',
+                            },
+                            {
+                                id: 7,
+                                title: 'Activite 7',
+                                path: 'probabilites/Act7proba',
+                                component: 'ExerciceProba',
+                            },
+                            {
+                                id: 8,
+                                title: 'Activite 8',
+                                path: 'probabilites/Act8proba',
+                                component: 'ExercicesProba2',
+                            },
+                            {
+                                id: 9,
+                                title: 'Activite 9',
+                                path: 'probabilites/Act9proba',
+                                component: 'ExerciceProba3',
+                            }
+
                         ],
                     },
                 },
@@ -61,15 +104,27 @@ export const SPECIAL_ACTIVITIES = {
                         },
                         {
                             id: 3,
+                            title: 'Exercices equation du premier degre',
+                            path: 'algebre/exercices-equation-premier-degre',
+                            component: 'ExerciceEquationPremierDeg',
+                        },
+                        {
+                            id: 4,
                             title: 'Fonctions carre',
                             path: 'algebre/fonction-carre',
                             component: 'FonctionCarre',
                         },
                         {
-                            id: 4,
+                            id: 5,
                             title: 'Exercices fonctions carre',
                             path: 'algebre/exercices-fonction-carre',
                             component: 'ExercicesFonctionCarre',
+                        },
+                        {
+                            id: 6,
+                            title: 'Evaluation fonction carre',
+                            path: 'algebre/evaluation-fonction-carre',
+                            component: 'EvaluationFonctionCarre',
                         },
                     ],
                 },
@@ -113,16 +168,28 @@ export const SPECIAL_ACTIVITIES = {
                         activities: [
                             {
                                 id: 1,
-                                title: 'Co-intervention Calculs commerciaux ',
+                                title: 'Co-intervention Calculs commerciaux 1',
                                 path: 'cointervention/cointervention1',
                                 component: 'CalculCommerciauxCoIntervention',
                             },
                             {
                                 id: 2,
-                                title: 'Co-intervention statistiques',
+                                title: 'Co-intervention Calculs commerciaux 2',
                                 path: 'cointervention/cointervention2',
                                 component: 'CalculsCommerciauxCoIntervention2',
                             },
+                            {
+                                id: 3,
+                                title: 'Co-intervention Calculs commerciaux 3',
+                                path: 'cointervention/cointervention3',
+                                component: 'CalculsCommerciauxCoIntervention3',
+                            },
+                            {
+                                id: 4,
+                                title: 'Co-intervention Calculs commerciaux 4',
+                                path: 'cointervention/cointervention4',
+                                component: 'CalculsCommerciauxCoIntervention4',
+                            }
                         ],
                     },
                     maintenances: {
@@ -130,8 +197,8 @@ export const SPECIAL_ACTIVITIES = {
                             {
                                 id: 1,
                                 title: 'Co-intervention maintenances',
-                                path: 'cointervention/cointervention2',
-                                component: 'MaintenancesCoIntervention',
+                                path: 'cointervention/cointerventionmaintenance1',
+                                component: 'CoInterventionMaintenance1',
                             },
                         ],
                     },
@@ -173,6 +240,18 @@ export const SPECIAL_ACTIVITIES = {
                             path: 'geometrie/act4-fraiseuse',
                             component: 'Act4Geometrie',
                         },
+                        {
+                            id: 5,
+                            title: 'Exercices vecteurs 🏕️',
+                            path: 'geometrie/exercices-vecteurs',
+                            component: 'ExercicesVecteurs',
+                        },
+                        {
+                            id: 6,
+                            title: 'Exercices vecteurs 🏕️ Suite',
+                            path: 'geometrie/exercices-vecteurs2',
+                            component: 'ExercicesVecteursPart2',
+                        }
                     ],
                 },
             },
@@ -211,6 +290,18 @@ export const SPECIAL_ACTIVITIES = {
                             path: 'optique/tp-optique2',
                             component: 'TP2Optique',
                         },
+                        {
+                            id: 3,
+                            title: 'Exercices optiques ',
+                            path: 'optique/exercices-optique',
+                            component: 'ExercicesOptic',
+                        },
+                        {
+                            id: 4,
+                            title: 'QCM optiques ',
+                            path: 'optique/exercices-optique2',
+                            component: 'QcmOptic2nd',
+                        },
                     ],
                 },
                 mecanique: {
@@ -227,6 +318,19 @@ export const SPECIAL_ACTIVITIES = {
                             path: 'mecanique/force2',
                             component: 'Act2et3ForceMecanique',
                         },
+                        {
+                            id: 3,
+                            title: 'Evaluation : Actions mécaniques',
+                            path: 'mecanique/EvaluationForce',
+                            component: 'EvaluationForce',
+                        },
+                        {
+                            id: 4,
+                            title: 'Représenter et caractériser une action mécanique',
+                            path: 'mecanique/EvaluationForce2',
+                            component: 'EvaluationMecaniqueForce',
+                        },
+
                     ],
                 }
             },
@@ -237,10 +341,23 @@ export const SPECIAL_ACTIVITIES = {
                     activities: [
                         {
                             id: 1,
-                            title: 'TP : Synthèse soustractive des couleurs',
+                            title: 'Caractériser une source lumineuse par\n' +
+                                'son spectre et son efficacité énergétique',
                             path: 'signaux/act1signaux',
                             component: 'Act1Signaux',
                         },
+                        {
+                            id: 2,
+                            title: 'Bilan signaux',
+                            path: 'signaux/bilan-signaux',
+                            component: 'BilanSignaux',
+                        },
+                        {
+                            id: 3,
+                            title: 'Exercices signaux',
+                            path: 'signaux/Exercices-signaux',
+                            component: 'ExercicesSigaux',
+                        }
                     ],
                 },
             },

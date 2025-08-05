@@ -387,7 +387,7 @@ const ProgrammeTerminalePhysique3 = () => {
     };
 
     const handleChapitreClick = (chapitreId) => {
-        navigate(`/programmes/science/${classId}/ProgrammeTerminalePhysique_3/sequences/${chapitreId}`);
+        navigate(`/programmes/science/${classId}/ProgrammeTerminalePhysique3/sequences/${chapitreId}`);
     };
 
     // Animation variants

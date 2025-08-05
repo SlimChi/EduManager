@@ -33,7 +33,6 @@ import TPSon from './pages/SciencePhysiqueChimie/seconde/Acoustique/TPSon';
 import GeometryCalculator from './components/Outils/GeometryCalculator';
 import Act1Proba from './pages/Maths/seconde/statistiques/probabilités/Act1Proba';
 import Act2proba from './pages/Maths/seconde/statistiques/probabilités/Act2proba';
-import Calculator from './components/Outils/Calculator';
 import CalculatorPage from './components/Outils/CalculatorPage';
 import TP1Optique from './pages/SciencePhysiqueChimie/seconde/Optique/TP1Optique';
 import TP2Optique from './pages/SciencePhysiqueChimie/seconde/Optique/TP2Optique';
@@ -53,6 +52,26 @@ import ExercicesFonctionCarre from "./pages/Maths/seconde/algebre/ExercicesFonct
 import Act3Geometrie from "./pages/Maths/Terminale/geometrie/Act3Geometrie";
 import Act4Geometrie from "./pages/Maths/Terminale/geometrie/Act4Geometrie";
 import Act2et3ForceMecanique from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act2et3ForceMecanique";
+import CalculsCommerciauxCoIntervention3 from "./pages/Maths/seconde/cointervention/CalculsCommerciauxCoIntervention3";
+import BilanSignaux from "./pages/SciencePhysiqueChimie/Terminale/BilanSignaux";
+import EvaluationForce from "./pages/SciencePhysiqueChimie/seconde/Mecanique/EvaluationForce";
+import EvaluationFonctionCarre from "./pages/Maths/seconde/algebre/EvaluationFonctionCarre";
+import ExercicesVecteurs from "./pages/Maths/Terminale/geometrie/ExercicesVecteurs";
+import EvaluationMecaniqueForce from "./pages/SciencePhysiqueChimie/seconde/Mecanique/EvaluationMecaniqueForce";
+import ExercicesSigaux from "./pages/SciencePhysiqueChimie/Terminale/ExercicesSigaux";
+import ExercicesOptic from "./pages/SciencePhysiqueChimie/seconde/Optique/ExercicesOptic";
+import CalculsCommerciauxCoIntervention4 from "./pages/Maths/seconde/cointervention/CalculsCommerciauxCoIntervention4";
+import EchantillonsAleatoiresAct1 from "./pages/Maths/seconde/statistiques/probabilités/EchantillonsAleatoiresAct1";
+import EvaluerProbabiliteEvenement from "./pages/Maths/seconde/statistiques/probabilités/EvaluerProbabiliteEvenement";
+import ExercicesVecteursPart2 from "./pages/Maths/Terminale/geometrie/ExercieVecteurPart2";
+import CoInterventionMaintenance1 from "./pages/Maths/seconde/cointervention/CoInterventionMaintenance1";
+import ActDénombrerDonnéesArbre from "./pages/Maths/seconde/statistiques/probabilités/ActDénombrerDonnéesArbre";
+import BilanExercicesProba from "./pages/Maths/seconde/statistiques/probabilités/BilanExercicesProba";
+import ExerciceProba from "./pages/Maths/seconde/statistiques/probabilités/ExerciceProba";
+import ExerciceEquationPremierDeg from "./pages/Maths/seconde/algebre/ExerciceEquationPremierDeg";
+import QcmOptic2nd from "./pages/SciencePhysiqueChimie/seconde/Optique/QcmOptic2nd";
+import ExercicesProba2 from "./pages/Maths/seconde/statistiques/probabilités/ExercicesProba2";
+import ExerciceProba3 from "./pages/Maths/seconde/statistiques/probabilités/ExerciceProba3";
 
 
 function App() {
@@ -128,12 +147,45 @@ function App() {
                             element={<Act2proba/>}
                         />
                         <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act3proba"
+                            element={<EchantillonsAleatoiresAct1/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act4proba"
+                            element={<EvaluerProbabiliteEvenement/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act5proba"
+                            element={<ActDénombrerDonnéesArbre/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act6proba"
+                            element={<BilanExercicesProba/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act7proba"
+                            element={<ExerciceProba/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act8proba"
+                            element={<ExercicesProba2/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act9proba"
+                            element={<ExerciceProba3/>}
+                        />
+                        <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/equations-second-degre-test"
                             element={<EquationsPremierDegreTest/>}
                         />
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/equations-premier-degre"
-                            element={<Act3Equation1erDegre/>}/>
+                            element={<Act3Equation1erDegre/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/exercices-equation-premier-degre"
+                            element={<ExerciceEquationPremierDeg/>}
+                        />
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/fonctions-affines"
                             element={<FonctionsAffines/>}
@@ -145,6 +197,10 @@ function App() {
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/exercices-fonction-carre"
                             element={<ExercicesFonctionCarre/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/algebre/evaluation-fonction-carre"
+                            element={<EvaluationFonctionCarre/>}
                         />
                         <Route
                             path={'/programmes/math/:classId/ProgrammeSecondeMaths/activites/geometrie/GeometrieAct1'}
@@ -175,6 +231,18 @@ function App() {
                             element={<CalculsCommerciauxCoIntervention2/>}
                         />
                         <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/cointervention3"
+                            element={<CalculsCommerciauxCoIntervention3/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/cointervention4"
+                            element={<CalculsCommerciauxCoIntervention4/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/cointerventionmaintenance1"
+                            element={<CoInterventionMaintenance1/>}
+                        />
+                        <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/acoustique/tp-son"
                             element={<TPSon/>}
                         />
@@ -191,8 +259,24 @@ function App() {
                             element={<TP2Optique/>}
                         />
                         <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/optique/exercices-optique"
+                            element={<ExercicesOptic/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/optique/exercices-optique2"
+                            element={<QcmOptic2nd/>}
+                        />
+                        <Route
                             path="/programmes/science/:classId/ProgrammeTerminalePhysique3/activites/signaux/act1signaux"
                             element={<Act1Signaux/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeTerminalePhysique3/activites/signaux/bilan-signaux"
+                            element={<BilanSignaux/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeTerminalePhysique3/activites/signaux/Exercices-signaux"
+                            element={<ExercicesSigaux/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/force"
@@ -202,7 +286,14 @@ function App() {
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/force2"
                             element={<Act2et3ForceMecanique/>}
                         />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/EvaluationForce"
+                            element={<EvaluationForce/>}/>
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/EvaluationForce2"
+                            element={<EvaluationMecaniqueForce/>}/>
                         <Route path="/calculator" element={<CalculatorPage/>}/>
+                        {/*<Route path="/PythonEmulator" element={<PythonPage/>}/>*/}
                         {/*<Route*/}
                         {/*    path="/programmes/:discipline/:classId/:programmeType/sequences"*/}
                         {/*    element={<SequencesPage/>}*/}
@@ -226,6 +317,14 @@ function App() {
                         <Route
                             path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/act4-fraiseuse"
                             element={<Act4Geometrie/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/exercices-vecteurs"
+                            element={<ExercicesVecteurs/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/exercices-vecteurs2"
+                            element={<ExercicesVecteursPart2/>}
                         />
                         {/* Routes pour les CCF */}
                         <Route path="/ccf" element={<CCFPage/>}/>

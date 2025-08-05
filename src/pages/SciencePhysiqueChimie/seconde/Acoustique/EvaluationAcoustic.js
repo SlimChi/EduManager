@@ -1,7 +1,6 @@
 import React, {useRef, useState} from 'react';
-import {FaCheck, FaVolumeUp, FaVolumeMute} from 'react-icons/fa';
+import {FaCheck} from 'react-icons/fa';
 import {BsFillQuestionCircleFill} from 'react-icons/bs';
-import {IoMdSchool} from 'react-icons/io';
 import '../../../../styles/activites.css';
 import {useLocation, useParams} from 'react-router-dom';
 import BackButton from '../../../../components/navigation/BackButton';
@@ -9,12 +8,12 @@ import sonometreImage from '../../../../assets/sonometre.jpg';
 import oscilloscopeImage from '../../../../assets/groupeElectro.png';
 import ModalImage from '../../../../utils/ModalImage';
 import PrintManager from '../../../../utils/PrintManager';
-import Automatismes from '../../../../config/Automatismes';
 import {FcRules} from 'react-icons/fc';
-import hacker from "../../../../assets/hacker.png";
 import GraphTensionTemps from "../../../../config/GraphTensionTemps";
 import GraphTensionTempsImpur from "../../../../config/GraphTensionTempsImpur";
 import SoundLevelBar from "../../../../config/SoundLevelBar";
+import logolycee from "../../../../assets/logolycee.jpg";
+import EvaluationGridCcf from "../../../../config/EvaluationGridCcf";
 
 const EvaluationAcoustic = () => {
     const {classId} = useParams();
@@ -123,29 +122,78 @@ const EvaluationAcoustic = () => {
             />
             {/* Page 1 */}
             <div className="print-page" id="page1-start">
-                <div className="tp-intro">
-                    <div className="math-chapter-box blue">
-                        <span style={{fontSize: '2rem', marginRight: '20px'}}>  <FaVolumeUp/> <FaVolumeMute/></span>
-
-
-                        <h2 className="math-chapter-title-test"
-                            style={{color: '#your-color', fontSize: 'your-size'}}>
-                            Comment isoler une pièce du bruit ?{' '}
-                        </h2>
-                    </div>
-                    <div className="activity-header">
-                        <span className="activity-badge">ÉVALUATION</span>
-                        <div className="activity-title">
-                        <span className="course-title">
-                          <FcRules/> Bac Pro - Sciences Physiques
-                        </span>
+                <div className="container border rounded p-4 shadow-lg bg-white mt-0">
+                    <div className="row mb-3 align-items-center">
+                        <div className="col-md-3 text-center">
+                            <div
+                                className="border rounded p-2"
+                                style={{minHeight: "100px", backgroundColor: "#f8f9fa"}}
+                            >
+                                <img
+                                    src={logolycee}
+                                    alt="Logo du lycee"
+                                    className="img-fluid rounded shadow"
+                                    style={{width: '100%', objectFit: 'contain', cursor: 'pointer'}}
+                                    onClick={() => openModal(logolycee, "Logo")}
+                                />
+                            </div>
+                        </div>
+                        <div className="col-md-9 text-center">
+                            <h5 className="text-uppercase text-primary">Baccalauréat Professionnel</h5>
+                            <h6 className="text-secondary">Terminale Équipier Polyvalent du Commerce</h6>
+                            <h5 className="text-dark mt-3">Épreuve – Science physique</h5>
                         </div>
                     </div>
-                    <p className="math-text">
-                        Cette évaluation porte sur les propriétés du son et les méthodes pour isoler une pièce du
-                        bruit. Vous devez répondre à toutes les questions en vous appuyant sur vos connaissances et
-                        les documents fournis.
-                    </p>
+
+                    <div className="row text-center border-top border-bottom py-3 bg-light">
+                        <div className="col-md-3 border-end">
+                            <strong>Contrôle en<br/>Cours de Formation </strong>
+                        </div>
+                        <div className="col-md-3 border-end">
+                            <strong>Situation d’évaluation de<br/>Science physique</strong>
+                        </div>
+                        <div className="col-md-2 border-end">
+                            <strong>Année scolaire<br/>2024-2025</strong>
+                        </div>
+                        <div className="col-md-2 border-end">
+                            <strong>Durée<br/>45 min</strong>
+                        </div>
+                        <div className="col-md-2">
+                            <strong>Note :</strong><br/>/10
+                        </div>
+                    </div>
+
+                    <div className="row mt-3">
+                        <div className="col-md-9">
+                            <strong>Établissement :</strong> <em>LP PIERRE-JOSEPH LAURENT</em>
+                        </div>
+                        <div className="col-md-3 text-end">
+                            <strong>Classe :</strong> TPEPC
+                        </div>
+                    </div>
+
+                    <div className="row mt-2">
+                        <div className="col-md-8">
+                            <strong>NOM et Prénom du
+                                CANDIDAT</strong> ..................................................
+                        </div>
+                        <div className="col-md-4 text-end">
+                            <strong>Date d’évaluation :</strong> ___ / ___ / 2025
+                        </div>
+                    </div>
+                    <div className="card border-0 rounded-3 mt-2 shadow-sm" style={{backgroundColor: "#f8f9fa"}}>
+                        <div className="card-body py-2 px-3">
+                            <p className="card-text mb-0 text-dark" style={{lineHeight: "1.6", fontSize: "0.95rem"}}>
+                                🎯 <span className="text-primary">L’objectif de ce CCF</span> est d’évaluer les
+                                compétences des élèves à mobiliser
+                                leurs connaissances en <span className="text-success">sciences physiques</span> dans des
+                                situations professionnelles concrètes,
+                                en lien avec l’étude du <span className="text-warning">son</span>, de l’<span
+                                className="text-danger">énergie</span> et des appareils utilisés
+                                dans leur futur environnement de travail.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
                 {/* Exercice I */}
@@ -290,7 +338,7 @@ const EvaluationAcoustic = () => {
                             </button>
                         </div>
                     </div>
-                    <h3 className="mt-0">
+                    <h3 className="mt-3">
                         <FcRules/> Exercice II - Rétroprojecteur
                     </h3>
                     <p>
@@ -375,25 +423,17 @@ const EvaluationAcoustic = () => {
                         </p>
 
                         <div className="row g-3">
-                            {[
-                                {
-                                    id: 'question7a',
-                                    text: "Ajouter plusieurs plaques de mousse à proximité du moteur sans contact direct, ni risque d'échauffement."
-                                },
-                                {
-                                    id: 'question7b',
-                                    text: "Boucher complètement les grilles d'aération."
-                                },
-                                {
-                                    id: 'question7c',
-                                    text: "Réduire la fréquence de rotation du ventilateur."
-                                },
-                                {
-                                    id: 'question7d',
-                                    text: "Rajouter des « silent-blocs » entre le ventilateur et son support."
-                                },
-                            ].map(({id, text}) => (
-                                <div key={id} className="col-md-6">
+                            {[{
+                                id: 'question7a',
+                                text: "Ajouter plusieurs plaques de mousse à proximité du moteur sans contact direct, ni risque d'échauffement."
+                            }, {
+                                id: 'question7b', text: "Boucher complètement les grilles d'aération."
+                            }, {
+                                id: 'question7c', text: "Réduire la fréquence de rotation du ventilateur."
+                            }, {
+                                id: 'question7d',
+                                text: "Rajouter des « silent-blocs » entre le ventilateur et son support."
+                            },].map(({id, text}) => (<div key={id} className="col-md-6">
 
                                     <div className="form-check">
                                         <input
@@ -427,7 +467,7 @@ const EvaluationAcoustic = () => {
                         </div>
                     </div>
 
-                    <div className="question mb-0">
+                    <div className="question mb-0 mt-3">
                         <div className="question-header">
                             <div className="question-number">8</div>
                             <p>
@@ -450,11 +490,10 @@ const EvaluationAcoustic = () => {
                             </button>
                         </div>
                     </div>
-                    <div style={{marginTop: '-7%'}}><GraphTensionTemps/></div>
+                    <div style={{marginTop: '-3%'}}><GraphTensionTemps/></div>
 
-                    <div className="question mt-0">
-
-                        <div className="question-number">9</div>
+                    <div className="question mt-3">
+                        <div className="question-number" style={{marginTop: '-20px'}}>9</div>
                         <div className="question-header">
                             <p style={{fontWeight: '500'}}>
                                 Déterminez la période T de l'onde, puis calculez la fréquence f.
@@ -477,7 +516,9 @@ const EvaluationAcoustic = () => {
                     </div>
                 </section>
             </div>
-
+            <div className="print-page">
+                <EvaluationGridCcf/>
+            </div>
 
             <footer className="tp-footer">
                 <p>Baccalauréat Professionnel - Sciences Physiques - 2024-2025</p>

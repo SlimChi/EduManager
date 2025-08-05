@@ -62,6 +62,11 @@ const Sidebar = () => {
                     path: '/calculator',
                     icon: <BiCalculator size={16} className="me-2"/>
                 },
+                // {
+                //     name: "¨Python",
+                //     path: '/PythonEmulator',
+                //     icon: <BiCalculator size={16} className="me-2"/>
+                // }
             ]
         }
     ];

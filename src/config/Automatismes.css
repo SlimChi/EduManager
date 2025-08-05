@@ -1,7 +1,7 @@
 /* === Général === */
 .automatismes-container {
     padding: 2rem;
-    max-width: 1200px;
+    max-width: 900px;
     margin: auto;
     background: #f4f9ff;
     border-radius: 12px;
@@ -34,6 +34,7 @@
     margin: 0.2rem 0 0;
     font-size: 1rem;
     opacity: 0.9;
+    font-family: 'Cambria Math', 'Latin Modern Math', 'STIX Two Math', serif;
 }
 
 .score-display {
@@ -120,6 +121,7 @@
     line-height: 1.5;
     color: #34495e;
     min-height: 40px;
+    font-family: 'Cambria Math', 'Latin Modern Math', 'STIX Two Math', serif;
 }
 
 /* === Zone de Réponse === */
