@@ -27,11 +27,7 @@ const Sidebar = () => {
             icon: <BiAtom size={18} className="me-2"/>,
             subItems: []
         },
-        {
-            name: 'LIVRES EXTERN PDF',
-            path: '/LIVRES',
-            icon: <BiBook size={18} className="me-2"/>,
-        },
+      
         // {
         //     name: 'CV',
         //     path: '/cv',
