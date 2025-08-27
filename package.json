@@ -62,8 +62,7 @@
     "build": "set NODE_OPTIONS=--max_old_space_size=4096 && react-scripts build",
     "build:gh": "set NODE_OPTIONS=--max_old_space_size=4096 && react-scripts build && copy build\\index.html build\\404.html",
     "predeploy": "npm run build:gh",
-    "deploy": "gh-pages -d build",
-    "vercel-build": "npm install --legacy-peer-deps && npm run build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
