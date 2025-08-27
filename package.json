@@ -2,7 +2,7 @@
   "name": "cours_react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://slimchi.github.io/EduManagerSchool/",
+  "homepage": "https://slimchi.github.io/EduManager/",
   "dependencies": {
     "@mui/icons-material": "^7.0.1",
     "@mui/material": "^7.0.1",
