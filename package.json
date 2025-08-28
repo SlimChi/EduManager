@@ -2,8 +2,10 @@
   "name": "cours_react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://slimchi.github.io/EduManager/",
+  "homepage": "https://slimchi.github.io/EduManager",
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.0.1",
     "@mui/material": "^7.0.1",
     "@react-pdf/renderer": "^4.3.0",
@@ -52,15 +54,17 @@
   },
   "devDependencies": {
     "babel-plugin-prismjs": "^2.1.0",
+    "cpy-cli": "^5.0.0",
     "cross-env": "^7.0.3",
     "electron": "^35.2.0",
+    "fix": "^0.0.6",
     "gh-pages": "^6.3.0",
     "prettier": "3.5.3"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "set NODE_OPTIONS=--max_old_space_size=4096 && react-scripts build",
-    "build:gh": "set NODE_OPTIONS=--max_old_space_size=4096 && react-scripts build && copy build\\index.html build\\404.html",
+    "build": "cross-env NODE_OPTIONS=--max_old_space_size=4096 react-scripts build",
+    "build:gh": "cross-env NODE_OPTIONS=--max_old_space_size=4096 react-scripts build && cpy build/index.html build/404.html",
     "predeploy": "npm run build:gh",
     "deploy": "gh-pages -d build"
   },

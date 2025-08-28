@@ -8,7 +8,13 @@ import {IoRocketSharp} from "react-icons/io5";
 import '../../styles/topNavbar.css';
 import {LiaLongArrowAltRightSolid} from "react-icons/lia";
 
+// Import du hook d'authentification et du menu utilisateur
+import {useAuth} from '../../components/hooks/useAuth';
+import UserMenu from '../../components/auth/UserMenu';
+
 const TopNavbar = () => {
+    const {isAuthenticated} = useAuth();
+
     const navItemVariants = {
         hidden: {opacity: 0, y: -20},
         visible: {
@@ -53,9 +59,9 @@ const TopNavbar = () => {
                         <Navbar.Brand as={Link} to="/" className="brand-logo d-flex align-items-center">
                             <span className="logo-icon">🚀</span>
                             <span className="brand-text ms-2">
-                                EduManger <LiaLongArrowAltRightSolid style={{color: '#38bdf8'}}/> M.CHIHATI<span
+                EduManager <LiaLongArrowAltRightSolid style={{color: '#38bdf8'}}/> M.CHIHATI<span
                                 style={{filter: 'drop-shadow(0 0 8px rgba(56, 189, 248, 0.6))'}}>Science</span>
-                            </span>
+              </span>
                         </Navbar.Brand>
                     </motion.div>
 
@@ -68,33 +74,44 @@ const TopNavbar = () => {
 
                     <Navbar.Collapse id="navbar-content" className="justify-content-end">
                         <Nav className="align-items-center">
-                            <motion.div variants={navItemVariants} whileHover="hover">
-                                <Nav.Link as={Link} to="/" className="nav-link-item">
-                                    <FiHome className="nav-icon"/>
-                                    <span>Accueil</span>
-                                </Nav.Link>
-                            </motion.div>
+                            {isAuthenticated ? (
+                                // Menu lorsque l'utilisateur est connecté
+                                <>
+                                    <motion.div variants={navItemVariants} whileHover="hover">
+                                        <Nav.Link as={Link} to="/" className="nav-link-item">
+                                            <FiHome className="nav-icon"/>
+                                            <span>Accueil</span>
+                                        </Nav.Link>
+                                    </motion.div>
 
-                            <motion.div variants={navItemVariants} whileHover="hover">
-                                <Nav.Link as={Link} to="/disciplines" className="nav-link-item">
-                                    <PiChalkboardTeacher className="nav-icon"/>
-                                    <span>Cours</span>
-                                </Nav.Link>
-                            </motion.div>
+                                    <motion.div variants={navItemVariants} whileHover="hover">
+                                        <Nav.Link as={Link} to="/disciplines" className="nav-link-item">
+                                            <PiChalkboardTeacher className="nav-icon"/>
+                                            <span>Cours</span>
+                                        </Nav.Link>
+                                    </motion.div>
 
-                            <motion.div variants={navItemVariants} whileHover="hover">
-                                <Nav.Link as={Link} to="/labs" className="nav-link-item">
-                                    <PiFlaskDuotone className="nav-icon"/>
-                                    <span>Laboratoires</span>
-                                </Nav.Link>
-                            </motion.div>
+                                    <motion.div variants={navItemVariants} whileHover="hover">
+                                        <Nav.Link as={Link} to="/labs" className="nav-link-item">
+                                            <PiFlaskDuotone className="nav-icon"/>
+                                            <span>Laboratoires</span>
+                                        </Nav.Link>
+                                    </motion.div>
 
-                            <motion.div variants={navItemVariants} whileHover="hover">
-                                <Nav.Link as={Link} to="/profile" className="nav-link-item">
-                                    <FiUser className="nav-icon"/>
-                                    <span>Profil</span>
-                                </Nav.Link>
-                            </motion.div>
+                                    {/* Menu utilisateur avec déconnexion */}
+                                    <motion.div variants={navItemVariants}>
+                                        <UserMenu/>
+                                    </motion.div>
+                                </>
+                            ) : (
+                                // Menu lorsque l'utilisateur n'est pas connecté
+                                <motion.div variants={navItemVariants} whileHover="hover">
+                                    <Nav.Link as={Link} to="/" className="nav-link-item">
+                                        <FiHome className="nav-icon"/>
+                                        <span>Accueil</span>
+                                    </Nav.Link>
+                                </motion.div>
+                            )}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

@@ -1,11 +1,16 @@
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {ThemeProvider, createTheme} from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+// Composants d'authentification
+import AuthGuard from './components/auth/AuthGuard';
 import TopNavbar from './components/navigation/TopNavbar';
 import Sidebar from './components/navigation/Sidebar';
+import Login from './components/auth/Login';
+// Pages de l'application
 import ClassesPage from './pages/ClassesPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import DisciplinesPage from './pages/DisciplinesPage';
-import './styles/main.css';
 import ClassesEnCour from './pages/ClassesEnCour';
 import ProgrammeSecondeMaths from './data/ProgrammeSecondeMaths';
 import ProgrammeTerminalePhysique3 from './data/ProgrammeTerminalePhysique3';
@@ -73,9 +78,24 @@ import QcmOptic2nd from "./pages/SciencePhysiqueChimie/seconde/Optique/QcmOptic2
 import ExercicesProba2 from "./pages/Maths/seconde/statistiques/probabilités/ExercicesProba2";
 import ExerciceProba3 from "./pages/Maths/seconde/statistiques/probabilités/ExerciceProba3";
 
+// Styles
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/main.css';
 
-function App() {
-    return (<Router>
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#1976d2',
+        },
+        secondary: {
+            main: '#dc004e',
+        },
+    },
+});
+
+// Composant principal de l'application une fois connecté
+const MainApp = () => {
+    return (
         <div className="app-layout">
             <TopNavbar/>
             <div className="main-content">
@@ -293,11 +313,6 @@ function App() {
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/EvaluationForce2"
                             element={<EvaluationMecaniqueForce/>}/>
                         <Route path="/calculator" element={<CalculatorPage/>}/>
-                        {/*<Route path="/PythonEmulator" element={<PythonPage/>}/>*/}
-                        {/*<Route*/}
-                        {/*    path="/programmes/:discipline/:classId/:programmeType/sequences"*/}
-                        {/*    element={<SequencesPage/>}*/}
-                        {/*/>*/}
                         <Route
                             path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/rappel-vecteur"
                             element={<RappelVecteur/>}
@@ -328,7 +343,6 @@ function App() {
                         />
                         {/* Routes pour les CCF */}
                         <Route path="/ccf" element={<CCFPage/>}/>
-                        {/*<Route path="/cv" element={<CvWalid/>}/>*/}
                         <Route path="/ccf/:ccfId" element={<CCF2ToBM/>}/>
                         <Route
                             path="/ccf/engrais-liquide"
@@ -353,7 +367,29 @@ function App() {
                 </div>
             </div>
         </div>
-    </Router>);
+    );
+};
+
+function App() {
+    return (
+        <ThemeProvider theme={theme}>
+            <CssBaseline/>
+            <Router>
+                <Routes>
+                    {/* Route publique pour le login */}
+                    <Route path="/login" element={<Login onLogin={() => {
+                    }}/>}/>
+
+                    {/* Routes protégées - AuthGuard doit wrapper MainApp */}
+                    <Route path="/*" element={
+                        <AuthGuard>
+                            <MainApp/>
+                        </AuthGuard>
+                    }/>
+                </Routes>
+            </Router>
+        </ThemeProvider>
+    );
 }
 
 export default App;
