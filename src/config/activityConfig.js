@@ -256,6 +256,34 @@ export const SPECIAL_ACTIVITIES = {
                 },
             },
         },
+        Première: {
+            ProgrammePremiereMaths: {
+                stats: {
+                    stats: {
+                        activities: [
+                            {
+                                id: 1,
+                                title: 'Statistique à deux variable',
+                                path: 'statistiques/stat-deux-variable',
+                                component: 'StatDeuxVariableSPremiere',
+                            },
+                        ],
+                    },
+                    probas: {
+                        activities: [
+                            {
+                                id: 1,
+                                title: 'Observer la fluctuation des fréquences',
+                                path: 'probabilites/Act1Proba',
+                                component: 'Act1Proba',
+                            },
+
+
+                        ],
+                    },
+                }
+            }
+        }
     },
     science: {
         Seconde: {

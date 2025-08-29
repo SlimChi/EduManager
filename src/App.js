@@ -81,6 +81,9 @@ import ExerciceProba3 from "./pages/Maths/seconde/statistiques/probabilités/Exe
 // Styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/main.css';
+import ProgrammePremiereMaths from "./data/ProgrammePremiereMaths";
+import Act1Stat2var from "./pages/Maths/première/StatProba/Statistiques/Act1Stat2var";
+import EmploiDuTemps from "./data/EmploiDuTemps";
 
 const theme = createTheme({
     palette: {
@@ -104,6 +107,7 @@ const MainApp = () => {
                     <Routes>
                         <Route path="/classes" element={<ClassesPage/>}/>
                         <Route path="/disciplines" element={<DisciplinesPage/>}/>
+                        <Route path="/emploi-du-temps" element={<EmploiDuTemps/>}/>
                         <Route
                             path="/disciplines/:discipline/classes"
                             element={<ClassesEnCour/>}
@@ -113,6 +117,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths"
                             element={<ProgrammeSecondeMaths/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammePremiereMaths"
+                            element={<ProgrammePremiereMaths/>}
                         />
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMathsMRC"
@@ -340,6 +348,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/math/:classId/ProgrammeTerminaleMathsB/activites/geometrie/exercices-vecteurs2"
                             element={<ExercicesVecteursPart2/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammePremiereMaths/activites/statistiques/stat-deux-variable"
+                            element={<Act1Stat2var/>}
                         />
                         {/* Routes pour les CCF */}
                         <Route path="/ccf" element={<CCFPage/>}/>

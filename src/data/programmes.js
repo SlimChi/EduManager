@@ -17,13 +17,13 @@ export const CLASSES_CONFIG = {
             component: 'ProgrammeSecondeMaths',
             programmeComponent: ProgrammeSecondeMaths
         },
-        // 'Seconde MRC': {
-        //     icon: 'BiCalculator',  // Nouvelle icône
-        //     color: '#f8d23f',
-        //     niveau: 'Seconde',
-        //     component: 'ProgrammeSecondeMathsMRC',
-        //     programmeComponent: ProgrammeSecondeMathsMRC
-        // },
+        'Première': {
+            icon: 'BiLineChart',
+            emoji: '📈',
+            color: '#163d0b',
+            niveau: 'Première',
+            component: 'ProgrammePremièreMaths'
+        },
         'Terminale': {
             icon: 'BiFunction',  // Nouvelle icône
             color: '#569ae1',
@@ -53,6 +53,13 @@ export const CLASSES_CONFIG = {
             niveau: 'Seconde',
             component: 'ProgrammeSecondePhysique',
             programmeComponent: ProgrammeSecondePhysique
+        },
+        'Première': {
+            icon: 'BiAtom',
+            emoji: '⚛️',
+            color: '#000000',
+            niveau: 'Première',
+            component: 'ProgrammePremièrePhysique'
         },
         'Terminale': {
             icon: 'BiTestTube',  // Nouvelle icône

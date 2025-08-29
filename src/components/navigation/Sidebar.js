@@ -27,7 +27,13 @@ const Sidebar = () => {
             icon: <BiAtom size={18} className="me-2"/>,
             subItems: []
         },
-      
+        {
+            name: 'EmploiDuTemps',
+            path: '/emploi-du-temps',
+            icon: <BiAtom size={18} className="me-2"/>,
+            subItems: []
+        },
+
         // {
         //     name: 'CV',
         //     path: '/cv',

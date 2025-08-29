@@ -15,14 +15,17 @@ const ClassesEnCour = () => {
     const PROGRAMME_COMPONENTS = {
         math: {
             'Seconde': 'ProgrammeSecondeMaths',
+            'Première': 'ProgrammePremiereMaths',
             'Terminale': 'ProgrammeTerminaleMathsB',
             'CAP': 'ProgrammeCAPMaths'
         },
         science: {
             'Seconde': 'ProgrammeSecondePhysique',
+            'Première': 'ProgrammePremierePhysique',
             'Terminale': 'ProgrammeTerminalePhysique3',
             'CAP': 'ProgrammeCAPPhysique'
         }
+
     };
 
     // Récupération sécurisée de la configuration
