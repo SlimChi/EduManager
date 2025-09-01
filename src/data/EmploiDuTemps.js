@@ -102,7 +102,7 @@ const scheduleData = {
     },
     quartiles: {
         'Lundi': {
-            '13h30-14h30': {q2: 'Co-intervention Maths\nM.DEHAUDT\nclasse 2MCDBTP\nH200 '}
+            '13h30-14h30': {q1: 'Co-intervention Maths\nM.DEHAUDT\nclasse 2MCDBTP\nH200 '}
         },
         'Mardi': {
             '11h00-12h00': {q2: 'Co-intervention Maths\nM.LOEULLET\nclasse 2MCDBTP\nH210 LABO'}

@@ -9,7 +9,7 @@ import 'katex/dist/katex.min.css';
 import {BlockMath, InlineMath} from 'react-katex';
 import {Card} from "react-bootstrap";
 import ModalImage from "../../../../../utils/ModalImage";
-import schemaUsinage from "../../../../../assets/shemafraiseuse2.png";
+import schemaUsinage from "../../../../../assets/etiquetteCo2.png";
 import AutoEvaluationGrid from "../../../../../config/AutoEvaluationGrid";
 
 const Act1Stat2var = () => {
@@ -143,74 +143,79 @@ const Act1Stat2var = () => {
                     </div>
                 </div>
                 <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
-                    <div>
-                        <div className="renovation-contexte" style={{maxWidth: '100%'}}>
-                            <p style={{
-                                textAlign: 'justify',
-                                textJustify: 'inter-word',
-                                fontSize: '16px',
-                                padding: '15px',
-                                borderRadius: '10px',
-                                color: '#333',
-                                lineHeight: '1.6',
-                            }}>
-                                🌍 <strong style={{color: '#1b5e20'}}>Problème environnemental</strong> : Kenny a acheté
-                                une voiture qui consomme en moyenne <strong>5 L d'essence aux 100 km</strong>. Il
-                                souhaite connaître l'émission de CO₂ correspondante pour situer sa voiture sur
-                                l'étiquette énergie/CO₂.<br/>
-                                📊 Pour cela, il a relevé les consommations et les rejets de CO₂ pour différentes
-                                voitures et a construit le tableau suivant.
-                            </p>
+                    <div className="container my-4">
+                        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start">
+                            {/* Contenu principal */}
+                            <div className="renovation-contexte me-md-4" style={{flex: '1 1 65%'}}>
+                                <p style={{
+                                    textAlign: 'justify',
+                                    textJustify: 'inter-word',
+                                    fontSize: '16px',
+                                    padding: '15px',
+                                    borderRadius: '10px',
+                                    backgroundColor: '#f8f9fa',
+                                    color: '#333',
+                                    lineHeight: '1.6',
+                                }}>
+                                    🌍 <strong style={{color: '#1b5e20'}}>Problème environnemental</strong> : Kenny a
+                                    acheté
+                                    une voiture qui consomme en moyenne <strong>5 L d'essence aux 100 km</strong>. Il
+                                    souhaite connaître l'émission de CO₂ correspondante pour situer sa voiture sur
+                                    l'étiquette énergie/CO₂.<br/>
+                                    📊 Pour cela, il a relevé les consommations et les rejets de CO₂ pour différentes
+                                    voitures et a construit le tableau suivant.
+                                </p>
 
-                            <table className="table table-bordered mt-3" style={{fontSize: '14px'}}>
-                                <thead className="table-primary">
-                                <tr>
-                                    <th>Modèle</th>
-                                    <th>1</th>
-                                    <th>2</th>
-                                    <th>3</th>
-                                    <th>4</th>
-                                    <th>5</th>
-                                    <th>6</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Consommation (L/100 km)</td>
-                                    <td>3,9</td>
-                                    <td>4,5</td>
-                                    <td>5,6</td>
-                                    <td>6,3</td>
-                                    <td>6,7</td>
-                                    <td>7,3</td>
-                                </tr>
-                                <tr>
-                                    <td>Rejet CO₂ (g/km)</td>
-                                    <td>90</td>
-                                    <td>106</td>
-                                    <td>129</td>
-                                    <td>142</td>
-                                    <td>157</td>
-                                    <td>169</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                <table className="table table-bordered mt-3" style={{fontSize: '14px'}}>
+                                    <thead className="table-primary">
+                                    <tr>
+                                        <th>Modèle</th>
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                        <th>4</th>
+                                        <th>5</th>
+                                        <th>6</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Consommation (L/100 km)</td>
+                                        <td>3,9</td>
+                                        <td>4,5</td>
+                                        <td>5,6</td>
+                                        <td>6,3</td>
+                                        <td>6,7</td>
+                                        <td>7,3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rejet CO₂ (g/km)</td>
+                                        <td>90</td>
+                                        <td>106</td>
+                                        <td>129</td>
+                                        <td>142</td>
+                                        <td>157</td>
+                                        <td>169</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            {/* Image à droite */}
+                            <div className="vect-image-text-container mt-3 mt-md-0" style={{flex: '0 0 30%'}}>
+                                <div style={{maxWidth: '300px', cursor: 'pointer'}}>
+                                    <img
+                                        src={schemaUsinage}
+                                        alt="Étiquette énergie/CO₂"
+                                        className="img-fluid rounded shadow-sm"
+                                        onClick={() => openModal(schemaUsinage, 'Étiquette énergie/CO₂')}
+                                        style={{width: '100%', height: 'auto'}}
+                                    />
+                                    <p className="text-center mt-2 small">Étiquette énergie/CO₂ des véhicules neufs</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div className="vect-image-text-container" style={{marginLeft: '20px'}}>
-                        <div style={{maxWidth: '300px', cursor: 'pointer'}}>
-                            <img
-                                src={schemaUsinage}
-                                alt="Étiquette énergie/CO₂"
-                                className="img-fluid rounded shadow-sm compact-img"
-                                onClick={() => openModal(schemaUsinage, 'Étiquette énergie/CO₂')}
-                                style={{width: '100%', height: 'auto'}}
-                            />
-                            <p className="text-center mt-2 small">Étiquette énergie/CO₂ des véhicules neufs</p>
-                        </div>
-                    </div>
-
                     <div className="objectif-box" style={{marginTop: '-10px'}}>
                         <p><strong> Objectif :</strong> 🎯 "Déterminer le rejet de CO₂ de la voiture de Kenny et son
                             classement sur l'étiquette énergie/CO₂."</p>
@@ -348,7 +353,6 @@ const Act1Stat2var = () => {
                                         value={answers.question2a}
                                         onChange={(e) => handleInputChange('question2a', e.target.value)}
                                         rows={2}
-                                        placeholder="Calculer x̄ et ȳ..."
                                     ></textarea>
                                     <button
                                         className="correction-btnoptic"
@@ -396,7 +400,6 @@ const Act1Stat2var = () => {
                                         value={answers.question3}
                                         onChange={(e) => handleInputChange('question3', e.target.value)}
                                         rows={2}
-                                        placeholder="Décrire comment tracer la droite..."
                                     ></textarea>
                                     <button
                                         className="correction-btnoptic"
@@ -415,6 +418,7 @@ const Act1Stat2var = () => {
                                     <span>4 . Réaliser, Valider</span>
                                 </h4>
                                 <p>Lire sur le graphique l'ordonnée du point de la droite (AG) d'abscisse x = 5.</p>
+                                <p>Quelle valeur de y pour x = 5 ?</p>
 
                                 <div className="answer-area">
                                     <textarea
@@ -422,7 +426,6 @@ const Act1Stat2var = () => {
                                         value={answers.question4}
                                         onChange={(e) => handleInputChange('question4', e.target.value)}
                                         rows={2}
-                                        placeholder="Quelle valeur de y pour x = 5 ?"
                                     ></textarea>
                                     <button
                                         className="correction-btnoptic"
@@ -449,7 +452,6 @@ const Act1Stat2var = () => {
                                         value={answers.question5}
                                         onChange={(e) => handleInputChange('question5', e.target.value)}
                                         rows={2}
-                                        placeholder="Conclusion et classement..."
                                     ></textarea>
                                     <button
                                         className="correction-btnoptic"
@@ -500,11 +502,6 @@ const Act1Stat2var = () => {
                                                 <p>Lorsqu'on étudie la relation entre deux variables quantitatives, on
                                                     peut représenter les données par un <strong>nuage de points</strong>.
                                                 </p>
-
-                                                <h5 style={{marginTop: '1rem'}}>Point moyen</h5>
-                                                <p>Le point moyen G a pour coordonnées :</p>
-                                                <BlockMath
-                                                    math="G(\bar{x}, \bar{y}) = \left( \frac{\sum x_i}{n}, \frac{\sum y_i}{n} \right)"/>
                                             </div>
 
                                             <div className="vector-card" style={{fontFamily: 'Cambria Math'}}>
@@ -518,19 +515,7 @@ const Act1Stat2var = () => {
                                                 <BlockMath math="y = ax + b"/>
                                             </div>
 
-                                            <div className="vector-card" style={{fontFamily: 'Cambria Math'}}>
-                                                <h4>Étiquette énergie/CO₂</h4>
-                                                <p>Classification des véhicules selon leurs émissions de CO₂ :</p>
-                                                <ul>
-                                                    <li><strong>A</strong> : ≤ 100 g/km</li>
-                                                    <li><strong>B</strong> : 101-120 g/km</li>
-                                                    <li><strong>C</strong> : 121-140 g/km</li>
-                                                    <li><strong>D</strong> : 141-160 g/km</li>
-                                                    <li><strong>E</strong> : 161-200 g/km</li>
-                                                    <li><strong>F</strong> : 201-250 g/km</li>
-                                                    <li><strong>G</strong> : ≥ 250 g/km</li>
-                                                </ul>
-                                            </div>
+
                                         </div>
                                     ) : (
                                         <div className="vector-cards-grid" style={{marginTop: '-20px'}}>
@@ -543,15 +528,7 @@ const Act1Stat2var = () => {
                                                 color: '#999'
                                             }}>
                                             </div>
-                                            <div className="vector-card" style={{
-                                                border: '2px dashed #ccc',
-                                                minHeight: '250px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                color: '#999'
-                                            }}>
-                                            </div>
+
                                             <div className="vector-card" style={{
                                                 border: '2px dashed #ccc',
                                                 minHeight: '250px',

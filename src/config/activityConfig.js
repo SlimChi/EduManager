@@ -1,5 +1,6 @@
 import GeomAct2 from '../pages/Maths/seconde/geometrie/GeomAct2';
 import FonctionCarre from '../pages/Maths/seconde/algebre/FonctionCarre';
+import ProgrammePremierePhysique from "../data/ProgrammePremierePhysique";
 
 export const SPECIAL_ACTIVITIES = {
     math: {
@@ -361,6 +362,21 @@ export const SPECIAL_ACTIVITIES = {
 
                     ],
                 }
+            },
+        },
+        Première: {
+            ProgrammePremierePhysique: {
+                electricite: {
+                    activities: [
+                        {
+                            id: 1,
+                            title: 'Déterminer une puissance\n' +
+                                'électrique',
+                            path: 'electricite/act1et2Electricite',
+                            component: 'Act1et2Electricite',
+                        },
+                    ],
+                },
             },
         },
         Terminale: {

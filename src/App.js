@@ -84,6 +84,8 @@ import './styles/main.css';
 import ProgrammePremiereMaths from "./data/ProgrammePremiereMaths";
 import Act1Stat2var from "./pages/Maths/première/StatProba/Statistiques/Act1Stat2var";
 import EmploiDuTemps from "./data/EmploiDuTemps";
+import Act1et2Electricite from "./pages/SciencePhysiqueChimie/premiere/electricite/Act1et2Electricite";
+import ProgrammePremierePhysique from "./data/ProgrammePremierePhysique";
 
 const theme = createTheme({
     palette: {
@@ -137,6 +139,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique"
                             element={<ProgrammeSecondePhysique/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammePremierePhysique"
+                            element={<ProgrammePremierePhysique/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeTerminalePhysique3"
@@ -352,6 +358,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/math/:classId/ProgrammePremiereMaths/activites/statistiques/stat-deux-variable"
                             element={<Act1Stat2var/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammePremierePhysique/activites/electricite/act1et2Electricite"
+                            element={<Act1et2Electricite/>}
                         />
                         {/* Routes pour les CCF */}
                         <Route path="/ccf" element={<CCFPage/>}/>
