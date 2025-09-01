@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/EduManager/static/css/main.63e031ee.css",
-    "main.js": "/EduManager/static/js/main.c80cac3e.js",
+    "main.js": "/EduManager/static/js/main.79d34f5c.js",
     "static/js/977.7c1b83c7.chunk.js": "/EduManager/static/js/977.7c1b83c7.chunk.js",
     "static/js/732.88920a93.chunk.js": "/EduManager/static/js/732.88920a93.chunk.js",
     "static/js/103.612e5b3f.chunk.js": "/EduManager/static/js/103.612e5b3f.chunk.js",
@@ -51,6 +51,7 @@
     "static/media/14.gif": "/EduManager/static/media/14.2a311ffbd60286861db8.gif",
     "static/media/prisme.png": "/EduManager/static/media/prisme.b1b9baf1fb3b0c3c3914.png",
     "static/media/delagrave_Gpe_A_B_1er_livre_prof.png": "/EduManager/static/media/delagrave_Gpe_A_B_1er_livre_prof.645b270419545dace213.png",
+    "static/media/tour-eiffel.png": "/EduManager/static/media/tour-eiffel.6cd2df7f13fd366ee3d3.png",
     "static/media/tipi.png": "/EduManager/static/media/tipi.f7e6ce1a9c1f58fe9182.png",
     "static/media/evaluationForce.png": "/EduManager/static/media/evaluationForce.0332a0a492f05ca29099.png",
     "static/media/evaluationdynamo.png": "/EduManager/static/media/evaluationdynamo.7045262d224e71e3a656.png",
@@ -63,6 +64,7 @@
     "static/media/solMurForce.png": "/EduManager/static/media/solMurForce.ff83c5c425f660609e4d.png",
     "static/media/imageenrais.jpg": "/EduManager/static/media/imageenrais.547906cbf257e0113c16.jpg",
     "static/media/shrek.jpg": "/EduManager/static/media/shrek.d988b1d7465ec3d29544.jpg",
+    "static/media/ampoule.png": "/EduManager/static/media/ampoule.f64e9b7dff0c295859f5.png",
     "static/media/electromenager.jpg": "/EduManager/static/media/electromenager.a07c432ff0337381c517.jpg",
     "static/media/magasinstylo.jpg": "/EduManager/static/media/magasinstylo.47d5fcd0566333472533.jpg",
     "static/media/poulie.png": "/EduManager/static/media/poulie.3c8802c5574556ef0252.png",
@@ -117,6 +119,7 @@
     "static/media/objetForceEva.png": "/EduManager/static/media/objetForceEva.9e3bc95a5ccf6eb4e083.png",
     "static/media/KaTeX_Typewriter-Regular.ttf": "/EduManager/static/media/KaTeX_Typewriter-Regular.c5c02d763c89380dcb4e.ttf",
     "static/media/KaTeX_Main-Regular.woff2": "/EduManager/static/media/KaTeX_Main-Regular.f650f111a3b890d116f1.woff2",
+    "static/media/etiquetteCo2.png": "/EduManager/static/media/etiquetteCo2.2a81cbf29c537ffcc128.png",
     "static/media/KaTeX_Main-Bold.woff2": "/EduManager/static/media/KaTeX_Main-Bold.39890742bc957b368704.woff2",
     "static/media/KaTeX_SansSerif-Bold.ttf": "/EduManager/static/media/KaTeX_SansSerif-Bold.5b49f4993ae22d7975b4.ttf",
     "static/media/laserExercice.png": "/EduManager/static/media/laserExercice.7b044a1d780c2a19e543.png",
@@ -164,6 +167,7 @@
     "static/media/KaTeX_Size1-Regular.ttf": "/EduManager/static/media/KaTeX_Size1-Regular.6de7d4b539221a49e9e2.ttf",
     "static/media/KaTeX_SansSerif-Bold.woff2": "/EduManager/static/media/KaTeX_SansSerif-Bold.95591a929f0d32aa282a.woff2",
     "static/media/KaTeX_SansSerif-Italic.woff2": "/EduManager/static/media/KaTeX_SansSerif-Italic.7d393d382f3e7fb1c637.woff2",
+    "static/media/circuit-electrique.png": "/EduManager/static/media/circuit-electrique.5c8c2c8c269ae7d9e130.png",
     "static/media/KaTeX_Size2-Regular.ttf": "/EduManager/static/media/KaTeX_Size2-Regular.57f5c1837853986ea1db.ttf",
     "static/media/KaTeX_Fraktur-Bold.woff2": "/EduManager/static/media/KaTeX_Fraktur-Bold.931d67ea207ab37ee693.woff2",
     "static/media/KaTeX_Fraktur-Regular.woff2": "/EduManager/static/media/KaTeX_Fraktur-Regular.172d3529b26f8cedef6b.woff2",
@@ -188,7 +192,7 @@
     "static/media/KaTeX_Size3-Regular.woff2": "/EduManager/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/EduManager/index.html",
     "main.63e031ee.css.map": "/EduManager/static/css/main.63e031ee.css.map",
-    "main.c80cac3e.js.map": "/EduManager/static/js/main.c80cac3e.js.map",
+    "main.79d34f5c.js.map": "/EduManager/static/js/main.79d34f5c.js.map",
     "977.7c1b83c7.chunk.js.map": "/EduManager/static/js/977.7c1b83c7.chunk.js.map",
     "732.88920a93.chunk.js.map": "/EduManager/static/js/732.88920a93.chunk.js.map",
     "103.612e5b3f.chunk.js.map": "/EduManager/static/js/103.612e5b3f.chunk.js.map",
@@ -196,6 +200,6 @@
   },
   "entrypoints": [
     "static/css/main.63e031ee.css",
-    "static/js/main.c80cac3e.js"
+    "static/js/main.79d34f5c.js"
   ]
 }
