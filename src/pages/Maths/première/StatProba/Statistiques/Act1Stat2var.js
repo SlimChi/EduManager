@@ -577,7 +577,7 @@ const Act1Stat2var = () => {
                                         <div className="correction-box">
                                             <p><strong>Correction :</strong></p>
                                             <p>L'équation de la droite d'ajustement affine est :</p>
-                                            <BlockMath math="y = 0,23x - 459,8"/>
+                                            <BlockMath math="y = 0,25x - 511,06"/>
                                             <p>Où x représente l'année et y le nombre de voitures électriques en
                                                 millions.</p>
                                         </div>
@@ -606,10 +606,10 @@ const Act1Stat2var = () => {
                                         <div className="correction-box">
                                             <p><strong>Correction :</strong></p>
                                             <p>a. Calcul pour x = 2030 :</p>
-                                            <BlockMath math="y = 0,23 \times 2030 - 459,8 = 466,9 - 459,8 = 7,1"/>
-                                            <p>Arrondi au dixième : <strong>7,0 millions</strong></p>
+                                            <BlockMath math="y = 0,25 \times 2030 - 511,06 = 517,24 - 511,06  = 6,1"/>
+                                            <p>Arrondi au dixième : <strong>6,0 millions</strong></p>
                                             <p>b. « En 2030, le nombre de voitures électriques pourrait être égal selon
-                                                nos prévisions à environ <strong>7,0</strong> millions. »</p>
+                                                nos prévisions à environ <strong>6,0</strong> millions. »</p>
                                         </div>
                                     )}
                                 </div>
@@ -667,8 +667,8 @@ const Act1Stat2var = () => {
                                             <p><strong>Correction :</strong></p>
                                             <p>Calcul du taux d'augmentation :</p>
                                             <BlockMath
-                                                math="t = \frac{7,0 - 4,2}{4,2} \times 100 = \frac{2,8}{4,2} \times 100 \approx 66,7\%"/>
-                                            <p>Arrondi à l'unité : <strong>67%</strong> d'augmentation entre 2021 et
+                                                math="t = \frac{6,0 - 4,2}{4,2} \times 100 = \frac{1,8}{4,2} \times 100 \approx 42,85\%"/>
+                                            <p>Arrondi à l'unité : <strong>43%</strong> d'augmentation entre 2021 et
                                                 2030.</p>
                                         </div>
                                     )}
@@ -694,8 +694,8 @@ const Act1Stat2var = () => {
                                         <div className="correction-box">
                                             <p><strong>Correction :</strong></p>
                                             <p>Si la tendance se poursuit, le nombre de voitures électriques pourrait
-                                                atteindre 7,0 millions en 2030, ce qui représente une augmentation
-                                                d'environ 67% par rapport à 2021, contribuant ainsi à la transition
+                                                atteindre 6,0 millions en 2030, ce qui représente une augmentation
+                                                d'environ 43% par rapport à 2021, contribuant ainsi à la transition
                                                 énergétique et à la réduction des émissions de CO₂.</p>
                                         </div>
                                     )}
