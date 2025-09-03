@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/EduManager/static/css/main.87d4404c.css",
-    "main.js": "/EduManager/static/js/main.4e835bab.js",
+    "main.js": "/EduManager/static/js/main.8843404f.js",
     "static/js/977.7c1b83c7.chunk.js": "/EduManager/static/js/977.7c1b83c7.chunk.js",
     "static/js/732.88920a93.chunk.js": "/EduManager/static/js/732.88920a93.chunk.js",
     "static/js/103.612e5b3f.chunk.js": "/EduManager/static/js/103.612e5b3f.chunk.js",
@@ -193,7 +193,7 @@
     "static/media/KaTeX_Size3-Regular.woff2": "/EduManager/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/EduManager/index.html",
     "main.87d4404c.css.map": "/EduManager/static/css/main.87d4404c.css.map",
-    "main.4e835bab.js.map": "/EduManager/static/js/main.4e835bab.js.map",
+    "main.8843404f.js.map": "/EduManager/static/js/main.8843404f.js.map",
     "977.7c1b83c7.chunk.js.map": "/EduManager/static/js/977.7c1b83c7.chunk.js.map",
     "732.88920a93.chunk.js.map": "/EduManager/static/js/732.88920a93.chunk.js.map",
     "103.612e5b3f.chunk.js.map": "/EduManager/static/js/103.612e5b3f.chunk.js.map",
@@ -201,6 +201,6 @@
   },
   "entrypoints": [
     "static/css/main.87d4404c.css",
-    "static/js/main.4e835bab.js"
+    "static/js/main.8843404f.js"
   ]
 }
