@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {FaCheck, FaLightbulb, FaBolt} from 'react-icons/fa';
+import {FaCheck, FaLightbulb, FaBolt, FaIndustry, FaCog} from 'react-icons/fa';
 import '../../../../styles/activites.css';
 import {useLocation, useParams} from 'react-router-dom';
 import BackButton from '../../../../components/navigation/BackButton';
@@ -10,9 +10,11 @@ import ModalImage from "../../../../utils/ModalImage";
 import AutoEvaluationGrid from "../../../../config/AutoEvaluationGrid";
 
 // Images (à remplacer par les vôtres)
-import circuitImage from "../../../../assets/circuit-electrique.png";
+import circuitImage from "../../../../assets/circuit-electrique2.png";
+import circuit2 from "../../../../assets/circuit2.png";
 import tourEiffelImage from "../../../../assets/tour-eiffel.png";
-import ampoule from "../../../../assets/ampoule.png";
+import ampoule from "../../../../assets/ampoule2.png";
+import {IoMdSchool} from "react-icons/io";
 
 const Act1et2Electricite = () => {
     const {classId} = useParams();
@@ -106,13 +108,279 @@ const Act1et2Electricite = () => {
                 pageCount={2}
                 quality="hd"
             />
+            {/* PAGE DE GARDE - ÉLECTRICITÉ */}
+            <div className="print-page">
+                <div className="cover-page" style={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    textAlign: 'center',
+                    padding: '2rem',
+                    background: 'linear-gradient(135deg, #ddf0ff 0%, #ffffff 50%, #4A90E2 50%, white 50%, white 100%)',
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    fontFamily: 'Cambria Math, serif'
+                }}>
+                    {/* En-tête */}
+                    <div style={{
+                        marginBottom: '2rem',
+                        padding: '2rem',
+                        backgroundColor: 'white',
+                        borderRadius: '12px',
+                        boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
+                        maxWidth: '90%'
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginBottom: '1.5rem'
+                        }}>
+                            <div style={{
+                                width: '80px',
+                                height: '80px',
+                                borderRadius: '50%',
+                                backgroundColor: '#FF6B00',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                color: 'white',
+                                fontSize: '2.5rem',
+                                boxShadow: '0 4px 8px rgba(255, 107, 0, 0.3)'
+                            }}>
+                                ⚡
+                            </div>
+                        </div>
 
+                        <h1 style={{
+                            color: '#2c3e50',
+                            fontSize: '2.2rem',
+                            fontWeight: '700',
+                            marginBottom: '0.5rem'
+                        }}>
+                            CHAPITRE 2 - Électricité
+                        </h1>
+
+                        <h2 style={{
+                            color: '#FF6B00',
+                            fontSize: '1.5rem',
+                            fontWeight: '500',
+                            marginBottom: '1.5rem'
+                        }}>
+                            Comment obtenir et utiliser efficacement l'énergie électrique ?
+                        </h2>
+
+                        <div style={{
+                            height: '3px',
+                            width: '80px',
+                            backgroundColor: '#FF6B00',
+                            margin: '0 auto 1.5rem',
+                            borderRadius: '3px'
+                        }}></div>
+
+                        <p style={{
+                            color: '#7f8c8d',
+                            fontSize: '1.1rem',
+                            marginBottom: '2rem',
+                            lineHeight: '1.6'
+                        }}>
+                            Exploration des principes fondamentaux de l'électricité et de ses applications<br/>
+                            dans les systèmes industriels et domestiques
+                        </p>
+
+                        <div style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            justifyContent: 'center',
+                            gap: '1rem',
+                            marginBottom: '2rem'
+                        }}>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                backgroundColor: '#f8f9fa',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '20px',
+                                fontSize: '0.9rem'
+                            }}>
+                                <FaIndustry style={{marginRight: '0.5rem', color: '#FF6B00'}}/>
+                                Physique-Chimie
+                            </div>
+
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                backgroundColor: '#f8f9fa',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '20px',
+                                fontSize: '0.9rem'
+                            }}>
+                                <IoMdSchool style={{marginRight: '0.5rem', color: '#FF6B00'}}/>
+                                Niveau Première
+                            </div>
+
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                backgroundColor: '#f8f9fa',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '20px',
+                                fontSize: '0.9rem'
+                            }}>
+                                <FaCog style={{marginRight: '0.5rem', color: '#FF6B00'}}/>
+                                Groupement 1
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Tableau des capacités et connaissances */}
+                    <div style={{
+                        width: '100%',
+                        marginBottom: '2rem',
+                        backgroundColor: 'white',
+                        borderRadius: '12px',
+                        boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
+                        padding: '1.5rem',
+                        textAlign: 'left'
+                    }}>
+                        <h3 style={{
+                            color: '#2c3e50',
+                            textAlign: 'center',
+                            marginBottom: '1.5rem',
+                            fontSize: '1.4rem'
+                        }}>
+                            Capacités et connaissances - Distinguer énergie et puissance électrique
+                        </h3>
+
+                        <table style={{
+                            width: '100%',
+                            borderCollapse: 'collapse',
+                            fontSize: '0.9rem'
+                        }}>
+                            <thead>
+                            <tr style={{backgroundColor: 'rgba(255,107,0,0.32)', color: 'black'}}>
+                                <th style={{
+                                    padding: '0.75rem',
+                                    border: '1px solid #ddd',
+                                    textAlign: 'center'
+                                }}>Capacités
+                                </th>
+                                <th style={{
+                                    padding: '0.75rem',
+                                    border: '1px solid #ddd',
+                                    textAlign: 'center'
+                                }}>Connaissances
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Mesurer la puissance électrique reçue et l'énergie électrique reçue pendant une
+                                    durée donnée par un appareil utilisé en régime continu.
+                                </td>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Connaître la relation entre l'énergie électrique reçue, la puissance et la durée (E
+                                    = P.t).
+                                </td>
+                            </tr>
+                            <tr style={{backgroundColor: '#f8f9fa'}}>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Calculer la puissance électrique reçue et l'énergie électrique reçue pendant une
+                                    durée donnée par un appareil utilisé en régime continu.
+                                </td>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Connaître la relation entre la puissance électrique, la tension et l'intensité en
+                                    régime continu (P = U.I).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Établir expérimentalement la relation entre la puissance électrique reçue, la valeur
+                                    de la tension et celle de l'intensité en régime continu.
+                                </td>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Savoir que le joule est l'unité d'énergie du système international et connaître
+                                    d'autres unités, dont le kilowattheure (kWh).
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <h3 style={{
+                            color: '#2c3e50',
+                            textAlign: 'center',
+                            margin: '1.5rem 0',
+                            fontSize: '1.4rem'
+                        }}>
+                            Capacités et connaissances - Transporter l'énergie sous forme électrique
+                        </h3>
+
+                        <table style={{
+                            width: '100%',
+                            borderCollapse: 'collapse',
+                            fontSize: '0.9rem'
+                        }}>
+                            <thead>
+                            <tr style={{backgroundColor: 'rgba(241,230,214,0.38)', color: 'black'}}>
+                                <th style={{
+                                    padding: '0.75rem',
+                                    border: '1px solid #ddd',
+                                    textAlign: 'center'
+                                }}>Capacités
+                                </th>
+                                <th style={{
+                                    padding: '0.75rem',
+                                    border: '1px solid #ddd',
+                                    textAlign: 'center'
+                                }}>Connaissances
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Représenter le schéma simplifié d'un réseau de distribution d'énergie électrique à
+                                    l'échelle d'un pays et d'une installation domestique.
+                                </td>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Connaître la relation reliant puissance électrique dissipée par effet Joule,
+                                    résistance et valeur efficace de l'intensité ou de la tension.
+                                </td>
+                            </tr>
+                            <tr style={{backgroundColor: '#f8f9fa'}}>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Justifier l'intérêt du transport d'énergie électrique à grande distance sous haute
+                                    tension.
+                                </td>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Savoir que l'effet Joule est responsable des pertes en ligne dans le transport et la
+                                    distribution de l'électricité.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Mettre en évidence expérimentalement le rôle d'abaisseur ou d'élévateur de tension
+                                    d'un transformateur.
+                                </td>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Connaître le rôle des transformateurs dans les réseaux de distribution d'énergie
+                                    électrique ou dans les appareils électriques d'utilisation courante.
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             {/* PAGE 1 */}
             <div className="print-page" id="page1-start">
                 <section className="tp-section compact">
-                    <div className="math-chapter-box blue mt-0" style={{padding: '0'}}>
-                        <span style={{marginRight: '10px', fontSize: '30px'}}>⚡</span>
-                        <h2 className="math-chapter-title-test">Électricité - Puissance électrique</h2>
+
+                    <div className="math-chapter-box blue" style={{padding: '10px', marginTop: '-10px'}}>
+                        <h3 className="math-chapter-title-test mb-0">Chapitre 1 - Distinguer énergie et puissance
+                            électriques</h3>
                     </div>
                     <div className="activity-header mt-0">
                         <span className="activity-badge">ACTIVITÉ 1</span>
@@ -130,24 +398,35 @@ const Act1et2Electricite = () => {
                                     🚗 "Le mystère des phares qui n'éclairent plus assez !"
                                 </h5>
 
-                                <p style={{textAlign: 'justify', textJustify: 'inter-word', fontSize: '16px'}}>
-                                    <span className="fw-bold text-primary">Léa</span> et <span
-                                    className="fw-bold text-primary">Thomas</span>, deux amis passionnés de mécanique,
+                                <p style={{
+                                    textAlign: 'justify',
+                                    textJustify: 'inter-word',
+                                    fontSize: '16px',
+                                    lineHeight: '1.4'
+                                }}>
+                                    <span style={{fontWeight: 'bold', color: '#1976d2'}}>Léa</span> et{' '}
+                                    <span style={{fontWeight: 'bold', color: '#1976d2'}}>Thomas</span>, deux amis
+                                    passionnés de mécanique,
                                     découvrent différentes lampes dans un coffret correspondant à leur voiture.
-                                    <br/><br/>
-                                    Ce sont des lampes de tension 12 volts et dont la puissance est variable
-                                    (21 watts et 5 watts). Léa a remplacé une lampe de sa voiture mais elle trouve
+
+                                    <br/>
+                                    Ce sont des lampes de tension <span style={{fontWeight: 'bold'}}>12 volts</span> et
+                                    dont la puissance est variable <br/>
+                                    (<span style={{fontWeight: 'bold'}}> 21 watts</span> et <span
+                                    style={{fontWeight: 'bold'}}>5 watts</span>). Léa a remplacé une lampe de sa voiture
+                                    mais elle trouve
                                     qu'elle éclaire moins bien qu'avant. Thomas lui propose alors de vérifier la
                                     puissance inscrite sur le culot.
-                                    <br/><br/>
-                                    <span className="fst-italic text-secondary">
+
+                                    <br/>
+                                    <span style={{fontStyle: 'italic', color: '#2e7d32'}}>
                                         "Une puissance électrique différente peut-elle expliquer le problème de Léa ?"
-                                    </span>
+                                      </span>
                                 </p>
                             </div>
                         </div>
                         <div className="flex-shrink-0"
-                             style={{maxWidth: '250px', cursor: 'pointer'}}>
+                             style={{maxWidth: '250px', cursor: 'pointer', marginTop: '10px'}}>
                             <img
                                 src={ampoule}
                                 alt="Circuit électrique avec lampes"
@@ -157,7 +436,7 @@ const Act1et2Electricite = () => {
                         </div>
                     </div>
 
-                    <div className="objectif-box" style={{marginTop: '-10px', marginBottom: '10px'}}>
+                    <div className="objectif-box" style={{marginTop: '5px', marginBottom: '5px'}}>
                         <div className="objectif-title"><strong style={{color: 'orangered'}}> Objectif :</strong> 🎯
                         </div>
                         <p>Comprendre comment déterminer la puissance électrique d'un dipôle et vérifier
@@ -168,58 +447,46 @@ const Act1et2Electricite = () => {
                     {/* Section S'approprier */}
                     <div className="question-card mt-0">
                         <div className="question-content">
-                            <h4 className="vect-title"><span>S'approprier</span></h4>
-                            <p>1. Relever pour les deux lampes les informations présentes sur le culot. Indiquer les
-                                unités utilisées pour la tension et la puissance électriques.</p>
-                            <div className="answer-area">
-                                <textarea
-                                    className="answer-input"
-                                    value={answers.question1}
-                                    onChange={(e) => handleInputChange('question1', e.target.value)}
-                                    rows={2}
-                                ></textarea>
-                                <button
-                                    className="correction-btnoptic"
-                                    onClick={() => toggleCorrection('question1')}
-                                >
-                                    <FaCheck/> {showCorrections.question1 ? 'Masquer la correction' : 'Afficher la correction'}
-                                </button>
-                            </div>
+                            <h4 className="vect-title"
+                                style={{display: 'inline', marginRight: '10px'}}>
+                                <span>S'approprier</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                1. Relever pour les deux lampes les informations présentes sur le culot. Indiquer
+                                les unités utilisées pour la tension et la puissance électriques
+                                ..........................................................................................................................................
+                                ............................................................................................................................................................................................
+                            </p>
                         </div>
-                    </div>
 
-                    {/* Section Analyser/Raisonner */}
-                    <div className="question-card">
                         <div className="question-content">
-                            <h4 className="vect-title"><span>Analyser/Raisonner</span></h4>
-                            <p>2. Parfois sur le culot des lampes, on trouve ce type d'informations : 12V-500 mA. À
-                                quelle grandeur physique correspond la deuxième valeur et avec quel appareil peut-on la
-                                mesurer ?</p>
-                            <div className="answer-area">
-                                <textarea
-                                    className="answer-input"
-                                    value={answers.question2}
-                                    onChange={(e) => handleInputChange('question2', e.target.value)}
-                                    rows={2}
-                                ></textarea>
-                                <button
-                                    className="correction-btnoptic"
-                                    onClick={() => toggleCorrection('question2')}
-                                >
-                                    <FaCheck/> {showCorrections.question2 ? 'Masquer la correction' : 'Afficher la correction'}
-                                </button>
-                            </div>
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Analyser/Raisonner</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>2. Parfois sur le culot des lampes, on
+                                trouve ce type d'informations : 12V-500 mA. À
+                                quelle grandeur physique correspond la deuxième valeur et avec quel appareil peut-on
+                                la
+                                mesurer ?....................................
+                                ......................................................................................
+                                ...............................................................................................................................</p>
                         </div>
-                    </div>
 
-                    {/* Section Réaliser */}
-                    <div className="question-card">
                         <div className="question-content">
-                            <h4 className="vect-title"><span>Réaliser</span></h4>
-                            <p>3. Compléter le schéma ci-dessous en indiquant le voltmètre et l'ampèremètre.</p>
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Réaliser</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>3. Compléter le schéma ci-dessous en
+                                indiquant le voltmètre et l'ampèremètre.</p>
 
                             <div className="flex-shrink-0"
-                                 style={{maxWidth: '100%', cursor: 'pointer', marginTop: '20px', marginBottom: '10px'}}>
+                                 style={{
+                                     maxWidth: '40%',
+                                     cursor: 'pointer',
+                                     marginTop: '20px',
+                                     marginBottom: '10px',
+                                     marginLeft: '28%',
+                                 }}>
                                 <img
                                     src={circuitImage}
                                     alt="Schéma de circuit à compléter"
@@ -268,60 +535,29 @@ const Act1et2Electricite = () => {
                             </button>
 
                             <p className="mt-3">5. En regardant les puissances, indiquer la lampe qui brille le
-                                plus.</p>
-                            <div className="answer-area">
-                                <textarea
-                                    className="answer-input"
-                                    value={answers.question5}
-                                    onChange={(e) => handleInputChange('question5', e.target.value)}
-                                    rows={1}
-                                ></textarea>
-                                <button
-                                    className="correction-btnoptic"
-                                    onClick={() => toggleCorrection('question5')}
-                                >
-                                    <FaCheck/> {showCorrections.question5 ? 'Masquer la correction' : 'Afficher la correction'}
-                                </button>
-                            </div>
+                                plus ...................................................................................
+                                ...................................................................................
+                                .............................................................................................................</p>
+
                         </div>
-                    </div>
 
-                    {/* Section Valider/Communiquer */}
-                    <div className="question-card">
                         <div className="question-content">
-                            <h4 className="vect-title"><span>Valider/Communiquer</span></h4>
-                            <p>6. Comparer les deux dernières colonnes et en déduire la relation entre U, I et P.
-                                Indiquer pour chaque lettre la grandeur physique et l'unité.</p>
-                            <div className="answer-area">
-                                <textarea
-                                    className="answer-input"
-                                    value={answers.question6}
-                                    onChange={(e) => handleInputChange('question6', e.target.value)}
-                                    rows={3}
-                                ></textarea>
-                                <button
-                                    className="correction-btnoptic"
-                                    onClick={() => toggleCorrection('question6')}
-                                >
-                                    <FaCheck/> {showCorrections.question6 ? 'Masquer la correction' : 'Afficher la correction'}
-                                </button>
-                            </div>
-
-                            <p className="mt-3">7. Que dire à Léa ?</p>
-                            <div className="answer-area">
-                                <textarea
-                                    className="answer-input"
-                                    value={answers.question7}
-                                    onChange={(e) => handleInputChange('question7', e.target.value)}
-                                    rows={2}
-                                ></textarea>
-                                <button
-                                    className="correction-btnoptic"
-                                    onClick={() => toggleCorrection('question7')}
-                                >
-                                    <FaCheck/> {showCorrections.question7 ? 'Masquer la correction' : 'Afficher la correction'}
-                                </button>
-                            </div>
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Valider/Communiquer</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                6. Comparer les deux dernières colonnes
+                                et en déduire la relation entre U, I et P.
+                                Indiquer pour chaque lettre la grandeur physique et l'unité
+                                ........................................................................................................................
+                                .........................................................................................................................
+                                ...........................................................</p>
+                            <p className="mt-3">7. Que dire à Léa ?
+                                ...............................................................................................................
+                                ..................................................................
+                                ...............................................................................................................
+                                ................................................................................................................
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -349,18 +585,17 @@ const Act1et2Electricite = () => {
                                 <p style={{
                                     textAlign: 'justify',
                                     textJustify: 'inter-word',
-                                    fontSize: '16px',
-                                    lineHeight: '1.6'
+                                    fontSize: '15px',
+                                    lineHeight: '1.4'
                                 }}>
                                     🌟 <strong>À la tombée de la nuit et jusqu'à 1 heure du matin</strong>,
                                     la tour Eiffel s'habille et scintille d'une couverture d'or. Au début de chaque
                                     heure et pendant 5 minutes, 20 000 lampes de faible puissance (6 W) s'allument
                                     de façon aléatoire. Depuis 2008, pour des raisons d'économie d'énergie, le temps
                                     de scintillement est passé de 10 à 5 minutes à chaque début d'heure.
-                                    <br/><br/>
-                                    <strong className="text-primary">
-                                        Cette diminution du scintillement permet-elle de faire des économies d'énergie ?
-                                    </strong>
+                                    <br/> <strong className="text-primary">
+                                    Cette diminution du scintillement permet-elle de faire des économies d'énergie ?
+                                </strong>
                                 </p>
                             </div>
                         </div>
@@ -373,163 +608,137 @@ const Act1et2Electricite = () => {
                                 onClick={() => openModal(tourEiffelImage, 'Tour Eiffel illuminée')}
                             />
                         </div>
-                    </div>
 
-                    {/* Section S'approprier */}
-                    <div className="question-card mt-1">
                         <div className="question-content">
-                            <h4 className="vect-title"><span>S'approprier</span></h4>
-                            <p>1. Relever les facteurs qui permettent de faire des économies d'énergie pour illuminer la
-                                tour Eiffel.</p>
-                            <div className="answer-area">
-                                <textarea
-                                    className="answer-input"
-                                    value={answers.question8}
-                                    onChange={(e) => handleInputChange('question8', e.target.value)}
-                                    rows={2}
-                                ></textarea>
-                                <button
-                                    className="correction-btnoptic"
-                                    onClick={() => toggleCorrection('question8')}
-                                >
-                                    <FaCheck/> {showCorrections.question8 ? 'Masquer la correction' : 'Afficher la correction'}
-                                </button>
-                            </div>
+                            <h4 className="vect-title"
+                                style={{display: 'inline', marginRight: '10px'}}>
+                                <span>S'approprier</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                1. Relever les facteurs qui permettent
+                                de faire des économies d'énergie pour illuminer la
+                                tour Eiffel.
+                                ........................................................................................................................
+                                ....................................................................................................</p>
                         </div>
-                    </div>
 
-                    {/* Section Réaliser */}
-                    <div className="question-card">
-                        <div className="question-content">
-                            <h4 className="vect-title"><span>Réaliser</span></h4>
-                            <p>Le joulemètre est un appareil qui regroupe un ampèremètre (branchement en série) et un
+                        <div className="question-content mt-0">
+                            <h4 className="vect-title"
+                                style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Réaliser</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                Le joulemètre est un appareil qui
+                                regroupe un ampèremètre (branchement en série) et un
                                 voltmètre (branchement en dérivation).</p>
 
                             <div className="flex-shrink-0"
                                  style={{maxWidth: '100%', cursor: 'pointer', marginTop: '20px', marginBottom: '10px'}}>
                                 <img
-                                    src={circuitImage}
+                                    src={circuit2}
                                     alt="Schéma du montage avec joulemètre"
                                     className="img-fluid rounded shadow-sm compact-img"
-                                    onClick={() => openModal(circuitImage, 'Montage avec joulemètre')}
+                                    onClick={() => openModal(circuit2, 'Montage avec joulemètre')}
                                 />
-                                <p className="text-center mt-1"><small>Schéma du montage - Joulemètre</small></p>
                             </div>
 
                             <p>2. Réaliser le montage et appeler le professeur pour le fonctionnement du joulemètre.</p>
 
-                            <p>3. Compléter le tableau (3 premières colonnes) en effectuant trois séries de mesures.
-                                La mesure du temps <InlineMath math="t"/> se fait en trois étapes : mise à zéro,
-                                démarrage et arrêt.</p>
+                            <div style={{display: 'flex', gap: '20px', alignItems: 'flex-start', marginBottom: '20px'}}>
+                                {/* Colonne de texte */}
+                                <div style={{flex: '1', minWidth: '300px'}}>
+                                    <p>3. Compléter le tableau (3 premières colonnes) en effectuant trois séries de
+                                        mesures.
+                                        La mesure du temps <InlineMath math="t"/> se fait en trois étapes : mise à zéro,
+                                        démarrage et arrêt.</p>
 
-                            <p>4. Dans la dernière colonne, calculer le produit <InlineMath math="P \times t"/> en
-                                arrondissant à l'unité.</p>
+                                    <p>4. Dans la dernière colonne, calculer le produit <InlineMath
+                                        math="P \times t"/> en
+                                        arrondissant à l'unité.</p>
+                                </div>
 
-                            <table className="table table-bordered text-center shadow-sm">
-                                <thead className="table-light">
-                                <tr>
-                                    <th>Temps <InlineMath math="t"/> (s)</th>
-                                    <th>Énergie <InlineMath math="E"/> (J)</th>
-                                    <th>Puissance <InlineMath math="P"/> (W)</th>
-                                    <th><InlineMath math="P \times t"/></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>.............</td>
-                                    <td>.............</td>
-                                    <td>.............</td>
-                                    <td>.............</td>
-                                </tr>
-                                <tr>
-                                    <td>.............</td>
-                                    <td>.............</td>
-                                    <td>.............</td>
-                                    <td>.............</td>
-                                </tr>
-                                <tr>
-                                    <td>.............</td>
-                                    <td>.............</td>
-                                    <td>.............</td>
-                                    <td>.............</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                {/* Colonne du tableau */}
+                                <div style={{flex: '1', minWidth: '300px'}}>
+                                    <table className="table table-bordered text-center shadow-sm"
+                                           style={{fontSize: '14px'}}>
+                                        <thead className="table-light">
+                                        <tr>
+                                            <th>Temps <InlineMath math="t"/> (s)</th>
+                                            <th>Énergie <InlineMath math="E"/> (J)</th>
+                                            <th>Puissance <InlineMath math="P"/> (W)</th>
+                                            <th><InlineMath math="P \times t"/></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>.............</td>
+                                            <td>.............</td>
+                                            <td>.............</td>
+                                            <td>.............</td>
+                                        </tr>
+                                        <tr>
+                                            <td>.............</td>
+                                            <td>.............</td>
+                                            <td>.............</td>
+                                            <td>.............</td>
+                                        </tr>
+                                        <tr>
+                                            <td>.............</td>
+                                            <td>.............</td>
+                                            <td>.............</td>
+                                            <td>.............</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Section Valider */}
-                    <div className="question-card">
-                        <div className="question-content">
-                            <h4 className="vect-title"><span>Valider</span></h4>
-                            <p>5. Comparer <InlineMath math="E"/>, <InlineMath math="P \times t"/>, <InlineMath
-                                math="E = P \times t"/>.</p>
+                        <div className="question-content" style={{marginTop: '-2%'}}>
+                            <h4 className="vect-title"
+                                style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Valider</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>5. Comparer <InlineMath
+                                math="E"/>, <InlineMath math="P \times t"/>,
+                                ....................................</p>
 
-                            <p>6. Préciser les unités de chaque grandeur physique. <InlineMath math="E"/> en joules,
-                                <InlineMath math="P"/> en watts et <InlineMath math="t"/> en secondes.</p>
+                            <p>6. Préciser les unités de chaque grandeur
+                                physique..................................................................
+                                ..........................................................</p>
 
                             <p>7. Pour la tour Eiffel, calculer l'énergie consommée par les lampes en considérant
                                 qu'elles fonctionnent de façon continue pendant 5 minutes.
-                                <InlineMath math="E = 20 000 \times 6 \times 5 \times 60"/>.</p>
-                            <p className="ms-3"><InlineMath math="E = 36 000 000 \, \text{J}"/>.</p>
-
+                                ................................................................................
+                                .................................................................................</p>
                             <p>8. Une autre unité utilisée pour quantifier l'énergie est le wattheure (Wh).
                                 Convertir l'énergie précédente en Wh sachant que <InlineMath
                                     math="1 \, \text{Wh} = 3 600 \, \text{J}"/>.
-                                <InlineMath math="E = 10 000 \, \text{Wh}"/> en divisant par 3 600.</p>
+                                .....................................................................
+                                ...................................................................................</p>
                         </div>
-                    </div>
 
-                    {/* Section Communiquer */}
-                    <div className="question-card">
-                        <div className="question-content">
-                            <h4 className="vect-title"><span>Communiquer</span></h4>
-                            <p className="fst-italic">MATHS +/- | Voir la fiche 7, p. 217</p>
-
-                            <p>9. Le scintillement des lampes permet-il aussi de faire des économies ?</p>
-                            <div className="answer-area">
-                                <textarea
-                                    className="answer-input"
-                                    value={answers.question9}
-                                    onChange={(e) => handleInputChange('question9', e.target.value)}
-                                    rows={2}
-                                ></textarea>
-                                <button
-                                    className="correction-btnoptic"
-                                    onClick={() => toggleCorrection('question9')}
-                                >
-                                    <FaCheck/> {showCorrections.question9 ? 'Masquer la correction' : 'Afficher la correction'}
-                                </button>
-                            </div>
-
+                        <div className="question-content" style={{marginTop: '-2%'}}>
+                            <h4 className="vect-title"
+                                style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Communiquer</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                9. Le scintillement des lampes
+                                permet-il aussi de faire des économies ?
+                                ..................................................
+                                .............................................................................................
+                                ....................................................................................
+                                ....................................</p>
                             <p className="mt-3">10. Au niveau de notre logement, comment peut-on réduire l'énergie
-                                consommée ?</p>
-                            <div className="answer-area">
-                                <textarea
-                                    className="answer-input"
-                                    value={answers.question10}
-                                    onChange={(e) => handleInputChange('question10', e.target.value)}
-                                    rows={2}
-                                ></textarea>
-                                <button
-                                    className="correction-btnoptic"
-                                    onClick={() => toggleCorrection('question10')}
-                                >
-                                    <FaCheck/> {showCorrections.question10 ? 'Masquer la correction' : 'Afficher la correction'}
-                                </button>
-                            </div>
+                                consommée ? .....................................................................
+                                ...........................................................................................................
+                                ..........................................................................................................</p>
+
                         </div>
                     </div>
 
-                    <div className="math-chapter-box blue" style={{padding: '10px', marginTop: '20px'}}>
-                        <h3 className="math-chapter-title-test mb-0">Chapitre 1 - Distinguer énergie et puissance
-                            électriques</h3>
-                    </div>
                 </section>
-
-                <footer className="tp-footer">
-                    <p>Électricité - Puissance et énergie électriques</p>
-                </footer>
             </div>
 
             {modalState.show && (<ModalImage

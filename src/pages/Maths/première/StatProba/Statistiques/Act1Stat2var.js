@@ -13,6 +13,7 @@ import schemaUsinage from "../../../../../assets/etiquetteprofondeur.png";
 import AutoEvaluationGrid from "../../../../../config/AutoEvaluationGrid";
 import schemaVoiture from "../../../../../assets/etiquetteVoiture.png";
 import {Typography} from "@mui/material";
+import Automatismes2 from "../../../../../config/Automatismes2";
 
 const Act1Stat2var = () => {
     const {classId} = useParams();
@@ -143,7 +144,198 @@ const Act1Stat2var = () => {
                 pageCount={2}
                 quality="hd"
             />
+            {/* PAGE DE GARDE */}
+            <div className="print-page">
+                <div className="cover-page" style={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    textAlign: 'center',
+                    padding: '2rem',
+                    background: 'linear-gradient(135deg, #ddf0ff 0%, #ffffff 50%, #4A90E2 50%, white 50%, white 100%)',
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    fontFamily: 'Cambria Math, serif'
+                }}>
+                    {/* En-tête */}
+                    <div style={{
+                        marginBottom: '2rem',
+                        padding: '2rem',
+                        backgroundColor: 'white',
+                        borderRadius: '12px',
+                        boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
+                        maxWidth: '90%'
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginBottom: '1.5rem'
+                        }}>
+                            <div style={{
+                                width: '80px',
+                                height: '80px',
+                                borderRadius: '50%',
+                                backgroundColor: '#4A90E2',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                color: 'white',
+                                fontSize: '2.5rem',
+                                boxShadow: '0 4px 8px rgba(74, 144, 226, 0.3)'
+                            }}>
+                                📊
+                            </div>
+                        </div>
 
+                        <h1 style={{
+                            color: '#2c3e50',
+                            fontSize: '2.2rem',
+                            fontWeight: '700',
+                            marginBottom: '0.5rem'
+                        }}>
+                            CHAPITRE 1 - Statistiques à Deux Variables
+                        </h1>
+
+                        <h2 style={{
+                            color: '#4A90E2',
+                            fontSize: '1.5rem',
+                            fontWeight: '500',
+                            marginBottom: '1.5rem'
+                        }}>
+                            Activités d'exploration
+                        </h2>
+
+                        <div style={{
+                            height: '3px',
+                            width: '80px',
+                            backgroundColor: '#4A90E2',
+                            margin: '0 auto 1.5rem',
+                            borderRadius: '3px'
+                        }}></div>
+
+                        <p style={{
+                            color: '#7f8c8d',
+                            fontSize: '1.1rem',
+                            marginBottom: '2rem',
+                            lineHeight: '1.6'
+                        }}>
+                            Exploration des relations entre variables quantitatives à travers<br/>
+                            des études de cas concrets et contemporains
+                        </p>
+
+                        <div style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            justifyContent: 'center',
+                            gap: '1rem',
+                            marginBottom: '2rem'
+                        }}>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                backgroundColor: '#f8f9fa',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '20px',
+                                fontSize: '0.9rem'
+                            }}>
+                                <FaIndustry style={{marginRight: '0.5rem', color: '#4A90E2'}}/>
+                                Mathématiques
+                            </div>
+
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                backgroundColor: '#f8f9fa',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '20px',
+                                fontSize: '0.9rem'
+                            }}>
+                                <IoMdSchool style={{marginRight: '0.5rem', color: '#4A90E2'}}/>
+                                Niveau Première
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Tableau des capacités et connaissances */}
+                    <div style={{
+                        width: '100%',
+                        marginBottom: '2rem',
+                        backgroundColor: 'white',
+                        borderRadius: '12px',
+                        boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
+                        padding: '1.5rem',
+                        textAlign: 'left'
+                    }}>
+                        <h3 style={{
+                            color: '#2c3e50',
+                            textAlign: 'center',
+                            marginBottom: '1.5rem',
+                            fontSize: '1.4rem'
+                        }}>
+                            Capacités et connaissances
+                        </h3>
+
+                        <table style={{
+                            width: '100%',
+                            borderCollapse: 'collapse',
+                            fontSize: '0.9rem'
+                        }}>
+                            <thead>
+                            <tr style={{backgroundColor: '#4A90E2', color: 'white'}}>
+                                <th style={{
+                                    padding: '0.75rem',
+                                    border: '1px solid #ddd',
+                                    textAlign: 'center'
+                                }}>Capacités
+                                </th>
+                                <th style={{
+                                    padding: '0.75rem',
+                                    border: '1px solid #ddd',
+                                    textAlign: 'center'
+                                }}>Connaissances
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Représenter graphiquement à l'aide d'outils numériques un nuage de points associé à
+                                    une série statistique à deux variables quantitatives.
+                                </td>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Nuage de points associé à une série statistique à deux variables quantitatives.
+                                </td>
+                            </tr>
+                            <tr style={{backgroundColor: '#f8f9fa'}}>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Réaliser un ajustement affine, à l'aide des outils numériques.<br/>
+                                    Déterminer l'équation réduite d'une droite d'ajustement par la méthode des moindres
+                                    carrés, à l'aide d'outils numériques.<br/>
+                                    Interpoler ou extrapoler des valeurs inconnues.
+                                </td>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Ajustement affine par la méthode des moindres carrés.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Déterminer le coefficient de détermination d'une série statistique à deux variables
+                                    quantitatives à l'aide d'outils numériques.<br/>
+                                    Évaluer la pertinence d'un ajustement affine.
+                                </td>
+                                <td style={{padding: '0.75rem', border: '1px solid #ddd', verticalAlign: 'top'}}>
+                                    Coefficient de détermination R².
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <Automatismes2/>
+
+                </div>
+            </div>
             {/* PAGE 1 - ACTIVITÉ 1 */}
             <div className="print-page">
                 <div className="math-chapter-box green mt-0" style={{padding: '0'}}>
@@ -163,7 +355,12 @@ const Act1Stat2var = () => {
 
                     <div className="renovation-contexte2" style={{width: '100%'}}>
                         <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
-                            <div style={{flex: '1 1 70%', paddingRight: '20px'}}>
+                            <div style={{
+                                flex: '1 1 70%', paddingRight: '20px', textAlign: 'justify',
+                                textJustify: 'inter-word',
+                                fontSize: '16px',
+                                lineHeight: '1.4'
+                            }}>
                                 <p>Dans le cadre d'un projet scientifique, une classe décide d'envoyer une sonde
                                     sous-marine
                                     afin de mesurer la pression de l'eau au fur et à mesure de la descente.</p>
@@ -189,7 +386,7 @@ const Act1Stat2var = () => {
                                     className="img-fluid rounded shadow-sm"
                                     style={{
                                         width: '100%',
-                                        maxWidth: '250px',
+                                        maxWidth: '230px',
                                         height: 'auto',
                                         border: '1px solid #ddd',
                                     }}
@@ -411,12 +608,12 @@ const Act1Stat2var = () => {
                                 <p>À partir de la droite d'ajustement tracée dans la zone abyssale, déterminez la valeur
                                     de la profondeur, arrondie au mètre près, pour une pression de 290 bar.</p>
                                 <div className="answer-area">
-            <textarea
-                className="answer-input"
-                value={answers.activity1_q4}
-                onChange={(e) => handleInputChange('activity1_q4', e.target.value)}
-                rows={2}
-            ></textarea>
+                                    <textarea
+                                        className="answer-input"
+                                        value={answers.activity1_q4}
+                                        onChange={(e) => handleInputChange('activity1_q4', e.target.value)}
+                                        rows={2}
+                                    ></textarea>
                                     <button
                                         className="correction-btnoptic"
                                         onClick={() => toggleCorrection('activity1_q4')}
@@ -650,12 +847,12 @@ const Act1Stat2var = () => {
                                     Arrondissez à l'unité.</p>
 
                                 <div className="answer-area">
-            <textarea
-                className="answer-input"
-                value={answers.activity2_q4}
-                onChange={(e) => handleInputChange('activity2_q4', e.target.value)}
-                rows={2}
-            ></textarea>
+                                    <textarea
+                                        className="answer-input"
+                                        value={answers.activity2_q4}
+                                        onChange={(e) => handleInputChange('activity2_q4', e.target.value)}
+                                        rows={2}
+                                    ></textarea>
                                     <button
                                         className="correction-btnoptic"
                                         onClick={() => toggleCorrection('activity2_q4')}
@@ -678,12 +875,12 @@ const Act1Stat2var = () => {
                                 <p>Combien de voitures électriques pourrait-on avoir en 2030 ?</p>
 
                                 <div className="answer-area">
-            <textarea
-                className="answer-input"
-                value={answers.activity2_q5}
-                onChange={(e) => handleInputChange('activity2_q5', e.target.value)}
-                rows={2}
-            ></textarea>
+                                    <textarea
+                                        className="answer-input"
+                                        value={answers.activity2_q5}
+                                        onChange={(e) => handleInputChange('activity2_q5', e.target.value)}
+                                        rows={2}
+                                    ></textarea>
                                     <button
                                         className="correction-btnoptic"
                                         onClick={() => toggleCorrection('activity2_q5')}

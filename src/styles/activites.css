@@ -1257,7 +1257,7 @@
 }
 
 .renovation-contexte {
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #fcfcfc 100%);
     padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 650px;
@@ -2189,21 +2189,21 @@ body.printing button {
 
 
 .vect-title {
-    font-size: 1.1rem; /* Taille petite mais lisible */
+    font-size: 1rem; /* Taille petite mais lisible */
     font-weight: 600; /* Mettre le titre en gras mais pas trop */
     color: #333; /* Couleur douce pour le texte */
     display: flex;
     align-items: center;
     gap: 10px; /* Espacement entre l'emoji et le texte */
     text-transform: uppercase; /* Optionnel, pour donner un effet plus net */
-    margin-bottom: 15px; /* Un peu d'espace en dessous */
+    margin-bottom: 100px; /* Un peu d'espace en dessous */
 }
 
 .vect-title span {
     padding: 6px 12px; /* Espacement autour du texte */
     background-color: #E0F7FA; /* Couleur douce mais claire (par exemple, bleu clair) */
     border-radius: 50px; /* Forme arrondie pour la bulle */
-    font-size: 0.9rem; /* Taille un peu plus petite pour que ça soit compact */
+    font-size: 0.6rem; /* Taille un peu plus petite pour que ça soit compact */
     color: #00796B; /* Couleur du texte dans la bulle, pour le contraste */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Légère ombre pour donner un effet flottant */
     display: inline-block; /* Pour que la bulle entoure juste le mot */

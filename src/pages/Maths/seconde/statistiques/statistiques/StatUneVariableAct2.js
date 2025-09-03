@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import {FaChartBar, FaPrint, FaCheck, FaCalculator, FaDice, FaHome} from 'react-icons/fa';
-import { BsFillQuestionCircleFill } from 'react-icons/bs';
-import { IoMdSchool } from 'react-icons/io';
+import {BsFillQuestionCircleFill} from 'react-icons/bs';
+import {IoMdSchool} from 'react-icons/io';
 import '../../../../../styles/activites.css';
 import {useLocation, useParams} from "react-router-dom";
 import diagrammeImage from '../../../../../assets/diagbaton.png';
@@ -11,18 +11,19 @@ import Automatismes from "../../../../../config/Automatismes";
 import stat1act2 from "../../../../../assets/stat1act2.png";
 import {FcBullish} from "react-icons/fc";
 import ModalImage from "../../../../../utils/ModalImage";
+
 const StatUneVariableAct2 = () => {
-    const { classId } = useParams();
+    const {classId} = useParams();
     const location = useLocation();
     const className = location.state?.className || '';
+
     const [answers, setAnswers] = useState({
         question1: '',
         question2: '',
         question3a: '',
         question3b: '',
         question3c: '',
-        question5: '',
-        diagramme: ''
+        question5: ''
     });
 
     const [effectifs, setEffectifs] = useState({
@@ -38,8 +39,7 @@ const StatUneVariableAct2 = () => {
         question3a: false,
         question3b: false,
         question3c: false,
-        question5: false,
-        diagramme: false
+        question5: false
     });
 
     // Réponses attendues
@@ -49,21 +49,23 @@ const StatUneVariableAct2 = () => {
         question3a: "Le caractère étudié est l'âge des élèves.",
         question3b: "Le caractère est quantitatif car il peut être mesuré numériquement.",
         question3c: "Le caractère est discret car l'âge prend des valeurs entières isolées.",
-        question5: "Un diagramme en bâtons est le plus adapté pour cette série statistique.",
-
+        question5: "Un diagramme en bâtons est le plus adapté pour cette série statistique."
     };
+
     const [modalState, setModalState] = useState({
         show: false,
         imageUrl: '',
         altText: ''
     });
+
     const openModal = (imageUrl, altText) => {
-        setModalState({ show: true, imageUrl, altText });
+        setModalState({show: true, imageUrl, altText});
     };
 
     const closeModal = () => {
-        setModalState(prev => ({ ...prev, show: false }));
+        setModalState(prev => ({...prev, show: false}));
     };
+
     const handleInputChange = (field, value) => {
         setAnswers(prev => ({
             ...prev,
@@ -78,6 +80,8 @@ const StatUneVariableAct2 = () => {
         }));
     };
 
+    const contentRef = useRef();
+
     const toggleCorrection = (field) => {
         setShowCorrections(prev => ({
             ...prev,
@@ -91,302 +95,389 @@ const StatUneVariableAct2 = () => {
             }));
         }
     };
-    const contentRef = useRef();
 
-    if (className == 'Secondeastat-une-variableact2') {
+    if (className === 'Secondeastat-une-variableact2') {
         return <div>Cette activité n'est pas disponible pour cette classe.</div>;
     }
+
     return (
         <>
-            <BackButton />
-        <div className="tp-container" id="stat-act2-content" ref={contentRef}>
-            {/* Page 1 */}
-            <div className="print-page">
-                <header className="tp-header">
-                    <IoMdSchool className="header-icon" />
-                    <h1>Statistique à une variable - Classe 2MRC Mathématiques</h1>
-                    <PrintManager
-                        contentRef={contentRef}
-                        activityName="Statistiques_Age_Eleves"
-                        pageCount={2}
-                        quality="hd"
-                    />
-                </header>
-                <Automatismes />
-                <div className="tp-intro">
-                    <div className="math-chapter-box red">
-                        <FaChartBar className="math-chapter-icon" />
-                        <h2 className="math-chapter-title">
-                            Choisir une représentation graphique </h2>
-                        <div className="math-chapter-decoration">
-                            <svg width="100" height="80" viewBox="0 0 24 24" fill="none">
-                                <path d="M12 2L2 7L12 12L22 7L12 2Z M12 12L22 7 M12 12L2 7 M12 12V22 M22 7V17L12 22L2 17V7"
-                                      stroke="#ff9500" strokeWidth="2"/>
-                                <circle cx="12" cy="12" r="10" stroke="#ff5e00" strokeWidth="1.5"/>
-                                <path d="M12 8V16 M8 12H16" stroke="#ff9500" strokeWidth="2"/>
-                            </svg>
+            <BackButton/>
+            <div className="tp-container" id="stat-act2-content" ref={contentRef}>
+                <PrintManager
+                    contentRef={contentRef}
+                    activityName="Statistiques_Age_Eleves_Act2"
+                    pageCount={2}
+                    quality="hd"
+                />
+                {/*<div className="print-page">*/}
+                {/*    <Automatismes/>*/}
+                {/*</div>*/}
+                {/* PAGE 1 */}
+                <div className="print-page">
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">ACTIVITÉ 2</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaDice/> <FcBullish/> « Âge des élèves »
+                            </span>
                         </div>
                     </div>
-                </div>
-                {/* Intro */}
-                <div className="d-flex align-items-start flex-wrap" style={{ gap: '20px' }}>
-                    {/* Partie gauche : texte */}
-                    <div style={{ flex: 1, minWidth: '300px' }}>
-                        <p className="d-flex align-items-center flex-wrap mt-4">
-                                  <span
-                                      className="badge bg-primary text-white rounded-pill px-4 py-2 shadow-lg me-3"
-                                      style={{ fontSize: '1.0rem', letterSpacing: '1px' }}
-                                  >
-                                    ACTIVITÉ 2
-                                  </span>
-                            <span className="course-title">
-                                    <FaDice /> <span className="emoji"><FcBullish /></span>  « Âge des élèves »
-                                  </span>
-                        </p>
 
-                        <div className="renovation-contexte">
-                            <p>
-                                Une professeure de mathématiques pose une question à tous ses élèves
-                                : « <strong>Quel est ton âge ?</strong> » Elle veut ensuite utiliser leurs réponses pour leur
-                                montrer comment ranger des données et les présenter clairement.
-                            </p>
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte">
+                                <h5 className="mb-3 text-primary fw-bold">
+                                    📊 "Analyse de l'âge des élèves"
+                                </h5>
 
-                            <div className="problem-box">
-                                <h3>Objectif</h3>
-                                <p>
-                                    L’objectif est de comprendre comment lire et organiser des données,
-                                    et de choisir une représentation graphique adaptée.
+                                <p style={{textAlign: 'justify', fontSize: '15px', lineHeight: '1.3'}}>
+                                    Une professeure de mathématiques pose une question à tous ses élèves
+                                    : « <strong>Quel est ton âge ?</strong> » Elle veut ensuite utiliser leurs réponses
+                                    pour leur
+                                    montrer comment ranger des données et les présenter clairement.
                                 </p>
+
+                                <div className="objectif-box" style={{marginTop: '10px', padding: '10px'}}>
+                                    <div className="objectif-title"><strong style={{color: 'orangered'}}>Objectif
+                                        :</strong> 🎯 Comprendre comment lire et organiser des données, et choisir une
+                                        représentation
+                                        graphique adaptée.
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        {/* PHOTO - DISPOSITION CONSERVÉE */}
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '250px', cursor: 'pointer', marginTop: '10px'}}>
+                            <img src={stat1act2}
+                                 alt="Lancer de Dés"
+                                 className="img-fluid rounded shadow-sm compact-img"
+                                 onClick={() => openModal(stat1act2, "Lancer de Dés")}
+                            />
+                        </div>
                     </div>
 
-                    {/* Partie droite : image */}
-                    <div
-                        className="flex-shrink-0"
-                        style={{ maxWidth: '350px', cursor: 'pointer', marginTop: '90px',}} >
-                        <img src={stat1act2}
-                             alt="Lancer de Dés"
-                             className="img-fluid rounded shadow-sm compact-img"
-                             onClick={() => openModal(stat1act2, "Lancer de Dés")}
-                        />
+                    {/* Section S'approprier */}
+                    <div className="question-card mt-1 mb-0">
+                        <div className="question-content">
+                            <h4 className="vect-title"
+                                style={{display: 'inline', marginRight: '10px'}}>
+                                <span>S'approprier</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                Les résultats obtenus :
+                            </p>
+
+                            <div className="data-grid mt-3 mb-3">
+                                {[15, 16, 15, 14, 17, 16, 15, 14, 16, 17, 15, 16, 14, 17, 16].map((val, i) => (
+                                    <span key={i} className="data-cell">{val}</span>
+                                ))}
+                            </div>
+
+                            {/* Question 1 */}
+                            <div className="question-item" style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                flexWrap: 'wrap',
+                                marginBottom: '15px'
+                            }}>
+                                <p style={{margin: '0', flex: '1'}}>
+                                    1) L'ensemble des individus étudiés au cours d'une enquête statistique s'appelle
+                                    <span
+                                        className="answer-dots"> .................................................................................</span>
+                                </p>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question1')}
+                                        style={{padding: '2px 6px', fontSize: '12px'}}
+                                    >
+                                        <FaCheck/> {showCorrections.question1 ? '✕' : '✓'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Question 2 */}
+                            <div className="question-item" style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                flexWrap: 'wrap',
+                                marginBottom: '15px'
+                            }}>
+                                <p style={{margin: '0', flex: '1'}}>
+                                    2) Quelle est la population étudiée dans cette enquête statistique ?
+                                    <span
+                                        className="answer-dots"> .................................................................................</span>
+                                </p>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question2')}
+                                        style={{padding: '2px 6px', fontSize: '12px'}}
+                                    >
+                                        <FaCheck/> {showCorrections.question2 ? '✕' : '✓'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Question 3a */}
+                            <div className="question-item" style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                flexWrap: 'wrap',
+                                marginBottom: '15px'
+                            }}>
+                                <p style={{margin: '0', flex: '1'}}>
+                                    3) a) Quel est le caractère étudié dans cette enquête statistique ?
+                                    <span
+                                        className="answer-dots"> .................................................................................</span>
+                                </p>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question3a')}
+                                        style={{padding: '2px 6px', fontSize: '12px'}}
+                                    >
+                                        <FaCheck/> {showCorrections.question3a ? '✕' : '✓'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Question 3b */}
+                            <div className="question-item" style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                flexWrap: 'wrap',
+                                marginBottom: '15px'
+                            }}>
+                                <p style={{margin: '0', flex: '1'}}>
+                                    b) Ce caractère est-il quantitatif ou qualitatif ? Justifiez.
+                                    <span
+                                        className="answer-dots"> .................................................................................</span>
+                                </p>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question3b')}
+                                        style={{padding: '2px 6px', fontSize: '12px'}}
+                                    >
+                                        <FaCheck/> {showCorrections.question3b ? '✕' : '✓'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Question 3c */}
+                            <div className="question-item" style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                flexWrap: 'wrap',
+                                marginBottom: '15px'
+                            }}>
+                                <p style={{margin: '0', flex: '1'}}>
+                                    c) Ce caractère est-il discret ou continu ? Justifiez.
+                                    <span
+                                        className="answer-dots"> .................................................................................</span>
+                                </p>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question3c')}
+                                        style={{padding: '2px 6px', fontSize: '12px'}}
+                                    >
+                                        <FaCheck/> {showCorrections.question3c ? '✕' : '✓'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Affichage des corrections */}
+                            {showCorrections.question1 && (
+                                <div className="correction-box" style={{
+                                    backgroundColor: '#e8f5e9',
+                                    padding: '8px',
+                                    borderRadius: '4px',
+                                    margin: '5px 0'
+                                }}>
+                                    <strong>Correction :</strong> {correctAnswers.question1}
+                                </div>
+                            )}
+                            {showCorrections.question2 && (
+                                <div className="correction-box" style={{
+                                    backgroundColor: '#e8f5e9',
+                                    padding: '8px',
+                                    borderRadius: '4px',
+                                    margin: '5px 0'
+                                }}>
+                                    <strong>Correction :</strong> {correctAnswers.question2}
+                                </div>
+                            )}
+                            {showCorrections.question3a && (
+                                <div className="correction-box" style={{
+                                    backgroundColor: '#e8f5e9',
+                                    padding: '8px',
+                                    borderRadius: '4px',
+                                    margin: '5px 0'
+                                }}>
+                                    <strong>Correction :</strong> {correctAnswers.question3a}
+                                </div>
+                            )}
+                            {showCorrections.question3b && (
+                                <div className="correction-box" style={{
+                                    backgroundColor: '#e8f5e9',
+                                    padding: '8px',
+                                    borderRadius: '4px',
+                                    margin: '5px 0'
+                                }}>
+                                    <strong>Correction :</strong> {correctAnswers.question3b}
+                                </div>
+                            )}
+                            {showCorrections.question3c && (
+                                <div className="correction-box" style={{
+                                    backgroundColor: '#e8f5e9',
+                                    padding: '8px',
+                                    borderRadius: '4px',
+                                    margin: '5px 0'
+                                }}>
+                                    <strong>Correction :</strong> {correctAnswers.question3c}
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Réaliser</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                4) Pour que les résultats soient plus lisibles, on peut les regrouper dans un tableau
+                                d'effectifs.
+                            </p>
+
+                            <div className="table-responsive mt-3">
+                                <table className="table table-bordered text-center shadow-sm"
+                                       style={{fontSize: '14px'}}>
+                                    <thead className="table-light">
+                                    <tr>
+                                        <th>Âge</th>
+                                        <th>14</th>
+                                        <th>15</th>
+                                        <th>16</th>
+                                        <th>17</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Effectif</td>
+                                        <td>
+
+                                        </td>
+                                        <td>
+                                       
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h2 className="math-chapter-title-test mb-0" style={{
+                            color: '#6c757d',
+                            fontWeight: '300',
+                            fontSize: '16px',
+                            fontStyle: 'italic',
+                            textAlign: 'center',
+                            padding: '4px 0',
+                            margin: '8px 0'
+                        }}>
+                            Représentation graphique
+                        </h2>
+                        {/* Section Communiquer */}
+
+                        <div className="question-content mt-0">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Communiquer</span>
+                            </h4>
+
+                            {/* Question 5 */}
+                            <div className="question-item" style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                flexWrap: 'wrap',
+                                marginBottom: '15px'
+                            }}>
+                                <p style={{margin: '0', flex: '1'}}>
+                                    5) Quel type de diagramme est le plus adapté pour représenter cette série
+                                    statistique ?
+                                    <span
+                                        className="answer-dots"> .................................................................................</span>
+                                </p>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question5')}
+                                        style={{padding: '2px 6px', fontSize: '12px'}}
+                                    >
+                                        <FaCheck/> {showCorrections.question5 ? '✕' : '✓'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {showCorrections.question5 && (
+                                <div className="correction-box" style={{
+                                    backgroundColor: 'rgba(232, 245, 233, 0.9)',
+                                    padding: '8px',
+                                    borderRadius: '4px',
+                                    margin: '5px 0',
+                                    backdropFilter: 'blur(2px)'
+                                }}>
+                                    <strong>Correction :</strong> {correctAnswers.question5}
+                                </div>
+                            )}
+
+                            <p>6) À l'aide du tableau, complétez le diagramme en bâtons ci-dessous.</p>
+
+                            {/* PHOTO - DISPOSITION CONSERVÉE */}
+                            <div className="diagram-placeholder" style={{
+                                height: 'auto',
+                                margin: '10px 0',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                backgroundColor: '#f9f9f9',
+                                padding: '10px',
+                                borderRadius: '12px'
+                            }}>
+                                <img src={diagrammeImage} alt="Diagramme en bâtons" style={{
+                                    maxWidth: '57%',
+                                    height: 'auto',
+                                    border: '2px solid #ccc',
+                                    borderRadius: '8px'
+                                }}/>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-                <section className="tp-section">
-                    <h3><BsFillQuestionCircleFill /> S'approprier</h3>
-                    <p>1) Les résultats obtenus :</p>
-                    <div className="data-grid">
-                        {[15,16,15,14,17,16,15,14,16,17,15,16,14,17,16].map((val, i) => (
-                            <span key={i} className="data-cell">{val}</span>
-                        ))}
-                    </div>
 
-                    <div className="question">
-                        <p>L'ensemble des individus étudiés au cours d'une enquête statistique s'appelle</p>
-                        <div className="answer-container">
-                            <input
-                                type="text"
-                                className={`answer-input ${showCorrections.question1 ? 'correction-active' : ''}`}
-                                value={answers.question1}
-                                onChange={(e) => handleInputChange('question1', e.target.value)}
-                            />
-
-                        </div>
-                        <button
-                            className="correction-btn"
-                            onClick={() => toggleCorrection('question1')}
-                        >
-                            <FaCheck /> Correction
-                        </button>
-                    </div>
-
-                    <div className="question">
-                        <p>2) Quelle est la population étudiée dans cette enquête statistique ?</p>
-                        <div className="answer-container">
-                            <textarea
-                                className={`answer-input ${showCorrections.question2 ? 'correction-active' : ''}`}
-                                rows="2"
-                                value={answers.question2}
-                                onChange={(e) => handleInputChange('question2', e.target.value)}
-                            />
-                            <button
-                                className="correction-btn"
-                                onClick={() => toggleCorrection('question2')}
-                            >
-                                <FaCheck /> Correction
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="question">
-                        <p>3) a) Quel est le caractère étudié dans cette enquête statistique ?</p>
-                        <div className="answer-container">
-                            <input
-                                type="text"
-                                className={`answer-input ${showCorrections.question3a ? 'correction-active' : ''}`}
-                                value={answers.question3a}
-                                onChange={(e) => handleInputChange('question3a', e.target.value)}
-                            />
-
-                        </div>
-                        <button
-                            className="correction-btn"
-                            onClick={() => toggleCorrection('question3a')}
-                        >
-                            <FaCheck /> Correction
-                        </button>
-                    </div>
-
-                    <div className="question">
-                        <p>b) Ce caractère est-il quantitatif ou qualitatif ? Justifiez.</p>
-                        <div className="answer-container">
-                            <textarea
-                                className={`answer-input ${showCorrections.question3b ? 'correction-active' : ''}`}
-                                rows="2"
-                                value={answers.question3b}
-                                onChange={(e) => handleInputChange('question3b', e.target.value)}
-                            />
-                            <button
-                                className="correction-btn"
-                                onClick={() => toggleCorrection('question3b')}
-                            >
-                                <FaCheck /> Correction
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="question">
-                        <p>c) Ce caractère est-il discret ou continu ? Justifiez.</p>
-                        <div className="answer-container">
-                            <textarea
-                                className={`answer-input ${showCorrections.question3c ? 'correction-active' : ''}`}
-                                rows="2"
-                                value={answers.question3c}
-                                onChange={(e) => handleInputChange('question3c', e.target.value)}
-                            />
-                            <button
-                                className="correction-btn"
-                                onClick={() => toggleCorrection('question3c')}
-                            >
-                                <FaCheck /> Correction
-                            </button>
-                        </div>
-                    </div>
-                </section>
-
-                <section className="tp-section">
-                    <h3><FaCalculator /> Réaliser</h3>
-                    <p>4) Pour que les résultats soient plus lisibles, on peut les regrouper dans un tableau d'effectifs.</p>
-
-                    <table className="measurement-table printable-table">
-                        <thead>
-                        <tr>
-                            <th>Âge</th>
-                            <th>14</th>
-                            <th>15</th>
-                            <th>16</th>
-                            <th>17</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Effectif</td>
-                            <td>
-                                <input
-                                    type="number"
-                                    value={effectifs.age14}
-                                    onChange={(e) => handleEffectifChange('age14', e.target.value)}
-                                    className="measure-input"
-                                />
-                            </td>
-                            <td>
-                                <input
-                                    type="number"
-                                    value={effectifs.age15}
-                                    onChange={(e) => handleEffectifChange('age15', e.target.value)}
-                                    className="measure-input"
-                                />
-                            </td>
-                            <td>
-                                <input
-                                    type="number"
-                                    value={effectifs.age16}
-                                    onChange={(e) => handleEffectifChange('age16', e.target.value)}
-                                    className="measure-input"
-                                />
-                            </td>
-                            <td>
-                                <input
-                                    type="number"
-                                    value={effectifs.age17}
-                                    onChange={(e) => handleEffectifChange('age17', e.target.value)}
-                                    className="measure-input"
-                                />
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </section>
+                {modalState.show && (
+                    <ModalImage
+                        imageUrl={modalState.imageUrl}
+                        altText={modalState.altText}
+                        onClose={closeModal}
+                    />
+                )}
             </div>
-
-            {/* Page 2 */}
-            <div >
-                <section className="tp-section">
-                    <h3><FaChartBar /> Communiquer</h3>
-                    <div className="question">
-                        <p>5) Quel type de diagramme est le plus adapté pour représenter cette série statistique ?</p>
-                        <div className="answer-container">
-                            <textarea
-                                className={`answer-input ${showCorrections.question5 ? 'correction-active' : ''}`}
-                                rows="2"
-                                value={answers.question5}
-                                onChange={(e) => handleInputChange('question5', e.target.value)}
-                            />
-                            <button
-                                className="correction-btn"
-                                onClick={() => toggleCorrection('question5')}
-                            >
-                                <FaCheck /> Correction
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="question">
-                        <p>6) À l'aide du tableau, complétez le diagramme en bâtons ci-dessous.</p>
-                    </div>
-
-                    <div className="diagram-placeholder" style={{
-                        height: 'auto',
-                        margin: '20px 0',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        backgroundColor: '#f9f9f9',
-                        padding: '20px',
-                        borderRadius: '12px'
-                    }}>
-                        <img src={diagrammeImage} alt="Diagramme en bâtons" style={{
-                            maxWidth: '100%',
-                            height: 'auto',
-                            border: '2px solid #ccc',
-                            borderRadius: '8px'
-                        }} />
-
-                    </div>
-                </section>
-
-                <footer className="tp-footer">
-                    <p>© 2025 - Mathématiques : statistiques - Tous droits réservés - S.CHIHATI </p>
-                </footer>
-            </div>
-            {modalState.show && (
-                <ModalImage
-                    imageUrl={modalState.imageUrl}
-                    altText={modalState.altText}
-                    onClose={closeModal}
-                />
-            )}
-        </div>
         </>
     );
 };
