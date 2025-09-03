@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     Paper,
     Table,
@@ -14,7 +14,9 @@ import {
     Button,
     Chip,
     useTheme,
-    useMediaQuery
+    useMediaQuery,
+    ToggleButtonGroup,
+    ToggleButton
 } from '@mui/material';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 
@@ -83,7 +85,6 @@ const scheduleData = {
             '9h00-10h00': '',
             '10h00-11h00': 'Physique Chimie\n2MCDBTP\nH210 LABO chimie',
             '11h00-12h00': 'Physique Chimie\n1MSPC G1\nH306 cours chimie',
-
             '13h30-14h30': 'Parcours\n2MCDBTP\nH306',
             '14h30-15h30': 'Mathématiques\n2MCDBTP\nH306',
             '15h30-16h30': '',
@@ -148,7 +149,30 @@ const theme = createTheme({
 
 const EmploiDuTemps = () => {
     const [selectedCell, setSelectedCell] = useState(null);
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+    const [currentWeek, setCurrentWeek] = useState('q1'); // q1 ou q2
+    const [manualOverride, setManualOverride] = useState(false);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+    // Déterminer automatiquement la semaine (Q1 ou Q2)
+    useEffect(() => {
+        if (!manualOverride) {
+            // Calculer la semaine actuelle (paire = Q2, impaire = Q1)
+            const now = new Date();
+            const startOfYear = new Date(now.getFullYear(), 0, 1);
+            const days = Math.floor((now - startOfYear) / (24 * 60 * 60 * 1000));
+            const weekNumber = Math.ceil((days + startOfYear.getDay() + 1) / 7);
+
+            setCurrentWeek(weekNumber % 2 === 0 ? 'q2' : 'q1');
+        }
+    }, [manualOverride]);
+
+    const handleWeekChange = (event, newWeek) => {
+        if (newWeek !== null) {
+            setManualOverride(true);
+            setCurrentWeek(newWeek);
+        }
+    };
 
     const handleCellClick = (day, time, quartile) => {
         setSelectedCell({day, time, quartile});
@@ -215,6 +239,11 @@ const EmploiDuTemps = () => {
             !time.includes('15h30') && !time.includes('16h30');
     };
 
+    // Afficher uniquement le contenu du quartile actuel
+    const shouldShowQuartile = (quartile) => {
+        return quartile === currentWeek;
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{flexGrow: 1, backgroundColor: 'background.default', minHeight: '100vh'}}>
@@ -231,16 +260,51 @@ const EmploiDuTemps = () => {
 
                 <Box sx={{p: 3}}>
                     <Paper elevation={3} sx={{p: 2, mb: 3}}>
-                        <Box sx={{display: 'flex', flexWrap: 'wrap', gap: 1}}>
-                            <Chip label="CHIHATI SLIMANE " color="primary"
-                                  variant="outlined"
-                                  size="small"/>
+                        <Box sx={{display: 'flex', flexWrap: 'wrap', gap: 1, alignItems: 'center'}}>
+                            <Chip label="CHIHATI SLIMANE " color="primary" variant="outlined" size="small"/>
                             <Chip label="LP-PIERRE-JOSEPH LAURENT-ANICHE" color="secondary" variant="outlined"
                                   size="small"/>
+
+                            <Box sx={{ml: 'auto', display: 'flex', alignItems: 'center', gap: 1}}>
+                                <Typography variant="body2" sx={{fontWeight: 'bold'}}>
+                                    Semaine actuelle:
+                                </Typography>
+                                <ToggleButtonGroup
+                                    value={currentWeek}
+                                    exclusive
+                                    onChange={handleWeekChange}
+                                    size="small"
+                                >
+                                    <ToggleButton value="q1" sx={{
+                                        fontWeight: 'bold',
+                                        bgcolor: currentWeek === 'q1' ? '#e3f2fd' : 'transparent',
+                                        color: currentWeek === 'q1' ? '#1565c0' : 'inherit'
+                                    }}>
+                                        Q1
+                                    </ToggleButton>
+                                    <ToggleButton value="q2" sx={{
+                                        fontWeight: 'bold',
+                                        bgcolor: currentWeek === 'q2' ? '#e8f5e9' : 'transparent',
+                                        color: currentWeek === 'q2' ? '#2e7d32' : 'inherit'
+                                    }}>
+                                        Q2
+                                    </ToggleButton>
+                                </ToggleButtonGroup>
+                            </Box>
                         </Box>
                     </Paper>
 
-                    <TableContainer component={Paper} elevation={3} sx={{overflowX: 'auto'}}>
+                    <TableContainer
+                        component={Paper}
+                        elevation={8}
+                        sx={{
+                            overflowX: 'auto',
+                            borderRadius: 3,
+                            background: 'linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%)',
+                            border: '1px solid #e0e0e0',
+                            p: 1
+                        }}
+                    >
                         <Table sx={{minWidth: 800}} size="small" aria-label="emploi du temps">
                             <TableHead>
                                 <TableRow>
@@ -248,14 +312,31 @@ const EmploiDuTemps = () => {
                                         fontWeight: 'bold',
                                         bgcolor: 'primary.main',
                                         color: 'white',
-                                        borderRight: '3px solid #ccc',
-                                        minWidth: 100
+                                        borderRight: '3px solid #fff',
+                                        minWidth: 100,
+                                        py: 2,
+                                        fontSize: '1.1rem',
+                                        borderRadius: '8px 0 0 0',
+                                        boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
                                     }}>
                                         Heures
                                     </TableCell>
                                     {scheduleData.days.map(day => (
-                                        <TableCell key={day} align="center"
-                                                   sx={{fontWeight: 'bold', bgcolor: 'primary.main', color: 'white'}}>
+                                        <TableCell
+                                            key={day}
+                                            align="center"
+                                            sx={{
+                                                fontWeight: 'bold',
+                                                bgcolor: 'primary.main',
+                                                color: 'white',
+                                                py: 2,
+                                                fontSize: '1.1rem',
+                                                boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                                                '&:last-child': {
+                                                    borderRadius: '0 8px 0 0'
+                                                }
+                                            }}
+                                        >
                                             {day}
                                         </TableCell>
                                     ))}
@@ -268,23 +349,49 @@ const EmploiDuTemps = () => {
                                         {time === '13h30-14h30' && (
                                             <TableRow>
                                                 <TableCell colSpan={6} sx={{
-                                                    bgcolor: 'grey.200',
+                                                    bgcolor: 'white',
+                                                    color: 'black',
                                                     fontWeight: 'bold',
                                                     textAlign: 'center',
-                                                    py: 1,
-                                                    borderBottom: '2px solid #ccc'
+                                                    py: 1.5,
+                                                    borderBottom: '2px solid #ccc',
+                                                    fontSize: '1.1rem',
+                                                    textShadow: '1px 1px 2px rgba(0,0,0,0.3)',
+                                                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
                                                 }}>
                                                     APRÈS-MIDI
                                                 </TableCell>
                                             </TableRow>
                                         )}
-                                        <TableRow>
-                                            <TableCell component="th" scope="row"
-                                                       sx={{
-                                                           fontWeight: 'bold',
-                                                           bgcolor: isMorningSlot(time) ? '#e8f5e9' : '#e3f2fd',
-                                                           borderRight: '2px solid #ccc'
-                                                       }}>
+                                        <TableRow sx={{
+                                            '&:hover': {
+                                                '& td': {
+                                                    backgroundColor: 'rgba(25, 118, 210, 0.04)'
+                                                }
+                                            }
+                                        }}>
+                                            <TableCell
+                                                component="th"
+                                                scope="row"
+                                                sx={{
+                                                    fontWeight: 'bold',
+                                                    bgcolor: isMorningSlot(time) ? '#e8f5e9' : '#e3f2fd',
+                                                    borderRight: '2px solid #ccc',
+                                                    py: 1.5,
+                                                    fontSize: '0.95rem',
+                                                    boxShadow: '1px 0 3px rgba(0,0,0,0.1)',
+                                                    position: 'relative',
+                                                    '&::after': {
+                                                        content: '""',
+                                                        position: 'absolute',
+                                                        right: 0,
+                                                        top: '10%',
+                                                        height: '80%',
+                                                        width: '2px',
+                                                        bgcolor: isMorningSlot(time) ? '#4caf50' : '#2196f3'
+                                                    }
+                                                }}
+                                            >
                                                 {time}
                                             </TableCell>
                                             {scheduleData.days.map(day => {
@@ -303,74 +410,86 @@ const EmploiDuTemps = () => {
                                                             height: 100,
                                                             p: 0,
                                                             border: '1px solid black',
-                                                            position: 'relative'
+                                                            position: 'relative',
+                                                            background: hasContent ? 'transparent' : 'rgba(245, 245, 245, 0.5)',
+                                                            transition: 'all 0.2s ease',
                                                         }}
                                                     >
                                                         {hasContent ? (
                                                             hasQuartile ? (
+                                                                // Afficher uniquement le quartile de la semaine en cours
                                                                 <Box sx={{display: 'flex', height: '100%'}}>
-                                                                    {/* Partie Q2 (Gauche) */}
-                                                                    <Box
-                                                                        onClick={() => handleCellClick(day, time, 'q2')}
-                                                                        sx={{
-                                                                            flex: 1,
-                                                                            borderRight: '1px dashed #ccc',
-                                                                            p: 0.5,
-                                                                            cursor: 'pointer',
-                                                                            backgroundColor: getBackgroundColor(q2Content),
-                                                                            display: 'flex',
-                                                                            flexDirection: 'column',
-                                                                            justifyContent: 'center',
-                                                                            '&:hover': {
-                                                                                opacity: 0.9,
-                                                                            }
-                                                                        }}
-                                                                    >
-                                                                        {q2Content && renderCellContent(q2Content)}
-                                                                        {q2Content && (
+                                                                    {shouldShowQuartile('q1') && q1Content && (
+                                                                        <Box
+                                                                            onClick={() => handleCellClick(day, time, 'q1')}
+                                                                            sx={{
+                                                                                width: '100%',
+                                                                                p: 1,
+                                                                                cursor: 'pointer',
+                                                                                backgroundColor: getBackgroundColor(q1Content),
+                                                                                display: 'flex',
+                                                                                flexDirection: 'column',
+                                                                                justifyContent: 'center',
+                                                                                transition: 'all 0.2s ease',
+                                                                                '&:hover': {
+                                                                                    transform: 'scale(1.02)',
+                                                                                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                                                                                    zIndex: 1
+                                                                                }
+                                                                            }}
+                                                                        >
+                                                                            {q1Content && renderCellContent(q1Content)}
                                                                             <Box sx={{
                                                                                 position: 'absolute',
-                                                                                top: 2,
-                                                                                left: 2,
+                                                                                top: 4,
+                                                                                right: 4,
                                                                                 fontSize: '0.6rem',
                                                                                 fontWeight: 'bold',
-                                                                                color: 'secondary.dark'
-                                                                            }}>
-                                                                                Q2
-                                                                            </Box>
-                                                                        )}
-                                                                    </Box>
-
-                                                                    {/* Partie Q1 (Droite) */}
-                                                                    <Box
-                                                                        onClick={() => handleCellClick(day, time, 'q1')}
-                                                                        sx={{
-                                                                            flex: 1,
-                                                                            p: 0.5,
-                                                                            cursor: 'pointer',
-                                                                            backgroundColor: getBackgroundColor(q1Content),
-                                                                            display: 'flex',
-                                                                            flexDirection: 'column',
-                                                                            justifyContent: 'center',
-                                                                            '&:hover': {
-                                                                                opacity: 0.9,
-                                                                            }
-                                                                        }}
-                                                                    >
-                                                                        {q1Content && renderCellContent(q1Content)}
-                                                                        {q1Content && (
-                                                                            <Box sx={{
-                                                                                position: 'absolute',
-                                                                                top: 2,
-                                                                                right: 2,
-                                                                                fontSize: '0.6rem',
-                                                                                fontWeight: 'bold',
-                                                                                color: 'primary.dark'
+                                                                                color: 'primary.dark',
+                                                                                backgroundColor: 'rgba(255,255,255,0.7)',
+                                                                                px: 0.5,
+                                                                                borderRadius: 2
                                                                             }}>
                                                                                 Q1
                                                                             </Box>
-                                                                        )}
-                                                                    </Box>
+                                                                        </Box>
+                                                                    )}
+
+                                                                    {shouldShowQuartile('q2') && q2Content && (
+                                                                        <Box
+                                                                            onClick={() => handleCellClick(day, time, 'q2')}
+                                                                            sx={{
+                                                                                width: '100%',
+                                                                                p: 1,
+                                                                                cursor: 'pointer',
+                                                                                backgroundColor: getBackgroundColor(q2Content),
+                                                                                display: 'flex',
+                                                                                flexDirection: 'column',
+                                                                                justifyContent: 'center',
+                                                                                transition: 'all 0.2s ease',
+                                                                                '&:hover': {
+                                                                                    transform: 'scale(1.02)',
+                                                                                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                                                                                    zIndex: 1
+                                                                                }
+                                                                            }}
+                                                                        >
+                                                                            {q2Content && renderCellContent(q2Content)}
+                                                                            <Box sx={{
+                                                                                position: 'absolute',
+                                                                                top: 4,
+                                                                                left: 4,
+                                                                                fontSize: '0.6rem',
+                                                                                fontWeight: 'bold',
+                                                                                color: 'secondary.dark',
+                                                                                backgroundColor: 'rgba(255,255,255,0.7)',
+                                                                                px: 0.5,
+                                                                                borderRadius: 2
+                                                                            }}>
+                                                                                Q2
+                                                                            </Box>
+                                                                        </Box>
+                                                                    )}
                                                                 </Box>
                                                             ) : (
                                                                 // Case normale sans quartile
@@ -378,14 +497,17 @@ const EmploiDuTemps = () => {
                                                                     onClick={() => handleCellClick(day, time, 'regular')}
                                                                     sx={{
                                                                         height: '100%',
-                                                                        p: 0.5,
+                                                                        p: 1.5,
                                                                         cursor: 'pointer',
                                                                         display: 'flex',
                                                                         flexDirection: 'column',
                                                                         justifyContent: 'center',
                                                                         backgroundColor: bgColor,
+                                                                        transition: 'all 0.2s ease',
                                                                         '&:hover': {
-                                                                            opacity: 0.9,
+                                                                            transform: 'scale(1.03)',
+                                                                            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                                                                            zIndex: 1
                                                                         }
                                                                     }}
                                                                 >
@@ -399,7 +521,8 @@ const EmploiDuTemps = () => {
                                                                 alignItems: 'center',
                                                                 justifyContent: 'center',
                                                                 color: 'text.secondary',
-                                                                fontSize: '0.8rem'
+                                                                fontSize: '0.8rem',
+                                                                background: 'repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(0,0,0,0.05) 5px, rgba(0,0,0,0.05) 10px)'
                                                             }}>
                                                                 -
                                                             </Box>
@@ -413,7 +536,168 @@ const EmploiDuTemps = () => {
                             </TableBody>
                         </Table>
                     </TableContainer>
+                    <Box sx={{
+                        maxWidth: 900,
+                        margin: 'auto',
+                        p: 2,
+                        background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+                        borderRadius: 4,
+                        boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                        marginTop: 2
+                    }}>
+                        <Typography
+                            variant="h4"
+                            align="center"
+                            gutterBottom
+                            sx={{
+                                fontWeight: 'bold',
+                                color: '#2c3e50',
+                                mb: 3,
+                                textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+                            }}
+                        >
+                            Spécialités Bac Pro
+                        </Typography>
 
+                        <TableContainer
+                            component={Paper}
+                            elevation={8}
+                            sx={{
+                                borderRadius: 3,
+                                overflow: 'hidden',
+                                border: '1px solid #e0e0e0'
+                            }}
+                        >
+                            <Table aria-label="spécialités bac pro table">
+                                <TableHead>
+                                    <TableRow sx={{
+                                        background: 'linear-gradient(45deg, #2c3e50 0%, #4ca1af 100%)',
+                                        '& th': {
+                                            color: 'white',
+                                            fontWeight: 'bold',
+                                            fontSize: isMobile ? '0.9rem' : '1rem',
+                                            py: 2
+                                        }
+                                    }}>
+                                        <TableCell sx={{width: '50%', borderRadius: '3px 0 0 0'}}>Spécialité Bac
+                                            Pro</TableCell>
+                                        <TableCell align="center" sx={{width: '25%'}}>Groupement de maths</TableCell>
+                                        <TableCell align="center" sx={{width: '25%', borderRadius: '0 3px 0 0'}}>Groupement
+                                            de physique-chimie</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow sx={{
+                                        '&:nth-of-type(odd)': {backgroundColor: '#f9f9f9'},
+                                        '&:hover': {backgroundColor: '#f0f7ff'}
+                                    }}>
+                                        <TableCell component="th" scope="row" sx={{fontWeight: 'medium'}}>
+                                            Métiers de l'accueil
+                                        </TableCell>
+                                        <TableCell align="center" sx={{
+                                            backgroundColor: '#e8f5e9',
+                                            fontWeight: 'bold',
+                                            color: '#2e7d32',
+                                            fontSize: isMobile ? '0.9rem' : '1rem'
+                                        }}>
+                                            C
+                                        </TableCell>
+                                        <TableCell align="center" sx={{fontStyle: 'italic', color: '#757575'}}>
+                                            Pas de physique-chimie
+                                        </TableCell>
+                                    </TableRow>
+
+                                    <TableRow sx={{
+                                        '&:nth-of-type(even)': {backgroundColor: '#f9f9f9'},
+                                        '&:hover': {backgroundColor: '#f0f7ff'}
+                                    }}>
+                                        <TableCell component="th" scope="row" sx={{fontWeight: 'medium'}}>
+                                            Maintenance des systèmes de production connectés
+                                        </TableCell>
+                                        <TableCell align="center" sx={{
+                                            backgroundColor: '#fff3e0',
+                                            fontWeight: 'bold',
+                                            color: '#ef6c00',
+                                            fontSize: isMobile ? '0.9rem' : '1rem'
+                                        }}>
+                                            B
+                                        </TableCell>
+                                        <TableCell align="center" sx={{
+                                            backgroundColor: '#e3f2fd',
+                                            fontWeight: 'bold',
+                                            color: '#1565c0',
+                                            fontSize: isMobile ? '0.9rem' : '1rem'
+                                        }}>
+                                            1
+                                        </TableCell>
+                                    </TableRow>
+
+                                    <TableRow sx={{
+                                        '&:nth-of-type(odd)': {backgroundColor: '#f9f9f9'},
+                                        '&:hover': {backgroundColor: '#f0f7ff'}
+                                    }}>
+                                        <TableCell component="th" scope="row" sx={{fontWeight: 'medium'}}>
+                                            Ouvrage du bâtiment : métallerie
+                                        </TableCell>
+                                        <TableCell align="center" sx={{
+                                            backgroundColor: '#fff3e0',
+                                            fontWeight: 'bold',
+                                            color: '#ef6c00',
+                                            fontSize: isMobile ? '0.9rem' : '1rem'
+                                        }}>
+                                            B
+                                        </TableCell>
+                                        <TableCell align="center" sx={{
+                                            backgroundColor: '#e3f2fd',
+                                            fontWeight: 'bold',
+                                            color: '#1565c0',
+                                            fontSize: isMobile ? '0.9rem' : '1rem'
+                                        }}>
+                                            3
+                                        </TableCell>
+                                    </TableRow>
+
+                                    <TableRow sx={{
+                                        '&:nth-of-type(even)': {backgroundColor: '#f9f9f9'},
+                                        '&:hover': {backgroundColor: '#f0f7ff'}
+                                    }}>
+                                        <TableCell component="th" scope="row" sx={{fontWeight: 'medium'}}>
+                                            Accompagnement soins et services à la personne option A - à domicile
+                                        </TableCell>
+                                        <TableCell align="center" sx={{
+                                            backgroundColor: '#e8f5e9',
+                                            fontWeight: 'bold',
+                                            color: '#2e7d32',
+                                            fontSize: isMobile ? '0.9rem' : '1rem'
+                                        }}>
+                                            C
+                                        </TableCell>
+                                        <TableCell align="center" sx={{
+                                            backgroundColor: '#e3f2fd',
+                                            fontWeight: 'bold',
+                                            color: '#1565c0',
+                                            fontSize: isMobile ? '0.9rem' : '1rem'
+                                        }}>
+                                            5
+                                        </TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+
+                        <Box sx={{
+                            mt: 2,
+                            p: 1.5,
+                            backgroundColor: 'rgba(255,255,255,0.7)',
+                            borderRadius: 2,
+                            borderLeft: '4px solid #4ca1af'
+                        }}>
+                            <Typography variant="caption" sx={{color: '#546e7a', fontStyle: 'italic'}}>
+                                Tableau des spécialités Bac Pro avec leurs groupements respectifs en mathématiques et
+                                physique-chimie.
+                            </Typography>
+                        </Box>
+                    </Box>
                 </Box>
             </Box>
         </ThemeProvider>

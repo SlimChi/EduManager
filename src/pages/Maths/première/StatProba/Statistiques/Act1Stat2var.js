@@ -9,8 +9,10 @@ import 'katex/dist/katex.min.css';
 import {BlockMath, InlineMath} from 'react-katex';
 import {Card} from "react-bootstrap";
 import ModalImage from "../../../../../utils/ModalImage";
-import schemaUsinage from "../../../../../assets/etiquetteCo2.png";
+import schemaUsinage from "../../../../../assets/etiquetteprofondeur.png";
 import AutoEvaluationGrid from "../../../../../config/AutoEvaluationGrid";
+import schemaVoiture from "../../../../../assets/etiquetteVoiture.png";
+import {Typography} from "@mui/material";
 
 const Act1Stat2var = () => {
     const {classId} = useParams();
@@ -22,66 +24,96 @@ const Act1Stat2var = () => {
 
     // États pour les réponses et corrections
     const [answers, setAnswers] = useState({
-        question1: '',
-        question2a: '',
-        question2b: '',
-        question3: '',
-        question4: '',
-        question5: '',
+        activity1_q1: '',
+        activity1_q2: '',
+        activity1_q3: '',
+        activity1_q4: '',
+        activity2_q1: '',
+        activity2_q2: '',
+        activity2_q3: '',
+        activity2_q4: '',
+        activity2_q5: '',
     });
 
     const [showCorrections, setShowCorrections] = useState({
-        question1: false,
-        question2a: false,
-        question2b: false,
-        question3: false,
-        question4: false,
-        question5: false,
+        activity1_q1: false,
+        activity1_q2: false,
+        activity1_q3: false,
+        activity1_q4: false,
+        activity2_q1: false,
+        activity2_q2: false,
+        activity2_q3: false,
+        activity2_q4: false,
+        activity2_q5: false,
     });
 
-    // Réponses attendues avec notation mathématique
+    // Réponses attendues
     const correctAnswers = {
-        question1: {
+        activity1_q1: {
             formatted: <div>
-                <p>Les points sont placés aux coordonnées suivantes :</p>
-                <ul>
-                    <li>Point 1: (3,9; 90)</li>
-                    <li>Point 2: (4,5; 106)</li>
-                    <li>Point 3: (5,6; 129)</li>
-                    <li>Point 4: (6,3; 142)</li>
-                    <li>Point 5: (6,7; 157)</li>
-                    <li>Point 6: (7,3; 169)</li>
-                </ul>
+                <p>Les valeurs de profondeurs et de pressions dans la zone abyssale sont :</p>
+                <table className="table table-bordered mt-2" style={{fontSize: '14px', width: 'auto'}}>
+                    <thead className="table-primary">
+                    <tr>
+                        <th>Profondeur (m)</th>
+                        <th>800</th>
+                        <th>2000</th>
+                        <th>2500</th>
+                        <th>3000</th>
+                        <th>3500</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Pression (bar)</td>
+                        <td>81</td>
+                        <td>201</td>
+                        <td>251</td>
+                        <td>301</td>
+                        <td>351</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         },
-        question2a: {
+        activity1_q2: {
+            formatted: <p>Le nuage de points présente des points presque alignés, ce qui suggère une relation linéaire
+                entre la profondeur et la pression dans la zone abyssale.</p>
+        },
+        activity1_q3: {
+            formatted: <p>La droite d'ajustement affine est tracée à travers le nuage de points, minimisant les
+                distances entre les points et la droite.</p>
+        },
+        activity1_q4: {
             formatted: <div>
-                <BlockMath math="\bar{x} = \frac{3,9 + 4,5 + 5,6 + 6,3 + 6,7 + 7,3}{6} = \frac{34,3}{6} \approx 5,72"/>
-                <BlockMath math="\bar{y} = \frac{90 + 106 + 129 + 142 + 157 + 169}{6} = \frac{793}{6} \approx 132,17"/>
-                <p>Point moyen G(5,72; 132,17)</p>
+                <p>Pour une pression de 290 bar, on trouve x ≈ 2800 m</p>
+                <p>Le sous-marin détenant le record du monde de plongée est allé jusqu'à une profondeur d'environ 2800
+                    m.</p>
             </div>
         },
-        question2b: {
-            formatted: <p>Le point G est placé approximativement à l'intersection de x = 5,72 et y = 132,17 sur le
-                graphique.</p>
+        activity2_q1: {
+            formatted: <p>Le nuage de points présente des points presque alignés, ce qui indique une croissance linéaire
+                du nombre de voitures électriques au fil du temps.</p>
         },
-        question3: {
-            formatted: <p>La droite (AG) passe par les points A(3,9; 90) et G(5,72; 132,17).</p>
+        activity2_q2: {
+            formatted: <BlockMath math="y = 0.23x - 460.2"/>
         },
-        question4: {
+        activity2_q3: {
             formatted: <div>
-                <p>Pour x = 5, on lit sur la droite (AG) : y ≈ 116 g/km</p>
-                <BlockMath math="\text{Pente} = \frac{132,17 - 90}{5,72 - 3,9} = \frac{42,17}{1,82} \approx 23,17"/>
-                <BlockMath math="y - 90 = 23,17(x - 3,9)"/>
-                <BlockMath math="y = 23,17x - 0,36"/>
-                <BlockMath math="y(5) = 23,17 \times 5 - 0,36 = 115,85 - 0,36 \approx 115,5 \text{ g/km}"/>
+                <BlockMath math="y = 0.23 \times 2030 - 460.2 = 466.9 - 460.2 = 6.7"/>
+                <p>En 2030, le nombre de voitures électriques pourrait être égal selon nos prévisions à environ 6,7
+                    millions.</p>
             </div>
         },
-        question5: {
+        activity2_q4: {
             formatted: <div>
-                <p>La voiture de Kenny rejette environ 116 g/km de CO₂.</p>
-                <p>D'après l'étiquette énergie/CO₂, cette valeur se situe dans la catégorie B (de 101 à 120 g/km).</p>
+                <BlockMath math="t = \frac{6.7 - 4.2}{4.2} \times 100 = \frac{2.5}{4.2} \times 100 \approx 59.5\%"/>
+                <p>Soit environ 60% d'augmentation.</p>
             </div>
+        },
+        activity2_q5: {
+            formatted: <p>Le nombre de voitures électriques pourrait atteindre 6,7 millions en 2030, soit une
+                augmentation d'environ 60% par rapport à 2021.</p>
         }
     };
 
@@ -92,26 +124,10 @@ const Act1Stat2var = () => {
 
     const toggleCorrection = (field) => {
         setShowCorrections((prev) => ({...prev, [field]: !prev[field]}));
-
-        if (!answers[field] && !showCorrections[field]) {
-            setAnswers((prev) => ({...prev, [field]: correctAnswers[field].text}));
-        }
     };
 
     const toggleSummary = () => {
         setShowSummary(!showSummary);
-    };
-
-    const [modalState, setModalState] = useState({
-        show: false, imageUrl: '', altText: '',
-    });
-
-    const openModal = (imageUrl, altText) => {
-        setModalState({show: true, imageUrl, altText});
-    };
-
-    const closeModal = () => {
-        setModalState((prev) => ({...prev, show: false}));
     };
 
     if (className === 'Seconde-stat2var-act1') {
@@ -123,12 +139,12 @@ const Act1Stat2var = () => {
         <div className="tp-container" ref={contentRef} style={{fontFamily: 'Cambria Math'}}>
             <PrintManager
                 contentRef={contentRef}
-                activityName="Statistiques_2_variables_CO2"
+                activityName="Statistiques_2_variables"
                 pageCount={2}
                 quality="hd"
             />
 
-            {/* PAGE 1 */}
+            {/* PAGE 1 - ACTIVITÉ 1 */}
             <div className="print-page">
                 <div className="math-chapter-box green mt-0" style={{padding: '0'}}>
                     <span style={{marginRight: '10px', fontSize: '30px'}}>📊</span>
@@ -137,248 +153,465 @@ const Act1Stat2var = () => {
                 <div className="activity-header mt-0">
                     <span className="activity-badge">ACTIVITÉ 1</span>
                     <div className="activity-title">
-                      <span className="course-title">
-                         <span>🌍</span> « Combien de CO₂ rejette la voiture ? »
+                      <span className="course-title mt-0">
+                        <span>🌊</span> Représenter un nuage de points !
                       </span>
                     </div>
                 </div>
-                <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
-                    <div className="container my-4">
-                        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start">
-                            {/* Contenu principal */}
-                            <div className="renovation-contexte me-md-4" style={{flex: '1 1 65%'}}>
-                                <p style={{
-                                    textAlign: 'justify',
-                                    textJustify: 'inter-word',
-                                    fontSize: '16px',
-                                    padding: '15px',
-                                    borderRadius: '10px',
-                                    backgroundColor: '#f8f9fa',
-                                    color: '#333',
-                                    lineHeight: '1.6',
-                                }}>
-                                    🌍 <strong style={{color: '#1b5e20'}}>Problème environnemental</strong> : Kenny a
-                                    acheté
-                                    une voiture qui consomme en moyenne <strong>5 L d'essence aux 100 km</strong>. Il
-                                    souhaite connaître l'émission de CO₂ correspondante pour situer sa voiture sur
-                                    l'étiquette énergie/CO₂.<br/>
-                                    📊 Pour cela, il a relevé les consommations et les rejets de CO₂ pour différentes
-                                    voitures et a construit le tableau suivant.
-                                </p>
 
-                                <table className="table table-bordered mt-3" style={{fontSize: '14px'}}>
-                                    <thead className="table-primary">
-                                    <tr>
-                                        <th>Modèle</th>
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                        <th>4</th>
-                                        <th>5</th>
-                                        <th>6</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Consommation (L/100 km)</td>
-                                        <td>3,9</td>
-                                        <td>4,5</td>
-                                        <td>5,6</td>
-                                        <td>6,3</td>
-                                        <td>6,7</td>
-                                        <td>7,3</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rejet CO₂ (g/km)</td>
-                                        <td>90</td>
-                                        <td>106</td>
-                                        <td>129</td>
-                                        <td>142</td>
-                                        <td>157</td>
-                                        <td>169</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                <div>
+
+                    <div className="renovation-contexte2" style={{width: '100%'}}>
+                        <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
+                            <div style={{flex: '1 1 70%', paddingRight: '20px'}}>
+                                <p>Dans le cadre d'un projet scientifique, une classe décide d'envoyer une sonde
+                                    sous-marine
+                                    afin de mesurer la pression de l'eau au fur et à mesure de la descente.</p>
+
+                                <p>Dans l'océan, plus on s'enfonce, plus la pression augmente, mais l'évolution
+                                    n'est pas
+                                    parfaitement régulière.</p>
+
+                                <p>Lors de la plongée, la sonde a relevé plusieurs valeurs de pression selon la
+                                    profondeur
+                                    atteinte :</p>
                             </div>
 
-                            {/* Image à droite */}
-                            <div className="vect-image-text-container mt-3 mt-md-0" style={{flex: '0 0 30%'}}>
-                                <div style={{maxWidth: '300px', cursor: 'pointer'}}>
-                                    <img
-                                        src={schemaUsinage}
-                                        alt="Étiquette énergie/CO₂"
-                                        className="img-fluid rounded shadow-sm"
-                                        onClick={() => openModal(schemaUsinage, 'Étiquette énergie/CO₂')}
-                                        style={{width: '100%', height: 'auto'}}
-                                    />
-                                    <p className="text-center mt-2 small">Étiquette énergie/CO₂ des véhicules neufs</p>
-                                </div>
+                            <div style={{
+                                flex: '1 1 30%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center'
+                            }}>
+                                <img
+                                    src={schemaUsinage}
+                                    alt="Sonde sous-marine"
+                                    className="img-fluid rounded shadow-sm"
+                                    style={{
+                                        width: '100%',
+                                        maxWidth: '250px',
+                                        height: 'auto',
+                                        border: '1px solid #ddd',
+                                    }}
+                                />
                             </div>
                         </div>
+
+                        <table className="table table-bordered mt-3"
+                               style={{fontSize: '12px', margin: '0 auto', width: '100%'}}>
+                            <thead className="table-primary">
+                            <tr>
+                                <th>Profondeur (m)</th>
+                                <th>0</th>
+                                <th>100</th>
+                                <th>200</th>
+                                <th>400</th>
+                                <th>600</th>
+                                <th>800</th>
+                                <th>2000</th>
+                                <th>2500</th>
+                                <th>2900</th>
+                                <th>3000</th>
+                                <th>3500</th>
+                                <th>4600</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Pression (bar)</td>
+                                <td>1</td>
+                                <td>11</td>
+                                <td>21</td>
+                                <td>41</td>
+                                <td>61</td>
+                                <td>81</td>
+                                <td>201</td>
+                                <td>251</td>
+                                <td>291</td>
+                                <td>301</td>
+                                <td>351</td>
+                                <td>461</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <Typography variant="body1" sx={{mt: 3}}>
+                            Dans la zone abyssale, qui commence à{' '}
+                            <Typography component="span" sx={{fontWeight: 'bold', color: 'blue'}}>
+                                2000 m
+                            </Typography>{' '}
+                            de profondeur, le sous-marin le plus profond a mesuré une pression d’environ{' '}
+                            <Typography component="span" sx={{fontWeight: 'bold', color: 'red'}}>
+                                290 bar
+                            </Typography>{' '}
+                            avant de remonter.
+                        </Typography>
+
                     </div>
-                    <div className="objectif-box" style={{marginTop: '-10px'}}>
-                        <p><strong> Objectif :</strong> 🎯 "Déterminer le rejet de CO₂ de la voiture de Kenny et son
-                            classement sur l'étiquette énergie/CO₂."</p>
-                    </div>
+
                 </div>
 
-                <div className="row" style={{marginTop: '5px'}}>
+                <div className="objectif-box" style={{marginTop: '10px'}}>
+                    <p><strong>Objectif :</strong> L'objectif est de déterminer la profondeur record atteinte par un
+                        sous-marin</p>
+                </div>
+
+                <div className="row" style={{marginTop: '4px'}}>
                     {/* Colonne de gauche */}
-                    <div className="col-md-6 mt-0">
-                        <div className="question-card mt-0">
+                    <div className="col-md-6">
+                        <div className="question-card">
                             <div className="question-content">
-                                <h4 className="vect-title"><span>1 . S'approprier, Réaliser</span></h4>
-                                <p>Dans le repère ci-dessous, placer les points d'abscisse x (consommation en L/100 km)
-                                    et d'ordonnée y (rejet de CO₂ en g/km).</p>
-
+                                <h4 className="vect-title"><span>1 . S'approprier, Analyser/Raisonner</span></h4>
                                 <div className="answer-area">
-                                    <div style={{
-                                        border: '1px solid #ccc',
-                                        padding: '10px',
-                                        marginBottom: '10px',
-                                        height: '250px',
-                                        position: 'relative'
-                                    }}>
-                                        {/* Graphique simplifié */}
-                                        <div style={{
-                                            position: 'absolute',
-                                            bottom: '20px',
-                                            left: '30px',
-                                            width: '90%',
-                                            height: '80%',
-                                            borderLeft: '1px solid #000',
-                                            borderBottom: '1px solid #000'
-                                        }}>
-                                            {/* Axe X */}
-                                            <div style={{
-                                                position: 'absolute',
-                                                bottom: '-20px',
-                                                left: '0',
-                                                width: '100%',
-                                                textAlign: 'center'
-                                            }}>Consommation (L/100 km)
-                                            </div>
-                                            {/* Axe Y */}
-                                            <div style={{
-                                                position: 'absolute',
-                                                top: '0',
-                                                left: '-40px',
-                                                height: '100%',
-                                                writingMode: 'vertical-lr',
-                                                textAlign: 'center',
-                                                transform: 'rotate(180deg)'
-                                            }}>Rejet CO₂ (g/km)
-                                            </div>
+                                    <p className="mb-2">Complétez le tableau avec les valeurs de profondeurs et de
+                                        pressions dans la zone abyssale :</p>
 
-                                            {/* Points approximatifs */}
-                                            <div style={{
-                                                position: 'absolute',
-                                                left: '5%',
-                                                bottom: '15%',
-                                                width: '8px',
-                                                height: '8px',
-                                                borderRadius: '50%',
-                                                backgroundColor: 'red'
-                                            }}></div>
-                                            <div style={{
-                                                position: 'absolute',
-                                                left: '15%',
-                                                bottom: '25%',
-                                                width: '8px',
-                                                height: '8px',
-                                                borderRadius: '50%',
-                                                backgroundColor: 'red'
-                                            }}></div>
-                                            <div style={{
-                                                position: 'absolute',
-                                                left: '30%',
-                                                bottom: '40%',
-                                                width: '8px',
-                                                height: '8px',
-                                                borderRadius: '50%',
-                                                backgroundColor: 'red'
-                                            }}></div>
-                                            <div style={{
-                                                position: 'absolute',
-                                                left: '40%',
-                                                bottom: '50%',
-                                                width: '8px',
-                                                height: '8px',
-                                                borderRadius: '50%',
-                                                backgroundColor: 'red'
-                                            }}></div>
-                                            <div style={{
-                                                position: 'absolute',
-                                                left: '45%',
-                                                bottom: '60%',
-                                                width: '8px',
-                                                height: '8px',
-                                                borderRadius: '50%',
-                                                backgroundColor: 'red'
-                                            }}></div>
-                                            <div style={{
-                                                position: 'absolute',
-                                                left: '55%',
-                                                bottom: '70%',
-                                                width: '8px',
-                                                height: '8px',
-                                                borderRadius: '50%',
-                                                backgroundColor: 'red'
-                                            }}></div>
-                                        </div>
-                                    </div>
+                                    <table className="table table-bordered mt-3"
+                                           style={{fontSize: '14px', maxWidth: '500px'}}>
+                                        <thead className="table-primary">
+                                        <tr>
+                                            <th>Profondeur (m)</th>
+                                            <th>Pression (bar)</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {[0, 1, 2, 3, 4, 5].map((index) => (
+                                            <tr key={index}>
+                                                <td>
+                                                    <input
+                                                        type="number"
+                                                        className="form-control form-control-sm"
+                                                        value={answers[`activity1_q1_depth_${index}`] || ''}
+                                                        onChange={(e) => handleInputChange(`activity1_q1_depth_${index}`, e.target.value)}
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <input
+                                                        type="number"
+                                                        className="form-control form-control-sm"
+                                                        value={answers[`activity1_q1_pressure_${index}`] || ''}
+                                                        onChange={(e) => handleInputChange(`activity1_q1_pressure_${index}`, e.target.value)}
+                                                    />
+                                                </td>
+                                            </tr>
+                                        ))}
+                                        </tbody>
+                                    </table>
 
                                     <button
                                         className="correction-btnoptic"
-                                        onClick={() => toggleCorrection('question1')}
+                                        onClick={() => toggleCorrection('activity1_q1')}
                                     >
-                                        <FaCheck/> {showCorrections.question1 ? 'Masquer la correction' : 'Vérifier les points'}
+                                        <FaCheck/> {showCorrections.activity1_q1 ? 'Masquer' : 'Correction'}
                                     </button>
-                                    {showCorrections.question1 && (
+
+                                    {showCorrections.activity1_q1 && (
                                         <div className="correction-box">
-                                            {correctAnswers.question1.formatted}
+                                            <p><strong>Correction :</strong></p>
+                                            <table className="table table-bordered mt-2" style={{fontSize: '14px'}}>
+                                                <thead className="table-success">
+                                                <tr>
+                                                    <th>Profondeur (m)</th>
+                                                    <th>2000</th>
+                                                    <th>2500</th>
+                                                    <th>2900</th>
+                                                    <th>3000</th>
+                                                    <th>3500</th>
+                                                    <th>4600</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>Pression (bar)</td>
+                                                    <td>201</td>
+                                                    <td>251</td>
+                                                    <td>291</td>
+                                                    <td>301</td>
+                                                    <td>351</td>
+                                                    <td>461</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <p className="mt-2">Dans la zone abyssale (au-delà de 2000 m), les valeurs
+                                                de profondeur et pression sont celles du tableau ci-dessus.</p>
                                         </div>
                                     )}
                                 </div>
 
                                 <h4 className="vect-title" style={{marginTop: '15px'}}>
-                                    <span>2 . Réaliser, Analyser</span>
-                                </h4>
-                                <p>a. Déterminer les coordonnées (x̄; ȳ) du point moyen G.</p>
-                                <p>b. Placer le point G sur le graphique.</p>
+                                    <span>2 . S'approprier, Réaliser</span></h4>
+                                <p>a. À partir du tableau obtenu à la question 1, représentez, à l'aide de la
+                                    calculatrice, l'ensemble des points d'abscisses x correspondant à la profondeur et
+                                    d'ordonnées y correspondant à la pression.</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    {/* Colonne de droite */}
+                    <div className="col-md-6">
+                        <div className="question-card">
+                            <div className="question-content">
+                                <h4 className="vect-title"><span>3 . S'approprier, Réaliser</span></h4>
+                                <p>b. L'ensemble des points ainsi placés forme un nuage de points. Décrivez son
+                                    allure.</p>
 
                                 <div className="answer-area">
                                     <textarea
                                         className="answer-input"
-                                        value={answers.question2a}
-                                        onChange={(e) => handleInputChange('question2a', e.target.value)}
+                                        value={answers.activity1_q2}
+                                        onChange={(e) => handleInputChange('activity1_q2', e.target.value)}
                                         rows={2}
                                     ></textarea>
                                     <button
                                         className="correction-btnoptic"
-                                        onClick={() => toggleCorrection('question2a')}
+                                        onClick={() => toggleCorrection('activity1_q2')}
                                     >
-                                        <FaCheck/> {showCorrections.question2a ? 'Masquer la correction' : 'Afficher la correction'}
+                                        <FaCheck/> {showCorrections.activity1_q2 ? 'Masquer' : 'Correction'}
                                     </button>
-                                    {showCorrections.question2a && (
+                                    {showCorrections.activity1_q2 && (
                                         <div className="correction-box">
-                                            {correctAnswers.question2a.formatted}
+                                            <p><strong>Correction :</strong></p>
+                                            <p>a. Les points à placer sont : (2000, 201), (2500, 251), (2900, 291),
+                                                (3000, 301), (3500, 351), (4600, 461)</p>
+                                            <p>b. Le nuage de points est parfaitement aligné sur une droite. Les points
+                                                sont parfaitement corrélés linéairement.</p>
                                         </div>
                                     )}
+                                </div>
+                                <p>Tracez, à l'aide de la calculatrice, la droite appelée droite d'ajustement affine.
+                                    Cette droite traduit approximativement l'évolution du nuage de points.</p>
 
-                                    <div style={{marginTop: '10px'}}>
-                                        <button
-                                            className="correction-btnoptic"
-                                            onClick={() => toggleCorrection('question2b')}
-                                        >
-                                            <FaCheck/> {showCorrections.question2b ? 'Masquer' : 'Voir placement de G'}
-                                        </button>
-                                        {showCorrections.question2b && (
-                                            <div className="correction-box">
-                                                {correctAnswers.question2b.formatted}
-                                            </div>
-                                        )}
-                                    </div>
+                                <div className="answer-area">
+                                    <textarea
+                                        className="answer-input"
+                                        value={answers.activity1_q3}
+                                        onChange={(e) => handleInputChange('activity1_q3', e.target.value)}
+                                        rows={2}
+                                    ></textarea>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('activity1_q3')}
+                                    >
+                                        <FaCheck/> {showCorrections.activity1_q3 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.activity1_q3 && (
+                                        <div className="correction-box">
+                                            <p><strong>Correction :</strong></p>
+                                            <p>La droite d'ajustement affine a pour équation : y = 0,1x + 1</p>
+                                            <p>En effet, on constate que pour chaque valeur : Pression = 0,1 ×
+                                                Profondeur + 1</p>
+                                            <p>Exemple : Pour 2000 m → 0,1 × 2000 + 1 = 200 + 1 = 201 bar ✓</p>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <h4 className="vect-title" style={{marginTop: '15px'}}>
+                                    <span>4 . Analyser/Raisonner, Réaliser, Valider, Communiquer</span>
+                                </h4>
+                                <p>À partir de la droite d'ajustement tracée dans la zone abyssale, déterminez la valeur
+                                    de la profondeur, arrondie au mètre près, pour une pression de 290 bar.</p>
+                                <div className="answer-area">
+            <textarea
+                className="answer-input"
+                value={answers.activity1_q4}
+                onChange={(e) => handleInputChange('activity1_q4', e.target.value)}
+                rows={2}
+            ></textarea>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('activity1_q4')}
+                                    >
+                                        <FaCheck/> {showCorrections.activity1_q4 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.activity1_q4 && (
+                                        <div className="correction-box">
+                                            <p><strong>Correction :</strong></p>
+                                            <p>On utilise l'équation de la droite : y = 0,1x + 1</p>
+                                            <p>Avec y = 290 bar, on a : 290 = 0,1x + 1</p>
+                                            <p>0,1x = 290 - 1 = 289</p>
+                                            <p>x = 289 / 0,1 = 2890 mètres</p>
+                                            <p>La profondeur record atteinte par le sous-marin est d'environ <strong>2890
+                                                mètres</strong>.</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* PAGE 2 - ACTIVITÉ 2 */}
+            <div className="print-page">
+                <div className="activity-header mt-0">
+                    <span className="activity-badge">ACTIVITÉ 2</span>
+                    <div className="activity-title">
+      <span className="course-title">
+        <span>🔋</span> Évolution du nombre de voitures électriques dans le monde
+      </span>
+                    </div>
+                </div>
+
+                <div className="renovation-contexte2" style={{width: '100%'}}>
+                    <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
+                        <div style={{flex: '1 1 70%', paddingRight: '20px'}}>
+                            <p>Depuis le début des années 2000, le nombre de voitures électriques en circulation
+                                augmente fortement. Cela représente un enjeu majeur pour les sociétés, notamment en
+                                lien avec la transition énergétique et la réduction des émissions de CO₂.</p>
+
+                            <p>Le tableau ci-dessous présente l'évolution du nombre de voitures électriques en
+                                circulation entre 2005 et 2021 :</p>
+                        </div>
+
+                        <div style={{
+                            flex: '1 1 30%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center'
+                        }}>
+                            <img
+                                src={schemaVoiture}
+                                alt="Voiture électrique"
+                                className="img-fluid rounded shadow-sm"
+                                style={{
+                                    width: '100%',
+                                    maxWidth: '250px',
+                                    height: 'auto',
+                                    border: '1px solid #ddd',
+                                }}
+                            />
+                        </div>
+                    </div>
+
+                    <table className="table table-bordered mt-0"
+                           style={{fontSize: '14px', margin: '0 auto', width: '100%'}}>
+                        <thead className="table-primary">
+                        <tr>
+                            <th>Année</th>
+                            <th>2005</th>
+                            <th>2010</th>
+                            <th>2015</th>
+                            <th>2017</th>
+                            <th>2019</th>
+                            <th>2021</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Véhicules (millions)</td>
+                            <td>0,1</td>
+                            <td>0,97</td>
+                            <td>2,07</td>
+                            <td>2,86</td>
+                            <td>3,46</td>
+                            <td>4,20</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <p className="mt-3">Les projections indiquent que la croissance devrait se poursuivre
+                        jusqu'en 2035 avant de ralentir.</p>
+                </div>
+
+                <div className="objectif-box" style={{marginTop: '10px'}}>
+                    <p><strong>Objectif :</strong> L'objectif est de prévoir l'évolution du nombre de voitures
+                        électriques d'ici 2030</p>
+                </div>
+
+                <div className="row" style={{marginTop: '10px'}}>
+                    {/* Colonne de gauche */}
+                    <div className="col-md-6">
+                        <div className="question-card">
+                            <div className="question-content">
+                                <h4 className="vect-title"><span>1 . S'approprier, Réaliser, Analyser/Raisonner</span>
+                                </h4>
+                                <p>a. Ouvrez le fichier Excel fictif « C02_09_voitures.xlsx », puis complétez le tableau
+                                    en reportant les valeurs données ci-dessus.</p>
+                                <p>b. En sélectionnant les cellules correspondantes (Année et Véhicules), représentez la
+                                    série statistique à deux variables à l'aide d'un nuage de points.</p>
+                                <p>c. Décrivez l'allure du nuage de points.</p>
+
+                                <div className="answer-area">
+                                    <textarea
+                                        className="answer-input"
+                                        value={answers.activity2_q1}
+                                        onChange={(e) => handleInputChange('activity2_q1', e.target.value)}
+                                        rows={1}
+                                    ></textarea>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('activity2_q1')}
+                                    >
+                                        <FaCheck/> {showCorrections.activity2_q1 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.activity2_q1 && (
+                                        <div className="correction-box">
+                                            <p><strong>Correction :</strong></p>
+                                            <p>a. Le tableau Excel doit contenir les données : (2005, 0,1), (2010,
+                                                0,97), (2015, 2,07), (2017, 2,86), (2019, 3,46), (2021, 4,20)</p>
+                                            <p>b. Le nuage de points est créé en sélectionnant les colonnes Année et
+                                                Véhicules.</p>
+                                            <p>c. Les points du nuage sont presque alignés.</p>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <h4 className="vect-title" style={{marginTop: '15px'}}><span>2 . Réaliser</span></h4>
+                                <p>À partir du nuage de points, tracez la droite d'ajustement affine et donnez son
+                                    équation.</p>
+
+                                <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.activity2_q2}
+                                            onChange={(e) => handleInputChange('activity2_q2', e.target.value)}
+                                            rows={1}
+                                        ></textarea>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('activity2_q2')}
+                                    >
+                                        <FaCheck/> {showCorrections.activity2_q2 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.activity2_q2 && (
+                                        <div className="correction-box">
+                                            <p><strong>Correction :</strong></p>
+                                            <p>L'équation de la droite d'ajustement affine est :</p>
+                                            <BlockMath math="y = 0,23x - 459,8"/>
+                                            <p>Où x représente l'année et y le nombre de voitures électriques en
+                                                millions.</p>
+                                        </div>
+                                    )}
+                                </div>
+                                <h4 className="vect-title"><span>3 . Réaliser, Valider</span></h4>
+                                <p>a. Utilisez cette équation pour calculer le nombre de voitures électriques en 2030.
+                                    Arrondissez au dixième.</p>
+                                <p>b. Complétez la phrase : « En 2030, le nombre de voitures électriques pourrait être
+                                    égal selon nos prévisions à environ ______ millions. »</p>
+
+                                <div className="answer-area">
+                                    <textarea
+                                        className="answer-input"
+                                        value={answers.activity2_q3}
+                                        onChange={(e) => handleInputChange('activity2_q3', e.target.value)}
+                                        rows={2}
+                                    ></textarea>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('activity2_q3')}
+                                    >
+                                        <FaCheck/> {showCorrections.activity2_q3 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.activity2_q3 && (
+                                        <div className="correction-box">
+                                            <p><strong>Correction :</strong></p>
+                                            <p>a. Calcul pour x = 2030 :</p>
+                                            <BlockMath math="y = 0,23 \times 2030 - 459,8 = 466,9 - 459,8 = 7,1"/>
+                                            <p>Arrondi au dixième : <strong>7,0 millions</strong></p>
+                                            <p>b. « En 2030, le nombre de voitures électriques pourrait être égal selon
+                                                nos prévisions à environ <strong>7,0</strong> millions. »</p>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -387,178 +620,103 @@ const Act1Stat2var = () => {
                     {/* Colonne de droite */}
                     <div className="col-md-6">
                         <div className="question-card">
-                            <div className="question-content">
-                                <h4 className="vect-title">
-                                    <span>3 . Réaliser</span>
+                            <div className="question-content " style={{marginTop: '-13px'}}>
+                                <h4 className="vect-title" style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '5px',
+                                    flexWrap: 'wrap'
+                                }}>
+                                    <span>4 . Réaliser</span>
+                                    <div>
+                                        <div className="formula-content">
+
+                                            <div className="math-formula">
+                                                <div className="fraction">
+                                                    Taux
+                                                </div>
+                                                =
+                                                <div className="fraction">
+                                                    <span>V<sub>finale</sub> - V<sub>initiale</sub>)</span>
+                                                    <span>V<sub>initiale</sub></span>
+                                                </div>
+                                                <span> × 100</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </h4>
-                                <p>Les points A(3,9; 90) et G définissent la droite d'ajustement (AG) du nuage de
-                                    points. Tracer la droite (AG) sur le graphique.</p>
+
+                                <p>Calculez le taux d'augmentation du nombre de voitures électriques entre 2021 et 2030.
+                                    Arrondissez à l'unité.</p>
 
                                 <div className="answer-area">
-                                    <textarea
-                                        className="answer-input"
-                                        value={answers.question3}
-                                        onChange={(e) => handleInputChange('question3', e.target.value)}
-                                        rows={2}
-                                    ></textarea>
+            <textarea
+                className="answer-input"
+                value={answers.activity2_q4}
+                onChange={(e) => handleInputChange('activity2_q4', e.target.value)}
+                rows={2}
+            ></textarea>
                                     <button
                                         className="correction-btnoptic"
-                                        onClick={() => toggleCorrection('question3')}
+                                        onClick={() => toggleCorrection('activity2_q4')}
                                     >
-                                        <FaCheck/> {showCorrections.question3 ? 'Masquer la correction' : 'Afficher la correction'}
+                                        <FaCheck/> {showCorrections.activity2_q4 ? 'Masquer' : 'Correction'}
                                     </button>
-                                    {showCorrections.question3 && (
+                                    {showCorrections.activity2_q4 && (
                                         <div className="correction-box">
-                                            {correctAnswers.question3.formatted}
+                                            <p><strong>Correction :</strong></p>
+                                            <p>Calcul du taux d'augmentation :</p>
+                                            <BlockMath
+                                                math="t = \frac{7,0 - 4,2}{4,2} \times 100 = \frac{2,8}{4,2} \times 100 \approx 66,7\%"/>
+                                            <p>Arrondi à l'unité : <strong>67%</strong> d'augmentation entre 2021 et
+                                                2030.</p>
                                         </div>
                                     )}
                                 </div>
 
-                                <h4 className="vect-title" style={{marginTop: '15px'}}>
-                                    <span>4 . Réaliser, Valider</span>
-                                </h4>
-                                <p>Lire sur le graphique l'ordonnée du point de la droite (AG) d'abscisse x = 5.</p>
-                                <p>Quelle valeur de y pour x = 5 ?</p>
+                                <h4 className="vect-title" style={{marginTop: '15px'}}><span>5 . Communiquer</span></h4>
+                                <p>Combien de voitures électriques pourrait-on avoir en 2030 ?</p>
 
                                 <div className="answer-area">
-                                    <textarea
-                                        className="answer-input"
-                                        value={answers.question4}
-                                        onChange={(e) => handleInputChange('question4', e.target.value)}
-                                        rows={2}
-                                    ></textarea>
+            <textarea
+                className="answer-input"
+                value={answers.activity2_q5}
+                onChange={(e) => handleInputChange('activity2_q5', e.target.value)}
+                rows={2}
+            ></textarea>
                                     <button
                                         className="correction-btnoptic"
-                                        onClick={() => toggleCorrection('question4')}
+                                        onClick={() => toggleCorrection('activity2_q5')}
                                     >
-                                        <FaCheck/> {showCorrections.question4 ? 'Masquer la correction' : 'Afficher la correction'}
+                                        <FaCheck/> {showCorrections.activity2_q5 ? 'Masquer' : 'Correction'}
                                     </button>
-                                    {showCorrections.question4 && (
+                                    {showCorrections.activity2_q5 && (
                                         <div className="correction-box">
-                                            {correctAnswers.question4.formatted}
+                                            <p><strong>Correction :</strong></p>
+                                            <p>Si la tendance se poursuit, le nombre de voitures électriques pourrait
+                                                atteindre 7,0 millions en 2030, ce qui représente une augmentation
+                                                d'environ 67% par rapport à 2021, contribuant ainsi à la transition
+                                                énergétique et à la réduction des émissions de CO₂.</p>
                                         </div>
                                     )}
                                 </div>
 
-                                <h4 className="vect-title" style={{marginTop: '15px'}}>
-                                    <span>5 . Communiquer</span>
-                                </h4>
-                                <p>En déduire le rejet de CO₂ produit par la voiture de Kenny, puis indiquer son
-                                    classement de catégorie d'après l'étiquette énergie/CO₂.</p>
-
-                                <div className="answer-area">
-                                    <textarea
-                                        className="answer-input"
-                                        value={answers.question5}
-                                        onChange={(e) => handleInputChange('question5', e.target.value)}
-                                        rows={2}
-                                    ></textarea>
-                                    <button
-                                        className="correction-btnoptic"
-                                        onClick={() => toggleCorrection('question5')}
-                                    >
-                                        <FaCheck/> {showCorrections.question5 ? 'Masquer la correction' : 'Afficher la correction'}
-                                    </button>
-                                    {showCorrections.question5 && (
-                                        <div className="correction-box">
-                                            {correctAnswers.question5.formatted}
-                                        </div>
-                                    )}
+                                {/* AutoEvaluationGrid réduit et bien aligné */}
+                                <div style={{
+                                    width: '150%',
+                                    overflow: 'hidden',
+                                    marginTop: '20px',
+                                    transform: 'scale(0.7)',
+                                    transformOrigin: 'top left',
+                                    marginBottom: '-31%'
+                                }}>
+                                    <AutoEvaluationGrid/>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            {/* PAGE 2 */}
-            <div className="print-page">
-                <div className="row mt-0">
-                    <div className="col-12">
-                        <div className="question-card">
-                            <div className="question-content">
-                                <div className="alert alert-info" style={{fontSize: '0.9rem'}}>
-                                    <strong>Rappel :</strong> Le CO₂ (dioxyde de carbone) est le principal gaz à effet
-                                    de serre responsable du changement climatique. L'étiquette énergie/CO₂ permet aux
-                                    consommateurs de comparer l'impact environnemental des véhicules.
-                                </div>
-
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <h3>📌 À retenir 🧠</h3>
-                                    <button
-                                        className="correction-btn"
-                                        onClick={toggleSummary}
-                                        style={{marginLeft: '10px'}}
-                                    >
-                                        {showSummary ? 'Masquer' : 'Afficher'} les informations
-                                    </button>
-                                </div>
-
-                                <div className="vector-summary-container">
-                                    {showSummary ? (
-                                        <div className="vector-cards-grid">
-                                            <div className="vector-card" style={{fontFamily: 'Cambria Math'}}>
-                                                <h4>Statistiques à deux variables</h4>
-                                                <p>Lorsqu'on étudie la relation entre deux variables quantitatives, on
-                                                    peut représenter les données par un <strong>nuage de points</strong>.
-                                                </p>
-                                            </div>
-
-                                            <div className="vector-card" style={{fontFamily: 'Cambria Math'}}>
-                                                <h4>Droite d'ajustement</h4>
-                                                <p>La droite d'ajustement permet de modéliser la relation entre les deux
-                                                    variables et de faire des prévisions.</p>
-
-                                                <h5 style={{marginTop: '1rem'}}>Méthode graphique</h5>
-                                                <p>On peut tracer une droite passant par le point moyen et un point
-                                                    caractéristique du nuage.</p>
-                                                <BlockMath math="y = ax + b"/>
-                                            </div>
-
-
-                                        </div>
-                                    ) : (
-                                        <div className="vector-cards-grid" style={{marginTop: '-20px'}}>
-                                            <div className="vector-card" style={{
-                                                border: '2px dashed #ccc',
-                                                minHeight: '250px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                color: '#999'
-                                            }}>
-                                            </div>
-
-                                            <div className="vector-card" style={{
-                                                border: '2px dashed #ccc',
-                                                minHeight: '250px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                color: '#999'
-                                            }}>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <AutoEvaluationGrid/>
-            </div>
-
-            <footer className="tp-footer">
-                <p>Activité de statistiques à deux variables - Émissions de CO₂ des véhicules</p>
-            </footer>
-
-            {modalState.show && (
-                <ModalImage
-                    imageUrl={modalState.imageUrl}
-                    altText={modalState.altText}
-                    onClose={closeModal}
-                />
-            )}
         </div>
     </>);
 };

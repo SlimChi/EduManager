@@ -156,7 +156,7 @@ const Chapitre9Pythagor = () => {
 
                         <div className="formula-card circle-card">
                             <h4><FaCircle/> Théorème de Thalès</h4>
-                            <div className="formula-content">
+                            <div className="formula-content ">
                                 <p>Avec (DE) // (BC) :</p>
                                 <div className="math-formula">
                                     <div className="fraction">
