@@ -84,7 +84,7 @@ const scheduleData = {
             '8h00-9h00': '',
             '9h00-10h00': '',
             '10h00-11h00': 'Physique Chimie\n2MCDBTP\nH210 LABO chimie',
-            '11h00-12h00': 'Physique Chimie\n1MSPC G1\nH306 cours chimie',
+            '11h00-12h00': 'Mathématiques Chimie\n1MSPC G1\nH200 cours chimie',
             '13h30-14h30': 'Parcours\n2MCDBTP\nH306',
             '14h30-15h30': 'Mathématiques\n2MCDBTP\nH306',
             '15h30-16h30': '',
