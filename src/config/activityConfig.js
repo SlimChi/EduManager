@@ -336,28 +336,46 @@ export const SPECIAL_ACTIVITIES = {
                 mecanique: {
                     activities: [
                         {
+                            id: 0,
+                            title: 'Délimiter un système et choisir un référentiel adapté.',
+                            path: 'mecanique/referentiel-meca',
+                            component: 'Act1ReferentielMeca',
+                        },
+                        {
                             id: 1,
+                            title: 'Reconnaître un état de repos ou de mouvement d\'un objet par rapport à un autre objet..',
+                            path: 'mecanique/trajectoire',
+                            component: 'Act1et2Mecanic',
+                        },
+                        {
+                            id: 2,
                             title: 'Représenter et caractériser une action mécanique',
                             path: 'mecanique/force',
                             component: 'Act1ForceMeca',
                         },
                         {
-                            id: 2,
+                            id: 3,
                             title: 'inventaire des actions mécaniques et conditions d’équilibre',
                             path: 'mecanique/force2',
                             component: 'Act2et3ForceMecanique',
                         },
                         {
-                            id: 3,
+                            id: 4,
                             title: 'Evaluation : Actions mécaniques',
                             path: 'mecanique/EvaluationForce',
                             component: 'EvaluationForce',
                         },
                         {
-                            id: 4,
+                            id: 5,
                             title: 'Représenter et caractériser une action mécanique',
                             path: 'mecanique/EvaluationForce2',
                             component: 'EvaluationMecaniqueForce',
+                        },
+                        {
+                            id: 6,
+                            title: 'QCM : Actions mécaniques',
+                            path: 'mecanique/QCMASSP',
+                            component: 'PremierCoursASSP',
                         },
 
                     ],

@@ -1,5 +1,13 @@
 import React, {useRef, useState} from 'react';
-import {FaCheck, FaBalanceScale, FaTiktok} from 'react-icons/fa';
+import {
+    FaCheck,
+    FaBalanceScale,
+    FaTiktok,
+    FaCalculator,
+    FaRulerCombined,
+    FaDrawPolygon,
+    FaIndustry
+} from 'react-icons/fa';
 import '../../../../styles/activites.css';
 import {useLocation, useParams} from 'react-router-dom';
 import BackButton from '../../../../components/navigation/BackButton';
@@ -11,6 +19,7 @@ import poulieImage from "../../../../assets/poulie.png";
 import force from "../../../../assets/force.png";
 import AutoEvaluationGrid from "../../../../config/AutoEvaluationGrid";
 import pomme from "../../../../assets/pomme.png";
+import {IoMdSchool} from "react-icons/io";
 
 const Act1ForceMeca = () => {
     const {classId} = useParams();

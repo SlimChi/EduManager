@@ -672,6 +672,14 @@
     padding: 10px;
 }
 
+.answer-space2 {
+    min-height: 40px;
+    margin: 15px 0;
+    border: 1px dashed #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .empty-space {
     height: 100px;
 }

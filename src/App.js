@@ -86,6 +86,9 @@ import Act1Stat2var from "./pages/Maths/première/StatProba/Statistiques/Act1Sta
 import EmploiDuTemps from "./data/EmploiDuTemps";
 import Act1et2Electricite from "./pages/SciencePhysiqueChimie/premiere/electricite/Act1et2Electricite";
 import ProgrammePremierePhysique from "./data/ProgrammePremierePhysique";
+import Act1et2Mecanic from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act1et2Mecanic";
+import Act1ReferentielMeca from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act1ReferentielMeca";
+import PremierCoursASSP from "./pages/SciencePhysiqueChimie/seconde/Mecanique/PremierCoursASSP";
 
 const theme = createTheme({
     palette: {
@@ -311,6 +314,18 @@ const MainApp = () => {
                         <Route
                             path="/programmes/science/:classId/ProgrammeTerminalePhysique3/activites/signaux/Exercices-signaux"
                             element={<ExercicesSigaux/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/referentiel-meca"
+                            element={<Act1ReferentielMeca/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/QCMASSP"
+                            element={<PremierCoursASSP/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/trajectoire"
+                            element={<Act1et2Mecanic/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/force"
