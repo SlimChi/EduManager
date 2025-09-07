@@ -212,7 +212,7 @@ export const SPECIAL_ACTIVITIES = {
                                 id: 3,
                                 title: 'Co-intervention maintenances',
                                 path: 'cointervention/cointerventionmaintenance3',
-                                component: 'Cointervention1Mspc',
+                                component: 'Cointervention1McdBtp',
                             },
                         ],
                     },

@@ -89,6 +89,10 @@ import ProgrammePremierePhysique from "./data/ProgrammePremierePhysique";
 import Act1et2Mecanic from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act1et2Mecanic";
 import Act1ReferentielMeca from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act1ReferentielMeca";
 import PremierCoursASSP from "./pages/SciencePhysiqueChimie/seconde/Mecanique/PremierCoursASSP";
+import PictoSecuriteSeconde from "./pages/SciencePhysiqueChimie/seconde/securite/PictoSecuriteSeconde";
+import Act3et4stat2Var from "./pages/Maths/première/StatProba/Statistiques/Act3et4stat2Var";
+import Cointervention1McdBtp from "./pages/Maths/seconde/cointervention/Cointervention1McdBtp";
+import Cointervention1Mspc from "./pages/Maths/seconde/cointervention/Cointervention1Mspc";
 
 const theme = createTheme({
     palette: {
@@ -276,8 +280,20 @@ const MainApp = () => {
                             element={<CalculsCommerciauxCoIntervention4/>}
                         />
                         <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/cointerventionmaintenance2"
+                            element={<Cointervention1McdBtp/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/cointerventionmaintenance3"
+                            element={<Cointervention1Mspc/>}
+                        />
+                        <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/cointerventionmaintenance1"
                             element={<CoInterventionMaintenance1/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/securite/securite-chimie"
+                            element={<PictoSecuriteSeconde/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/acoustique/tp-son"
@@ -373,6 +389,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/math/:classId/ProgrammePremiereMaths/activites/statistiques/stat-deux-variable"
                             element={<Act1Stat2var/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammePremiereMaths/activites/statistiques/stat-deux-variable2"
+                            element={<Act3et4stat2Var/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammePremierePhysique/activites/electricite/act1et2Electricite"

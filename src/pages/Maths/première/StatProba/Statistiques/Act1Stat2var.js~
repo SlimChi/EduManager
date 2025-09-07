@@ -663,7 +663,7 @@ const Act1Stat2var = () => {
                             style={{
                                 borderBottom: '1px solid #4caf50',
                                 padding: '0 4px'
-                            }}>______________________________</span>. La <span
+                            }}>______________</span>. La <span
                             style={{
                                 borderBottom: '1px solid #4caf50',
                                 padding: '0 4px'

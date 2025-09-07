@@ -1,0 +1,362 @@
+import React, {useRef, useState} from 'react';
+import {FaCheck, FaTools, FaHardHat, FaBuilding, FaRulerCombined} from 'react-icons/fa';
+import '../../../../styles/activites.css';
+import {useLocation, useParams} from 'react-router-dom';
+import BackButton from '../../../../components/navigation/BackButton';
+import PrintManager from '../../../../utils/PrintManager';
+import 'katex/dist/katex.min.css';
+import {InlineMath} from 'react-katex';
+import ModalImage from "../../../../utils/ModalImage";
+import AutoEvaluationGrid from "../../../../config/AutoEvaluationGrid";
+
+// Images (à remplacer par les vôtres)
+import planMaison from "../../../../assets/train-mouvement.png";
+import chantierImage from "../../../../assets/train-mouvement.png";
+import outilsMesure from "../../../../assets/train-mouvement.png";
+
+const Cointervention1McdBtp = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+    const contentRef = useRef();
+    const [showSummary, setShowSummary] = useState(false);
+
+    // États pour les réponses et corrections
+    const [answers, setAnswers] = useState({
+        question1: '',
+        question2: '',
+        question3: '',
+        question4: '',
+        question5: '',
+        question6: '',
+        question7: '',
+        question8: '',
+        question9: '',
+        question10: '',
+    });
+
+    const [showCorrections, setShowCorrections] = useState({
+        question1: false,
+        question2: false,
+        question3: false,
+        question4: false,
+        question5: false,
+        question6: false,
+        question7: false,
+        question8: false,
+        question9: false,
+        question10: false,
+    });
+
+    // Réponses attendues
+    const correctAnswers = {
+        question1: 'Les dimensions principales sont : Longueur = 10,40 m, Largeur = 8,20 m, Surface habitable = 85,28 m²',
+        question2: '1 cm sur plan = 50 cm en réalité (échelle 1:50)',
+        question3: 'Volume béton = Longueur × Largeur × Épaisseur = 10,40 × 8,20 × 0,20 = 17,06 m³',
+        question4: 'Quantité sable = Volume béton × 800 kg/m³ = 17,06 × 800 = 13 648 kg',
+        question5: 'Quantité gravier = Volume béton × 1 200 kg/m³ = 17,06 × 1 200 = 20 472 kg',
+        question6: 'Nombre sacs ciment = (Volume béton × 350 kg/m³) / 35 kg = (17,06 × 350) / 35 = 171 sacs',
+        question7: 'Périmètre fondation = 2 × (10,40 + 8,20) = 37,20 m linéaires',
+        question8: 'Surface coffrage = Périmètre × Hauteur = 37,20 × 0,50 = 18,60 m²',
+        question9: 'Pente toiture = (Hauteur pignon / Demi-largeur) × 100 = (2,50 / 4,10) × 100 = 61%',
+        question10: 'Surface toiture = Longueur × Largeur pente = 10,40 × √(4,10² + 2,50²) = 10,40 × 4,82 = 50,13 m²',
+    };
+
+    // Gestionnaires d'événements
+    const handleInputChange = (field, value) => {
+        setAnswers((prev) => ({...prev, [field]: value}));
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false, imageUrl: '', altText: '',
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState((prev) => ({...prev, show: false}));
+    };
+
+    if (className === '1McdBtp-cointervention') {
+        return <div>Cette activité n'est pas disponible pour cette classe.</div>;
+    }
+
+    return (<>
+        <BackButton/>
+        <div className="tp-container" id="btp-content" ref={contentRef}>
+            <PrintManager
+                contentRef={contentRef}
+                activityName="Cointervention_Maths_BTP"
+                pageCount={2}
+                quality="hd"
+            />
+
+            {/* PAGE 1 */}
+            <div className="print-page" id="page1-start">
+                <section className="tp-section compact">
+                    <div className="math-chapter-box orange" style={{padding: '10px', marginTop: '-10px'}}>
+                        <h3 className="math-chapter-title-test mb-0">Co-intervention Mathématiques - BTP</h3>
+                    </div>
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">ACTIVITÉ 1</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaHardHat/> <span>🏗️</span> « Calculs de matériaux pour une construction »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte">
+                                <h5 className="mb-3 text-primary fw-bold">
+                                    🚧 "Projet de construction d'une maison individuelle"
+                                </h5>
+
+                                <p style={{
+                                    textAlign: 'justify',
+                                    textJustify: 'inter-word',
+                                    fontSize: '16px',
+                                    lineHeight: '1.4'
+                                }}>
+                                    <span style={{fontWeight: 'bold', color: '#1976d2'}}>Lucas</span>, apprenti en
+                                    <span style={{fontWeight: 'bold', color: '#d32f2f'}}> Métier du Bâtiment</span>,
+                                    doit préparer les quantités de matériaux nécessaires pour les fondations d'une
+                                    maison.
+                                    Le plan architectural indique les dimensions suivantes :
+
+                                    <br/><br/>
+                                    • <strong>Longueur</strong> : 10,40 m<br/>
+                                    • <strong>Largeur</strong> : 8,20 m<br/>
+                                    • <strong>Épaisseur dalle</strong> : 20 cm<br/>
+                                    • <strong>Hauteur fondation</strong> : 50 cm
+
+                                    <br/><br/>
+                                    <span style={{fontStyle: 'italic', color: '#2e7d32'}}>
+                                        "Quelles quantités de matériaux commander pour réaliser cette construction ?"
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '250px', cursor: 'pointer', marginTop: '10px'}}>
+                            <img
+                                src={planMaison}
+                                alt="Plan de maison avec cotes"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(planMaison, 'Plan de construction')}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="objectif-box" style={{marginTop: '5px', marginBottom: '5px'}}>
+                        <div className="objectif-title"><strong style={{color: 'orangered'}}> Objectif :</strong> 🎯
+                        </div>
+                        <p>Maîtriser les calculs de volumes, surfaces et quantités de matériaux en contexte BTP.</p>
+                    </div>
+
+                    {/* Section S'approprier */}
+                    <div className="question-card mt-0">
+                        <div className="question-content">
+                            <h4 className="vect-title"
+                                style={{display: 'inline', marginRight: '10px'}}>
+                                <span>S'approprier</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                1. Relever les dimensions principales de la construction et calculer la surface au sol.
+                                ..........................................................................................................................................
+                                ............................................................................................................................................................................................
+                            </p>
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Analyser/Raisonner</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>2. L'échelle du plan est 1:50.
+                                Que signifie cette échelle et comment convertir les mesures du plan en mesures réelles ?
+                                ......................................................................................
+                                ...............................................................................................................................</p>
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Réaliser</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>3. Calculer le volume de béton
+                                nécessaire pour la dalle.</p>
+
+                            <div className="flex-shrink-0"
+                                 style={{
+                                     maxWidth: '40%',
+                                     cursor: 'pointer',
+                                     marginTop: '20px',
+                                     marginBottom: '10px',
+                                     marginLeft: '28%',
+                                 }}>
+                                <img
+                                    src={chantierImage}
+                                    alt="Chantier de construction"
+                                    className="img-fluid rounded shadow-sm compact-img"
+                                    onClick={() => openModal(chantierImage, 'Chantier BTP')}
+                                />
+                            </div>
+
+                            <p className="mt-3"><strong>Calculs des matériaux pour le béton :</strong></p>
+
+                            <p>4. Pour réaliser 1 m³ de béton, il faut :<br/>
+                                • 800 kg de sable<br/>
+                                • 1 200 kg de gravier<br/>
+                                • 350 kg de ciment<br/>
+                                • 150 L d'eau</p>
+
+                            <p>Calculer les quantités nécessaires :</p>
+
+                            <table className="table table-bordered text-center shadow-sm">
+                                <thead className="table-light">
+                                <tr>
+                                    <th>Matériau</th>
+                                    <th>Calcul</th>
+                                    <th>Quantité nécessaire</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><strong>Sable</strong></td>
+                                    <td>{showCorrections.question4 ? "Volume × 800 kg/m³" : "............."}</td>
+                                    <td>{showCorrections.question4 ? "13 648 kg" : "............."}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gravier</strong></td>
+                                    <td>{showCorrections.question5 ? "Volume × 1 200 kg/m³" : "............."}</td>
+                                    <td>{showCorrections.question5 ? "20 472 kg" : "............."}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ciment</strong></td>
+                                    <td>{showCorrections.question6 ? "(Volume × 350 kg/m³) / 35" : "............."}</td>
+                                    <td>{showCorrections.question6 ? "171 sacs" : "............."}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => {
+                                    toggleCorrection('question4');
+                                    toggleCorrection('question5');
+                                    toggleCorrection('question6');
+                                }}
+                            >
+                                <FaCheck/> {showCorrections.question4 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* PAGE 2 */}
+            <div className="print-page" id="page2-start">
+                <section className="tp-section compact">
+                    <div className="math-chapter-box orange" style={{padding: '0'}}>
+                        <span style={{marginRight: '10px', fontSize: '30px'}}>📐</span>
+                        <h2 className="math-chapter-title-test">Calculs techniques - BTP</h2>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Valider/Communiquer</span>
+                        </h4>
+
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            5. Calculer le périmètre des fondations pour déterminer la longueur de coffrage nécessaire.
+                            ........................................................................................................................
+                            .........................................................................................................................
+                            ...........................................................</p>
+
+                        <p className="mt-3">6. Calculer la surface de coffrage nécessaire (hauteur de coffrage : 50 cm).
+                            ...............................................................................................................
+                            ..................................................................
+                            ...............................................................................................................
+                            ................................................................................................................
+                        </p>
+
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '250px', cursor: 'pointer', marginTop: '20px'}}>
+                            <img
+                                src={outilsMesure}
+                                alt="Outils de mesure BTP"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(outilsMesure, 'Outils de mesure')}
+                            />
+                        </div>
+
+                        <p className="mt-3">7. La toiture a une pente de 30%. Calculer la hauteur du pignon si la
+                            largeur de la maison est de 8,20 m.
+                            ...............................................................................................................
+                            ..................................................................
+                            ...............................................................................................................
+                        </p>
+
+                        <p>8. Calculer la surface réelle de la toiture.
+                            ...............................................................................................................
+                            ..................................................................
+                            ...............................................................................................................
+                            ................................................................................................................
+                        </p>
+
+                        <p>9. Vérifier les calculs avec un autre apprenti et comparer les résultats.
+                            ...............................................................................................................
+                            ..................................................................
+                            ...............................................................................................................
+                        </p>
+
+                        <p>10. Rédiger une commande de matériaux complète pour le chef de chantier.
+                            ...............................................................................................................
+                            ..................................................................
+                            ...............................................................................................................
+                            ................................................................................................................
+                        </p>
+                    </div>
+
+                    {/* Grille d'auto-évaluation */}
+                    <div style={{
+                        width: '100%',
+                        marginTop: '30px',
+                        marginBottom: '20px'
+                    }}>
+                        <AutoEvaluationGrid/>
+                    </div>
+
+                    {/* Encadré mémo technique */}
+                    <div className="memo-box" style={{
+                        backgroundColor: '#e3f2fd',
+                        padding: '15px',
+                        borderRadius: '8px',
+                        borderLeft: '4px solid #2196f3',
+                        marginTop: '20px'
+                    }}>
+                        <h5 style={{color: '#1976d2', marginBottom: '10px'}}>📋 Mémo technique - BTP</h5>
+                        <ul style={{margin: 0, paddingLeft: '20px'}}>
+                            <li>1 m³ = 1 000 L</li>
+                            <li>Masse volumique béton : 2 400 kg/m³</li>
+                            <li>1 sac de ciment = 35 kg</li>
+                            <li>Pente (%) = (dénivelé / distance horizontale) × 100</li>
+                            <li>Surface toiture = Longueur × Largeur / cos(angle)</li>
+                        </ul>
+                    </div>
+
+                </section>
+            </div>
+
+            {modalState.show && (<ModalImage
+                imageUrl={modalState.imageUrl}
+                altText={modalState.altText}
+                onClose={closeModal}
+            />)}
+        </div>
+    </>);
+};
+
+export default Cointervention1McdBtp;

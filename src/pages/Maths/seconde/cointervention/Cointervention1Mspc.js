@@ -1,0 +1,505 @@
+import React, {useRef, useState} from 'react';
+import {FaCheck, FaTools, FaTachometerAlt, FaIndustry, FaWater} from 'react-icons/fa';
+import '../../../../styles/activites.css';
+import {useLocation, useParams} from 'react-router-dom';
+import BackButton from '../../../../components/navigation/BackButton';
+import PrintManager from '../../../../utils/PrintManager';
+import 'katex/dist/katex.min.css';
+import {InlineMath} from 'react-katex';
+import ModalImage from "../../../../utils/ModalImage";
+import AutoEvaluationGrid from "../../../../config/AutoEvaluationGrid";
+
+// Images
+import atelierMaintenance from "../../../../assets/atelierMaintenance.png";
+import outilsMesure from "../../../../assets/trottinettes.png";
+import tableauConversions from "../../../../assets/tortue.png";
+
+const Cointervention1Mspc = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+    const contentRef = useRef();
+    const [showSummary, setShowSummary] = useState(false);
+
+    // États pour les réponses et corrections
+    const [answers, setAnswers] = useState({
+        q1a: '', q1b: '', q1c: '', q1d: '', q1e: '', q1f: '',
+        q2a: '', q2b: '', q2c: '', q2d: '', q2e: '', q2f: '',
+        q3a: '', q3b: '', q3c: '', q3d: '', q3e: '', q3f: '',
+        q4a: '', q4b: '', q4c: '', q4d: '', q4e: '', q4f: '',
+        qcm1: '', qcm2: '', qcm3: '', qcm4: '', qcm5: ''
+    });
+
+    const [showCorrections, setShowCorrections] = useState({
+        q1a: false, q1b: false, q1c: false, q1d: false, q1e: false, q1f: false,
+        q2a: false, q2b: false, q2c: false, q2d: false, q2e: false, q2f: false,
+        q3a: false, q3b: false, q3c: false, q3d: false, q3e: false, q3f: false,
+        q4a: false, q4b: false, q4c: false, q4d: false, q4e: false, q4f: false,
+        qcm1: false, qcm2: false, qcm3: false, qcm4: false, qcm5: false
+    });
+
+    // Réponses attendues
+    const correctAnswers = {
+        q1a: '2,5 km = 2500 m',
+        q1b: '1200 mm = 1,2 m',
+        q1c: '45 cm = 0,45 m',
+        q1d: '3,8 m = 380 cm',
+        q1e: '0,75 m = 750 mm',
+        q1f: '12500 m = 12,5 km',
+
+        q2a: '1500 g = 1,5 kg',
+        q2b: '3,2 kg = 3200 g',
+        q2c: '850 mg = 0,85 g',
+        q2d: '2,5 t = 2500 kg',
+        q2e: '4500 kg = 4,5 t',
+        q2f: '0,08 kg = 80 g',
+
+        q3a: '2,5 h = 150 min',
+        q3b: '45 min = 0,75 h',
+        q3c: '3 h 30 min = 210 min',
+        q3d: '180 min = 3 h',
+        q3e: '4,5 h = 4 h 30 min',
+        q3f: '90 min = 1,5 h',
+
+        q4a: '2500 mL = 2,5 L',
+        q4b: '3,8 L = 3800 mL',
+        q4c: '1,2 m³ = 1200 L',
+        q4d: '450 L = 0,45 m³',
+        q4e: '750 cm³ = 0,75 L',
+        q4f: '2,5 L = 2500 mL',
+
+        qcm1: '100 cm',
+        qcm2: '1000 g',
+        qcm3: '60 min',
+        qcm4: '1000 mL',
+        qcm5: '1000 W'
+    };
+
+    // Gestionnaires d'événements
+    const handleInputChange = (field, value) => {
+        setAnswers((prev) => ({...prev, [field]: value}));
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false, imageUrl: '', altText: '',
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState((prev) => ({...prev, show: false}));
+    };
+
+    const toggleCorrection = (field) => {
+        setShowCorrections((prev) => ({...prev, [field]: !prev[field]}));
+    };
+
+    if (className === '1MSPC-cointervention') {
+        return <div>Cette activité n'est pas disponible pour cette classe.</div>;
+    }
+
+    return (<>
+        <BackButton/>
+        <div className="tp-container" id="maintenance-content" ref={contentRef}>
+            <PrintManager
+                contentRef={contentRef}
+                activityName="Conversions_Unites_Maintenance"
+                pageCount={2}
+                quality="hd"
+            />
+
+            {/* PAGE 1 */}
+            <div className="print-page" id="page1-start">
+                <section className="tp-section compact">
+                    <div className="math-chapter-box green" style={{padding: '10px', marginTop: '-10px'}}>
+                        <h3 className="math-chapter-title-test mb-0">Co-intervention Mathématiques - Maintenance
+                            Industrielle</h3>
+                    </div>
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">ACTIVITÉ 1</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaTools/> <span>📏</span> « Maîtriser les conversions d'unités »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte">
+                                <h5 className="mb-3 text-primary fw-bold">
+                                    🛠️ "L'importance des unités en maintenance industrielle"
+                                </h5>
+
+                                <p style={{
+                                    textAlign: 'justify',
+                                    textJustify: 'inter-word',
+                                    fontSize: '16px',
+                                    lineHeight: '1.4'
+                                }}>
+                                    <span style={{fontWeight: 'bold', color: '#1976d2'}}>Apprentis techniciens</span>,
+                                    dans votre future carrière en maintenance, vous serez quotidiennement confrontés à
+                                    différentes unités de mesure.
+
+                                    <br/><br/>
+                                    Que ce soit pour <strong>mesurer des longueurs</strong> de pièces, <strong>peser des
+                                    composants</strong>,
+                                    <strong> calculer des durées</strong> d'intervention ou <strong>quantifier des
+                                    volumes</strong> de fluides,
+                                    la maîtrise des conversions est essentielle !
+
+                                    <br/><br/>
+                                    <span style={{fontStyle: 'italic', color: '#2e7d32'}}>
+                                        "Une erreur de conversion peut coûter très cher à l'entreprise !"
+                                    </span>
+                                </p>
+
+                                <div className="objectif-box" style={{marginTop: '5px', marginBottom: '5px'}}>
+                                    <div className="objectif-title"><strong style={{color: 'orangered'}}> Objectif
+                                        :</strong> 🎯
+                                    </div>
+                                    <p>Convertir correctement entre les différentes unités de mesure utilisées en
+                                        maintenance.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '250px', cursor: 'pointer'}}>
+                            <img
+                                src={atelierMaintenance}
+                                alt="Atelier de maintenance industrielle"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(atelierMaintenance, 'Atelier de maintenance')}
+                            />
+                        </div>
+                    </div>
+
+
+                    <div className="row" style={{marginTop: '20px'}}>
+                        {/* Colonne de gauche - Longueurs */}
+                        <div className="col-md-6">
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title"><span>📐 Longueurs</span></h4>
+
+                                    <p><strong>1a.</strong> 2,5 km = ______ m</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q1a')}>
+                                            <FaCheck/> {showCorrections.q1a ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q1a && (
+                                            <div className="correction-box">{correctAnswers.q1a}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>1b.</strong> 1200 mm = ______ m</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q1b')}>
+                                            <FaCheck/> {showCorrections.q1b ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q1b && (
+                                            <div className="correction-box">{correctAnswers.q1b}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>1c.</strong> 45 cm = ______ m</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q1c')}>
+                                            <FaCheck/> {showCorrections.q1c ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q1c && (
+                                            <div className="correction-box">{correctAnswers.q1c}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>1d.</strong> 3,8 m = ______ cm</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q1d')}>
+                                            <FaCheck/> {showCorrections.q1d ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q1d && (
+                                            <div className="correction-box">{correctAnswers.q1d}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>1e.</strong> 0,75 m = ______ mm</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q1e')}>
+                                            <FaCheck/> {showCorrections.q1e ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q1e && (
+                                            <div className="correction-box">{correctAnswers.q1e}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>1f.</strong> 12500 m = ______ km</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q1f')}>
+                                            <FaCheck/> {showCorrections.q1f ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q1f && (
+                                            <div className="correction-box">{correctAnswers.q1f}</div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Colonne de droite - Masses */}
+                        <div className="col-md-6">
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title"><span>⚖️ Masses</span></h4>
+
+                                    <p><strong>2a.</strong> 1500 g = ______ kg</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q2a')}>
+                                            <FaCheck/> {showCorrections.q2a ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q2a && (
+                                            <div className="correction-box">{correctAnswers.q2a}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>2b.</strong> 3,2 kg = ______ g</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q2b')}>
+                                            <FaCheck/> {showCorrections.q2b ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q2b && (
+                                            <div className="correction-box">{correctAnswers.q2b}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>2c.</strong> 850 mg = ______ g</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q2c')}>
+                                            <FaCheck/> {showCorrections.q2c ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q2c && (
+                                            <div className="correction-box">{correctAnswers.q2c}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>2d.</strong> 2,5 t = ______ kg</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q2d')}>
+                                            <FaCheck/> {showCorrections.q2d ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q2d && (
+                                            <div className="correction-box">{correctAnswers.q2d}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>2e.</strong> 4500 kg = ______ t</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q2e')}>
+                                            <FaCheck/> {showCorrections.q2e ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q2e && (
+                                            <div className="correction-box">{correctAnswers.q2e}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>2f.</strong> 0,08 kg = ______ g</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q2f')}>
+                                            <FaCheck/> {showCorrections.q2f ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q2f && (
+                                            <div className="correction-box">{correctAnswers.q2f}</div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* PAGE 2 */}
+            <div className="print-page" id="page2-start">
+                <section className="tp-section compact">
+                    <div className="row">
+                        {/* Colonne de gauche - Temps et Volumes */}
+                        <div className="col-md-6">
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title"><span>⏰ Temps</span></h4>
+
+                                    <p><strong>3a.</strong> 2,5 h = ______ min</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q3a')}>
+                                            <FaCheck/> {showCorrections.q3a ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q3a && (
+                                            <div className="correction-box">{correctAnswers.q3a}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>3b.</strong> 45 min = ______ h</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q3b')}>
+                                            <FaCheck/> {showCorrections.q3b ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q3b && (
+                                            <div className="correction-box">{correctAnswers.q3b}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>3c.</strong> 3 h 30 min = ______ min</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q3c')}>
+                                            <FaCheck/> {showCorrections.q3c ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q3c && (
+                                            <div className="correction-box">{correctAnswers.q3c}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>3d.</strong> 180 min = ______ h</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q3d')}>
+                                            <FaCheck/> {showCorrections.q3d ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q3d && (
+                                            <div className="correction-box">{correctAnswers.q3d}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>3e.</strong> 4,5 h = ______ h ______ min</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q3e')}>
+                                            <FaCheck/> {showCorrections.q3e ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q3e && (
+                                            <div className="correction-box">{correctAnswers.q3e}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>3f.</strong> 90 min = ______ h</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q3f')}>
+                                            <FaCheck/> {showCorrections.q3f ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q3f && (
+                                            <div className="correction-box">{correctAnswers.q3f}</div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Colonne de droite - Volumes */}
+                        <div className="col-md-6">
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title" style={{marginTop: '20px'}}><span>💧 Volumes</span></h4>
+
+                                    <p><strong>4a.</strong> 2500 mL = ______ L</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q4a')}>
+                                            <FaCheck/> {showCorrections.q4a ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q4a && (
+                                            <div className="correction-box">{correctAnswers.q4a}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>4b.</strong> 3,8 L = ______ mL</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q4b')}>
+                                            <FaCheck/> {showCorrections.q4b ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q4b && (
+                                            <div className="correction-box">{correctAnswers.q4b}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>4c.</strong> 1,2 m³ = ______ L</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q4c')}>
+                                            <FaCheck/> {showCorrections.q4c ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q4c && (
+                                            <div className="correction-box">{correctAnswers.q4c}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>4d.</strong> 450 L = ______ m³</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q4d')}>
+                                            <FaCheck/> {showCorrections.q4d ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q4d && (
+                                            <div className="correction-box">{correctAnswers.q4d}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>4e.</strong> 750 cm³ = ______ L</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q4e')}>
+                                            <FaCheck/> {showCorrections.q4e ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q4e && (
+                                            <div className="correction-box">{correctAnswers.q4e}</div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>4f.</strong> 2,5 L = ______ mL</p>
+                                    <div className="answer-area">
+                                        <textarea className="answer-input" rows="1"></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('q4f')}>
+                                            <FaCheck/> {showCorrections.q4f ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.q4f && (
+                                            <div className="correction-box">{correctAnswers.q4f}</div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Grille d'auto-évaluation */}
+                    <div style={{width: '100%', marginTop: '30px'}}>
+                        <AutoEvaluationGrid/>
+                    </div>
+                </section>
+            </div>
+
+            {modalState.show && (<ModalImage
+                imageUrl={modalState.imageUrl}
+                altText={modalState.altText}
+                onClose={closeModal}
+            />)}
+        </div>
+    </>);
+};
+
+export default Cointervention1Mspc;

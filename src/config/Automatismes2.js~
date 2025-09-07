@@ -103,7 +103,7 @@ const Automatismes2 = () => {
                 ))}
             </div>
 
-            <div className="compact-search-box no-print">
+            <div className="compact-search-box">
                 <input
                     type="number"
                     value={searchInput}
