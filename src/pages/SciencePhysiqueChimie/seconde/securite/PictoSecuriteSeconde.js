@@ -97,7 +97,7 @@ const PictoSecuriteSeconde = () => {
         question22: 'A) Des chaussures de sécurité et des casques.',
         question23: 'B) En protégeant les travailleurs contre les risques professionnels.',
         question24: 'B) En fournissant une formation régulière et des démonstrations pratiques.',
-        question25: 'C) Tous les équipements de protection doivent être portés ensemble',
+        question25: 'C) On porte les EPI dès qu’il y a un risque pour la santé ou la sécurité',
         question26: 'A) Avant chaque utilisation',
         question27: 'B) Les signaler immédiatement à son responsable',
         question28: 'C) Selon les instructions du fabricant et les procédures de l\'établissement',

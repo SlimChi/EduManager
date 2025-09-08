@@ -2219,7 +2219,7 @@ body.printing button {
     align-items: center;
     gap: 10px; /* Espacement entre l'emoji et le texte */
     text-transform: uppercase; /* Optionnel, pour donner un effet plus net */
-    margin-bottom: 5px; /* Un peu d'espace en dessous */
+    margin-bottom: 100px; /* Un peu d'espace en dessous */
 }
 
 .vect-title span {

@@ -28,6 +28,12 @@ export const SPECIAL_ACTIVITIES = {
                                 path: 'statistiques/stat-une-variable3',
                                 component: 'StatUneVariableAct3',
                             },
+                            {
+                                id: 4,
+                                title: ' Comment sont réparties les dépenses du club ?',
+                                path: 'statistiques/stat-une-variable4',
+                                component: 'StatUneVarAct4et5',
+                            },
                         ],
                     },
                     probas: {

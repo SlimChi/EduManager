@@ -194,21 +194,6 @@ const Cointervention1McdBtp = () => {
                             <p style={{display: 'inline', textAlign: 'justify'}}>3. Calculer le volume de béton
                                 nécessaire pour la dalle.</p>
 
-                            <div className="flex-shrink-0"
-                                 style={{
-                                     maxWidth: '40%',
-                                     cursor: 'pointer',
-                                     marginTop: '20px',
-                                     marginBottom: '10px',
-                                     marginLeft: '28%',
-                                 }}>
-                                <img
-                                    src={chantierImage}
-                                    alt="Chantier de construction"
-                                    className="img-fluid rounded shadow-sm compact-img"
-                                    onClick={() => openModal(chantierImage, 'Chantier BTP')}
-                                />
-                            </div>
 
                             <p className="mt-3"><strong>Calculs des matériaux pour le béton :</strong></p>
 
@@ -287,16 +272,6 @@ const Cointervention1McdBtp = () => {
                             ...............................................................................................................
                             ................................................................................................................
                         </p>
-
-                        <div className="flex-shrink-0"
-                             style={{maxWidth: '250px', cursor: 'pointer', marginTop: '20px'}}>
-                            <img
-                                src={outilsMesure}
-                                alt="Outils de mesure BTP"
-                                className="img-fluid rounded shadow-sm compact-img"
-                                onClick={() => openModal(outilsMesure, 'Outils de mesure')}
-                            />
-                        </div>
 
                         <p className="mt-3">7. La toiture a une pente de 30%. Calculer la hauteur du pignon si la
                             largeur de la maison est de 8,20 m.

@@ -93,6 +93,7 @@ import PictoSecuriteSeconde from "./pages/SciencePhysiqueChimie/seconde/securite
 import Act3et4stat2Var from "./pages/Maths/première/StatProba/Statistiques/Act3et4stat2Var";
 import Cointervention1McdBtp from "./pages/Maths/seconde/cointervention/Cointervention1McdBtp";
 import Cointervention1Mspc from "./pages/Maths/seconde/cointervention/Cointervention1Mspc";
+import StatUneVarAct4et5 from "./pages/Maths/seconde/statistiques/statistiques/StatUneVarAct4et5";
 
 const theme = createTheme({
     palette: {
@@ -178,6 +179,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/statistiques/stat-une-variable3"
                             element={<StatUneVariableAct3/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/statistiques/stat-une-variable4"
+                            element={<StatUneVarAct4et5/>}
                         />
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act1Proba"

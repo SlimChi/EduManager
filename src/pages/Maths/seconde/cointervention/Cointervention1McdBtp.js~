@@ -78,7 +78,13 @@ const Cointervention1McdBtp = () => {
     const closeModal = () => {
         setModalState((prev) => ({...prev, show: false}));
     };
+    const toggleCorrection = (field) => {
+        setShowCorrections((prev) => ({...prev, [field]: !prev[field]}));
 
+        if (!answers[field] && !showCorrections[field]) {
+            setAnswers((prev) => ({...prev, [field]: correctAnswers[field]}));
+        }
+    };
     if (className === '1McdBtp-cointervention') {
         return <div>Cette activité n'est pas disponible pour cette classe.</div>;
     }

@@ -330,10 +330,10 @@ const StatUneVariableAct3 = () => {
                                     <thead className="table-light">
                                     <tr>
                                         <th>Durée (heures)</th>
-                                        <th>]0 ; 2]</th>
-                                        <th>]2 ; 4]</th>
-                                        <th>]4 ; 6]</th>
-                                        <th>]6 ; 8]</th>
+                                        <th>[0 ; 2]</th>
+                                        <th>[2 ; 4]</th>
+                                        <th>[4 ; 6]</th>
+                                        <th>[6 ; 8]</th>
                                     </tr>
                                     </thead>
                                     <tbody>
