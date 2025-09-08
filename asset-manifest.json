@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/EduManager/static/css/main.8859781f.css",
-    "main.js": "/EduManager/static/js/main.e4e664d2.js",
+    "main.css": "/EduManager/static/css/main.d5db3ea0.css",
+    "main.js": "/EduManager/static/js/main.005e7356.js",
     "static/js/977.7c1b83c7.chunk.js": "/EduManager/static/js/977.7c1b83c7.chunk.js",
     "static/js/732.88920a93.chunk.js": "/EduManager/static/js/732.88920a93.chunk.js",
     "static/js/103.612e5b3f.chunk.js": "/EduManager/static/js/103.612e5b3f.chunk.js",
@@ -62,6 +62,7 @@
     "static/media/cuisine.png": "/EduManager/static/media/cuisine.1a40a5a5a25082e55432.png",
     "static/media/14.gif": "/EduManager/static/media/14.2a311ffbd60286861db8.gif",
     "static/media/prisme.png": "/EduManager/static/media/prisme.b1b9baf1fb3b0c3c3914.png",
+    "static/media/act4stat.png": "/EduManager/static/media/act4stat.b9e0f9fb7769cf725aa0.png",
     "static/media/delagrave_Gpe_A_B_1er_livre_prof.png": "/EduManager/static/media/delagrave_Gpe_A_B_1er_livre_prof.645b270419545dace213.png",
     "static/media/tour-eiffel.png": "/EduManager/static/media/tour-eiffel.6cd2df7f13fd366ee3d3.png",
     "static/media/fusee-soyouz.png": "/EduManager/static/media/fusee-soyouz.2263ca05e9cda3db5fc0.png",
@@ -77,6 +78,7 @@
     "static/media/montageDynamo.png": "/EduManager/static/media/montageDynamo.8be26e6e323914b7ed75.png",
     "static/media/menutable.jpg": "/EduManager/static/media/menutable.b0e6581adb1bccf596f8.jpg",
     "static/media/solMurForce.png": "/EduManager/static/media/solMurForce.ff83c5c425f660609e4d.png",
+    "static/media/act5stat.png": "/EduManager/static/media/act5stat.06c2c289e5a1ebd75327.png",
     "static/media/imageenrais.jpg": "/EduManager/static/media/imageenrais.547906cbf257e0113c16.jpg",
     "static/media/shrek.jpg": "/EduManager/static/media/shrek.d988b1d7465ec3d29544.jpg",
     "static/media/electromenager.jpg": "/EduManager/static/media/electromenager.a07c432ff0337381c517.jpg",
@@ -86,6 +88,7 @@
     "static/media/hamac2.jpg": "/EduManager/static/media/hamac2.98bfa47f2d01c4444b16.jpg",
     "static/media/deplacement.png": "/EduManager/static/media/deplacement.1c192b168bc8b8df0a3d.png",
     "static/media/logo.jpg": "/EduManager/static/media/logo.6718368d0ed59486dcf6.jpg",
+    "static/media/diagsecteur.png": "/EduManager/static/media/diagsecteur.9dfa20ca4830f2ab29da.png",
     "static/media/circuit2.png": "/EduManager/static/media/circuit2.3b12d1c94efed265e463.png",
     "static/media/Sciences_2nde.png": "/EduManager/static/media/Sciences_2nde.2cbce406b42d853a4677.png",
     "static/media/electromena.jpg": "/EduManager/static/media/electromena.228e6b8d6d2fd916c6c2.jpg",
@@ -189,6 +192,7 @@
     "static/media/KaTeX_Size2-Regular.ttf": "/EduManager/static/media/KaTeX_Size2-Regular.57f5c1837853986ea1db.ttf",
     "static/media/KaTeX_Fraktur-Bold.woff2": "/EduManager/static/media/KaTeX_Fraktur-Bold.931d67ea207ab37ee693.woff2",
     "static/media/KaTeX_Fraktur-Regular.woff2": "/EduManager/static/media/KaTeX_Fraktur-Regular.172d3529b26f8cedef6b.woff2",
+    "static/media/histostat5.png": "/EduManager/static/media/histostat5.e8c2d174804aceb6c20b.png",
     "static/media/KaTeX_Script-Regular.woff": "/EduManager/static/media/KaTeX_Script-Regular.073b3402d036714b4370.woff",
     "static/media/KaTeX_Size4-Regular.ttf": "/EduManager/static/media/KaTeX_Size4-Regular.4ad7c7e8bb8d10a34bb7.ttf",
     "static/media/spectreSignaux.png": "/EduManager/static/media/spectreSignaux.d39ca0feefa199eed147.png",
@@ -209,15 +213,15 @@
     "static/media/KaTeX_Size3-Regular.woff": "/EduManager/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/EduManager/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/EduManager/index.html",
-    "main.8859781f.css.map": "/EduManager/static/css/main.8859781f.css.map",
-    "main.e4e664d2.js.map": "/EduManager/static/js/main.e4e664d2.js.map",
+    "main.d5db3ea0.css.map": "/EduManager/static/css/main.d5db3ea0.css.map",
+    "main.005e7356.js.map": "/EduManager/static/js/main.005e7356.js.map",
     "977.7c1b83c7.chunk.js.map": "/EduManager/static/js/977.7c1b83c7.chunk.js.map",
     "732.88920a93.chunk.js.map": "/EduManager/static/js/732.88920a93.chunk.js.map",
     "103.612e5b3f.chunk.js.map": "/EduManager/static/js/103.612e5b3f.chunk.js.map",
     "453.dc8f7a36.chunk.js.map": "/EduManager/static/js/453.dc8f7a36.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8859781f.css",
-    "static/js/main.e4e664d2.js"
+    "static/css/main.d5db3ea0.css",
+    "static/js/main.005e7356.js"
   ]
 }
