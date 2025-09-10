@@ -324,16 +324,16 @@ const StatUneVariableAct3 = () => {
                                 un tableau d'effectifs.
                             </p>
 
-                            <div className="table-responsive mt-3">
+                            <div className="table-responsive" style={{flex: '1', minWidth: '220px'}}>
                                 <table className="table table-bordered text-center shadow-sm"
                                        style={{fontSize: '14px'}}>
                                     <thead className="table-light">
                                     <tr>
                                         <th>Durée (heures)</th>
-                                        <th>[0 ; 2]</th>
-                                        <th>[2 ; 4]</th>
-                                        <th>[4 ; 6]</th>
-                                        <th>[6 ; 8]</th>
+                                        <th>]0 ; 2]</th>
+                                        <th>]2 ; 4]</th>
+                                        <th>]4 ; 6]</th>
+                                        <th>]6 ; 8]</th>
                                     </tr>
                                     </thead>
                                     <tbody>

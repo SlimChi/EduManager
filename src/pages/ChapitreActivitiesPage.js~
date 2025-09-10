@@ -233,7 +233,7 @@ const ChapitreActivitiesPage = () => {
                         </ListGroup>
                     </>
                 )}
-
+                
             </div>
         </>
     );

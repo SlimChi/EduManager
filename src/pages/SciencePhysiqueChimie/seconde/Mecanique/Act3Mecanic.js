@@ -1,0 +1,825 @@
+import React, {useRef, useState} from 'react';
+import {FaCheck, FaVideo, FaRuler, FaCalculator} from 'react-icons/fa';
+import '../../../../styles/activites.css';
+import {useLocation, useParams} from 'react-router-dom';
+import BackButton from '../../../../components/navigation/BackButton';
+import PrintManager from '../../../../utils/PrintManager';
+import 'katex/dist/katex.min.css';
+import {InlineMath} from 'react-katex';
+import ModalImage from "../../../../utils/ModalImage";
+import AutoEvaluationGrid from "../../../../config/AutoEvaluationGrid";
+import {IoMdSchool} from "react-icons/io";
+
+// Images (à remplacer par les images appropriées)
+import voitureRoseImage from "../../../../assets/voiture-rose.png";
+import AutoEvaluationGrid2 from "../../../../config/AutoEvaluationGrid2";
+
+
+const Act3Mecanic = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+    const contentRef = useRef();
+
+    // États pour les réponses et corrections
+    const [answers, setAnswers] = useState({
+        question1: '',
+        question2: '',
+        question2a: '',
+        question2b: '',
+        question2c: '',
+        question2d: '',
+        question3: '',
+        question4a: '',
+        question4b: '',
+        question4c: '',
+        question4d: '',
+        question4e: '',
+        question4f: '',
+        question5a: '',
+        question5b: '',
+    });
+
+    const [showCorrections, setShowCorrections] = useState({
+        question1: false,
+        question2: false,
+        question2a: false,
+        question2b: false,
+        question2c: false,
+        question2d: false,
+        question3: false,
+        question4a: false,
+        question4b: false,
+        question4c: false,
+        question4d: false,
+        question4e: false,
+        question4f: false,
+        question5a: false,
+        question5b: false,
+    });
+
+    // Réponses attendues
+    const correctAnswers = {
+        question1: 'La voiture rose se déplace en ligne droite à vitesse constante dans le référentiel terrestre.',
+        question2: 'Le mouvement de la voiture rose est uniforme.',
+        question2a: 'Le nombre d\'images dans la vidéo est de XXX (à déterminer après visionnage).',
+        question2b: 'La durée Δt de la vidéo est de YYY secondes (calcul à faire avec 30 images par seconde).',
+        question2c: 'La vitesse moyenne est de ZZZ m/s (calcul avec distance = 45 m et durée Δt).',
+        question2d: 'La vitesse en km/h est de WWW km/h (conversion depuis m/s).',
+        question3: 'Procédure de pointage avec PyMecaVideo décrite étape par étape.',
+        question4a: 'Le référentiel d\'étude est le référentiel terrestre.',
+        question4b: 'Le système mécanique étudié est la voiture rouge.',
+        question4c: 'La trajectoire du système est rectiligne.',
+        question4d: 'Les positions successives sont régulièrement espacées (mouvement uniforme).',
+        question4e: 'La vitesse est constante en fonction du temps.',
+        question4f: 'L\'hypothèse de départ est validée car le mouvement est bien uniforme comme observé expérimentalement.',
+        question5a: 'La trajectoire de la voiture rouge dans le référentiel terrestre est rectiligne, comme observé dans l\'expérience.',
+        question5b: 'La nature du mouvement de la voiture rouge est un mouvement rectiligne uniforme.',
+    };
+
+    // Gestionnaires d'événements
+    const handleInputChange = (field, value) => {
+        setAnswers((prev) => ({...prev, [field]: value}));
+    };
+
+    const toggleCorrection = (field) => {
+        setShowCorrections((prev) => ({...prev, [field]: !prev[field]}));
+        if (!answers[field] && !showCorrections[field]) {
+            setAnswers((prev) => ({...prev, [field]: correctAnswers[field]}));
+        }
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false, imageUrl: '', altText: '',
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState((prev) => ({...prev, show: false}));
+    };
+
+    if (className === 'Seconde-mecanique-act3') {
+        return <div>Cette activité n'est pas disponible pour cette classe.</div>;
+    }
+
+    return (<>
+        <BackButton/>
+        <div className="tp-container" id="mecanique-content" ref={contentRef}>
+            <PrintManager
+                contentRef={contentRef}
+                activityName="Mecanique_Mouvement_Vitesse"
+                pageCount={2}
+                quality="hd"
+            />
+
+            {/* PAGE 1 */}
+            <div className="print-page" id="page1-start">
+                <section className="tp-section compact mt-0">
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge ">ACTIVITÉ 3</span>
+                        <div className="activity-title">
+                            <span className="course-title" style={{marginRight: '-120px'}}>
+                           « Identifier la nature d'un mouvement et déterminer la vitesse moyenne »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte">
+                                <h5 className="mb-3 text-primary fw-bold">🎥 "Surveillance routière à Bangkok"</h5>
+                                <p style={{textAlign: 'justify', fontSize: '15px', lineHeight: '1.3'}}>
+                                    Pour observer la circulation routière sur ses autoroutes, la ville de Bangkok en
+                                    Thaïlande a investi dans des caméras de vidéosurveillance qui permettent d'étudier
+                                    la nature du mouvement et la vitesse des véhicules.
+                                    <br/>
+                                    Malez, stagiaire au centre de vidéosurveillance, doit tester ces caméras pour les
+                                    deux paramètres cités.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '250px', cursor: 'pointer', marginTop: '-10px'}}>
+                            <img src={voitureRoseImage} alt="Caméra de surveillance"
+                                 className="img-fluid rounded shadow-sm compact-img"
+                                 onClick={() => openModal(voitureRoseImage, 'Caméra de surveillance')}/>
+                        </div>
+                    </div>
+
+                    <div className="objectif-box" style={{marginTop: '5px', marginBottom: '5px'}}>
+                        <div className="objectif-title"><strong style={{color: 'orangered'}}> Objectif :</strong> 🎯
+                        </div>
+                        <p>Identifier la nature d'un mouvement et déterminer la vitesse moyenne d'un véhicule à partir
+                            d'une vidéo.</p>
+                    </div>
+
+                    {/* Question 1 */}
+                    <div className="question-card mt-0">
+                        <div className="question-content">
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'baseline',
+                                gap: '10px',
+                                flexWrap: 'wrap'
+                            }}>
+                                <h4 className="vect-title" style={{margin: 0, whiteSpace: 'nowrap'}}>
+                                    <span>S'approprier</span>
+                                </h4>
+                                <p style={{margin: 0, flex: 1}}>
+                                    1. Visionner la vidéo "Voiture rouge" (la circulation en Thaïlande se fait à gauche
+                                    comme au Royaume-Uni).
+                                </p>
+                            </div>
+                            <p>2. Décrire le mouvement de la voiture rose si on choisit la Terre comme référentiel.</p>
+                            <div className="answer-space2"
+                                 style={{height: '60px', marginBottom: '10px', borderBottom: '1px dashed #ccc'}}></div>
+
+                            <p>3. Dans le référentiel terrestre, le mouvement de la voiture rose semble être:</p>
+                            <div className="qcm-container">
+                                {['Accéléré', 'Uniforme', 'Ralenti'].map((option, index) => (
+                                    <div key={index} className="qcm-option">
+                                        <label className="radio-label">
+                                            <input type="checkbox" className="radio-input"/>
+                                            <span className="radio-checkmark"></span>
+                                            {option}
+                                        </label>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <p>4. Justifier votre choix en argumentant la réponse.</p>
+                            <div className="answer-space2"
+                                 style={{height: '60px', marginBottom: '10px', borderBottom: '1px dashed #ccc'}}></div>
+
+                            <button className="correction-btnoptic" onClick={() => toggleCorrection('question1')}>
+                                <FaCheck/> {showCorrections.question1 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                            {showCorrections.question1 && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.question1}
+                                </div>
+                            )}
+
+                            <button className="correction-btnoptic" onClick={() => toggleCorrection('question2')}
+                                    style={{marginLeft: '10px'}}>
+                                <FaCheck/> {showCorrections.question2 ? 'Masquer la correction' : 'Correction Q3-4'}
+                            </button>
+                            {showCorrections.question2 && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.question2}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Question 2 */}
+                        <div className="question-content">
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'baseline',
+                                gap: '10px',
+                                flexWrap: 'wrap'
+                            }}>
+                                <h4 className="vect-title" style={{margin: 0, whiteSpace: 'nowrap'}}>
+                                    <span>Réaliser</span>
+                                </h4>
+                                <p style={{margin: 0, flex: 1}}>
+                                    2.1. Démarrer le logiciel PyMecaVideo et ouvrir la vidéo voiture_rouge.mp4.
+                                </p>
+                            </div>
+
+                            <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
+                                <div style={{flex: 1, minWidth: '300px'}}>
+                                    <p>2.2. a) Relever le nombre d'images dans cette vidéo.</p>
+                                    <div className="answer-space2"
+                                         style={{
+                                             height: '40px',
+                                             marginBottom: '10px',
+                                             borderBottom: '1px dashed #ccc'
+                                         }}></div>
+
+                                    <p>b) Sachant que cette vidéo comprend 30 images par seconde, calculer sa durée Δt
+                                        (arrondir au dixième).</p>
+                                    <div className="answer-space2"
+                                         style={{
+                                             height: '40px',
+                                             marginBottom: '10px',
+                                             borderBottom: '1px dashed #ccc'
+                                         }}></div>
+
+                                    <p>2.3. a) Sur la vidéo, la voiture rouge parcourt 45 m. Calculer sa vitesse moyenne
+                                        v, en m/s.</p>
+                                    <div className="answer-space2"
+                                         style={{
+                                             height: '40px',
+                                             marginBottom: '10px',
+                                             borderBottom: '1px dashed #ccc'
+                                         }}></div>
+
+                                    <p>b) Convertir cette vitesse en km/h.</p>
+                                    <div className="answer-space2"
+                                         style={{
+                                             height: '40px',
+                                             marginBottom: '10px',
+                                             borderBottom: '1px dashed #ccc'
+                                         }}></div>
+
+                                    <div style={{display: 'flex', gap: '10px', marginTop: '15px', flexWrap: 'wrap'}}>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('question2a')}>
+                                            <FaCheck/> {showCorrections.question2a ? 'Masquer' : 'Correction 2a'}
+                                        </button>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('question2b')}>
+                                            <FaCheck/> {showCorrections.question2b ? 'Masquer' : 'Correction 2b'}
+                                        </button>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('question2c')}>
+                                            <FaCheck/> {showCorrections.question2c ? 'Masquer' : 'Correction 2c'}
+                                        </button>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('question2d')}>
+                                            <FaCheck/> {showCorrections.question2d ? 'Masquer' : 'Correction 2d'}
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            {showCorrections.question2a && (
+                                <div className="correction-box">
+                                    <strong>Correction 2a :</strong> {correctAnswers.question2a}
+                                </div>
+                            )}
+                            {showCorrections.question2b && (
+                                <div className="correction-box">
+                                    <strong>Correction 2b :</strong> {correctAnswers.question2b}
+                                </div>
+                            )}
+                            {showCorrections.question2c && (
+                                <div className="correction-box">
+                                    <strong>Correction 2c :</strong> {correctAnswers.question2c}
+                                </div>
+                            )}
+                            {showCorrections.question2d && (
+                                <div className="correction-box">
+                                    <strong>Correction 2d :</strong> {correctAnswers.question2d}
+                                </div>
+                            )}
+
+                            <div className="call-teacher-box" style={{
+                                marginTop: '20px',
+                                padding: '10px',
+                                backgroundColor: '#e3f2fd',
+                                borderRadius: '8px'
+                            }}>
+                                <h5><IoMdSchool style={{marginRight: '10px'}}/> Appel 1</h5>
+                                <p>Appelez le professeur pour présenter vos réponses.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* PAGE 2 */}
+            <div className="print-page" id="page2-start">
+                <section className="tp-section compact">
+                    <div className="math-chapter-box blue" style={{padding: '0'}}>
+                        <span style={{marginRight: '10px', fontSize: '30px'}}>📊</span>
+                        <h2 className="math-chapter-title-test">Mécanique - Nature du mouvement et vitesse</h2>
+                    </div>
+
+                    {/* Conteneur principal en deux colonnes */}
+                    <div className="two-column-layout" style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '20px',
+                        marginTop: '20px'
+                    }}>
+
+                        {/* Colonne de gauche - Question 3 */}
+                        <div className="column-left">
+                            <div className="question-card">
+                                <div className="question-header" style={{
+                                    backgroundColor: '#e3f2fd',
+                                    padding: '10px',
+                                    borderRadius: '8px 8px 0 0',
+                                    borderBottom: '2px solid #bbdefb'
+                                }}>
+                                    <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                                        <div style={{
+                                            backgroundColor: '#2196f3',
+                                            color: 'white',
+                                            width: '30px',
+                                            height: '30px',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            fontWeight: 'bold'
+                                        }}>3
+                                        </div>
+                                        <h4 className="vect-title" style={{margin: 0, color: '#0d47a1'}}>
+                                            <span>Réaliser</span>
+                                        </h4>
+                                    </div>
+                                    <p style={{margin: '10px 0 0 0', fontSize: '14px', color: '#546e7a'}}>
+                                        Procédure de pointage avec PyMecaVideo:
+                                    </p>
+                                </div>
+
+                                <div className="question-content" style={{padding: '15px'}}>
+                                    <ol style={{
+                                        paddingLeft: '20px',
+                                        margin: '0 0 15px 0',
+                                        lineHeight: '1.6'
+                                    }}>
+                                        <li>Se placer sur l'image no1</li>
+                                        <li>Cliquer sur "Changer d'origine" puis sélectionner comme origine du repère le
+                                            centre du carré blanc sur le toit de la voiture rouge.
+                                        </li>
+                                        <li>La largeur d'une voie est égale à 3 m. Cliquer sur "Définir l'échelle",
+                                            saisir 3, puis faire un cliquer-glisser entre les deux traits blancs bordant
+                                            la voiture.
+                                        </li>
+                                        <li>Cliquer sur "Démarrer".</li>
+                                        <li>Cliquer sur le premier point (centre du carré blanc sur le toit de la
+                                            voiture rouge).
+                                        </li>
+                                        <li>La vidéo avance automatiquement. Repérer les positions successives du centre
+                                            du carré blanc, et ainsi de suite jusqu'à la fin du mouvement.
+                                        </li>
+                                    </ol>
+
+                                    <div className="answer-space2"
+                                         style={{
+                                             height: '60px',
+                                             marginBottom: '15px',
+                                             border: '1px dashed #ccc',
+                                             borderRadius: '4px',
+                                             padding: '5px'
+                                         }}></div>
+
+                                    <button className="correction-btnoptic"
+                                            onClick={() => toggleCorrection('question3')}
+                                            style={{
+                                                width: '100%',
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center'
+                                            }}>
+                                        <FaCheck style={{marginRight: '8px'}}/>
+                                        {showCorrections.question3 ? 'Masquer la correction' : 'Afficher la correction'}
+                                    </button>
+
+                                    {showCorrections.question3 && (
+                                        <div className="correction-box" style={{marginTop: '15px'}}>
+                                            <strong>Correction :</strong> {correctAnswers.question3}
+                                        </div>
+                                    )}
+
+                                    <div className="call-teacher-box" style={{
+                                        marginTop: '20px',
+                                        padding: '12px',
+                                        backgroundColor: '#e8f5e9',
+                                        borderRadius: '8px',
+                                        borderLeft: '4px solid #4caf50'
+                                    }}>
+                                        <h5 style={{
+                                            margin: '0 0 8px 0',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            color: '#2e7d32'
+                                        }}>
+                                            <IoMdSchool style={{marginRight: '10px'}}/> Appel 2
+                                        </h5>
+                                        <p style={{margin: 0, fontSize: '14px', color: '#388e3c'}}>
+                                            Appelez le professeur pour présenter votre travail.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Question 5 */}
+                            <div className="question-card">
+                                <div className="question-header" style={{
+                                    backgroundColor: '#fff3e0',
+                                    padding: '10px',
+                                    borderRadius: '8px 8px 0 0',
+                                    borderBottom: '2px solid #ffcc80'
+                                }}>
+                                    <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                                        <div style={{
+                                            backgroundColor: '#ff9800',
+                                            color: 'white',
+                                            width: '30px',
+                                            height: '30px',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            fontWeight: 'bold'
+                                        }}>5
+                                        </div>
+                                        <h4 className="vect-title" style={{margin: 0, color: '#e65100'}}>
+                                            <span>Communiquer</span>
+                                        </h4>
+                                    </div>
+                                </div>
+
+                                <div className="question-content" style={{padding: '15px'}}>
+                                    {[
+                                        {
+                                            id: '5a',
+                                            text: '5.1. Quelle est la trajectoire de la voiture rouge dans le référentiel terrestre ? Justifiez la réponse.'
+                                        },
+                                        {id: '5b', text: '5.2. Quelle est la nature du mouvement de la voiture rouge ?'}
+                                    ].map((item, index) => (
+                                        <div key={index} className="question-item" style={{marginBottom: '20px'}}>
+                                            <p style={{margin: '0 0 8px 0', fontWeight: '500'}}>{item.text}</p>
+                                            <div className="answer-space2"
+                                                 style={{
+                                                     height: '60px',
+                                                     border: '1px dashed #ccc',
+                                                     borderRadius: '4px',
+                                                     marginBottom: '10px'
+                                                 }}></div>
+                                            <button className="correction-btnoptic"
+                                                    onClick={() => toggleCorrection(`question${item.id}`)}
+                                                    style={{padding: '4px 8px', fontSize: '12px'}}>
+                                                <FaCheck style={{marginRight: '5px'}}/>
+                                                {showCorrections[`question${item.id}`] ? 'Masquer' : `Correction ${item.id}`}
+                                            </button>
+
+                                            {showCorrections[`question${item.id}`] && (
+                                                <div className="correction-box" style={{marginTop: '10px'}}>
+                                                    <strong>Correction {item.id} :</strong> {correctAnswers[`question${item.id}`]}
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Colonne de droite - Questions 4 et 5 */}
+                        <div className="column-right">
+                            {/* Question 4 */}
+                            <div className="question-card" style={{marginBottom: '20px'}}>
+                                <div className="question-header" style={{
+                                    backgroundColor: '#f3e5f5',
+                                    padding: '10px',
+                                    borderRadius: '8px 8px 0 0',
+                                    borderBottom: '2px solid #e1bee7'
+                                }}>
+                                    <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                                        <div style={{
+                                            backgroundColor: '#9c27b0',
+                                            color: 'white',
+                                            width: '30px',
+                                            height: '30px',
+                                            borderRadius: '50%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            fontWeight: 'bold'
+                                        }}>4
+                                        </div>
+                                        <h4 className="vect-title" style={{margin: 0, color: '#4a148c'}}>
+                                            <span>Valider</span>
+                                        </h4>
+                                    </div>
+                                    <p style={{margin: '10px 0 0 0', fontSize: '14px', color: '#546e7a'}}>
+                                        Répondez aux questions après avoir réalisé le pointage:
+                                    </p>
+                                </div>
+
+                                <div className="question-content" style={{padding: '15px'}}>
+                                    <div className="grid-questions" style={{
+                                        display: 'grid',
+                                        gridTemplateColumns: '1fr',
+                                        gap: '12px'
+                                    }}>
+                                        {[
+                                            {id: '4a', text: '4.1. Quel est le référentiel d\'étude du mouvement ?'},
+                                            {id: '4b', text: '4.2. Quel est le système mécanique étudié ?'},
+                                            {
+                                                id: '4c',
+                                                text: '4.3. Quelle est la forme de la trajectoire de ce système ?'
+                                            },
+                                            {
+                                                id: '4d',
+                                                text: '4.4. Les positions successives du système sont-elles régulièrement espacées, de plus en plus proches ou de plus en plus éloignées ?'
+                                            },
+                                            {id: '4e', text: '4.5. Comment évolue la vitesse en fonction du temps ?'},
+                                            {
+                                                id: '4f',
+                                                text: '4.6. Votre hypothèse de départ est-elle validée ? Justifiez la réponse en utilisant vos résultats expérimentaux.'
+                                            }
+                                        ].map((item, index) => (
+                                            <div key={index} className="question-item">
+                                                <p style={{margin: '0 0 5px 0', fontWeight: '500'}}>{item.text}</p>
+                                                <div className="answer-space2"
+                                                     style={{
+                                                         height: index === 5 ? '60px' : '40px',
+                                                         border: '1px dashed #ccc',
+                                                         borderRadius: '4px',
+                                                         marginBottom: '10px'
+                                                     }}></div>
+                                                <button className="correction-btnoptic"
+                                                        onClick={() => toggleCorrection(`question${item.id}`)}
+                                                        style={{
+                                                            padding: '4px 8px',
+                                                            fontSize: '12px',
+                                                            marginBottom: '15px'
+                                                        }}>
+                                                    <FaCheck style={{marginRight: '5px'}}/>
+                                                    {showCorrections[`question${item.id}`] ? 'Masquer' : `Correction ${item.id}`}
+                                                </button>
+
+                                                {showCorrections[`question${item.id}`] && (
+                                                    <div className="correction-box" style={{marginBottom: '15px'}}>
+                                                        <strong>Correction {item.id} :</strong> {correctAnswers[`question${item.id}`]}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                            {/* AutoEvaluationGrid réduit et bien aligné */}
+                            <div style={{
+                                width: '150%',
+                                overflow: 'hidden',
+                                marginTop: '20px',
+                                transform: 'scale(0.7)',
+                                transformOrigin: 'top left',
+                                marginBottom: '-31%'
+                            }}>
+                                <AutoEvaluationGrid/>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Styles supplémentaires */}
+                    <style jsx>{`
+                      .two-column-layout {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 20px;
+                      }
+
+                      @media (max-width: 992px) {
+                        .two-column-layout {
+                          grid-template-columns: 1fr;
+                        }
+                      }
+
+                      .question-card {
+                        background: white;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                        overflow: hidden;
+                        height: fit-content;
+                      }
+
+                      .question-header {
+                        padding: 12px 15px;
+                        border-bottom: 2px solid;
+                      }
+
+                      .question-content {
+                        padding: 15px;
+                      }
+
+                      .grid-questions {
+                        display: grid;
+                        grid-template-columns: 1fr;
+                        gap: 15px;
+                      }
+
+                      .question-item {
+                        padding-bottom: 15px;
+                        border-bottom: 1px solid #eee;
+                      }
+
+                      .question-item:last-child {
+                        border-bottom: none;
+                        padding-bottom: 0;
+                      }
+
+                      .correction-btnoptic {
+                        padding: 6px 12px;
+                        background-color: #4CAF50;
+                        color: white;
+                        border: none;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        font-size: 14px;
+                        display: inline-flex;
+                        align-items: center;
+                      }
+
+                      .correction-btnoptic:hover {
+                        background-color: #2e7d32;
+                        transform: translateY(-1px);
+                      }
+
+                      .correction-box {
+                        background-color: #e8f5e9;
+                        padding: 10px;
+                        border-radius: 6px;
+                        border-left: 4px solid #4CAF50;
+                        margin-top: 10px;
+                        font-size: 14px;
+                      }
+
+                      .call-teacher-box {
+                        background-color: #e3f2fd;
+                        padding: 12px;
+                        border-radius: 8px;
+                        border-left: 4px solid #2196f3;
+                      }
+                    `}</style>
+                </section>
+            </div>
+
+            {modalState.show && (
+                <ModalImage imageUrl={modalState.imageUrl} altText={modalState.altText} onClose={closeModal}/>)}
+
+            {/* Styles CSS */}
+            <style jsx>{`
+              .qcm-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin: 10px 0;
+              }
+
+              .qcm-option {
+                display: flex;
+                align-items: center;
+                padding: 8px 12px;
+                background-color: #f8f9fa;
+                border-radius: 8px;
+                border: 1px solid #e9ecef;
+                transition: all 0.2s ease;
+                cursor: pointer;
+              }
+
+              .qcm-option:hover {
+                background-color: #e8f5e9;
+                transform: translateY(-1px);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+              }
+
+              .radio-label {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+              }
+
+              .radio-input {
+                display: none;
+              }
+
+              .radio-checkmark {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 2px solid #4CAF50;
+                margin-right: 10px;
+                position: relative;
+                transition: all 0.2s ease;
+              }
+
+              .radio-label:hover .radio-checkmark {
+                border-color: #2e7d32;
+                transform: scale(1.1);
+              }
+
+              .radio-input:checked + .radio-checkmark {
+                background-color: #4CAF50;
+                border-color: #4CAF50;
+              }
+
+              .radio-input:checked + .radio-checkmark::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: white;
+                transform: translate(-50%, -50%);
+              }
+
+              .answer-space2 {
+                border-bottom: 1px dashed #ccc;
+                margin: 10px 0;
+              }
+
+              .correction-btnoptic {
+                padding: 6px 12px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                font-size: 14px;
+                margin-top: 10px;
+              }
+
+              .correction-btnoptic:hover {
+                background-color: #2e7d32;
+                transform: translateY(-1px);
+              }
+
+              .correction-box {
+                background-color: #e8f5e9;
+                padding: 10px;
+                border-radius: 6px;
+                border-left: 4px solid #4CAF50;
+                margin-top: 10px;
+                font-size: 14px;
+              }
+
+              .call-teacher-box {
+                background-color: #e3f2fd;
+                padding: 15px;
+                border-radius: 8px;
+                border-left: 4px solid #2196f3;
+              }
+
+              .evaluation-table {
+                margin-top: 20px;
+                font-size: 14px;
+              }
+
+              .evaluation-table table {
+                width: 100%;
+                border-collapse: collapse;
+              }
+
+              .evaluation-table th, .evaluation-table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: center;
+              }
+
+              .evaluation-table th {
+                background-color: #f5f5f5;
+              }
+            `}</style>
+        </div>
+    </>);
+};
+
+export default Act3Mecanic;

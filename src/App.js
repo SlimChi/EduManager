@@ -94,6 +94,11 @@ import Act3et4stat2Var from "./pages/Maths/première/StatProba/Statistiques/Act3
 import Cointervention1McdBtp from "./pages/Maths/seconde/cointervention/Cointervention1McdBtp";
 import Cointervention1Mspc from "./pages/Maths/seconde/cointervention/Cointervention1Mspc";
 import StatUneVarAct4et5 from "./pages/Maths/seconde/statistiques/statistiques/StatUneVarAct4et5";
+import Exercice1et2StatUneVar from "./pages/Maths/seconde/statistiques/statistiques/Exercice1et2StatUneVar";
+import Exercice3et4StatUneVar from "./pages/Maths/seconde/statistiques/statistiques/Exercice3et4StatUneVar";
+import BilanStat2Var from "./pages/Maths/première/StatProba/Statistiques/BilanStat2Var";
+import ExerciceStat2Var from "./pages/Maths/première/StatProba/Statistiques/ExerciceStat2Var";
+import Act3Mecanic from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act3Mecanic";
 
 const theme = createTheme({
     palette: {
@@ -183,6 +188,14 @@ const MainApp = () => {
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/statistiques/stat-une-variable4"
                             element={<StatUneVarAct4et5/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/statistiques/stat-une-variableExo1et2"
+                            element={<Exercice1et2StatUneVar/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/statistiques/stat-une-variableExo3et4"
+                            element={<Exercice3et4StatUneVar/>}
                         />
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act1Proba"
@@ -357,6 +370,10 @@ const MainApp = () => {
                             element={<Act2et3ForceMecanique/>}
                         />
                         <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/naturedunmouvement"
+                            element={<Act3Mecanic/>}
+                        />
+                        <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/EvaluationForce"
                             element={<EvaluationForce/>}/>
                         <Route
@@ -398,6 +415,14 @@ const MainApp = () => {
                         <Route
                             path="/programmes/math/:classId/ProgrammePremiereMaths/activites/statistiques/stat-deux-variable2"
                             element={<Act3et4stat2Var/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammePremiereMaths/activites/statistiques/bilan-stat-deux-variable"
+                            element={<BilanStat2Var/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammePremiereMaths/activites/statistiques/stat-deux-variableExo1et2"
+                            element={<ExerciceStat2Var/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammePremierePhysique/activites/electricite/act1et2Electricite"

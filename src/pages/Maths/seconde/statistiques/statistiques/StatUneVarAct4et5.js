@@ -229,7 +229,7 @@ const StatUneVarAct4et5 = () => {
                             </p>
 
                             <div>
-                                <table className="table table-bordered text-center shadow-sm mt-2"
+                                <table className="table table-bordered text-center shadow-sm mt"
                                        style={{fontSize: '12px'}}>
                                     <thead className="table-light">
                                     <tr>

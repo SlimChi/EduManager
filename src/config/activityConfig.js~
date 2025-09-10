@@ -2,6 +2,9 @@ import GeomAct2 from '../pages/Maths/seconde/geometrie/GeomAct2';
 import FonctionCarre from '../pages/Maths/seconde/algebre/FonctionCarre';
 import ProgrammePremierePhysique from "../data/ProgrammePremierePhysique";
 import Act3et4stat2Var from "../pages/Maths/première/StatProba/Statistiques/Act3et4stat2Var";
+import BilanStat2Var from "../pages/Maths/première/StatProba/Statistiques/BilanStat2Var";
+import ExerciceStat2Var from "../pages/Maths/première/StatProba/Statistiques/ExerciceStat2Var";
+import Act3Mecanic from "../pages/SciencePhysiqueChimie/seconde/Mecanique/Act3Mecanic";
 
 export const SPECIAL_ACTIVITIES = {
     math: {
@@ -31,10 +34,30 @@ export const SPECIAL_ACTIVITIES = {
                             {
                                 id: 4,
                                 title: ' Comment sont réparties les dépenses du club ?',
-                                path: 'statistiques/stat-deux-variables4',
+                                path: 'statistiques/stat-une-variable4',
                                 component: 'StatUneVarAct4et5',
                             },
+                            {
+                                id: 5,
+                                title: 'Exercices 1 et 2',
+                                path: 'statistiques/stat-une-variableExo1et2',
+                                component: 'Exercice1et2StatUneVar',
+                            },
+                            {
+                                id: 6,
+                                title: 'Exercices 3 et 4',
+                                path: 'statistiques/stat-une-variableExo3et4',
+                                component: 'Exercice3et4StatUneVar',
+                            },
                         ],
+                        // exercices: [
+                        //     {
+                        //         id: 1,
+                        //         title: 'Exercices 1 et 2',
+                        //         path: 'statistiques/stat-une-variableExo1et2',
+                        //         component: 'Exercice1et2StatUneVar',
+                        //     },
+                        // ],
                     },
                     probas: {
                         activities: [
@@ -292,6 +315,18 @@ export const SPECIAL_ACTIVITIES = {
                                 title: 'Représentations graphiques',
                                 path: 'statistiques/stat-deux-variable2',
                                 component: 'Act3et4stat2Var',
+                            },
+                            {
+                                id: 3,
+                                title: 'Bilan Études statistiques',
+                                path: 'statistiques/bilan-stat-deux-variable',
+                                component: 'BilanStat2Var',
+                            },
+                            {
+                                id: 4,
+                                title: 'Exercices 1 et 2',
+                                path: 'statistiques/stat-deux-variableExo1et2',
+                                component: 'ExerciceStat2Var',
                             }
                         ],
                     },
@@ -390,24 +425,30 @@ export const SPECIAL_ACTIVITIES = {
                         },
                         {
                             id: 3,
+                            title: 'Représenter et caractériser une action mécanique',
+                            path: 'mecanique/force2',
+                            component: 'Act3Mecanic',
+                        },
+                        {
+                            id: 4,
                             title: 'inventaire des actions mécaniques et conditions d’équilibre',
                             path: 'mecanique/force2',
                             component: 'Act2et3ForceMecanique',
                         },
                         {
-                            id: 4,
+                            id: 5,
                             title: 'Evaluation : Actions mécaniques',
                             path: 'mecanique/EvaluationForce',
                             component: 'EvaluationForce',
                         },
                         {
-                            id: 5,
+                            id: 6,
                             title: 'Représenter et caractériser une action mécanique',
                             path: 'mecanique/EvaluationForce2',
                             component: 'EvaluationMecaniqueForce',
                         },
                         {
-                            id: 6,
+                            id: 7,
                             title: 'QCM : Actions mécaniques',
                             path: 'mecanique/QCMASSP',
                             component: 'PremierCoursASSP',

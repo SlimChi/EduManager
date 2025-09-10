@@ -1,0 +1,857 @@
+import React, {useRef, useState} from 'react';
+import {FaCheck, FaPrint, FaCalculator} from 'react-icons/fa';
+import '../../../../../styles/activites.css';
+import {useLocation, useParams} from 'react-router-dom';
+import BackButton from '../../../../../components/navigation/BackButton';
+import PrintManager from '../../../../../utils/PrintManager';
+import AutoEvaluationGrid from "../../../../../config/AutoEvaluationGrid";
+import Automatismes2 from "../../../../../config/Automatismes2";
+
+const ExerciceStat2Var = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+    const contentRef = useRef();
+
+    // États pour les réponses et corrections
+    const [answers, setAnswers] = useState({
+        ex1: '', ex2a: '', ex2b: '', ex3: '', ex4a: '', ex4b: '',
+        ex5a: '', ex5b: '', ex6: '', ex7a: '', ex7b: '', ex7c: '',
+        ex8: '', ex9a: '', ex9b: '', ex10a: '', ex10b: '', ex10c: ''
+    });
+
+    const [showCorrections, setShowCorrections] = useState({
+        ex1: false, ex2a: false, ex2b: false, ex3: false, ex4a: false, ex4b: false,
+        ex5a: false, ex5b: false, ex6: false, ex7a: false, ex7b: false, ex7c: false,
+        ex8: false, ex9a: false, ex9b: false, ex10a: false, ex10b: false, ex10c: false
+    });
+
+    // Réponses attendues
+    const correctAnswers = {
+        ex1: "C'est le tableau B.",
+        ex2a: "Points à placer: (1,19), (2,32), (3,30), (4,52), (5,55)",
+        ex2b: "On constate que les points du nuage ne sont pas bien alignés.",
+        ex3: "Nuage de points à représenter avec les coordonnées: (-10,3), (7,12), (14,15), (18,45), (32,18)",
+        ex4a: "Série A: points presque alignés. Série B: points dispersés.",
+        ex4b: "C'est la série statistique A qui présente un nuage de points presque alignés.",
+        ex5a: "Rangs complétés: 1, 9, 10, 12, 20",
+        ex5b: "Nuage de points à représenter avec les coordonnées: (1,2740), (9,6600), (10,6020), (12,8370), (20,9890)",
+        ex6: "Le nuage qui peut être modélisé par un ajustement affine est celui où les points sont presque alignés.",
+        ex7a: "y = 2,632x + 3,032",
+        ex7b: "y = 2,632 × 8 + 3,032 = 24,088",
+        ex7c: "x = (25 - 3,032)/2,632 ≈ 8,3",
+        ex8: "y = 0,5x + 2,5",
+        ex9a: "Tableau A: R² = 0,17, Tableau B: R² = 0,95, Tableau C: R² = 0,82",
+        ex9b: "Le coefficient R² permet de vérifier la pertinence d'un ajustement affine. Plus il est proche de 1, plus l'ajustement est pertinent.",
+        ex10a: "Ajustement 1: R² = 0,9652, Ajustement 2: R² = 0,0057, Ajustement 3: R² = 1",
+        ex10b: "L'ajustement 3 est le plus pertinent (R² = 1), l'ajustement 2 est le moins pertinent (R² = 0,0057)",
+        ex10c: "R² mesure la qualité de l'ajustement. Plus R² est proche de 1, meilleur est l'ajustement."
+    };
+
+    const toggleCorrection = (field) => {
+        setShowCorrections((prev) => ({...prev, [field]: !prev[field]}));
+    };
+
+    if (className === 'Premiere-stat2var-exercices') {
+        return <div>Ces exercices ne sont pas disponibles pour cette classe.</div>;
+    }
+
+    return (
+        <>
+            <BackButton/>
+            <div className="tp-container" ref={contentRef}>
+                <PrintManager
+                    contentRef={contentRef}
+                    activityName="Exercices_Statistiques_2_variables"
+                    pageCount={2}
+                    quality="hd"
+                />
+
+                {/* PAGE 1 - EXERCICES 1 à 5 */}
+                <div className="print-page">
+                    <Automatismes2/>
+                    <div className="math-chapter-box blue mt-0" style={{padding: '0'}}>
+                        <h2 className="math-chapter-title-test mt-0">Exercices - Statistiques à Deux Variables</h2>
+                    </div>
+
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">EXERCICES</span>
+                        <div className="activity-title">
+                            <span
+                                className="course-title mt-0">Série statistique à deux variables et nuage de points</span>
+                        </div>
+                    </div>
+
+                    <div className="row" style={{marginTop: '10px'}}>
+                        {/* Colonne de gauche */}
+                        <div className="col-md-6">
+                            {/* Exercice 1 */}
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title">1. ✿</h4>
+                                    <p>On dispose du nuage de points représenté ci-dessous et des tableaux suivants.</p>
+
+                                    <div className="image-placeholder" style={{height: '100px', margin: '8px 0'}}>
+                                        <p style={{textAlign: 'center', color: '#999'}}>[Espace pour le nuage de
+                                            points]</p>
+                                    </div>
+
+                                    <p><strong>Tableau A</strong></p>
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>xᵢ</th>
+                                            <th>0</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>yᵢ</td>
+                                            <td>61</td>
+                                            <td>64</td>
+                                            <td>66</td>
+                                            <td>68</td>
+                                            <td>71</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <p><strong>Tableau B</strong></p>
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>xᵢ</th>
+                                            <th>61</th>
+                                            <th>64</th>
+                                            <th>66</th>
+                                            <th>68</th>
+                                            <th>71</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>yᵢ</td>
+                                            <td>71</td>
+                                            <td>77</td>
+                                            <td>79</td>
+                                            <td>81</td>
+                                            <td>86</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <p><strong>Tableau C</strong></p>
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>xᵢ</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                            <th>5</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>yᵢ</td>
+                                            <td>71</td>
+                                            <td>77</td>
+                                            <td>79</td>
+                                            <td>81</td>
+                                            <td>86</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <p>Quel tableau de valeurs correspond au nuage de points représenté ?</p>
+
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex1}
+                                            onChange={(e) => setAnswers({...answers, ex1: e.target.value})}
+                                            rows={2}
+                                        ></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('ex1')}>
+                                            <FaCheck/> {showCorrections.ex1 ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex1 && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction :</strong> {correctAnswers.ex1}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Exercice 2 */}
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title">2. ✿</h4>
+                                    <p><strong>a.</strong> Représentez sur le repère donné ci-après le nuage de points
+                                        associé au tableau suivant.</p>
+
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>xᵢ</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                            <th>5</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>yᵢ</td>
+                                            <td>19</td>
+                                            <td>32</td>
+                                            <td>30</td>
+                                            <td>52</td>
+                                            <td>55</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div className="answer-area">
+                                        <div className="image-placeholder" style={{height: '120px', margin: '8px 0'}}>
+                                            <p style={{textAlign: 'center', color: '#999'}}>[Repère pour le nuage de
+                                                points]</p>
+                                        </div>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex2a')}>
+                                            <FaCheck/> {showCorrections.ex2a ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex2a && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction a :</strong> {correctAnswers.ex2a}</p>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>b.</strong> Décrivez l'allure du nuage de points obtenu.</p>
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex2b}
+                                            onChange={(e) => setAnswers({...answers, ex2b: e.target.value})}
+                                            rows={2}
+                                        ></textarea>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex2b')}>
+                                            <FaCheck/> {showCorrections.ex2b ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex2b && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction b :</strong> {correctAnswers.ex2b}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Colonne de droite */}
+                        <div className="col-md-6">
+                            {/* Exercice 3 */}
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title">3. ✿</h4>
+                                    <p>À l'aide de la calculatrice, représentez par un nuage de points la série
+                                        statistique suivante.</p>
+
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>xᵢ</th>
+                                            <th>-10</th>
+                                            <th>7</th>
+                                            <th>14</th>
+                                            <th>18</th>
+                                            <th>32</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>yᵢ</td>
+                                            <td>3</td>
+                                            <td>12</td>
+                                            <td>15</td>
+                                            <td>45</td>
+                                            <td>18</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div className="answer-area">
+                                        <div className="image-placeholder" style={{height: '120px', margin: '8px 0'}}>
+                                            <p style={{textAlign: 'center', color: '#999'}}>[Repère pour le nuage de
+                                                points]</p>
+                                        </div>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('ex3')}>
+                                            <FaCheck/> {showCorrections.ex3 ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex3 && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction :</strong> {correctAnswers.ex3}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Exercice 4 */}
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title">4. ✿</h4>
+                                    <p><strong>a.</strong> À l'aide de la calculatrice, représentez par un nuage de
+                                        points chacune des deux séries statistiques.</p>
+
+                                    <p><strong>Série statistique A</strong></p>
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>xᵢ</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                            <th>5</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>yᵢ</td>
+                                            <td>2</td>
+                                            <td>7</td>
+                                            <td>9</td>
+                                            <td>14</td>
+                                            <td>19</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <p><strong>Série statistique B</strong></p>
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>xᵢ</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                            <th>5</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>yᵢ</td>
+                                            <td>-15</td>
+                                            <td>9</td>
+                                            <td>-3</td>
+                                            <td>-25</td>
+                                            <td>-14</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div className="answer-area">
+                                        <div className="image-placeholder" style={{height: '80px', margin: '8px 0'}}>
+                                            <p style={{textAlign: 'center', color: '#999'}}>[Repères pour les nuages de
+                                                points]</p>
+                                        </div>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex4a')}>
+                                            <FaCheck/> {showCorrections.ex4a ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex4a && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction a :</strong> {correctAnswers.ex4a}</p>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>b.</strong> Laquelle des deux séries statistiques présente un nuage de
+                                        points presque alignés ?</p>
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex4b}
+                                            onChange={(e) => setAnswers({...answers, ex4b: e.target.value})}
+                                            rows={2}
+                                        ></textarea>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex4b')}>
+                                            <FaCheck/> {showCorrections.ex4b ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex4b && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction b :</strong> {correctAnswers.ex4b}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Exercice 5 */}
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title">5. ✿</h4>
+                                    <p>Le tableau ci-dessous représente l'évolution du prix du m² d'un appartement à
+                                        Paris de 2000 à 2019.</p>
+
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>Année</th>
+                                            <th>2000</th>
+                                            <th>2008</th>
+                                            <th>2009</th>
+                                            <th>2011</th>
+                                            <th>2019</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Rang xᵢ</td>
+                                            <td>1</td>
+                                            <td>9</td>
+                                            <td>10</td>
+                                            <td>12</td>
+                                            <td>20</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Montant yᵢ (€)</td>
+                                            <td>2 740</td>
+                                            <td>6 600</td>
+                                            <td>6 020</td>
+                                            <td>8 370</td>
+                                            <td>9 890</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <p><strong>a.</strong> Complétez la ligne du rang dans le tableau.</p>
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex5a}
+                                            onChange={(e) => setAnswers({...answers, ex5a: e.target.value})}
+                                            rows={2}
+                                        ></textarea>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex5a')}>
+                                            <FaCheck/> {showCorrections.ex5a ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex5a && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction a :</strong> {correctAnswers.ex5a}</p>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>b.</strong> Représentez la série statistique par un nuage de points à
+                                        l'aide d'un tableur.</p>
+                                    <div className="answer-area">
+                                        <div className="image-placeholder" style={{height: '80px', margin: '8px 0'}}>
+                                            <p style={{textAlign: 'center', color: '#999'}}>[Nuage de points à
+                                                créer]</p>
+                                        </div>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex5b')}>
+                                            <FaCheck/> {showCorrections.ex5b ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex5b && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction b :</strong> {correctAnswers.ex5b}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* PAGE 2 - EXERCICES 6 à 10 */}
+                <div className="print-page">
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">EXERCICES</span>
+                        <div className="activity-title">
+                            <span className="course-title mt-0">Ajustement affine et pertinence</span>
+                        </div>
+                    </div>
+
+                    <div className="row" style={{marginTop: '10px'}}>
+                        {/* Colonne de gauche */}
+                        <div className="col-md-6">
+                            {/* Exercice 6 */}
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title">6. ✿</h4>
+                                    <p>Parmi les nuages de points suivants, cochez celui qui peut être modélisé par un
+                                        ajustement affine.</p>
+
+                                    <div className="image-placeholder" style={{height: '150px', margin: '8px 0'}}>
+                                        <p style={{textAlign: 'center', color: '#999'}}>[Nuages de points A, B, C]</p>
+                                    </div>
+
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex6}
+                                            onChange={(e) => setAnswers({...answers, ex6: e.target.value})}
+                                            rows={2}
+                                        ></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('ex6')}>
+                                            <FaCheck/> {showCorrections.ex6 ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex6 && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction :</strong> {correctAnswers.ex6}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Exercice 7 */}
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title">7. ✿</h4>
+                                    <p>Déterminez, à l'aide de la calculatrice, l'équation de la droite d'ajustement
+                                        affine associée au tableau donné. Arrondissez les coefficients au millième.</p>
+
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>x</th>
+                                            <th>0</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                            <th>5</th>
+                                            <th>6</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>y</td>
+                                            <td>3,1</td>
+                                            <td>5,8</td>
+                                            <td>8,5</td>
+                                            <td>11,2</td>
+                                            <td>12</td>
+                                            <td>16,6</td>
+                                            <td>19,3</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <p><strong>a.</strong> Équation de la droite d'ajustement :</p>
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex7a}
+                                            onChange={(e) => setAnswers({...answers, ex7a: e.target.value})}
+                                            rows={1}
+                                        ></textarea>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex7a')}>
+                                            <FaCheck/> {showCorrections.ex7a ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex7a && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction a :</strong> {correctAnswers.ex7a}</p>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>b.</strong> Calculez la valeur de y pour x = 8.</p>
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex7b}
+                                            onChange={(e) => setAnswers({...answers, ex7b: e.target.value})}
+                                            rows={1}
+                                        ></textarea>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex7b')}>
+                                            <FaCheck/> {showCorrections.ex7b ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex7b && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction b :</strong> {correctAnswers.ex7b}</p>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>c.</strong> Calculez la valeur de x pour y = 25. Arrondissez au dixième.
+                                    </p>
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex7c}
+                                            onChange={(e) => setAnswers({...answers, ex7c: e.target.value})}
+                                            rows={1}
+                                        ></textarea>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex7c')}>
+                                            <FaCheck/> {showCorrections.ex7c ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex7c && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction c :</strong> {correctAnswers.ex7c}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Colonne de droite */}
+                        <div className="col-md-6">
+                            {/* Exercice 8 */}
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title">8. ★</h4>
+                                    <p>Déterminez l'équation de la droite d'ajustement représentée sur le nuage de
+                                        points suivant.</p>
+
+                                    <div className="image-placeholder" style={{height: '120px', margin: '8px 0'}}>
+                                        <p style={{textAlign: 'center', color: '#999'}}>[Nuage de points avec
+                                            droite]</p>
+                                    </div>
+
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex8}
+                                            onChange={(e) => setAnswers({...answers, ex8: e.target.value})}
+                                            rows={1}
+                                        ></textarea>
+                                        <button className="correction-btnoptic" onClick={() => toggleCorrection('ex8')}>
+                                            <FaCheck/> {showCorrections.ex8 ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex8 && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction :</strong> {correctAnswers.ex8}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Exercice 9 */}
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title">9. ★</h4>
+                                    <p><strong>a.</strong> À l'aide de la calculatrice, représentez les trois nuages de
+                                        points et notez la valeur du coefficient de détermination R².</p>
+
+                                    <p><strong>Tableau A</strong></p>
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>xᵢ</th>
+                                            <th>10</th>
+                                            <th>20</th>
+                                            <th>35</th>
+                                            <th>40</th>
+                                            <th>50</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>yᵢ</td>
+                                            <td>240</td>
+                                            <td>760</td>
+                                            <td>520</td>
+                                            <td>185</td>
+                                            <td>980</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <p><strong>Tableau B</strong></p>
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>xᵢ</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                            <th>5</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>yᵢ</td>
+                                            <td>18</td>
+                                            <td>18,75</td>
+                                            <td>19</td>
+                                            <td>19,23</td>
+                                            <td>20</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <p><strong>Tableau C</strong></p>
+                                    <table className="table table-bordered" style={{fontSize: '12px', margin: '8px 0'}}>
+                                        <thead>
+                                        <tr>
+                                            <th>xᵢ</th>
+                                            <th>0,5</th>
+                                            <th>2</th>
+                                            <th>7</th>
+                                            <th>9</th>
+                                            <th>10</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>yᵢ</td>
+                                            <td>18</td>
+                                            <td>18,75</td>
+                                            <td>19</td>
+                                            <td>19,23</td>
+                                            <td>20</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex9a}
+                                            onChange={(e) => setAnswers({...answers, ex9a: e.target.value})}
+                                            rows={2}
+                                        ></textarea>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex9a')}>
+                                            <FaCheck/> {showCorrections.ex9a ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex9a && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction a :</strong> {correctAnswers.ex9a}</p>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>b.</strong> Rappelez l'intérêt du calcul du coefficient de détermination
+                                        R².</p>
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex9b}
+                                            onChange={(e) => setAnswers({...answers, ex9b: e.target.value})}
+                                            rows={2}
+                                        ></textarea>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex9b')}>
+                                            <FaCheck/> {showCorrections.ex9b ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex9b && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction b :</strong> {correctAnswers.ex9b}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Exercice 10 */}
+                            <div className="question-card">
+                                <div className="question-content">
+                                    <h4 className="vect-title">10. ★</h4>
+                                    <p>Notez sous chaque ajustement affine la valeur du coefficient R² qui lui est
+                                        associé.</p>
+
+                                    <div className="image-placeholder" style={{height: '150px', margin: '8px 0'}}>
+                                        <p style={{textAlign: 'center', color: '#999'}}>[Trois ajustements affines]</p>
+                                    </div>
+
+                                    <p>Vous disposez des valeurs suivantes : R² = 0,0057 ; R² = 1 ; R² = 0,9652</p>
+
+                                    <p><strong>a.</strong> Associez chaque valeur de R² à l'ajustement correspondant :
+                                    </p>
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex10a}
+                                            onChange={(e) => setAnswers({...answers, ex10a: e.target.value})}
+                                            rows={2}
+                                        ></textarea>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex10a')}>
+                                            <FaCheck/> {showCorrections.ex10a ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex10a && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction a :</strong> {correctAnswers.ex10a}</p>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>b.</strong> Quel est l'ajustement le plus pertinent et le moins pertinent
+                                        ?</p>
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex10b}
+                                            onChange={(e) => setAnswers({...answers, ex10b: e.target.value})}
+                                            rows={2}
+                                        ></textarea>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex10b')}>
+                                            <FaCheck/> {showCorrections.ex10b ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex10b && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction b :</strong> {correctAnswers.ex10b}</p>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <p><strong>c.</strong> Expliquez ce que mesure le coefficient R².</p>
+                                    <div className="answer-area">
+                                        <textarea
+                                            className="answer-input"
+                                            value={answers.ex10c}
+                                            onChange={(e) => setAnswers({...answers, ex10c: e.target.value})}
+                                            rows={2}
+                                        ></textarea>
+                                        <button className="correction-btnoptic"
+                                                onClick={() => toggleCorrection('ex10c')}>
+                                            <FaCheck/> {showCorrections.ex10c ? 'Masquer' : 'Correction'}
+                                        </button>
+                                        {showCorrections.ex10c && (
+                                            <div className="correction-box">
+                                                <p><strong>Correction c :</strong> {correctAnswers.ex10c}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Grille d'auto-évaluation */}
+                    <div style={{marginTop: '20px', transform: 'scale(0.85)', transformOrigin: 'top left'}}>
+                        <AutoEvaluationGrid/>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default ExerciceStat2Var;
