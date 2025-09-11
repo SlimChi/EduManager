@@ -101,7 +101,6 @@ import ExerciceStat2Var from "./pages/Maths/première/StatProba/Statistiques/Exe
 import Act3Mecanic from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act3Mecanic";
 import Act3Electricite1ere from "./pages/SciencePhysiqueChimie/premiere/electricite/Act3Electricite1ere";
 import BilanElectricite from "./pages/SciencePhysiqueChimie/premiere/electricite/BilanElectricite";
-import ExercicesElectricite from "./pages/SciencePhysiqueChimie/premiere/electricite/ExercicesElectricite";
 
 const theme = createTheme({
     palette: {

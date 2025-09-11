@@ -1683,6 +1683,7 @@
     cursor: pointer;
     width: 16px;
     height: 16px;
+    margin-right: 10px;
 }
 
 .correction-text {
@@ -2888,6 +2889,14 @@ body.printing button {
     font-weight: bold;
     padding-bottom: 4px;
     margin-bottom: 12px;
+}
+
+.vect-title2 {
+    color: #007bff;
+    font-weight: bold;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    font-size: 14px;
 }
 
 @media print {

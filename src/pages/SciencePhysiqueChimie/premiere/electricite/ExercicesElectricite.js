@@ -1,0 +1,1005 @@
+import React, {useRef, useState} from 'react';
+import {FaCheck, FaBolt, FaLightbulb} from 'react-icons/fa';
+import '../../../../styles/activites.css';
+import {useLocation, useParams} from 'react-router-dom';
+import BackButton from '../../../../components/navigation/BackButton';
+import PrintManager from '../../../../utils/PrintManager';
+import 'katex/dist/katex.min.css';
+import {InlineMath} from 'react-katex';
+import ModalImage from "../../../../utils/ModalImage";
+import anciencompteur from "../../../../assets/anciencompteur.png";
+import etiquetteEnergie from "../../../../assets/etiquetteEnergie.png";
+import AutoEvaluationGrid2 from "../../../../config/AutoEvaluationGrid2";
+import AutoEvaluationGrid from "../../../../config/AutoEvaluationGrid";
+
+const ExercicesElectricite = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+    const contentRef = useRef();
+
+    // États pour les réponses et corrections
+    const [answers, setAnswers] = useState({
+        qcm1: '',
+        qcm2: '',
+        qcm3: '',
+        qcm4: '',
+        qcm5: '',
+        qcm6: '',
+        qcm7: '',
+        qcm8: '',
+        qcm9: '',
+        qcm10: '',
+        ex1_1: '',
+        ex1_2: '',
+        ex1_3: '',
+        ex2_1: '',
+        ex2_2a: '',
+        ex2_2b: '',
+        ex2_2c: '',
+        ex2_3: '',
+        ex2_4: '',
+        ex3_1: '',
+        ex3_2: '',
+        ex4: '',
+        ex5_1_watt: '',
+        ex5_1_volt: '',
+        ex5_1_watt_grandeur: '',
+        ex5_1_volt_grandeur: '',
+        ex5_2: '',
+        ex5_3a: '',
+        ex5_3b: '',
+        ex6_1: '',
+        ex6_3: '',
+        ex6_5_incandescence: '',
+        ex6_5_basse_consommation: '',
+        ex6_6: ''
+    });
+
+    const [showCorrections, setShowCorrections] = useState({
+        qcm1: false,
+        qcm2: false,
+        qcm3: false,
+        qcm4: false,
+        qcm5: false,
+        qcm6: false,
+        qcm7: false,
+        qcm8: false,
+        qcm9: false,
+        qcm10: false,
+        ex1_1: false,
+        ex1_2: false,
+        ex1_3: false,
+        ex2_1: false,
+        ex2_2a: false,
+        ex2_2b: false,
+        ex2_2c: false,
+        ex2_3: false,
+        ex2_4: false,
+        ex3_1: false,
+        ex3_2: false,
+        ex4: false,
+        ex5_1_watt: false,
+        ex5_1_volt: false,
+        ex5_2: false,
+        ex5_3a: false,
+        ex5_3b: false,
+        ex6_1: false,
+        ex6_6: false
+    });
+
+    // Gestionnaires d'événements
+    const handleInputChange = (field, value) => {
+        setAnswers((prev) => ({...prev, [field]: value}));
+    };
+
+    const toggleCorrection = (field) => {
+        setShowCorrections((prev) => ({...prev, [field]: !prev[field]}));
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false, imageUrl: '', altText: '',
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState((prev) => ({...prev, show: false}));
+    };
+
+    if (className === 'Seconde-electricite-exercices') {
+        return <div>Ces exercices ne sont pas disponibles pour cette classe.</div>;
+    }
+
+    return (<>
+        <BackButton/>
+        <div className="tp-container" id="electricite-content" ref={contentRef}>
+            <PrintManager
+                contentRef={contentRef}
+                activityName="Exercices_Electricite"
+                pageCount={2}
+                quality="hd"
+            />
+
+            {/* PAGE 1 */}
+            <div className="print-page" id="page1-start">
+                <section className="tp-section compact">
+                    <div className="math-chapter-box blue" style={{padding: '10px', marginTop: '-10px'}}>
+                        <h3 className="math-chapter-title-test mb-0">Chapitre 1 - Distinguer énergie et puissance
+                            électriques</h3>
+                    </div>
+
+                    {/* Section QCM */}
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">QCM</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaBolt/> Je teste mes acquis
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="qcm-container" style={{marginBottom: '20px'}}>
+                        <div className="qcm-grid"
+                             style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px'}}>
+                            {[...Array(10)].map((_, index) => (
+                                <div key={index} className="qcm-item" style={{
+                                    padding: '12px',
+                                    backgroundColor: '#ffffff',
+                                    borderRadius: '8px',
+                                    border: '1px solid #e0e0e0'
+                                }}>
+                                    <p style={{fontWeight: '600', marginBottom: '10px', fontSize: '14px'}}>
+                                        <strong>{index + 1}.</strong>
+                                        {index === 0 && " La relation entre énergie E, puissance P et temps t est :"}
+                                        {index === 1 && " L'unité de l'énergie électrique est :"}
+                                        {index === 2 && " La relation entre puissance P, tension U et intensité I est :"}
+                                        {index === 3 && " La puissance s'exprime en :"}
+                                        {index === 4 && " Un appareil de 1000 W fonctionne pendant 2 h. L'énergie consommée est :"}
+                                        {index === 5 && " L'énergie électrique se mesure avec :"}
+                                        {index === 6 && " 1 kWh équivaut à :"}
+                                        {index === 7 && " La tension électrique se mesure avec :"}
+                                        {index === 8 && " L'intensité du courant se mesure en :"}
+                                        {index === 9 && " Pour mesurer l'intensité dans un circuit, on branche l'ampèremètre :"}
+                                    </p>
+
+                                    <div className="qcm-options" style={{marginBottom: '10px'}}>
+                                        {index === 0 && (
+                                            <>
+                                                <label className="qcm-option"
+                                                       style={{display: 'block', marginBottom: '5px'}}>
+                                                    <input type="radio" name="qcm1" value="A"
+                                                           onChange={(e) => handleInputChange('qcm1', e.target.value)}/>
+                                                    P = E × t
+                                                </label>
+                                                <label className="qcm-option"
+                                                       style={{display: 'block', marginBottom: '5px'}}>
+                                                    <input type="radio" name="qcm1" value="B"
+                                                           onChange={(e) => handleInputChange('qcm1', e.target.value)}/>
+                                                    E = P × t
+                                                </label>
+                                                <label className="qcm-option" style={{display: 'block'}}>
+                                                    <input type="radio" name="qcm1" value="C"
+                                                           onChange={(e) => handleInputChange('qcm1', e.target.value)}/>
+                                                    E = W × t
+                                                </label>
+                                            </>
+                                        )}
+                                        {index === 1 && (
+                                            <>
+                                                <label className="qcm-option"
+                                                       style={{display: 'block', marginBottom: '5px'}}>
+                                                    <input type="radio" name="qcm2" value="A"
+                                                           onChange={(e) => handleInputChange('qcm2', e.target.value)}/>
+                                                    le watt
+                                                </label>
+                                                <label className="qcm-option"
+                                                       style={{display: 'block', marginBottom: '5px'}}>
+                                                    <input type="radio" name="qcm2" value="B"
+                                                           onChange={(e) => handleInputChange('qcm2', e.target.value)}/>
+                                                    le joule
+                                                </label>
+                                                <label className="qcm-option" style={{display: 'block'}}>
+                                                    <input type="radio" name="qcm2" value="C"
+                                                           onChange={(e) => handleInputChange('qcm2', e.target.value)}/>
+                                                    le volt
+                                                </label>
+                                            </>
+                                        )}
+                                        {/* Ajouter les autres questions de la même manière */}
+                                    </div>
+
+                                    <button className="correction-btnoptic"
+                                            onClick={() => toggleCorrection(`qcm${index + 1}`)} style={{
+                                        padding: '5px 10px',
+                                        fontSize: '12px',
+                                        backgroundColor: '#1976d2',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '4px',
+                                        cursor: 'pointer'
+                                    }}>
+                                        <FaCheck/> {showCorrections[`qcm${index + 1}`] ? 'Masquer' : 'Correction'}
+                                    </button>
+
+                                    {showCorrections[`qcm${index + 1}`] && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            {index === 0 && "Correction: E = P × t"}
+                                            {index === 1 && "Correction: le joule"}
+                                            {index === 2 && "Correction: P = U × I"}
+                                            {index === 3 && "Correction: watts"}
+                                            {index === 4 && "Correction: 2000 Wh"}
+                                            {index === 5 && "Correction: un compteur d'énergie"}
+                                            {index === 6 && "Correction: 3 600 000 J"}
+                                            {index === 7 && "Correction: un voltmètre"}
+                                            {index === 8 && "Correction: ampères"}
+                                            {index === 9 && "Correction: en série"}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Section Exercices */}
+                    <div className="activity-header">
+                        <span className="activity-badge">EXERCICES</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaLightbulb/> Je m'exerce
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="exercices-grid"
+                         style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '20px'}}>
+                        {/* Colonne gauche */}
+                        <div className="exercice-column">
+                            {/* Exercice 1 */}
+                            <div className="exercice-card" style={{
+                                padding: '15px',
+                                backgroundColor: '#ffffff',
+                                borderRadius: '8px',
+                                border: '1px solid #e0e0e0',
+                                marginBottom: '20px'
+                            }}>
+                                <h4 className="exercice-title" style={{color: '#1976d2', marginBottom: '10px'}}>1.
+                                    Consommation électrique</h4>
+                                <p className="exercice-text" style={{fontSize: '14px', marginBottom: '15px'}}>
+                                    Un radiateur électrique de puissance 1500 W fonctionne pendant 3 heures.
+                                </p>
+
+                                <div className="question" style={{marginBottom: '15px'}}>
+                                    <p style={{fontSize: '14px', marginBottom: '5px'}}>1. Calculer l'énergie consommée
+                                        en Wh puis en kWh.</p>
+                                    .....................................................................................
+                                    <button className="correction-btnoptic" onClick={() => toggleCorrection('ex1_1')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> {showCorrections.ex1_1 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex1_1 && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            E = P × t = 1500 × 3 = 4500 Wh = 4,5 kWh
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="question" style={{marginBottom: '15px'}}>
+                                    <p style={{fontSize: '14px', marginBottom: '5px'}}>2. Si 1 kWh coûte 0,15 €,
+                                        calculer le coût de fonctionnement.</p>
+                                    .....................................................................................
+                                    <button className="correction-btnoptic" onClick={() => toggleCorrection('ex1_2')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> {showCorrections.ex1_2 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex1_2 && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            Coût = 4,5 × 0,15 = 0,675 €
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="question">
+                                    <p style={{fontSize: '14px', marginBottom: '5px'}}>3. Convertir l'énergie consommée
+                                        en joules.</p>
+                                    .....................................................................................
+                                    <button className="correction-btnoptic" onClick={() => toggleCorrection('ex1_3')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> {showCorrections.ex1_3 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex1_3 && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            E = 4,5 × 3 600 000 = 16 200 000 J
+                                        </div>
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        {/* Colonne droite */}
+                        <div className="exercice-column">
+                            {/* Exercice 2 */}
+                            <div className="exercice-card" style={{
+                                padding: '15px',
+                                backgroundColor: '#ffffff',
+                                borderRadius: '8px',
+                                border: '1px solid #e0e0e0',
+                                marginBottom: '20px'
+                            }}>
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'flex-start',
+                                    gap: '15px',
+                                    marginBottom: '15px'
+                                }}>
+
+                                    <div style={{flex: 1}}>
+                                        <h4 className="exercice-title"
+                                            style={{color: '#1976d2', marginBottom: '10px'}}>2.
+                                            Consommation électrique</h4>
+                                        <p className="exercice-text" style={{fontSize: '14px', marginBottom: '15px'}}>
+                                            Comparer la consommation de différents appareils électroménagers.
+                                        </p>
+                                        <p style={{fontSize: '14px', marginBottom: '8px'}}>1. Observer les
+                                            étiquettes énergie et relever les différentes classes.</p>
+                                        <div style={{
+                                            borderBottom: '1px dotted #999',
+                                            paddingBottom: '3px',
+                                            marginBottom: '15px'
+                                        }}>
+
+                                        </div>
+
+                                        <p style={{fontSize: '14px', marginBottom: '8px'}}>2. Pour un réfrigérateur
+                                            :</p>
+                                        <p style={{fontSize: '13px', marginBottom: '3px'}}>a. Relever sa puissance.</p>
+                                        <div style={{
+                                            borderBottom: '1px dotted #999',
+                                            paddingBottom: '3px',
+                                            marginBottom: '10px'
+                                        }}>
+
+                                        </div>
+
+                                        <p style={{fontSize: '13px', marginBottom: '3px'}}>b. Relever sa consommation
+                                            annuelle en kWh.</p>
+                                        <div style={{
+                                            borderBottom: '1px dotted #999',
+                                            paddingBottom: '3px',
+                                            marginBottom: '10px'
+                                        }}>
+
+                                        </div>
+
+                                        <p style={{fontSize: '13px', marginBottom: '3px'}}>c. Calculer le coût annuel (1
+                                            kWh = 0,15 €).</p>
+                                        <div style={{
+                                            borderBottom: '1px dotted #999',
+                                            paddingBottom: '3px',
+                                            marginBottom: '10px'
+                                        }}>
+
+                                        </div>
+                                    </div>
+
+                                    {/* Espace pour l'image des étiquettes énergie */}
+                                    <div style={{
+                                        maxWidth: '120px',
+                                        cursor: 'pointer',
+                                        flexShrink: 0,
+                                        marginTop: '5px'
+                                    }}>
+                                        <img
+                                            src={etiquetteEnergie}
+                                            alt="Étiquette énergie"
+                                            className="img-fluid rounded shadow-sm"
+                                            onClick={() => openModal(etiquetteEnergie, 'Étiquette énergie')}
+                                            style={{
+                                                width: '100%',
+                                                height: 'auto',
+                                                maxWidth: '120px',
+                                                objectFit: 'contain'
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}>
+                                    <button className="correction-btnoptic"
+                                            onClick={() => toggleCorrection('ex2_1')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> Question 1 - {showCorrections.ex2_1 ? 'Masquer' : 'Correction'}
+                                    </button>
+
+                                    <button className="correction-btnoptic"
+                                            onClick={() => toggleCorrection('ex2_2a')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> Question 2 - {showCorrections.ex2_2a ? 'Masquer' : 'Correction'}
+                                    </button>
+                                </div>
+
+                                {showCorrections.ex2_1 && (
+                                    <div className="correction-text" style={{
+                                        marginTop: '10px',
+                                        padding: '8px',
+                                        backgroundColor: '#e8f5e9',
+                                        borderLeft: '3px solid #4caf50',
+                                        borderRadius: '4px',
+                                        fontSize: '12px'
+                                    }}>
+                                        <strong>Correction question 1:</strong> A+++, A++, A+, A, B, C, D
+                                    </div>
+                                )}
+
+                                {showCorrections.ex2_2a && (
+                                    <div className="correction-text" style={{
+                                        marginTop: '10px',
+                                        padding: '8px',
+                                        backgroundColor: '#e8f5e9',
+                                        borderLeft: '3px solid #4caf50',
+                                        borderRadius: '4px',
+                                        fontSize: '12px'
+                                    }}>
+                                        <strong>Correction question 2:</strong> Réponses variables selon l'étiquette
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* PAGE 2 */}
+            <div className="print-page" id="page2-start">
+                <section className="tp-section compact">
+                    <div className="exercices-grid"
+                         style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px'}}>
+                        {/* Colonne gauche */}
+                        <div className="exercice-column">
+                            {/* Exercice 3 */}
+                            <div className="exercice-card" style={{
+                                padding: '15px',
+                                backgroundColor: '#ffffff',
+                                borderRadius: '8px',
+                                border: '1px solid #e0e0e0',
+                                marginBottom: '10px'
+                            }}>
+                                <div className="question" style={{marginBottom: '15px'}}>
+                                    <p style={{fontSize: '14px', marginBottom: '5px'}}>3. Utiliser la relation E = P × t
+                                        pour expliquer pourquoi un appareil peu puissant peut consommer beaucoup
+                                        d'énergie.</p>
+                                    .....................................................................................
+                                    .....................................................................................
+                                    <button className="correction-btnoptic" onClick={() => toggleCorrection('ex2_3')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> {showCorrections.ex2_3 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex2_3 && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            Même avec une puissance faible, si l'appareil fonctionne longtemps,
+                                            l'énergie consommée sera importante.
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="question">
+                                    <p style={{fontSize: '14px', marginBottom: '5px'}}>4. Proposer des solutions pour
+                                        réduire la consommation d'énergie d'un foyer.</p>
+                                    .....................................................................................
+                                    .....................................................................................
+                                    <button className="correction-btnoptic" onClick={() => toggleCorrection('ex2_4')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> {showCorrections.ex2_4 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex2_4 && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            Choisir des appareils de classe A++, éteindre les appareils en veille,
+                                            réduire le temps d'utilisation.
+                                        </div>
+                                    )}
+                                </div>
+                                <h4 className="exercice-title" style={{color: '#1976d2', marginBottom: '10px'}}>3.
+                                    Ancien compteur</h4>
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'flex-start',
+                                    gap: '15px',
+                                    marginBottom: '15px'
+                                }}>
+                                    <div style={{flex: 1}}>
+                                        <p className="exercice-text" style={{fontSize: '14px', margin: '0'}}>
+                                            La constante C d'un compteur d'énergie représente l'énergie consommée
+                                            lorsque le
+                                            plateau du compteur fait un tour complet.
+                                            Lorsque l'on met sous tension un radiateur, le plateau du compteur
+                                            ci-dessous
+                                            effectue 8 tours complets en 1 minute.
+                                        </p>
+                                    </div>
+
+                                    {/* Espace pour l'image du compteur */}
+                                    <div className="flex-shrink-0" style={{maxWidth: '150px', cursor: 'pointer'}}>
+                                        <img
+                                            src={anciencompteur}
+                                            alt="Circuit électrique avec lampes"
+                                            className="img-fluid rounded shadow-sm compact-img"
+                                            onClick={() => openModal(anciencompteur, 'ancien compteur')}
+                                            style={{maxWidth: '100%', height: 'auto'}}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="question" style={{marginBottom: '15px'}}>
+                                    <p style={{fontSize: '14px', marginBottom: '5px'}}>1. Calculer, en Wh, l'énergie
+                                        électrique consommée par le radiateur en 2 h de fonctionnement.</p>
+                                    .....................................................................................
+                                    <button className="correction-btnoptic" onClick={() => toggleCorrection('ex3_1')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> {showCorrections.ex3_1 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex3_1 && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            8 tours/min = 480 tours/h. En 2h : 960 tours. E = 960 × 5 = 4800 Wh
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="question">
+                                    <p style={{fontSize: '14px', marginBottom: '5px'}}>2. En déduire la puissance du
+                                        radiateur.</p>
+                                    .....................................................................................
+                                    <button className="correction-btnoptic" onClick={() => toggleCorrection('ex3_2')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> {showCorrections.ex3_2 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex3_2 && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            P = E/t = 4800/2 = 2400 W
+                                        </div>
+                                    )}
+                                </div>
+                                {/* Exercice 4 */}
+                                <h4 className="exercice-title" style={{color: '#1976d2', marginBottom: '10px'}}>4.
+                                    Énergie et puissance</h4>
+                                <p className="exercice-text" style={{fontSize: '14px', marginBottom: '15px'}}>
+                                    Un réfrigérateur est peu puissant (200 W). Pourtant, c'est l'un des appareils
+                                    électroménagers qui consomme le plus d'énergie.
+                                </p>
+
+                                <div className="question">
+                                    <p style={{fontSize: '14px', marginBottom: '5px'}}>Expliquer pourquoi.</p>
+                                    .....................................................................................
+                                    .....................................................................................
+                                    .....................................................................................
+                                    <button className="correction-btnoptic" onClick={() => toggleCorrection('ex4')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> {showCorrections.ex4 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex4 && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            Le réfrigérateur fonctionne 24h/24, donc même avec une puissance
+                                            modérée, il
+                                            consomme beaucoup d'énergie sur une longue période.
+                                        </div>
+                                    )}
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {/* Colonne droite */}
+                        <div className="exercice-column" style={{maxWidth: '95%'}}>
+                            {/* Exercice 5 */}
+                            <div className="exercice-card" style={{
+                                padding: '15px',
+                                backgroundColor: '#ffffff',
+                                borderRadius: '8px',
+                                border: '1px solid #e0e0e0',
+                                marginBottom: '10px',
+
+                            }}>
+
+                                <h4 className="exercice-title" style={{color: '#1976d2', marginBottom: '10px'}}>5. Vélo
+                                    électrique</h4>
+                                <p className="exercice-text" style={{fontSize: '14px', marginBottom: '15px'}}>
+                                    Le père de Victor s'est acheté un vélo électrique.
+                                </p>
+
+                                <div className="notice-technique" style={{
+                                    padding: '10px',
+                                    backgroundColor: '#e3f2fd',
+                                    borderRadius: '6px',
+                                    marginBottom: '15px'
+                                }}>
+                                    <h5 style={{margin: '0 0 8px 0', fontSize: '13px', color: '#1976d2'}}>Notice
+                                        technique</h5>
+                                    <p style={{margin: '0 0 5px 0', fontSize: '12px'}}>Batterie : Gel plomb ; tension :
+                                        36 V ; capacité : 12 Ah ; masse : 12 kg</p>
+                                    <p style={{margin: '0', fontSize: '13px'}}>Moteur : Électrique 250 W dans le moyeu
+                                        arrière Type : courant continu alimenté sous 36 V Vitesse maximale : 25 km/h</p>
+                                </div>
+
+                                <div className="question" style={{marginBottom: '15px'}}>
+                                    <p style={{fontSize: '14px', marginBottom: '5px'}}>1. À partir des indications de la
+                                        notice, compléter le tableau suivant.</p>
+
+                                    <table className="table table-bordered text-center" style={{
+                                        margin: '10px 0',
+                                        width: '100%',
+                                        borderCollapse: 'collapse',
+                                        fontSize: '13px'
+                                    }}>
+                                        <thead>
+                                        <tr style={{backgroundColor: '#f5f5f5'}}>
+                                            <th style={{border: '1px solid #ddd', padding: '8px'}}>Indication de la
+                                                notice
+                                            </th>
+                                            <th style={{border: '1px solid #ddd', padding: '8px'}}>Unité en toutes
+                                                lettres
+                                            </th>
+                                            <th style={{border: '1px solid #ddd', padding: '8px'}}>Grandeur électrique
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td style={{border: '1px solid #ddd', padding: '8px'}}>250 W</td>
+                                            <td style={{border: '1px solid #ddd', padding: '4px'}}>
+                                                <input
+                                                    type="text"
+                                                    className="answer-input-small"
+                                                    value={answers.ex5_1_watt}
+                                                    onChange={(e) => handleInputChange('ex5_1_watt', e.target.value)}
+                                                    placeholder="Unité"
+                                                    style={{
+                                                        width: '90%',
+                                                        padding: '4px',
+                                                        border: '1px solid #ccc',
+                                                        borderRadius: '3px'
+                                                    }}
+                                                />
+                                            </td>
+                                            <td style={{border: '1px solid #ddd', padding: '4px'}}>
+                                                <input
+                                                    type="text"
+                                                    className="answer-input-small"
+                                                    value={answers.ex5_1_watt_grandeur}
+                                                    onChange={(e) => handleInputChange('ex5_1_watt_grandeur', e.target.value)}
+                                                    placeholder="Grandeur"
+                                                    style={{
+                                                        width: '90%',
+                                                        padding: '4px',
+                                                        border: '1px solid #ccc',
+                                                        borderRadius: '3px'
+                                                    }}
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style={{border: '1px solid #ddd', padding: '8px'}}>36 V</td>
+                                            <td style={{border: '1px solid #ddd', padding: '4px'}}>
+                                                <input
+                                                    type="text"
+                                                    className="answer-input-small"
+                                                    value={answers.ex5_1_volt}
+                                                    onChange={(e) => handleInputChange('ex5_1_volt', e.target.value)}
+                                                    placeholder="Unité"
+                                                    style={{
+                                                        width: '90%',
+                                                        padding: '4px',
+                                                        border: '1px solid #ccc',
+                                                        borderRadius: '3px'
+                                                    }}
+                                                />
+                                            </td>
+                                            <td style={{border: '1px solid #ddd', padding: '4px'}}>
+                                                <input
+                                                    type="text"
+                                                    className="answer-input-small"
+                                                    value={answers.ex5_1_volt_grandeur}
+                                                    onChange={(e) => handleInputChange('ex5_1_volt_grandeur', e.target.value)}
+                                                    placeholder="Grandeur"
+                                                    style={{
+                                                        width: '90%',
+                                                        padding: '4px',
+                                                        border: '1px solid #ccc',
+                                                        borderRadius: '3px'
+                                                    }}
+                                                />
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <button className="correction-btnoptic"
+                                            onClick={() => toggleCorrection('ex5_1_watt')} style={{
+                                        padding: '5px 10px',
+                                        fontSize: '12px',
+                                        backgroundColor: '#1976d2',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '4px',
+                                        cursor: 'pointer'
+                                    }}>
+                                        <FaCheck/> {showCorrections.ex5_1_watt ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex5_1_watt && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            250 W → watts → Puissance ; 36 V → volts → Tension
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="question" style={{marginBottom: '15px'}}>
+                                    <p style={{fontSize: '14px', marginBottom: '5px'}}>2. Calculer, en ampères,
+                                        l'intensité I du courant électrique qui traverse le moteur du vélo.</p>
+                                    .....................................................................................
+                                    <button className="correction-btnoptic" onClick={() => toggleCorrection('ex5_2')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> {showCorrections.ex5_2 ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex5_2 && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            P = U × I ⇒ I = P/U = 250/36 ≈ 6,9 A
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="question">
+                                    <p style={{fontSize: '14px', marginBottom: '5px'}}>3. Le père de Victor utilise ce
+                                        vélo pendant 20 minutes.</p>
+                                    <p style={{fontSize: '13px', marginBottom: '3px'}}>a. Convertir les 20 minutes en
+                                        secondes.</p>
+                                    .....................................................................................
+                                    <button className="correction-btnoptic" onClick={() => toggleCorrection('ex5_3a')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> {showCorrections.ex5_3a ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex5_3a && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            20 × 60 = 1200 s
+                                        </div>
+                                    )}
+
+                                    <p style={{fontSize: '13px', marginBottom: '3px', marginTop: '15px'}}>b. Calculer,
+                                        en joules, l'énergie consommée.</p>
+                                    .....................................................................................
+                                    <button className="correction-btnoptic" onClick={() => toggleCorrection('ex5_3b')}
+                                            style={{
+                                                padding: '5px 10px',
+                                                fontSize: '12px',
+                                                backgroundColor: '#1976d2',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer'
+                                            }}>
+                                        <FaCheck/> {showCorrections.ex5_3b ? 'Masquer' : 'Correction'}
+                                    </button>
+                                    {showCorrections.ex5_3b && (
+                                        <div className="correction-text" style={{
+                                            marginTop: '10px',
+                                            padding: '8px',
+                                            backgroundColor: '#e8f5e9',
+                                            borderLeft: '3px solid #4caf50',
+                                            borderRadius: '4px',
+                                            fontSize: '12px'
+                                        }}>
+                                            E = P × t = 250 × 1200 = 300 000 J
+                                        </div>
+                                    )}
+                                </div>
+                                {/* AutoEvaluationGrid réduit et bien aligné */}
+                                <div style={{
+                                    width: '150%',
+                                    overflow: 'hidden',
+                                    marginTop: '20px',
+                                    transform: 'scale(0.7)',
+                                    transformOrigin: 'top left',
+                                    marginBottom: '-31%',
+                                    marginLeft: '-10px'
+                                }}>
+                                    <AutoEvaluationGrid/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {modalState.show && (<ModalImage
+                imageUrl={modalState.imageUrl}
+                altText={modalState.altText}
+                onClose={closeModal}
+            />)}
+        </div>
+    </>);
+};
+
+export default ExercicesElectricite;

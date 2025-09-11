@@ -5,6 +5,7 @@ import Act3et4stat2Var from "../pages/Maths/première/StatProba/Statistiques/Act
 import BilanStat2Var from "../pages/Maths/première/StatProba/Statistiques/BilanStat2Var";
 import ExerciceStat2Var from "../pages/Maths/première/StatProba/Statistiques/ExerciceStat2Var";
 import Act3Mecanic from "../pages/SciencePhysiqueChimie/seconde/Mecanique/Act3Mecanic";
+import BilanElectricite from "../pages/SciencePhysiqueChimie/premiere/electricite/BilanElectricite";
 
 export const SPECIAL_ACTIVITIES = {
     math: {
@@ -469,6 +470,24 @@ export const SPECIAL_ACTIVITIES = {
                             path: 'electricite/act1et2Electricite',
                             component: 'Act1et2Electricite',
                         },
+                        {
+                            id: 2,
+                            title: 'Évaluer une surconsommation électrique',
+                            path: 'electricite/act3Electricite',
+                            component: 'Act3Electricite1ere',
+                        },
+                        {
+                            id: 3,
+                            title: 'Bilan',
+                            path: 'electricite/BilanElectricite',
+                            component: 'BilanElectricite',
+                        },
+                        {
+                            id: 4,
+                            title: 'Exercices',
+                            path: 'electricite/ExercicesElectricite',
+                            component: 'ExercicesElectricite',
+                        }
                     ],
                 },
             },

@@ -1,0 +1,544 @@
+import React, {useRef, useState} from 'react';
+import {FaCheck, FaBolt, FaIndustry, FaCog} from 'react-icons/fa';
+import '../../../../styles/activites.css';
+import {useLocation, useParams} from 'react-router-dom';
+import BackButton from '../../../../components/navigation/BackButton';
+import PrintManager from '../../../../utils/PrintManager';
+import 'katex/dist/katex.min.css';
+import {InlineMath} from 'react-katex';
+import ModalImage from "../../../../utils/ModalImage";
+import {IoMdSchool} from "react-icons/io";
+
+// Images (à remplacer par les images appropriées)
+import ordinateurImage from "../../../../assets/geek.png";
+import consommetreImage from "../../../../assets/ordinateur-veille.png";
+import AutoEvaluationGrid from "../../../../config/AutoEvaluationGrid";
+
+const Act3Electricite1ere = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+    const contentRef = useRef();
+
+    // États pour les réponses et corrections
+    const [answers, setAnswers] = useState({
+        etape1: '',
+        etape2: '',
+        etape3: '',
+        etape4: '',
+        etape5: '',
+    });
+
+    const [showCorrections, setShowCorrections] = useState({
+        etape1: false,
+        etape2: false,
+        etape3: false,
+        etape4: false,
+        etape5: false,
+    });
+
+    // Réponses attendues
+    const correctAnswers = {
+        etape1: 'Je pense comme Estelle : les appareils en veille entraînent une importante surconsommation.',
+        etape2: 'Je mesure les puissances consommées de l\'ordinateur en veille et en fonctionnement et je calcule les énergies respectives.',
+        etape3: 'Pour l\'unité centrale, les haut-parleurs et l\'écran en veille, la puissance consommée est de 9 W. En fonctionnement, la puissance est de 74 W. Éteint: 0 W.',
+        etape4: 'La surconsommation due à la veille peut être calculée en comparant l\'énergie consommée en veille vs éteint sur une période donnée.',
+        etape5: 'L\'hypothèse d\'Estelle est correcte - les appareils en veille consomment effectivement de l\'énergie et contribuent à la surconsommation électrique.',
+    };
+
+    // Gestionnaires d'événements
+    const handleInputChange = (field, value) => {
+        setAnswers((prev) => ({...prev, [field]: value}));
+    };
+
+    const toggleCorrection = (field) => {
+        setShowCorrections((prev) => ({...prev, [field]: !prev[field]}));
+        if (!answers[field] && !showCorrections[field]) {
+            setAnswers((prev) => ({...prev, [field]: correctAnswers[field]}));
+        }
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false, imageUrl: '', altText: '',
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState((prev) => ({...prev, show: false}));
+    };
+
+    if (className === 'Premiere-electricite-act3') {
+        return <div>Cette activité n'est pas disponible pour cette classe.</div>;
+    }
+
+    return (<>
+        <BackButton/>
+        <div className="tp-container" id="electricite-content" ref={contentRef}>
+            <PrintManager
+                contentRef={contentRef}
+                activityName="Electricite_Surconsommation"
+                pageCount={1}
+                quality="hd"
+            />
+
+            {/* PAGE UNIQUE */}
+            <div className="print-page" id="page1-start">
+                <section className="tp-section compact">
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">ACTIVITÉ 3</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                      « Évaluer la surconsommation due aux appareils en veille »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '20px', marginBottom: '20px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte2">
+                                <h5 className="mb-3 text-primary fw-bold">🌍 "Réduire son empreinte écologique"</h5>
+                                <p style={{textAlign: 'justify', fontSize: '15px', lineHeight: '1.4'}}>
+
+                                    Lucas, un jeune ado passionné d’informatique et de jeux vidéo, passe beaucoup de
+                                    temps devant son ordinateur.
+                                    Un jour, il découvre que laisser son PC et ses équipements en veille provoque une
+                                    surconsommation d’électricité non négligeable.
+                                    <br/>
+                                    Curieux et soucieux de comprendre son impact, il décide d’utiliser un consomètre.
+                                    Il relève alors la puissance consommée par son ordinateur pendant 7 heures en
+                                    veille,
+                                    puis la compare à celle mesurée pendant 5 heures d’utilisation.
+                                </p>
+
+                                <div className="problematique-box" style={{
+                                    backgroundColor: '#e8f5e9',
+                                    padding: '15px',
+                                    borderRadius: '8px',
+                                    borderLeft: '4px solid #4caf50',
+                                    marginBottom: '20px'
+                                }}>
+                                    <h6 style={{margin: '0', color: '#2e7d32', display: 'flex', alignItems: 'center'}}>
+                                        <IoMdSchool style={{marginRight: '10px'}}/>
+                                        <strong>OBJECTIF</strong>
+                                    </h6>
+                                    <p style={{fontWeight: 'bold', fontSize: '12px'}}>
+                                        L’objectif est de mesurer et comparer la consommation électrique d’un ordinateur
+                                        en veille
+                                        et en utilisation.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="flex-shrink-0" style={{maxWidth: '200px', cursor: 'pointer'}}>
+                            <img src={ordinateurImage} alt="Ordinateur en veille"
+                                 className="img-fluid rounded shadow-sm compact-img"
+                                 onClick={() => openModal(ordinateurImage, 'Ordinateur en veille')}/>
+                        </div>
+                    </div>
+
+                    {/* ÉTAPE 1 */}
+                    <div className="question-card" style={{marginTop: '-20px', marginBottom: '-20px'}}>
+                        <div className="question-header" style={{
+                            backgroundColor: '#e3f2fd',
+                            padding: '12px 15px',
+                            borderRadius: '8px 8px 0 0',
+                            borderBottom: '2px solid #bbdefb',
+                            marginTop: '-5px'
+                        }}>
+                            <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                                <div style={{
+                                    backgroundColor: '#2196f3',
+                                    color: 'white',
+                                    width: '30px',
+                                    height: '30px',
+                                    borderRadius: '50%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontWeight: 'bold'
+                                }}>1
+                                </div>
+                                <h4 className="vect-title2" style={{margin: 0, color: '#0d47a1'}}>
+                                    ÉTAPE 1 - Je formule une hypothèse
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div className="question-content" style={{padding: '15px'}}>
+                            <p>
+                                <strong>Cocher la (ou les) bonne(s) proposition(s).</strong>
+                            </p>
+
+                            <div className="qcm-container">
+                                {[
+                                    'Je pense que les appareils en veille consomment peu.',
+                                    'Je pense comme Estelle : les appareils en veille entraînent une importante surconsommation.',
+                                    'Je ne sais pas.'
+                                ].map((option, index) => (
+                                    <div key={index} className="qcm-option">
+                                        <label className="radio-label">
+                                            <input type="checkbox" className="radio-input"/>
+                                            <span className="radio-checkmark"></span>
+                                            {option}
+                                        </label>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <button className="correction-btnoptic" onClick={() => toggleCorrection('etape1')}>
+                                <FaCheck/> {showCorrections.etape1 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+
+                            {showCorrections.etape1 && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.etape1}
+                                </div>
+                            )}
+                        </div>
+                        {/* ÉTAPE 2 */}
+                        <div className="question-header" style={{
+                            backgroundColor: '#fff3e0',
+                            padding: '12px 15px',
+                            borderRadius: '8px 8px 0 0',
+                            borderBottom: '2px solid #ffcc80'
+                        }}>
+                            <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                                <div style={{
+                                    backgroundColor: '#ff9800',
+                                    color: 'white',
+                                    width: '30px',
+                                    height: '30px',
+                                    borderRadius: '50%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontWeight: 'bold'
+                                }}>2
+                                </div>
+                                <h4 className="vect-title2" style={{margin: 0, color: '#e65100'}}>
+                                    ÉTAPE 2 - Je propose un protocole expérimental
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div className="question-content" style={{padding: '5px'}}>
+                            <p>
+                                <strong>Cocher la bonne réponse.</strong>
+                            </p>
+
+                            <div className="qcm-container" style={{marginBottom: '5px'}}>
+                                {[
+                                    'Je mesure la puissance consommée de l\'ordinateur en veille.',
+                                    'Je mesure les puissances consommées de l\'ordinateur en veille et en fonctionnement et je calcule les énergies respectives.',
+                                    'Je calcule 10 % de la puissance consommée par l\'ordinateur.'
+                                ].map((option, index) => (
+                                    <div key={index} className="qcm-option">
+                                        <label className="radio-label">
+                                            <input type="checkbox" className="radio-input"/>
+                                            <span className="radio-checkmark"></span>
+                                            {option}
+                                        </label>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <button className="correction-btnoptic" onClick={() => toggleCorrection('etape2')}>
+                                <FaCheck/> {showCorrections.etape2 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+
+                            {showCorrections.etape2 && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.etape2}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* ÉTAPES 3 ET 4 CÔTE À CÔTE */}
+                    <div className="two-columns-container" style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '20px',
+                    }}>
+                        {/* ÉTAPE 3 */}
+                        <div className="question-card">
+                            <div className="question-header" style={{
+                                backgroundColor: '#fbe9e7',
+                                padding: '12px 15px',
+                                borderRadius: '8px 8px 0 0',
+                                borderBottom: '2px solid #ffab91'
+                            }}>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                                    <div style={{
+                                        backgroundColor: '#ff5722',
+                                        color: 'white',
+                                        width: '30px',
+                                        height: '30px',
+                                        borderRadius: '50%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontWeight: 'bold'
+                                    }}>3
+                                    </div>
+                                    <h4 className="vect-title2" style={{margin: 0, color: '#bf360c', fontSize: '16px'}}>
+                                        Je réalise l'expérience
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <div className="question-content" style={{padding: '15px'}}>
+                                <div style={{marginBottom: '15px'}}>
+                                    <p style={{marginBottom: '15px'}}>
+                                        <strong>Mesurer et noter les résultats.</strong>
+                                    </p>
+
+                                    <div className="answer-space2"
+                                         style={{
+                                             height: '170px',
+                                             border: '1px dashed #ccc',
+                                             borderRadius: '4px',
+                                             padding: '10px',
+                                         }}>
+                                        {showCorrections.etape3 ? correctAnswers.etape3 : ''}
+                                    </div>
+                                </div>
+                                {/*<div style={{maxWidth: '100%', cursor: 'pointer', textAlign: 'center'}}>*/}
+                                {/*    <img src={consommetreImage} alt="Consomètre"*/}
+                                {/*         className="img-fluid rounded shadow-sm"*/}
+                                {/*         onClick={() => openModal(consommetreImage, 'Consomètre')}*/}
+                                {/*         style={{maxHeight: '100px', marginBottom: '10px'}}/>*/}
+                                {/*    <p className="text-center" style={{fontSize: '12px', color: '#666'}}>Appareil*/}
+                                {/*        de mesure</p>*/}
+                                {/*</div>*/}
+                                <button className="correction-btnoptic" onClick={() => toggleCorrection('etape3')}>
+                                    <FaCheck/> {showCorrections.etape3 ? 'Masquer la correction' : 'Afficher la correction'}
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* ÉTAPE 4 */}
+                        <div className="question-card">
+                            <div className="question-header" style={{
+                                backgroundColor: '#e8f5e9',
+                                padding: '12px 15px',
+                                borderRadius: '8px 8px 0 0',
+                                borderBottom: '2px solid #a5d6a7'
+                            }}>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                                    <div style={{
+                                        backgroundColor: '#4caf50',
+                                        color: 'white',
+                                        width: '30px',
+                                        height: '30px',
+                                        borderRadius: '50%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontWeight: 'bold'
+                                    }}>4
+                                    </div>
+                                    <h4 className="vect-title2" style={{margin: 0, color: '#2e7d32', fontSize: '16px'}}>
+                                        Je valide
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <div className="question-content" style={{padding: '15px'}}>
+                                <p style={{marginBottom: '15px'}}>
+                                    <strong>Évaluer la surconsommation due à la veille des appareils.</strong>
+                                </p>
+
+                                <div className="answer-space2"
+                                     style={{
+                                         height: '150px',
+                                         border: '1px dashed #ccc',
+                                         borderRadius: '4px',
+                                         padding: '10px',
+                                         marginBottom: '15px'
+                                     }}>
+                                    {showCorrections.etape4 ? correctAnswers.etape4 : ''}
+                                </div>
+
+                                <button className="correction-btnoptic" onClick={() => toggleCorrection('etape4')}>
+                                    <FaCheck/> {showCorrections.etape4 ? 'Masquer la correction' : 'Afficher la correction'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div className="print-page" id="page2-start">
+                {/* ÉTAPE 5 */}
+                <div className="question-card"  >
+                    <div className="question-header" style={{
+                        backgroundColor: '#f3e5f5',
+                        padding: '12px 15px',
+                        borderRadius: '8px 8px 0 0',
+                        borderBottom: '2px solid'
+                    }}>
+                        <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                            <div style={{
+                                backgroundColor: '#9c27b0',
+                                color: 'white',
+                                width: '30px',
+                                height: '30px',
+                                borderRadius: '50%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                fontWeight: 'bold'
+                            }}>5
+                            </div>
+                            <h4 className="vect-title2" style={{margin: 0, color: '#4a148c'}}>
+                                ÉTAPE 5 - Je communique
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div className="question-content" style={{padding: '15px'}}>
+                        <p style={{marginBottom: '15px'}}>
+                            <strong>Revenir sur la supposition Lucas.</strong>
+                        </p>
+
+                        <div className="answer-space2"
+                             style={{
+                                 height: '120px',
+                                 border: '1px dashed #ccc',
+                                 borderRadius: '4px',
+                                 padding: '10px',
+                                 marginBottom: '15px'
+                             }}>
+                            {showCorrections.etape5 ? correctAnswers.etape5 : ''}
+                        </div>
+
+                        <button className="correction-btnoptic" onClick={() => toggleCorrection('etape5')}>
+                            <FaCheck/> {showCorrections.etape5 ? 'Masquer la correction' : 'Afficher la correction'}
+                        </button>
+                    </div>
+                </div>
+                <AutoEvaluationGrid/>
+            </div>
+            {modalState.show && (
+                <ModalImage imageUrl={modalState.imageUrl} altText={modalState.altText} onClose={closeModal}/>
+            )}
+
+            {/* Styles CSS */}
+            <style jsx>{`
+              .qcm-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin: 10px 0;
+                font-size: 12px;;
+              }
+
+              .qcm-option {
+                display: flex;
+                align-items: center;
+                padding: 10px 12px;
+                background-color: #f8f9fa;
+                border-radius: 8px;
+                border: 1px solid #e9ecef;
+                transition: all 0.2s ease;
+                cursor: pointer;
+              }
+
+              .qcm-option:hover {
+                background-color: #e8f5e9;
+                transform: translateY(-1px);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+              }
+
+              .radio-label {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                width: 100%;
+              }
+
+              .radio-input {
+                display: none;
+              }
+
+              .radio-checkmark {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 2px solid #4CAF50;
+                margin-right: 10px;
+                position: relative;
+                transition: all 0.2s ease;
+              }
+
+              .radio-label:hover .radio-checkmark {
+                border-color: #2e7d32;
+                transform: scale(1.1);
+              }
+
+              .radio-input:checked + .radio-checkmark {
+                background-color: #4CAF50;
+                border-color: #4CAF50;
+              }
+
+              .radio-input:checked + .radio-checkmark::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: white;
+                transform: translate(-50%, -50%);
+              }
+
+              .answer-space2 {
+                border: 1px dashed #ccc;
+                margin: 10px 0;
+              }
+
+              .correction-btnoptic {
+                padding: 8px 16px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                font-size: 12px;
+                display: inline-flex;
+                align-items: center;
+              }
+
+              .correction-btnoptic:hover {
+                background-color: #2e7d32;
+                transform: translateY(-1px);
+              }
+
+              .correction-box {
+                background-color: #e8f5e9;
+                padding: 12px;
+                border-radius: 6px;
+                border-left: 4px solid #4CAF50;
+                margin-top: 15px;
+                font-size: 12px;
+              }
+
+              .question-card {
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+              }
+            `}</style>
+        </div>
+    </>);
+};
+
+export default Act3Electricite1ere;
