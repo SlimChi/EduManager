@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/EduManager/static/css/main.d5db3ea0.css",
-    "main.js": "/EduManager/static/js/main.d170a9e0.js",
+    "main.css": "/EduManager/static/css/main.97f473de.css",
+    "main.js": "/EduManager/static/js/main.dd25e27b.js",
     "static/js/977.7c1b83c7.chunk.js": "/EduManager/static/js/977.7c1b83c7.chunk.js",
     "static/js/732.88920a93.chunk.js": "/EduManager/static/js/732.88920a93.chunk.js",
     "static/js/103.612e5b3f.chunk.js": "/EduManager/static/js/103.612e5b3f.chunk.js",
@@ -38,6 +38,7 @@
     "static/media/3.gif": "/EduManager/static/media/3.afe8c524e867bb605341.gif",
     "static/media/trottinette.png": "/EduManager/static/media/trottinette.773f8c5997424ee3b859.png",
     "static/media/bus-mouvement.png": "/EduManager/static/media/bus-mouvement.6c3e42989da931b66056.png",
+    "static/media/geek.png": "/EduManager/static/media/geek.609215bcf514e9928d3c.png",
     "static/media/reperefocntioncarre.png": "/EduManager/static/media/reperefocntioncarre.425980ebca020f6126dc.png",
     "static/media/5.gif": "/EduManager/static/media/5.238cc8ebf80f9f14c46e.gif",
     "static/media/elevelivre.png": "/EduManager/static/media/elevelivre.f58b79b45ba5f7a47ab1.png",
@@ -62,6 +63,7 @@
     "static/media/9.gif": "/EduManager/static/media/9.c880205b002f937f77cc.gif",
     "static/media/tpson.png": "/EduManager/static/media/tpson.dada208ca4725f639989.png",
     "static/media/hacker.png": "/EduManager/static/media/hacker.a8fb434cfeb2465189c7.png",
+    "static/media/compteurElectrique.png": "/EduManager/static/media/compteurElectrique.8971b18882c5e3f1fe8f.png",
     "static/media/face.png": "/EduManager/static/media/face.064db6aa722f30b927af.png",
     "static/media/cuisine.png": "/EduManager/static/media/cuisine.1a40a5a5a25082e55432.png",
     "static/media/14.gif": "/EduManager/static/media/14.2a311ffbd60286861db8.gif",
@@ -79,8 +81,10 @@
     "static/media/sautplonge.png": "/EduManager/static/media/sautplonge.b04c332385760651873a.png",
     "static/media/shpereenboisfille.jpg": "/EduManager/static/media/shpereenboisfille.297d95013bcd4c10cfdb.jpg",
     "static/media/hamac.png": "/EduManager/static/media/hamac.e7a9a3db541b87ef4294.png",
+    "static/media/etiquetteEnergie.png": "/EduManager/static/media/etiquetteEnergie.961f172965120946304d.png",
     "static/media/epiComplet.png": "/EduManager/static/media/epiComplet.547cd86ff371a2267e2d.png",
     "static/media/montageDynamo.png": "/EduManager/static/media/montageDynamo.8be26e6e323914b7ed75.png",
+    "static/media/joulemettre.png": "/EduManager/static/media/joulemettre.e3525531a9fc03cc3e2d.png",
     "static/media/menutable.jpg": "/EduManager/static/media/menutable.b0e6581adb1bccf596f8.jpg",
     "static/media/solMurForce.png": "/EduManager/static/media/solMurForce.ff83c5c425f660609e4d.png",
     "static/media/act5stat.png": "/EduManager/static/media/act5stat.06c2c289e5a1ebd75327.png",
@@ -202,6 +206,7 @@
     "static/media/KaTeX_Fraktur-Regular.woff2": "/EduManager/static/media/KaTeX_Fraktur-Regular.172d3529b26f8cedef6b.woff2",
     "static/media/histostat5.png": "/EduManager/static/media/histostat5.e8c2d174804aceb6c20b.png",
     "static/media/KaTeX_Script-Regular.woff": "/EduManager/static/media/KaTeX_Script-Regular.073b3402d036714b4370.woff",
+    "static/media/plaqueSignaletique.png": "/EduManager/static/media/plaqueSignaletique.8ae71aef59c11027ebe2.png",
     "static/media/KaTeX_Size4-Regular.ttf": "/EduManager/static/media/KaTeX_Size4-Regular.4ad7c7e8bb8d10a34bb7.ttf",
     "static/media/spectreSignaux.png": "/EduManager/static/media/spectreSignaux.d39ca0feefa199eed147.png",
     "static/media/KaTeX_SansSerif-Regular.woff2": "/EduManager/static/media/KaTeX_SansSerif-Regular.cd5e231e0cc53b2cb2c0.woff2",
@@ -221,15 +226,15 @@
     "static/media/KaTeX_Size3-Regular.woff": "/EduManager/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/EduManager/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/EduManager/index.html",
-    "main.d5db3ea0.css.map": "/EduManager/static/css/main.d5db3ea0.css.map",
-    "main.d170a9e0.js.map": "/EduManager/static/js/main.d170a9e0.js.map",
+    "main.97f473de.css.map": "/EduManager/static/css/main.97f473de.css.map",
+    "main.dd25e27b.js.map": "/EduManager/static/js/main.dd25e27b.js.map",
     "977.7c1b83c7.chunk.js.map": "/EduManager/static/js/977.7c1b83c7.chunk.js.map",
     "732.88920a93.chunk.js.map": "/EduManager/static/js/732.88920a93.chunk.js.map",
     "103.612e5b3f.chunk.js.map": "/EduManager/static/js/103.612e5b3f.chunk.js.map",
     "453.dc8f7a36.chunk.js.map": "/EduManager/static/js/453.dc8f7a36.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d5db3ea0.css",
-    "static/js/main.d170a9e0.js"
+    "static/css/main.97f473de.css",
+    "static/js/main.dd25e27b.js"
   ]
 }
