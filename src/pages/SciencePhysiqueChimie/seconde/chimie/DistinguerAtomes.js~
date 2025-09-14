@@ -1,0 +1,529 @@
+import React, {useRef, useState} from 'react';
+import {FaAtom, FaFlask, FaQuestionCircle} from 'react-icons/fa';
+import '../../../../styles/activites.css';
+import {useLocation, useParams} from 'react-router-dom';
+import BackButton from '../../../../components/navigation/BackButton';
+import PrintManager from '../../../../utils/PrintManager';
+
+// Images (à remplacer par les images appropriées)
+import tableauPeriodique from "../../../../assets/tableau_periodique.png";
+import atomeStructure from "../../../../assets/atome_structure.png";
+import moleculeEau from "../../../../assets/molecule_eau.png";
+
+const DistinguerAtomes = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+    const contentRef = useRef();
+
+    // États pour le QCM
+    const [answers, setAnswers] = useState({});
+
+    const handleAnswerChange = (questionIndex, value) => {
+        setAnswers(prev => ({
+            ...prev,
+            [questionIndex]: value
+        }));
+    };
+
+    // Questions du QCM
+    const questions = [
+        {
+            question: "Qu'est-ce qu'un atome ?",
+            options: [
+                "A) Un ensemble de plusieurs particules liées entre elles.",
+                "B) La plus petite unité constitutive d'un élément chimique.",
+                "C) Un groupe d'atomes porteurs de charge électrique."
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Qu'est-ce qu'une molécule ?",
+            options: [
+                "A) Une particule qui a gagné ou perdu des électrons.",
+                "B) Un groupe de deux ou plusieurs atomes liés entre eux.",
+                "C) Une particule constituée d'un seul type d'atome."
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Comment se forme un ion ?",
+            options: [
+                "A) Par la perte ou le gain d'un proton.",
+                "B) Par la perte ou le gain d'un électron.",
+                "C) Par l'assemblage de plusieurs atomes différents."
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Quelle est la différence entre une molécule et un ion ?",
+            options: [
+                "A) Une molécule est neutre, tandis qu'un ion est chargé.",
+                "B) Une molécule est plus petite qu'un ion.",
+                "C) Une molécule est constituée d'un seul type d'atome, tandis qu'un ion est un groupe d'atomes."
+            ],
+            correctAnswer: 0
+        },
+        {
+            question: "Le symbole d'un ion positif est souvent noté comment ?",
+            options: [
+                "A) Avec un '+' après le symbole de l'élément.",
+                "B) Avec un '-' après le symbole de l'élément.",
+                "C) Avec un '2' après le symbole de l'élément."
+            ],
+            correctAnswer: 0
+        },
+        {
+            question: "Un ion est différent d'un atome car :",
+            options: [
+                "A) Il possède une charge électrique.",
+                "B) Il est plus gros qu'un atome.",
+                "C) Il a toujours un nombre égal de protons et d'électrons."
+            ],
+            correctAnswer: 0
+        },
+        {
+            question: "Quel est un exemple typique de molécule ?",
+            options: [
+                "A) H₂O",
+                "B) Cl⁻",
+                "C) Fe³⁺"
+            ],
+            correctAnswer: 0
+        },
+        {
+            question: "Quelle est la charge d'un ion qui a perdu deux électrons ?",
+            options: [
+                "A) 2+",
+                "B) 2-",
+                "C) Neutre"
+            ],
+            correctAnswer: 0
+        },
+
+    ];
+
+    return (
+        <>
+            <BackButton/>
+            <div className="tp-container" id="atomes-content" ref={contentRef}>
+                <PrintManager contentRef={contentRef} activityName="Distinguer_Atomes_Molecules_Ions" pageCount={1}
+                              quality="hd"/>
+
+                {/* PAGE 1 - BILAN COMPLET */}
+                <div className="print-page">
+                    <section className="tp-section compact">
+                        {/* En-tête */}
+                        <div className="math-chapter-box blue" style={{
+                            padding: '8px',
+                            margin: '-8px -12px 12px -12px',
+                            borderRadius: '0',
+                            background: 'linear-gradient(135deg, #2196F3 0%, #0D47A1 100%)',
+                            color: 'white'
+                        }}>
+                            <h3 className="math-chapter-title-test mb-0" style={{
+                                color: 'white',
+                                textAlign: 'center',
+                                fontSize: '18px',
+                                margin: '0'
+                            }}>
+                                <FaAtom style={{marginRight: '6px'}}/>
+                                Distinguer les atomes, les molécules et les ions
+                            </h3>
+                        </div>
+
+                        {/* 1. L'atome */}
+                        <div className="bilan-section" style={{padding: '10px', marginBottom: '12px'}}>
+                            <h4 className="bilan-title" style={{marginBottom: '8px'}}>
+                                <span className="bilan-number">1</span>
+                                L'atome
+                            </h4>
+
+                            <div className="bilan-content">
+
+
+                                <div className="bilan-example" style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'flex-start',
+                                    padding: '10px',
+                                    gap: '12px'
+                                }}>
+
+                                    <div style={{flex: 1}}>
+                                        <div className="bilan-definition"
+                                             style={{padding: '10px', marginBottom: '8px'}}>
+                                            <ul className="bilan-list" style={{margin: '6px 0', paddingLeft: '16px'}}>
+                                                <li style={{marginBottom: '4px'}}>
+                                                    Toute matière est constituée à partir d'une infinité d'atomes.
+                                                </li>
+                                                <li style={{marginBottom: '4px'}}>
+                                                    Un atome est constitué d'un noyau (protons +, neutrons 0) autour
+                                                    duquel
+                                                    gravitent des électrons (-).
+                                                </li>
+                                                <li style={{marginBottom: '0'}}>
+                                                    Dans tous les atomes, le nombre de protons est égal au nombre
+                                                    d'électrons
+                                                    (atome neutre).
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h5 className="example-title" style={{marginBottom: '6px'}}>
+                                            <FaFlask className="example-icon"/>
+                                            Structure d'un atome
+                                        </h5>
+                                        <p style={{fontSize: '12px', margin: '0 0 8px 0'}}>
+                                            Un atome est caractérisé par son nombre de protons (numéro atomique Z).
+                                            Chaque atome possède un nom et un symbole répertoriés dans le tableau
+                                            périodique.
+                                        </p>
+                                    </div>
+
+                                    {/* Image alignée à droite */}
+                                    <div style={{maxWidth: '250px', textAlign: 'center'}}>
+                                        <img
+                                            src={atomeStructure}
+                                            alt="Structure d'un atome"
+                                            style={{width: '100%', height: 'auto', maxHeight: '200px'}}
+                                        />
+                                        <p style={{fontSize: '10px', color: '#666', margin: '4px 0 0 0'}}>Structure d'un
+                                            atome</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 2. Les ions */}
+                        <div className="bilan-section" style={{padding: '10px', marginBottom: '12px'}}>
+                            <h4 className="bilan-title" style={{marginBottom: '8px'}}>
+                                <span className="bilan-number">2</span>
+                                Les ions
+                            </h4>
+
+                            <div className="bilan-content">
+                                <div style={{display: 'flex', flexWrap: 'wrap', gap: '15px', marginBottom: '12px'}}>
+                                    {/* Définition */}
+                                    <div style={{
+                                        flex: '1 1 300px',
+                                        padding: '10px',
+                                        background: '#f8f9fa',
+                                        borderRadius: '6px'
+                                    }}>
+                                        <h5 className="example-title" style={{marginBottom: '6px'}}>
+                                            <FaFlask className="example-icon"/>
+                                            Définition
+                                        </h5>
+                                        <ul className="bilan-list" style={{margin: '6px 0', paddingLeft: '16px'}}>
+                                            <li style={{marginBottom: '4px'}}>
+                                                <strong>Anion</strong> : atome qui a gagné un ou plusieurs électrons
+                                                (charge négative)
+                                            </li>
+                                            <li style={{marginBottom: '0'}}>
+                                                <strong>Cation</strong> : atome qui a perdu un ou plusieurs électrons
+                                                (charge positive)
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    {/* Moyens mnémotechniques */}
+                                    <div style={{
+                                        flex: '1 1 300px',
+                                        padding: '10px',
+                                        background: '#e3f2fd',
+                                        borderRadius: '6px'
+                                    }}>
+                                        <h5 className="example-title" style={{marginBottom: '6px'}}>
+                                            <FaFlask className="example-icon"/>
+                                            Mémo technique
+                                        </h5>
+                                        <ul style={{margin: '4px 0 0 0', paddingLeft: '16px'}}>
+                                            <li style={{marginBottom: '4px'}}>
+                                                <strong>P</strong> comme <strong>P</strong>erdu → <strong>P</strong>ositif
+                                            </li>
+                                            <li style={{marginBottom: '0'}}>
+                                                <strong>Cation</strong> a <strong>+</strong> de lettres
+                                                que <strong>Anion</strong>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                {/* Exemples */}
+                                <div style={{
+                                    padding: '10px',
+                                    background: '#fff',
+                                    borderRadius: '6px',
+                                    border: '1px solid #e0e0e0'
+                                }}>
+                                    <h5 className="example-title" style={{marginBottom: '8px'}}>
+                                        <FaFlask className="example-icon"/>
+                                        Exemples
+                                    </h5>
+                                    <div style={{
+                                        display: 'flex',
+                                        flexWrap: 'wrap',
+                                        gap: '12px',
+                                        justifyContent: 'space-between'
+                                    }}>
+                                        <div style={{
+                                            flex: '1 1 45%',
+                                            minWidth: '250px',
+                                            padding: '10px',
+                                            background: 'linear-gradient(to right, #e8f5e9, #f1f8e9)',
+                                            borderRadius: '4px',
+                                            borderLeft: '4px solid #4caf50'
+                                        }}>
+                                            <div style={{display: 'flex', alignItems: 'center', marginBottom: '6px'}}>
+                                                <div style={{
+                                                    width: '24px',
+                                                    height: '24px',
+                                                    background: '#4caf50',
+                                                    color: 'white',
+                                                    borderRadius: '50%',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    marginRight: '8px',
+                                                    fontSize: '14px',
+                                                    fontWeight: 'bold'
+                                                }}>+
+                                                </div>
+                                                <p style={{
+                                                    margin: '0',
+                                                    fontWeight: 'bold',
+                                                    color: '#2e7d32'
+                                                }}>Cations</p>
+                                            </div>
+                                            <div style={{paddingLeft: '32px'}}>
+                                                <p style={{margin: '0 0 4px 0', fontWeight: 'bold'}}>Na → Na⁺</p>
+                                                <p style={{margin: '0', fontSize: '12px'}}>
+                                                    Sodium perd 1 électron → ion sodium
+                                                </p>
+                                                <p style={{margin: '4px 0 0 0', fontWeight: 'bold'}}>Ca → Ca²⁺</p>
+                                                <p style={{margin: '0', fontSize: '12px'}}>
+                                                    Calcium perd 2 électrons → ion calcium
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div style={{
+                                            flex: '1 1 45%',
+                                            minWidth: '250px',
+                                            padding: '10px',
+                                            background: 'linear-gradient(to right, #ffebee, #ffcdd2)',
+                                            borderRadius: '4px',
+                                            borderLeft: '4px solid #f44336'
+                                        }}>
+                                            <div style={{display: 'flex', alignItems: 'center', marginBottom: '6px'}}>
+                                                <div style={{
+                                                    width: '24px',
+                                                    height: '24px',
+                                                    background: '#f44336',
+                                                    color: 'white',
+                                                    borderRadius: '50%',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    marginRight: '8px',
+                                                    fontSize: '14px',
+                                                    fontWeight: 'bold'
+                                                }}>-
+                                                </div>
+                                                <p style={{
+                                                    margin: '0',
+                                                    fontWeight: 'bold',
+                                                    color: '#c62828'
+                                                }}>Anions</p>
+                                            </div>
+                                            <div style={{paddingLeft: '32px'}}>
+                                                <p style={{margin: '0 0 4px 0', fontWeight: 'bold'}}>Cl → Cl⁻</p>
+                                                <p style={{margin: '0', fontSize: '12px'}}>
+                                                    Chlore gagne 1 électron → ion chlorure
+                                                </p>
+                                                <p style={{margin: '4px 0 0 0', fontWeight: 'bold'}}>SO₄ → SO₄²⁻</p>
+                                                <p style={{margin: '0', fontSize: '12px'}}>
+                                                    Groupement soufre-oxygène gagne 2 électrons → ion sulfate
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 3. Les molécules */}
+                        <div className="bilan-section" style={{padding: '10px', marginBottom: '12px'}}>
+                            <h4 className="bilan-title" style={{marginBottom: '8px'}}>
+                                <span className="bilan-number">3</span>
+                                Les molécules
+                            </h4>
+
+                            <div className="bilan-content">
+
+
+                                <div className="bilan-example" style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    padding: '10px',
+                                    gap: '12px',
+                                    marginBottom: '12px'
+                                }}>
+                                    <div style={{flex: 1}}>
+                                        <div className="bilan-definition"
+                                             style={{padding: '10px', marginBottom: '8px'}}>
+                                            <h5 className="example-title" style={{marginBottom: '6px'}}>
+                                                <FaFlask className="example-icon"/>
+                                                Définition
+                                            </h5>
+                                            <ul className="bilan-list" style={{margin: '6px 0', paddingLeft: '16px'}}>
+                                                <li style={{marginBottom: '4px'}}>
+                                                    Une molécule est l'association de plusieurs atomes.
+                                                </li>
+                                                <li style={{marginBottom: '0'}}>
+                                                    Elle est représentée par une formule brute qui indique les atomes
+                                                    constitutifs et leurs quantités.
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h5 className="example-title" style={{marginBottom: '6px'}}>
+                                            <FaFlask className="example-icon"/>
+                                            Exemples
+                                        </h5>
+                                        <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
+                                            <div style={{padding: '6px', background: '#f5f5f5', borderRadius: '4px'}}>
+                                                <p style={{margin: '0', fontWeight: 'bold'}}>H₂O - Eau</p>
+                                                <p style={{margin: '4px 0 0 0', fontSize: '12px'}}>
+                                                    2 atomes d'hydrogène + 1 atome d'oxygène
+                                                </p>
+                                            </div>
+                                            <div style={{padding: '6px', background: '#f5f5f5', borderRadius: '4px'}}>
+                                                <p style={{margin: '0', fontWeight: 'bold'}}>C₄H₁₀ - Butane</p>
+                                                <p style={{margin: '4px 0 0 0', fontSize: '12px'}}>
+                                                    4 atomes de carbone + 10 atomes d'hydrogène
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style={{flex: 1, textAlign: 'center'}}>
+                                        <img
+                                            src={moleculeEau}
+                                            alt="Molécule d'eau"
+                                            style={{width: '60%', height: 'auto', maxHeight: '1500px'}}
+                                        />
+                                        <p style={{fontSize: '10px', color: '#666', margin: '4px 0 0 0'}}>Molécule d'eau
+                                            (H₂O)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div className="print-page">
+                    <section className="tp-section compact">
+                        {/* 4. Tableau périodique */}
+                        <div className="bilan-section" style={{padding: '10px'}}>
+                            <h4 className="bilan-title">
+                                <span className="bilan-number">4</span>
+                                Tableau périodique des éléments
+                            </h4>
+
+                            <div className="bilan-content">
+                                <div className="bilan-definition" style={{padding: '10px'}}>
+                                    <p style={{marginTop: '-10px'}}>
+                                        Le tableau périodique classe les 118 éléments connus (dont 94 existent
+                                        naturellement sur Terre).
+                                        Chaque élément est représenté par son symbole et son numéro atomique.
+                                    </p>
+                                </div>
+
+                                <div style={{textAlign: 'center', padding: '10px'}}>
+                                    <img
+                                        src={tableauPeriodique}
+                                        alt="Tableau périodique des éléments"
+                                        style={{
+                                            width: '100%',
+                                            height: 'auto',
+                                            maxHeight: '300px',
+                                            border: '1px solid #ddd',
+                                            marginTop: '-20px'
+                                        }}
+                                    />
+                                    <p style={{fontSize: '10px', color: '#666', margin: '4px 0 0 0'}}>Tableau
+                                        périodique
+                                        des éléments</p>
+                                </div>
+                            </div>
+
+                            <h4 className="bilan-title" style={{marginBottom: '8px'}}>
+                                <span className="bilan-number">5</span>
+                                QCM : Distinguer les atomes, les molécules et les ions
+                            </h4>
+
+                            <div className="bilan-content">
+                                <div style={{
+                                    padding: '10px',
+                                    display: 'grid',
+                                    gridTemplateColumns: '1fr 1fr',
+                                    gap: '20px'
+                                }}>
+                                    {questions.map((q, index) => (
+                                        <div key={index} style={{
+                                            padding: '10px',
+                                            background: '#fff',
+                                            borderRadius: '4px',
+                                            border: '1px solid #eee'
+                                        }}>
+                                            <p style={{
+                                                fontWeight: 'bold',
+                                                margin: '0 0 8px 0',
+                                                display: 'flex',
+                                                alignItems: 'flex-start'
+                                            }}>
+                                                <FaQuestionCircle style={{
+                                                    marginRight: '8px',
+                                                    color: '#2196F3',
+                                                    flexShrink: 0,
+                                                    marginTop: '3px'
+                                                }}/>
+                                                {q.question}
+                                            </p>
+                                            <div style={{display: 'flex', flexWrap: 'wrap', gap: '15px'}}>
+                                                {q.options.map((option, optIndex) => (
+                                                    <div key={optIndex} style={{
+                                                        flex: '1 0 calc(50% - 15px)',
+                                                        minWidth: '150px',
+                                                        display: 'flex',
+                                                        alignItems: 'flex-start',
+                                                        padding: '5px 0'
+                                                    }}>
+                                                        <input
+                                                            type="radio"
+                                                            id={`q${index}_opt${optIndex}`}
+                                                            name={`question_${index}`}
+                                                            value={optIndex}
+                                                            checked={answers[index] === optIndex}
+                                                            onChange={() => handleAnswerChange(index, optIndex)}
+                                                            style={{margin: '3px 8px 0 0', flexShrink: 0}}
+                                                        />
+                                                        <label htmlFor={`q${index}_opt${optIndex}`}
+                                                               style={{margin: 0, fontSize: '13px'}}>
+                                                            {option}
+                                                        </label>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default DistinguerAtomes;

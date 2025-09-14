@@ -360,6 +360,22 @@ export const SPECIAL_ACTIVITIES = {
                         },
                     ],
                 },
+                chimie: {
+                    activities: [
+                        {
+                            id: 1,
+                            title: 'Distinguer les atomes ',
+                            path: 'chimie/distinguer-atomes',
+                            component: 'DistinguerAtomes',
+                        },
+                        {
+                            id: 2,
+                            title: 'Déterminer la composition du sérum physiologique utilisé en soins',
+                            path: 'chimie/Act1et2Chimie',
+                            component: 'Act1et2Chimie',
+                        },
+                    ],
+                },
                 acoustique: {
                     activities: [
                         {

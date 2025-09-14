@@ -199,7 +199,7 @@ const BilanStat2Var = () => {
                                                     × ........ - 19117 = ......
                                                 </div>
                                                 <p className="calculation-conclusion" style={{margin: '4px 0 0 0'}}>Il y
-                                                    aura donc 111 adhérents en 2022.</p>
+                                                    aura donc ...... adhérents en 2022.</p>
                                             </div>
                                         </div>
 

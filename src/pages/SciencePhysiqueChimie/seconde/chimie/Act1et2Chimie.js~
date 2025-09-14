@@ -1,0 +1,602 @@
+import React, {useRef, useState} from 'react';
+import {FaCheck, FaFlask, FaAtom, FaWater, FaVial} from 'react-icons/fa';
+import '../../../../styles/activites.css';
+import {useLocation, useParams} from 'react-router-dom';
+import BackButton from '../../../../components/navigation/BackButton';
+import PrintManager from '../../../../utils/PrintManager';
+import ModalImage from "../../../../utils/ModalImage";
+
+// Images (à remplacer par les vôtres)
+import serumPhysio from "../../../../assets/serumPhysio.png";
+import moleculeEau from "../../../../assets/serum-physiologique.png";
+import serumPhysio2 from "../../../../assets/serum-physiologique.png";
+
+const Act1et2Chimie = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+    const contentRef = useRef();
+
+    // États pour les réponses
+    const [answers, setAnswers] = useState({
+        question1: '',
+        question2: '',
+        question3: '',
+        question4: '',
+        question5: '',
+        question6: '',
+        question7: '',
+        question8: '',
+        question9: '',
+        question10: '',
+    });
+
+    const [showCorrections, setShowCorrections] = useState({
+        question1: false,
+        question2: false,
+        question3: false,
+        question4: false,
+        question5: false,
+        question6: false,
+        question7: false,
+        question8: false,
+        question9: false,
+        question10: false,
+    });
+
+    // Réponses attendues
+    const correctAnswers = {
+        question1: 'Le sérum physiologique est composé principalement d\'eau et de chlorure de sodium (sel).',
+        question2: 'H₂O',
+        question3: 'Cl⁻ (ion chlorure)',
+        question4: 'On pourrait utiliser le test au sulfate de cuivre anhydre (devient bleu en présence d\'eau) ou mesurer la conductivité électrique.',
+        question5: 'Pour 500 mL, il faut 4,5 g de NaCl (9g/L ÷ 2 = 4,5g/0,5L).',
+        question6: 'Cm = 9 g/L',
+        question7: 'C = 9 / 58,5 ≈ 0,154 mol/L',
+        question8: 'Eau (H₂O), Sodium (Na⁺), Chlorure (Cl⁻)',
+        question9: 'Oui, car chaque mole de NaCl donne une mole de Na⁺ et une mole de Cl⁻, donc [Na⁺] = [Cl⁻] = 0,154 mol/L',
+        question10: 'La concentration massique est la masse de soluté par unité de volume de solution, exprimée en g/L.'
+    };
+
+    // Gestionnaires d'événements
+    const handleInputChange = (field, value) => {
+        setAnswers((prev) => ({...prev, [field]: value}));
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false, imageUrl: '', altText: '',
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState((prev) => ({...prev, show: false}));
+    };
+
+    const toggleCorrection = (field) => {
+        setShowCorrections((prev) => ({...prev, [field]: !prev[field]}));
+
+        if (!answers[field] && !showCorrections[field]) {
+            setAnswers((prev) => ({...prev, [field]: correctAnswers[field]}));
+        }
+    };
+
+    if (className === 'Seconde-chimie-act1') {
+        return <div>Cette activité n'est pas disponible pour cette classe.</div>;
+    }
+
+    return (<>
+        <BackButton/>
+        <div className="tp-container" id="chimie-content" ref={contentRef}>
+            <PrintManager
+                contentRef={contentRef}
+                activityName="Chimie_Serum_Physiologique"
+                pageCount={2}
+                quality="hd"
+            />
+
+            {/* PAGE 1 */}
+            <div className="print-page" id="page1-start">
+                <section className="tp-section compact">
+                    <div className="math-chapter-box green" style={{padding: '10px', marginTop: '-10px'}}>
+                        <h3 className="math-chapter-title-test mb-0">Chapitre 1 - Composition du sérum
+                            physiologique</h3>
+                    </div>
+
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">ACTIVITÉ 1</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaFlask/> <span>💧</span> « Déterminer la composition du sérum physiologique »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte">
+                                <h5 className="mb-3 text-primary fw-bold">
+                                    🏥 "Le sérum physiologique : une solution essentielle en soins"
+                                </h5>
+
+                                <p style={{
+                                    textAlign: 'justify',
+                                    textJustify: 'inter-word',
+                                    fontSize: '16px',
+                                    lineHeight: '1.4'
+                                }}>
+                                    Le sérum physiologique est largement utilisé en milieu hospitalier et en soins à
+                                    domicile pour hydrater, nettoyer les plaies, réaliser des irrigations oculaires,
+                                    ou pour le nettoyage du nez des nourrissons.
+                                    <br/>
+                                    Cette solution stérile possède une composition précise qui lui confère ses
+                                    propriétés particulières et sa compatibilité avec l'organisme.
+                                    <br/>
+                                    <span style={{fontStyle: 'italic', color: '#2e7d32'}}>
+                                        "De quoi est composé le sérum physiologique et comment vérifier sa composition ?"
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '250px', cursor: 'pointer', marginTop: '10px'}}>
+                            <img
+                                src={serumPhysio}
+                                alt="Flacon de sérum physiologique"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(serumPhysio, 'Sérum physiologique')}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="objectif-box" style={{marginTop: '5px', marginBottom: '5px'}}>
+                        <div className="objectif-title"><strong style={{color: 'orangered'}}> Objectif :</strong> 🎯
+                        </div>
+                        <p>Identifier la composition chimique du sérum physiologique et comprendre comment
+                            déterminer expérimentalement la présence de ses différents composants.</p>
+                    </div>
+
+                    {/* Section Analyser/Raisonner */}
+                    <div className="question-card mt-0">
+                        <div className="question-content">
+                            <h4 className="vect-title"
+                                style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Analyser/Raisonner</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                1. Selon vous, de quoi est composée une solution de sérum physiologique ?
+                                ......................................................................................................................................................................................
+                                ............................................................................................................................................................................................
+                            </p>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection('question1')}
+                                style={{marginLeft: '10px'}}
+                            >
+                                <FaCheck/> {showCorrections.question1 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                            {showCorrections.question1 && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.question1}
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Analyser/Raisonner</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                2. Quelle est la formule brute de la molécule d'eau sachant qu'elle contient
+                                deux atomes d'hydrogène et un atome d'oxygène ?
+                            </p>
+                            <div style={{display: 'flex', gap: '20px', marginTop: '10px'}}>
+                                <label style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="radio"
+                                        name="question2"
+                                        value="H₂O"
+                                        onChange={() => handleInputChange('question2', 'H₂O')}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    H₂O
+                                </label>
+                                <label style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="radio"
+                                        name="question2"
+                                        value="HO₂"
+                                        onChange={() => handleInputChange('question2', 'HO₂')}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    HO₂
+                                </label>
+                                <label style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="radio"
+                                        name="question2"
+                                        value="H₂O₂"
+                                        onChange={() => handleInputChange('question2', 'H₂O₂')}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    H₂O₂
+                                </label>
+                            </div>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection('question2')}
+                                style={{marginTop: '10px'}}
+                            >
+                                <FaCheck/> {showCorrections.question2 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Analyser/Raisonner</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                3. Quel est le principal ion dissous dans le sérum physiologique ?
+                            </p>
+                            <div style={{display: 'flex', gap: '20px', marginTop: '10px'}}>
+                                <label style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="radio"
+                                        name="question3"
+                                        value="Na⁺"
+                                        onChange={() => handleInputChange('question3', 'Na⁺')}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    Na⁺ (ion sodium)
+                                </label>
+                                <label style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="radio"
+                                        name="question3"
+                                        value="Cl⁻"
+                                        onChange={() => handleInputChange('question3', 'Cl⁻')}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    Cl⁻ (ion chlorure)
+                                </label>
+                                <label style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="radio"
+                                        name="question3"
+                                        value="K⁺"
+                                        onChange={() => handleInputChange('question3', 'K⁺')}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    K⁺ (ion potassium)
+                                </label>
+                            </div>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection('question3')}
+                                style={{marginTop: '10px'}}
+                            >
+                                <FaCheck/> {showCorrections.question3 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>S'approprier</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                4. Mise en évidence de l'eau dans le sérum physiologique (théorique) :
+                                Sachant que le sérum physiologique contient une grande quantité d'eau,
+                                réfléchissez à des façons théoriques de prouver la présence d'eau.
+                                ..........................................................................................................................................
+                                ............................................................................................................................................................................................
+                            </p>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection('question4')}
+                                style={{marginTop: '10px'}}
+                            >
+                                <FaCheck/> {showCorrections.question4 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Réaliser</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                5. Calcul de la concentration en sel dans le sérum physiologique (théorique) :
+                                Le sérum physiologique est une solution contenant environ 9 g de chlorure de sodium
+                                pour 1 litre d'eau, ce qui correspond à une solution à 0,9 %.
+                                Si vous deviez préparer 500 mL de sérum physiologique, combien de grammes de sel (NaCl)
+                                auriez-vous besoin d'ajouter ?
+                            </p>
+                            <div style={{
+                                marginTop: '15px',
+                                padding: '10px',
+                                background: '#f5f5f5',
+                                borderRadius: '5px'
+                            }}>
+                                <p><strong>Étape de calcul :</strong></p>
+                                <p>•
+                                    ......................................................................................................................................</p>
+                                <p>•
+                                    ......................................................................................................................................</p>
+                                <p style={{marginTop: '10px'}}><strong>Réponse
+                                    :</strong> .......................................................................................................
+                                </p>
+                            </div>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection('question5')}
+                                style={{marginTop: '10px'}}
+                            >
+                                <FaCheck/> {showCorrections.question5 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* PAGE 2 */}
+            <div className="print-page" id="page2-start">
+                <section className="tp-section compact">
+                    <div className="math-chapter-box green" style={{padding: '0'}}>
+                        <span style={{marginRight: '10px', fontSize: '30px'}}>🧪</span>
+                        <h2 className="math-chapter-title-test">Chimie - Concentration des solutions</h2>
+                    </div>
+
+                    <div className="activity-header">
+                        <span className="activity-badge">ACTIVITÉ 2</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaVial/> <span>⚗️</span> « Calcul de la concentration d'ions dans la solution »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte">
+                                <p style={{
+                                    textAlign: 'justify',
+                                    textJustify: 'inter-word',
+                                    fontSize: '15px',
+                                    lineHeight: '1.4'
+                                }}>
+                                    Dans le sérum physiologique, chaque molécule de chlorure de sodium (NaCl)
+                                    se dissocie en un ion sodium (Na⁺) et un ion chlorure (Cl⁻). La concentration
+                                    en ions est donc égale à la concentration en sel dissous.
+                                    <br/>
+                                    <strong className="text-primary">
+                                        Comment calculer précisément la concentration des différents ions présents
+                                        dans le sérum physiologique ?
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '250px', cursor: 'pointer'}}>
+                            <img
+                                src={serumPhysio2}
+                                alt="Test chimique en laboratoire"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(serumPhysio2, 'Test chimique')}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Analyser/Raisonner</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            6. Calculons la concentration en ions sodium (Na⁺) et ions chlorure (Cl⁻) dans 1
+                            litre de sérum physiologique (9g/L de NaCl). Sachant que la masse molaire du
+                            chlorure de sodium (NaCl) est de 58,5 g/mol :
+                        </p>
+
+                        <p style={{marginTop: '15px'}}>
+                            Calculez la concentration massique Cm de NaCl dans le sérum physiologique.
+                        </p>
+                        <div style={{
+                            padding: '10px',
+                            background: '#e8f5e9',
+                            borderRadius: '5px',
+                            margin: '10px 0',
+                            fontFamily: 'monospace'
+                        }}>
+                            Cm = m/V où m = 9g (masse de NaCl), V = 1L (volume de solution)
+                            <br/>
+                            Cm = ......................................................................................
+                        </div>
+                        <button
+                            className="correction-btnoptic"
+                            onClick={() => toggleCorrection('question6')}
+                            style={{marginTop: '10px'}}
+                        >
+                            <FaCheck/> {showCorrections.question6 ? 'Masquer la correction' : 'Afficher la correction'}
+                        </button>
+
+                        <p style={{marginTop: '15px'}}>
+                            7. Calculez la concentration en moles par litre (mol/L) de NaCl dans le sérum physiologique.
+                        </p>
+                        <div style={{
+                            padding: '10px',
+                            background: '#e8f5e9',
+                            borderRadius: '5px',
+                            margin: '10px 0',
+                            fontFamily: 'monospace'
+                        }}>
+                            C = m/M où C = concentration (mol/L), m = 9g, M = 58,5 g/mol
+                            <br/>
+                            C = ......................................................................................
+                        </div>
+                        <button
+                            className="correction-btnoptic"
+                            onClick={() => toggleCorrection('question7')}
+                            style={{marginTop: '10px'}}
+                        >
+                            <FaCheck/> {showCorrections.question7 ? 'Masquer la correction' : 'Afficher la correction'}
+                        </button>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Communiquer/Valider</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            8. À l'aide des réponses obtenues, que contient le sérum physiologique ? Cochez les bonnes
+                            réponses :
+                        </p>
+                        <div style={{display: 'flex', flexWrap: 'wrap', gap: '15px', marginTop: '10px'}}>
+                            <label style={{display: 'flex', alignItems: 'center'}}>
+                                <input
+                                    type="checkbox"
+                                    onChange={(e) => handleInputChange('question8_1', e.target.checked)}
+                                    style={{marginRight: '8px'}}
+                                />
+                                Eau (H₂O)
+                            </label>
+                            <label style={{display: 'flex', alignItems: 'center'}}>
+                                <input
+                                    type="checkbox"
+                                    onChange={(e) => handleInputChange('question8_2', e.target.checked)}
+                                    style={{marginRight: '8px'}}
+                                />
+                                Sodium (Na⁺)
+                            </label>
+                            <label style={{display: 'flex', alignItems: 'center'}}>
+                                <input
+                                    type="checkbox"
+                                    onChange={(e) => handleInputChange('question8_3', e.target.checked)}
+                                    style={{marginRight: '8px'}}
+                                />
+                                Chlorure (Cl⁻)
+                            </label>
+                            <label style={{display: 'flex', alignItems: 'center'}}>
+                                <input
+                                    type="checkbox"
+                                    onChange={(e) => handleInputChange('question8_4', e.target.checked)}
+                                    style={{marginRight: '8px'}}
+                                />
+                                Potassium (K⁺)
+                            </label>
+                        </div>
+                        <button
+                            className="correction-btnoptic"
+                            onClick={() => toggleCorrection('question8')}
+                            style={{marginTop: '10px'}}
+                        >
+                            <FaCheck/> {showCorrections.question8 ? 'Masquer la correction' : 'Afficher la correction'}
+                        </button>
+
+                        <p style={{marginTop: '15px'}}>
+                            9. Les concentrations en ions Na⁺ et Cl⁻ sont-elles égales ? Justifiez.
+                            ..........................................................................................................................................
+                            ............................................................................................................................................................................................
+                        </p>
+                        <button
+                            className="correction-btnoptic"
+                            onClick={() => toggleCorrection('question9')}
+                            style={{marginTop: '10px'}}
+                        >
+                            <FaCheck/> {showCorrections.question9 ? 'Masquer la correction' : 'Afficher la correction'}
+                        </button>
+
+                        <p style={{marginTop: '15px'}}>
+                            10. Qu'est-ce que la concentration massique d'un soluté ?
+                            ..........................................................................................................................................
+                            ............................................................................................................................................................................................
+                        </p>
+                        <button
+                            className="correction-btnoptic"
+                            onClick={() => toggleCorrection('question10')}
+                            style={{marginTop: '10px'}}
+                        >
+                            <FaCheck/> {showCorrections.question10 ? 'Masquer la correction' : 'Afficher la correction'}
+                        </button>
+                    </div>
+
+                    {/* Espace pour image supplémentaire */}
+                    <div style={{
+                        margin: '20px 0',
+                        padding: '15px',
+                        background: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)',
+                        borderRadius: '8px',
+                        borderLeft: '4px solid #2196F3',
+                        boxShadow: '0 2px 4px rgba(33, 150, 243, 0.2)'
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            gap: '12px'
+                        }}>
+                            <div style={{
+                                width: '32px',
+                                height: '32px',
+                                background: '#2196F3',
+                                borderRadius: '50%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexShrink: 0,
+                                marginTop: '2px'
+                            }}>
+                                <FaFlask style={{color: 'white', fontSize: '16px'}}/>
+                            </div>
+                            <div>
+                                <h5 style={{
+                                    margin: '0 0 8px 0',
+                                    color: '#1565C0',
+                                    fontSize: '16px',
+                                    fontWeight: 'bold'
+                                }}>
+                                    Définition importante
+                                </h5>
+                                <p style={{
+                                    margin: 0,
+                                    fontSize: '14px',
+                                    lineHeight: '1.5',
+                                    color: '#37474F',
+                                    fontStyle: 'italic'
+                                }}>
+                                    La concentration massique d'un soluté, notée Cm, est la quantité de soluté dissoute
+                                    par unité de volume de solution.
+                                </p>
+                                <div style={{
+                                    marginTop: '10px',
+                                    padding: '8px 12px',
+                                    background: 'rgba(33, 150, 243, 0.1)',
+                                    borderRadius: '4px',
+                                    border: '1px dashed #2196F3'
+                                }}>
+                                    <p style={{
+                                        margin: 0,
+                                        fontSize: '13px',
+                                        color: '#1976D2',
+                                        fontWeight: '500',
+                                        textAlign: 'center'
+                                    }}>
+                                        Cm = m / V <span style={{marginLeft: '15px', color: '#757575'}}>avec m en g et V en L</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {modalState.show && (<ModalImage
+                imageUrl={modalState.imageUrl}
+                altText={modalState.altText}
+                onClose={closeModal}
+            />)}
+        </div>
+    </>);
+};
+
+export default Act1et2Chimie;

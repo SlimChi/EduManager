@@ -101,6 +101,8 @@ import ExerciceStat2Var from "./pages/Maths/première/StatProba/Statistiques/Exe
 import Act3Mecanic from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act3Mecanic";
 import Act3Electricite1ere from "./pages/SciencePhysiqueChimie/premiere/electricite/Act3Electricite1ere";
 import BilanElectricite from "./pages/SciencePhysiqueChimie/premiere/electricite/BilanElectricite";
+import ExercicesElectricite from "./pages/SciencePhysiqueChimie/premiere/electricite/ExercicesElectricite";
+import DistinguerAtomes from "./pages/SciencePhysiqueChimie/seconde/chimie/DistinguerAtomes";
 
 const theme = createTheme({
     palette: {
@@ -314,6 +316,30 @@ const MainApp = () => {
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/securite/securite-chimie"
                             element={<PictoSecuriteSeconde/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/chimie/distinguer-atomes"
+                            element={<DistinguerAtomes/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/chimie/Act1et2Chimie"
+                            element={<Act1et2Chimie/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/chimie/exercices-chimie"
+                            element={<ExercicesChimie/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/chimie/evaluation-chimie"
+                            element={<EvaluationChimie/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/chimie/evaluation-chimie2"
+                            element={<EvaluationChimie2/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/chimie/evaluation-chimie3"
+                            element={<EvaluationChimie3/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/acoustique/tp-son"

@@ -102,6 +102,8 @@ import Act3Mecanic from "./pages/SciencePhysiqueChimie/seconde/Mecanique/Act3Mec
 import Act3Electricite1ere from "./pages/SciencePhysiqueChimie/premiere/electricite/Act3Electricite1ere";
 import BilanElectricite from "./pages/SciencePhysiqueChimie/premiere/electricite/BilanElectricite";
 import ExercicesElectricite from "./pages/SciencePhysiqueChimie/premiere/electricite/ExercicesElectricite";
+import DistinguerAtomes from "./pages/SciencePhysiqueChimie/seconde/chimie/DistinguerAtomes";
+import Act1et2Chimie from "./pages/SciencePhysiqueChimie/seconde/chimie/Act1et2Chimie";
 
 const theme = createTheme({
     palette: {
@@ -315,6 +317,14 @@ const MainApp = () => {
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/securite/securite-chimie"
                             element={<PictoSecuriteSeconde/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/chimie/distinguer-atomes"
+                            element={<DistinguerAtomes/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/chimie/Act1et2Chimie"
+                            element={<Act1et2Chimie/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/acoustique/tp-son"
