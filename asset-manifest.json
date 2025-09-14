@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/EduManager/static/css/main.97f473de.css",
-    "main.js": "/EduManager/static/js/main.dd25e27b.js",
+    "main.css": "/EduManager/static/css/main.5af56674.css",
+    "main.js": "/EduManager/static/js/main.afa48de9.js",
     "static/js/977.7c1b83c7.chunk.js": "/EduManager/static/js/977.7c1b83c7.chunk.js",
     "static/js/732.88920a93.chunk.js": "/EduManager/static/js/732.88920a93.chunk.js",
     "static/js/103.612e5b3f.chunk.js": "/EduManager/static/js/103.612e5b3f.chunk.js",
@@ -72,6 +72,7 @@
     "static/media/delagrave_Gpe_A_B_1er_livre_prof.png": "/EduManager/static/media/delagrave_Gpe_A_B_1er_livre_prof.645b270419545dace213.png",
     "static/media/tour-eiffel.png": "/EduManager/static/media/tour-eiffel.6cd2df7f13fd366ee3d3.png",
     "static/media/fusee-soyouz.png": "/EduManager/static/media/fusee-soyouz.2263ca05e9cda3db5fc0.png",
+    "static/media/serum-physiologique.png": "/EduManager/static/media/serum-physiologique.5ea548f50313d7abdfda.png",
     "static/media/tipi.png": "/EduManager/static/media/tipi.f7e6ce1a9c1f58fe9182.png",
     "static/media/tous-pictogrammes.png": "/EduManager/static/media/tous-pictogrammes.02cd7e484466de2170dc.png",
     "static/media/voiture-rose.png": "/EduManager/static/media/voiture-rose.4a0e9a6786dbb4282b18.png",
@@ -84,6 +85,7 @@
     "static/media/etiquetteEnergie.png": "/EduManager/static/media/etiquetteEnergie.961f172965120946304d.png",
     "static/media/epiComplet.png": "/EduManager/static/media/epiComplet.547cd86ff371a2267e2d.png",
     "static/media/montageDynamo.png": "/EduManager/static/media/montageDynamo.8be26e6e323914b7ed75.png",
+    "static/media/serumPhysio.png": "/EduManager/static/media/serumPhysio.2e3d36caf7574dcbf501.png",
     "static/media/joulemettre.png": "/EduManager/static/media/joulemettre.e3525531a9fc03cc3e2d.png",
     "static/media/menutable.jpg": "/EduManager/static/media/menutable.b0e6581adb1bccf596f8.jpg",
     "static/media/solMurForce.png": "/EduManager/static/media/solMurForce.ff83c5c425f660609e4d.png",
@@ -110,6 +112,7 @@
     "static/media/pneuindic.png": "/EduManager/static/media/pneuindic.473d225f9fcaeee67dd9.png",
     "static/media/escalator.png": "/EduManager/static/media/escalator.020f46378abe1c300ff3.png",
     "static/media/pictogrammeOptic.png": "/EduManager/static/media/pictogrammeOptic.4911f8509304724b536f.png",
+    "static/media/tableau_periodique.png": "/EduManager/static/media/tableau_periodique.b2c75448712da4d7ce02.png",
     "static/media/laserfuseau.png": "/EduManager/static/media/laserfuseau.aa377f5913d10062415e.png",
     "static/media/10.gif": "/EduManager/static/media/10.0b57b16b0aa9b76bf39d.gif",
     "static/media/prismlaser.png": "/EduManager/static/media/prismlaser.dc6adbb684cb0c59af4b.png",
@@ -118,6 +121,7 @@
     "static/media/mathsCAP2019.png": "/EduManager/static/media/mathsCAP2019.d7200a91ba27a0c496cd.png",
     "static/media/pneuuse.jpg": "/EduManager/static/media/pneuuse.941ea19ff95bf31f3e43.jpg",
     "static/media/KaTeX_AMS-Regular.ttf": "/EduManager/static/media/KaTeX_AMS-Regular.853be92419a6c3766b9a.ttf",
+    "static/media/atome_structure.png": "/EduManager/static/media/atome_structure.9bf0c1753215ee1a7761.png",
     "static/media/jauge-profondeur.jpg": "/EduManager/static/media/jauge-profondeur.89233ffc46475f350f6a.jpg",
     "static/media/vecteur.png": "/EduManager/static/media/vecteur.88e0f477127b22a1f61c.png",
     "static/media/KaTeX_Main-Regular.ttf": "/EduManager/static/media/KaTeX_Main-Regular.9eba1d77abcf2aa6e94e.ttf",
@@ -133,6 +137,7 @@
     "static/media/shemafraiseuse.png": "/EduManager/static/media/shemafraiseuse.9b90362b8ed659bfddbe.png",
     "static/media/geovecttripie.png": "/EduManager/static/media/geovecttripie.d854e7a21edd7a4534e3.png",
     "static/media/fond.jpg": "/EduManager/static/media/fond.871db88e2c0b402d0535.jpg",
+    "static/media/molecule_eau.png": "/EduManager/static/media/molecule_eau.435f99c055610f67e00b.png",
     "static/media/telephShema.png": "/EduManager/static/media/telephShema.4963fd0767fe158d49c3.png",
     "static/media/sonometre.jpg": "/EduManager/static/media/sonometre.5eef6a32509ca8969354.jpg",
     "static/media/KaTeX_Main-Italic.ttf": "/EduManager/static/media/KaTeX_Main-Italic.fa675e5e4bec9eb250b6.ttf",
@@ -226,15 +231,15 @@
     "static/media/KaTeX_Size3-Regular.woff": "/EduManager/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/EduManager/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/EduManager/index.html",
-    "main.97f473de.css.map": "/EduManager/static/css/main.97f473de.css.map",
-    "main.dd25e27b.js.map": "/EduManager/static/js/main.dd25e27b.js.map",
+    "main.5af56674.css.map": "/EduManager/static/css/main.5af56674.css.map",
+    "main.afa48de9.js.map": "/EduManager/static/js/main.afa48de9.js.map",
     "977.7c1b83c7.chunk.js.map": "/EduManager/static/js/977.7c1b83c7.chunk.js.map",
     "732.88920a93.chunk.js.map": "/EduManager/static/js/732.88920a93.chunk.js.map",
     "103.612e5b3f.chunk.js.map": "/EduManager/static/js/103.612e5b3f.chunk.js.map",
     "453.dc8f7a36.chunk.js.map": "/EduManager/static/js/453.dc8f7a36.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.97f473de.css",
-    "static/js/main.dd25e27b.js"
+    "static/css/main.5af56674.css",
+    "static/js/main.afa48de9.js"
   ]
 }
