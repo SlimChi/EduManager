@@ -1,0 +1,587 @@
+import React, {useRef, useState} from 'react';
+import {FaChartPie, FaMoneyBillWave, FaWrench, FaCheck} from 'react-icons/fa';
+import '../../../../../styles/activites.css';
+import {useLocation, useParams} from "react-router-dom";
+import BackButton from "../../../../../components/navigation/BackButton";
+import PrintManager from "../../../../../utils/PrintManager";
+import ModalImage from "../../../../../utils/ModalImage";
+
+// Images (à remplacer par les vôtres)
+import budgetMaintenance from "../../../../../assets/budget-maintenance.png";
+import interventionsImage from "../../../../../assets/interventions-maintenance.png";
+import diagrammeImage from "../../../../../assets/diagrammevide.png";
+import diagsecteur from "../../../../../assets/diagsecteur.png";
+
+const ExerciceFinStatUneVar = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+
+    // États pour l'exercice 3
+    const [budgetReponses, setBudgetReponses] = useState({
+        question1_total: '',
+        question1_pourcentages: ['', '', '', '', ''],
+        question2_angles: ['', '', '', '', '']
+    });
+
+    // États pour l'exercice 4
+    const [interventionsReponses, setInterventionsReponses] = useState({
+        question1a: '',
+        question1b: '',
+        question1c: '',
+        question2_total: '',
+        question2_frequences: ['', '', '', '', '']
+    });
+
+    const [showCorrections, setShowCorrections] = useState({
+        // Exercice 3
+        ex3_question1: false,
+        ex3_question2: false,
+
+        // Exercice 4
+        ex4_question1a: false,
+        ex4_question1b: false,
+        ex4_question1c: false,
+        ex4_question2: false,
+        ex4_question3: false
+    });
+
+    // Réponses attendues
+    const correctAnswers = {
+        // Exercice 3
+        ex3_question1: "Total des dépenses = 12 000 €. Pourcentages: Matériel surveillance (29,17%), Maintenance équipements (33,33%), Formation personnel (20,83%), Pièces rechange (10%), Déplacements (6,67%)",
+        ex3_question2: "Angles: Matériel surveillance (105°), Maintenance équipements (120°), Formation personnel (75°), Pièces rechange (36°), Déplacements (24°)",
+
+        // Exercice 4
+        ex4_question1a: "La variable étudiée est le type de problème de maintenance.",
+        ex4_question1b: "Le caractère est qualitatif car il s'agit de catégories (types de problèmes).",
+        ex4_question1c: "Le caractère est discret car les catégories sont distinctes et non mesurables numériquement.",
+        ex4_question2: "Total des interventions = 55. Fréquences: Électrique (36,36%), Mécanique (27,27%), Hydraulique (18,18%), Logiciel (9,09%), Capteur (9,09%)",
+        ex4_question3: "Un diagramme à secteurs ou un diagramme en barres serait adapté pour représenter ces données qualitatives."
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false,
+        imageUrl: '',
+        altText: ''
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState(prev => ({...prev, show: false}));
+    };
+
+    const handleBudgetInputChange = (field, value, index = null) => {
+        if (index !== null) {
+            const newArray = [...budgetReponses[field]];
+            newArray[index] = value;
+            setBudgetReponses(prev => ({
+                ...prev,
+                [field]: newArray
+            }));
+        } else {
+            setBudgetReponses(prev => ({
+                ...prev,
+                [field]: value
+            }));
+        }
+    };
+
+    const handleInterventionsInputChange = (field, value, index = null) => {
+        if (index !== null) {
+            const newArray = [...interventionsReponses[field]];
+            newArray[index] = value;
+            setInterventionsReponses(prev => ({
+                ...prev,
+                [field]: newArray
+            }));
+        } else {
+            setInterventionsReponses(prev => ({
+                ...prev,
+                [field]: value
+            }));
+        }
+    };
+
+    const contentRef = useRef();
+
+    const toggleCorrection = (field) => {
+        setShowCorrections(prev => ({
+            ...prev,
+            [field]: !prev[field]
+        }));
+    };
+
+    if (className === 'Seconde-stat-une-variable-exofin') {
+        return <div>Cet exercice n'est pas disponible pour cette classe.</div>;
+    }
+
+    return (
+        <>
+            <BackButton/>
+            <div className="tp-container" id="stat-exofin-content" ref={contentRef}>
+                <PrintManager
+                    contentRef={contentRef}
+                    activityName="Exercices_Statistiques_Finaux"
+                    pageCount={2}
+                    quality="hd"
+                />
+
+                {/* PAGE 1 - EXERCICE 3 */}
+                <div className="print-page">
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">EXERCICE 8</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaMoneyBillWave/> « Répartition des Dépenses de Maintenance »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '15px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte2">
+                                <p style={{textAlign: 'justify', fontSize: '14px', lineHeight: '1.3'}}>
+                                    Le service de maintenance d'une usine doit répartir son budget annuel entre
+                                    différents postes de dépenses. Voici un tableau récapitulatif des dépenses annuelles
+                                    :
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* ESPACE POUR IMAGE */}
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '200px', cursor: 'pointer'}}>
+                            <img
+                                src={budgetMaintenance}
+                                alt="Budget maintenance"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(budgetMaintenance, 'Budget maintenance')}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Question 1 - S'APPROPRIER */}
+                    <div className="question-card mt-3">
+                        <h4 className="vect-title2"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '20px', marginBottom: '20px'}}>
+                            <span>1. S'APPROPRIER :</span>
+                        </h4>
+                        <p>Compléter le tableau en calculant les pourcentages de chaque dépense par rapport au
+                            total.</p>
+
+                        <div className="table-responsive mt-3">
+                            <table className="table table-bordered text-center shadow-sm" style={{fontSize: '14px'}}>
+                                <thead className="table-light">
+                                <tr>
+                                    <th>N° Dépense</th>
+                                    <th>Type de dépense</th>
+                                    <th>Montant (€)</th>
+                                    <th>Pourcentage (%)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Matériel de surveillance</td>
+                                    <td>3 500</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Maintenance des équipements</td>
+                                    <td>4 000</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Formation du personnel</td>
+                                    <td>2 500</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Pièces de rechange</td>
+                                    <td>1 200</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Déplacements</td>
+                                    <td>800</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                </tr>
+                                <tr className="table-primary">
+                                    <td colSpan="2"><strong>Total</strong></td>
+                                    <td>
+                                        ............ €
+                                    </td>
+                                    <td><strong>100%</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <button
+                            className="correction-btnoptic"
+                            onClick={() => toggleCorrection('ex3_question1')}
+                            style={{marginTop: '10px'}}
+                        >
+                            <FaCheck/> {showCorrections.ex3_question1 ? 'Masquer la correction' : 'Afficher la correction'}
+                        </button>
+                        {showCorrections.ex3_question1 && (
+                            <div className="correction-box">
+                                <strong>Correction :</strong> {correctAnswers.ex3_question1}
+                            </div>
+                        )}
+
+                        {/* Question 2 - RÉALISER */}
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '20px'}}>
+                            <span>2. RÉALISER :</span>
+                        </h4>
+                        <p>Calculer les angles pour représenter chaque catégorie de dépense dans un diagramme à
+                            secteurs.</p>
+
+                        <div className="table-responsive mt-3">
+                            <table className="table table-bordered text-center shadow-sm" style={{fontSize: '14px'}}>
+                                <thead className="table-light">
+                                <tr>
+                                    <th>N° Dépense</th>
+                                    <th>Pourcentage (%)</th>
+                                    <th>Angle (degrés)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                    <td>
+                                        ............ °
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                    <td>
+                                        ............ °
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                    <td>
+                                        ............ °
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                    <td>
+                                        ............ °
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                    <td>
+                                        ............ °
+                                    </td>
+                                </tr>
+                                <tr className="table-primary">
+                                    <td><strong>Total</strong></td>
+                                    <td><strong>100%</strong></td>
+                                    <td><strong>360°</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <button
+                            className="correction-btnoptic"
+                            onClick={() => toggleCorrection('ex3_question2')}
+                            style={{marginTop: '10px'}}
+                        >
+                            <FaCheck/> {showCorrections.ex3_question2 ? 'Masquer la correction' : 'Afficher la correction'}
+                        </button>
+                        {showCorrections.ex3_question2 && (
+                            <div className="correction-box">
+                                <strong>Correction :</strong> {correctAnswers.ex3_question2}
+                            </div>
+                        )}
+
+                        {/* ESPACE POUR DIAGRAMME */}
+                        <div className="flex-shrink-0" style={{maxWidth: '350px', cursor: 'pointer'}}>
+                            <img
+                                src={diagsecteur}
+                                alt="Diagramme des dépenses"
+
+                                onClick={() => openModal(diagsecteur, 'Diagramme des dépenses')}
+                                style={{maxWidth: '100%', height: 'auto', marginLeft: '70%', marginTop: '20px'}}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* PAGE 2 - EXERCICE 4 */}
+                <div className="print-page">
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">EXERCICE 9</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaWrench/> « Répartition des Interventions par Type de Problème »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '15px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte2">
+                                <p style={{textAlign: 'justify', fontSize: '14px', lineHeight: '1.4'}}>
+                                    Dans une entreprise, les techniciens de maintenance classent les interventions
+                                    selon le type de problème rencontré. Voici le nombre d'interventions réalisées
+                                    pour chaque type de problème sur une semaine :
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* ESPACE POUR IMAGE */}
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '200px', cursor: 'pointer'}}>
+                            <img
+                                src={interventionsImage}
+                                alt="Interventions maintenance"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(interventionsImage, 'Interventions')}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Question 1 - S'APPROPRIER */}
+                    <div className="question-card mt-3">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '0'}}>
+                            <span>1. S'APPROPRIER :</span>
+                        </h4>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                a. Quelle est la variable étudiée ?
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex4_question1a')}
+                                >
+                                    <FaCheck/> {showCorrections.ex4_question1a ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex4_question1a && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex4_question1a}
+                                </div>
+                            )}
+                        </div>
+                        <br/>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                b. Ce caractère est-il quantitatif ou qualitatif ?
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex4_question1b')}
+                                >
+                                    <FaCheck/> {showCorrections.ex4_question1b ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex4_question1b && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex4_question1b}
+                                </div>
+                            )}
+                        </div>
+                        <br/>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                c. Ce caractère est-il continu ou discret ?
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex4_question1c')}
+                                >
+                                    <FaCheck/> {showCorrections.ex4_question1c ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex4_question1c && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex4_question1c}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Question 2 - TABLEAU */}
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '20px'}}>
+                            <span>2. COMPLÉTER LE TABLEAU :</span>
+                        </h4>
+                        <p>Compléter le tableau des effectifs et des fréquences :</p>
+
+                        <div className="table-responsive mt-3">
+                            <table className="table table-bordered text-center shadow-sm" style={{fontSize: '14px'}}>
+                                <thead className="table-light">
+                                <tr>
+                                    <th>Type de problème</th>
+                                    <th>Effectif</th>
+                                    <th>Fréquence (%)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Problème électrique</td>
+                                    <td>20</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Problème mécanique</td>
+                                    <td>15</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Problème hydraulique</td>
+                                    <td>10</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Problème logiciel</td>
+                                    <td>5</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Problème de capteur</td>
+                                    <td>5</td>
+                                    <td>
+                                        ............ %
+                                    </td>
+                                </tr>
+                                <tr className="table-primary">
+                                    <td><strong>Total</strong></td>
+                                    <td>
+                                        ............
+                                    </td>
+                                    <td><strong>100%</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <button
+                            className="correction-btnoptic"
+                            onClick={() => toggleCorrection('ex4_question2')}
+                            style={{marginTop: '10px'}}
+                        >
+                            <FaCheck/> {showCorrections.ex4_question2 ? 'Masquer la correction' : 'Afficher la correction'}
+                        </button>
+                        {showCorrections.ex4_question2 && (
+                            <div className="correction-box">
+                                <strong>Correction :</strong> {correctAnswers.ex4_question2}
+                            </div>
+                        )}
+
+                        {/* Question 3 - COMMUNIQUER */}
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '20px'}}>
+                            <span>3. COMMUNIQUER :</span>
+                        </h4>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                Proposez une représentation graphique adaptée pour cette série statistique.
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex4_question3')}
+                                >
+                                    <FaCheck/> {showCorrections.ex4_question3 ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex4_question3 && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex4_question3}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* ESPACE POUR DIAGRAMME */}
+                        <div className="diagram-placeholder" style={{
+                            height: 'auto',
+                            margin: '20px 0',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: '#ffffff',
+                            padding: '10px',
+                            borderRadius: '12px'
+                        }}>
+                            <img src={diagrammeImage} alt="Diagramme à compléter" style={{
+                                maxWidth: '50%',
+                                height: 'auto',
+                                border: '2px solid #ccc',
+                                borderRadius: '8px'
+                            }}/>
+                        </div>
+                    </div>
+                </div>
+
+                {modalState.show && (
+                    <ModalImage
+                        imageUrl={modalState.imageUrl}
+                        altText={modalState.altText}
+                        onClose={closeModal}
+                    />
+                )}
+            </div>
+        </>
+    );
+};
+
+export default ExerciceFinStatUneVar;

@@ -104,6 +104,8 @@ import BilanElectricite from "./pages/SciencePhysiqueChimie/premiere/electricite
 import ExercicesElectricite from "./pages/SciencePhysiqueChimie/premiere/electricite/ExercicesElectricite";
 import DistinguerAtomes from "./pages/SciencePhysiqueChimie/seconde/chimie/DistinguerAtomes";
 import Act1et2Chimie from "./pages/SciencePhysiqueChimie/seconde/chimie/Act1et2Chimie";
+import Exercice6et7StatUneVar from "./pages/Maths/seconde/statistiques/statistiques/Exercice6et7StatUneVar";
+import ExerciceFinStatUneVar from "./pages/Maths/seconde/statistiques/statistiques/ExerciceFinStatUneVar";
 
 const theme = createTheme({
     palette: {
@@ -201,6 +203,14 @@ const MainApp = () => {
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/statistiques/stat-une-variableExo3et4"
                             element={<Exercice3et4StatUneVar/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/statistiques/stat-une-variableExo5et6"
+                            element={<Exercice6et7StatUneVar/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/statistiques/exerciceFinStatUneVar"
+                            element={<ExerciceFinStatUneVar/>}
                         />
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act1Proba"

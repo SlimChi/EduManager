@@ -50,15 +50,20 @@ export const SPECIAL_ACTIVITIES = {
                                 path: 'statistiques/stat-une-variableExo3et4',
                                 component: 'Exercice3et4StatUneVar',
                             },
+                            {
+                                id: 7,
+                                title: 'Exercices 5 et 6',
+                                path: 'statistiques/stat-une-variableExo5et6',
+                                component: 'Exercice6et7StatUneVar',
+                            },
+                            {
+                                id: 8,
+                                title: 'Exercices 8 et 9',
+                                path: 'statistiques/exerciceFinStatUneVar',
+                                component: 'ExerciceFinStatUneVar',
+                            },
                         ],
-                        // exercices: [
-                        //     {
-                        //         id: 1,
-                        //         title: 'Exercices 1 et 2',
-                        //         path: 'statistiques/stat-une-variableExo1et2',
-                        //         component: 'Exercice1et2StatUneVar',
-                        //     },
-                        // ],
+
                     },
                     probas: {
                         activities: [

@@ -1,0 +1,598 @@
+import React, {useRef, useState} from 'react';
+import {FaChartBar, FaPrint, FaCheck, FaIndustry, FaTools} from 'react-icons/fa';
+import '../../../../../styles/activites.css';
+import {useLocation, useParams} from "react-router-dom";
+import BackButton from "../../../../../components/navigation/BackButton";
+import PrintManager from "../../../../../utils/PrintManager";
+import ModalImage from "../../../../../utils/ModalImage";
+
+// Images (à remplacer par les vôtres)
+import technicienEcran from "../../../../../assets/technicien-ecran.png";
+import maintenanceImage from "../../../../../assets/maintenance.png";
+import diagrammeImage from "../../../../../assets/diagrammevide.png";
+import diagsecteur from "../../../../../assets/diagsecteur.png";
+
+const Exercice6et7StatUneVar = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+
+    // États pour l'exercice 6
+    const [ecranReponses, setEcranReponses] = useState({
+        question1a: '',
+        question1b: '',
+        question1c: '',
+        question3: ''
+    });
+
+    // États pour l'exercice 7
+    const [maintenanceReponses, setMaintenanceReponses] = useState({
+        question1a: '',
+        question1b: '',
+        question1c: '',
+        question3: '',
+        question4: ''
+    });
+
+    const [showCorrections, setShowCorrections] = useState({
+        // Exercice 6
+        ex6_question1a: false,
+        ex6_question1b: false,
+        ex6_question1c: false,
+        ex6_question3: false,
+
+        // Exercice 7
+        ex7_question1a: false,
+        ex7_question1b: false,
+        ex7_question1c: false,
+        ex7_question3: false,
+        ex7_question4: false
+    });
+
+    // Réponses attendues
+    const correctAnswers = {
+        // Exercice 6
+        ex6_question1a: "La variable étudiée est le temps passé devant les écrans de surveillance.",
+        ex6_question1b: "Le caractère est quantitatif car il s'agit d'une mesure numérique (heures).",
+        ex6_question1c: "Le caractère est continu car le temps peut prendre n'importe quelle valeur dans un intervalle.",
+        ex6_question3: "Un histogramme serait le plus adapté pour représenter ces données groupées en classes.",
+
+        // Exercice 7
+        ex7_question1a: "La variable étudiée est la durée des interventions de maintenance.",
+        ex7_question1b: "Le caractère est quantitatif car il s'agit d'une mesure numérique (minutes).",
+        ex7_question1c: "Le caractère est continu car la durée peut prendre n'importe quelle valeur dans un intervalle.",
+        ex7_question3: "La proportion d'interventions qui durent plus de 30 minutes est de 60%.",
+        ex7_question4: "Un diagramme à secteurs (camembert) serait adapté pour représenter les proportions."
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false,
+        imageUrl: '',
+        altText: ''
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState(prev => ({...prev, show: false}));
+    };
+
+    const handleInputChange = (field, value) => {
+        if (field.startsWith('ex6_')) {
+            setEcranReponses(prev => ({
+                ...prev,
+                [field.replace('ex6_', '')]: value
+            }));
+        } else {
+            setMaintenanceReponses(prev => ({
+                ...prev,
+                [field.replace('ex7_', '')]: value
+            }));
+        }
+    };
+
+    const contentRef = useRef();
+
+    const toggleCorrection = (field) => {
+        setShowCorrections(prev => ({
+            ...prev,
+            [field]: !prev[field]
+        }));
+
+        if (!showCorrections[field]) {
+            const answerField = field.startsWith('ex6_')
+                ? field.replace('ex6_', '')
+                : field.replace('ex7_', '');
+
+            if (field.startsWith('ex6_') && !ecranReponses[answerField]) {
+                setEcranReponses(prev => ({
+                    ...prev,
+                    [answerField]: correctAnswers[field]
+                }));
+            } else if (field.startsWith('ex7_') && !maintenanceReponses[answerField]) {
+                setMaintenanceReponses(prev => ({
+                    ...prev,
+                    [answerField]: correctAnswers[field]
+                }));
+            }
+        }
+    };
+
+    if (className === 'Seconde-stat-une-variable-exo67') {
+        return <div>Cet exercice n'est pas disponible pour cette classe.</div>;
+    }
+
+    return (
+        <>
+            <BackButton/>
+            <div className="tp-container" id="stat-exo67-content" ref={contentRef}>
+                <PrintManager
+                    contentRef={contentRef}
+                    activityName="Exercices_Statistiques_6_7"
+                    pageCount={2}
+                    quality="hd"
+                />
+
+                {/* PAGE 1 - EXERCICE 6 */}
+                <div className="print-page">
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">EXERCICE 6</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaIndustry/> « Utilisation des Écrans dans un Environnement Industriel »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '15px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte2">
+                                <p style={{textAlign: 'justify', fontSize: '14px', lineHeight: '1.3'}}>
+                                    Un responsable de maintenance souhaite connaître le temps passé par ses techniciens
+                                    devant les écrans de surveillance des installations automatisées.
+                                </p>
+                                <p style={{textAlign: 'justify', fontSize: '14px', lineHeight: '1.3'}}>
+                                    On a interrogé les techniciens pour connaître leur nombre d'heures quotidiennes
+                                    passées devant les écrans de supervision des machines. Voici les résultats obtenus
+                                    pour 15 techniciens :
+                                </p>
+                                <div style={{
+                                    padding: '10px',
+                                    background: '#f8f9fa',
+                                    borderRadius: '5px',
+                                    margin: '10px 0',
+                                    fontFamily: 'monospace',
+                                    fontSize: '13px'
+                                }}>
+                                    <strong>2h30, 3h00, 5h00, 6h00, 3h30, 4h00, 2h00, 5h30, 6h15, 3h45, 4h30, 5h15,
+                                        2h45, 3h15, 4h45</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* ESPACE POUR IMAGE */}
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '200px', cursor: 'pointer'}}>
+                            <img
+                                src={technicienEcran}
+                                alt="Technicien devant écran de surveillance"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(technicienEcran, 'Technicien écran')}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Question 1 - S'APPROPRIER */}
+                    <div className="question-card mt-3">
+                        <h4 className="vect-title2"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '20px', marginBottom: '20px'}}>
+                            <span>1. S'APPROPRIER :</span>
+                        </h4>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                a. Quelle est la variable statistique étudiée ?
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex6_question1a')}
+                                >
+                                    <FaCheck/> {showCorrections.ex6_question1a ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex6_question1a && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex6_question1a}
+                                </div>
+                            )}
+                        </div>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                b. Ce caractère est-il quantitatif ou qualitatif ?
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex6_question1b')}
+                                >
+                                    <FaCheck/> {showCorrections.ex6_question1b ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex6_question1b && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex6_question1b}
+                                </div>
+                            )}
+                        </div>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                c. Ce caractère est-il continu ou discret ?
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex6_question1c')}
+                                >
+                                    <FaCheck/> {showCorrections.ex6_question1c ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex6_question1c && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex6_question1c}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Question 2 - RÉALISER */}
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '0'}}>
+                            <span>2. RÉALISER :</span>
+                        </h4>
+                        <p>Compléter le tableau suivant avec les effectifs et les fréquences correspondants :</p>
+
+                        <div className="table-responsive mt-3">
+                            <table className="table table-bordered text-center shadow-sm" style={{fontSize: '14px'}}>
+                                <thead className="table-light">
+                                <tr>
+                                    <th>Durée (en heures)</th>
+                                    <th>Effectif</th>
+                                    <th>Fréquence (en %)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>[2h ; 3h]</td>
+                                    <td>.............</td>
+                                    <td>.............</td>
+                                </tr>
+                                <tr>
+                                    <td>[3h ; 4h]</td>
+                                    <td>.............</td>
+                                    <td>.............</td>
+                                </tr>
+                                <tr>
+                                    <td>[4h ; 5h]</td>
+                                    <td>.............</td>
+                                    <td>.............</td>
+                                </tr>
+                                <tr>
+                                    <td>[5h ; 6h]</td>
+                                    <td>.............</td>
+                                    <td>.............</td>
+                                </tr>
+                                <tr>
+                                    <td>[6h ; 7h]</td>
+                                    <td>.............</td>
+                                    <td>.............</td>
+                                </tr>
+                                <tr className="table-primary">
+                                    <td><strong>Total</strong></td>
+                                    <td><strong>15</strong></td>
+                                    <td><strong>100%</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {/* Question 3 - CHOISIR UNE REPRÉSENTATION */}
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '0'}}>
+                            <span>3. CHOISIR UNE REPRÉSENTATION :</span>
+                        </h4>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                Quel type de diagramme serait le plus adapté pour représenter cette série statistique ?
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex6_question3')}
+                                >
+                                    <FaCheck/> {showCorrections.ex6_question3 ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex6_question3 && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex6_question3}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* ESPACE POUR DIAGRAMME */}
+                        <div className="flex-shrink-0" style={{maxWidth: '450px', cursor: 'pointer'}}>
+                            <img
+                                src={diagsecteur}
+                                alt="Diagramme des dépenses"
+
+                                onClick={() => openModal(diagsecteur, 'Diagramme des dépenses')}
+                                style={{maxWidth: '100%', height: 'auto', marginLeft: '40%', marginTop: '20px'}}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* PAGE 2 - EXERCICE 7 */}
+                <div className="print-page">
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">EXERCICE 7</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaTools/> « Répartition des Interventions de Maintenance »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '15px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte2">
+                                <p style={{textAlign: 'justify', fontSize: '14px', lineHeight: '1.4'}}>
+                                    Mickaël, un technicien en stage, a observé le nombre d'interventions effectuées
+                                    par ses collègues dans une journée et leur durée en minutes. Voici les résultats :
+                                </p>
+                                <div style={{
+                                    padding: '10px',
+                                    background: '#f8f9fa',
+                                    borderRadius: '5px',
+                                    margin: '10px 0',
+                                    fontFamily: 'monospace',
+                                    fontSize: '13px'
+                                }}>
+                                    <strong>13 min, 25 min, 35 min, 15 min, 47 min, 55 min, 41 min, 32 min, 53 min, 68
+                                        min</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* ESPACE POUR IMAGE */}
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '200px', cursor: 'pointer'}}>
+                            <img
+                                src={maintenanceImage}
+                                alt="Intervention de maintenance"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(maintenanceImage, 'Maintenance')}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Question 1 - S'APPROPRIER */}
+                    <div className="question-card mt-3">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '0'}}>
+                            <span>1. S'APPROPRIER :</span>
+                        </h4>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                a. Quelle est la variable étudiée ?
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex7_question1a')}
+                                >
+                                    <FaCheck/> {showCorrections.ex7_question1a ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex7_question1a && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex7_question1a}
+                                </div>
+                            )}
+                        </div>
+                        <br/>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                b. Ce caractère est-il quantitatif ou qualitatif ?
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex7_question1b')}
+                                >
+                                    <FaCheck/> {showCorrections.ex7_question1b ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex7_question1b && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex7_question1b}
+                                </div>
+                            )}
+                        </div>
+                        <br/>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                c. Ce caractère est-il continu ou discret ?
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex7_question1c')}
+                                >
+                                    <FaCheck/> {showCorrections.ex7_question1c ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex7_question1c && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex7_question1c}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Question 2 - RÉALISER */}
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '0'}}>
+                            <span>2. RÉALISER :</span>
+                        </h4>
+                        <p>Compléter le tableau suivant :</p>
+
+                        <div className="table-responsive mt-3">
+                            <table className="table table-bordered text-center shadow-sm" style={{fontSize: '14px'}}>
+                                <thead className="table-light">
+                                <tr>
+                                    <th>Durée de l'intervention (min)</th>
+                                    <th>Effectif</th>
+                                    <th>Fréquence (en %)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>[10 ; 20]</td>
+                                    <td>.............</td>
+                                    <td>.............</td>
+                                </tr>
+                                <tr>
+                                    <td>[20 ; 30]</td>
+                                    <td>.............</td>
+                                    <td>.............</td>
+                                </tr>
+                                <tr>
+                                    <td>[30 ; 40]</td>
+                                    <td>.............</td>
+                                    <td>.............</td>
+                                </tr>
+                                <tr>
+                                    <td>[40 ; 50]</td>
+                                    <td>.............</td>
+                                    <td>.............</td>
+                                </tr>
+                                <tr>
+                                    <td>[50 ; 60]</td>
+                                    <td>.............</td>
+                                    <td>.............</td>
+                                </tr>
+                                <tr>
+                                    <td>[60 ; 70]</td>
+                                    <td>.............</td>
+                                    <td>.............</td>
+                                </tr>
+                                <tr className="table-primary">
+                                    <td><strong>Total</strong></td>
+                                    <td><strong>10</strong></td>
+                                    <td><strong>100%</strong></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {/* Question 3 - ANALYSER */}
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '0'}}>
+                            <span>3. ANALYSER :</span>
+                        </h4>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                Quelle est la proportion d'interventions qui durent plus de 30 minutes ?
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex7_question3')}
+                                >
+                                    <FaCheck/> {showCorrections.ex7_question3 ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex7_question3 && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex7_question3}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Question 4 - COMMUNIQUER */}
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px', marginTop: '0'}}>
+                            <span>4. COMMUNIQUER :</span>
+                        </h4>
+                        <div className="question-item">
+                            <p style={{margin: '0', flex: '1'}}>
+                                Représentez ces résultats sous forme d'un diagramme à secteurs.
+                                <span
+                                    className="answer-dots"> .......................................................................................</span>
+                            </p>
+                            <div className="answer-container">
+                                <button
+                                    className="correction-btnoptic"
+                                    onClick={() => toggleCorrection('ex7_question4')}
+                                >
+                                    <FaCheck/> {showCorrections.ex7_question4 ? '✕' : '✓'}
+                                </button>
+                            </div>
+                            {showCorrections.ex7_question4 && (
+                                <div className="correction-box">
+                                    <strong>Correction :</strong> {correctAnswers.ex7_question4}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* ESPACE POUR DIAGRAMME */}
+                        <div className="diagram-placeholder" style={{
+                            height: 'auto',
+                            margin: '10px 0',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: '#ffffff',
+                            padding: '10px',
+                            borderRadius: '12px'
+                        }}>
+                            <img src={diagrammeImage} alt="Diagramme à secteurs" style={{
+                                maxWidth: '50%',
+                                height: 'auto',
+                                border: '2px solid #ccc',
+                                borderRadius: '8px'
+                            }}/>
+                        </div>
+                    </div>
+                </div>
+
+                {modalState.show && (
+                    <ModalImage
+                        imageUrl={modalState.imageUrl}
+                        altText={modalState.altText}
+                        onClose={closeModal}
+                    />
+                )}
+            </div>
+        </>
+    );
+};
+
+export default Exercice6et7StatUneVar;

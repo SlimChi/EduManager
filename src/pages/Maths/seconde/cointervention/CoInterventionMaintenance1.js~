@@ -232,9 +232,6 @@ const CoInterventionMaintenance1 = () => {
                                     </div>)}
                                 </div>
                             </div>
-                            <h4 className="vect-title">Question n°3 : Calcul du diamètre</h4>
-                            <p>A partir des indications portées sur le pneu, calculer le diamètre D de la roue,
-                                en mm. Arrondir le résultat à l'unité.</p>
                         </div>
                     </div>
                 </div>
@@ -245,9 +242,10 @@ const CoInterventionMaintenance1 = () => {
                 <div className="row">
                     <div className="col-md-6">
                         <div className="question-card">
-
+                            <h4 className="vect-title">Question n°3 : Calcul du diamètre</h4>
                             <div className="question-content">
-
+                                <p>A partir des indications portées sur le pneu, calculer le diamètre D de la roue,
+                                    en mm. Arrondir le résultat à l'unité.</p>
                                 <div className="d-flex justify-content-center mt-3" style={{maxWidth: '100%'}}>
                                     <img
                                         src={pneuindic}
