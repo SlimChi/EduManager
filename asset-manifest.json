@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/EduManager/static/css/main.5af56674.css",
-    "main.js": "/EduManager/static/js/main.afa48de9.js",
+    "main.js": "/EduManager/static/js/main.b84d95d8.js",
     "static/js/977.7c1b83c7.chunk.js": "/EduManager/static/js/977.7c1b83c7.chunk.js",
     "static/js/732.88920a93.chunk.js": "/EduManager/static/js/732.88920a93.chunk.js",
     "static/js/103.612e5b3f.chunk.js": "/EduManager/static/js/103.612e5b3f.chunk.js",
@@ -47,8 +47,11 @@
     "static/media/trottinettes.png": "/EduManager/static/media/trottinettes.9119a8a587074f52d865.png",
     "static/media/systeme-solaire.png": "/EduManager/static/media/systeme-solaire.d4a9dafbc7056729a171.png",
     "static/media/telecabine.png": "/EduManager/static/media/telecabine.b2af0a7e195cdb31ce6f.png",
+    "static/media/interventions-maintenance.png": "/EduManager/static/media/interventions-maintenance.b2df0a88dcc320a44d64.png",
     "static/media/led2.jpg": "/EduManager/static/media/led2.3eb57663e9ed4c7c7df0.jpg",
     "static/media/tvstat.png": "/EduManager/static/media/tvstat.75494a041fb4a484cf9b.png",
+    "static/media/technicien-ecran.png": "/EduManager/static/media/technicien-ecran.6a8ca30a5017d330f37f.png",
+    "static/media/budget-maintenance.png": "/EduManager/static/media/budget-maintenance.c5db0723f2e8d2f3cf68.png",
     "static/media/soin-assp.png": "/EduManager/static/media/soin-assp.8c124324b920cce714a5.png",
     "static/media/tortue.png": "/EduManager/static/media/tortue.d8afc999a41e74641681.png",
     "static/media/Corrige_Maths_1re_Bac_Pro_C_ed_2022.png": "/EduManager/static/media/Corrige_Maths_1re_Bac_Pro_C_ed_2022.dec63c34c6003b8f57e3.png",
@@ -101,6 +104,7 @@
     "static/media/logo.jpg": "/EduManager/static/media/logo.6718368d0ed59486dcf6.jpg",
     "static/media/diagsecteur.png": "/EduManager/static/media/diagsecteur.9dfa20ca4830f2ab29da.png",
     "static/media/circuit2.png": "/EduManager/static/media/circuit2.3b12d1c94efed265e463.png",
+    "static/media/maintenance.png": "/EduManager/static/media/maintenance.6caaf4ba7ab1a92949fd.png",
     "static/media/Sciences_2nde.png": "/EduManager/static/media/Sciences_2nde.2cbce406b42d853a4677.png",
     "static/media/electromena.jpg": "/EduManager/static/media/electromena.228e6b8d6d2fd916c6c2.jpg",
     "static/media/chamonix.jpg": "/EduManager/static/media/chamonix.cea145697a3904cba36c.jpg",
@@ -232,7 +236,7 @@
     "static/media/KaTeX_Size3-Regular.woff2": "/EduManager/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/EduManager/index.html",
     "main.5af56674.css.map": "/EduManager/static/css/main.5af56674.css.map",
-    "main.afa48de9.js.map": "/EduManager/static/js/main.afa48de9.js.map",
+    "main.b84d95d8.js.map": "/EduManager/static/js/main.b84d95d8.js.map",
     "977.7c1b83c7.chunk.js.map": "/EduManager/static/js/977.7c1b83c7.chunk.js.map",
     "732.88920a93.chunk.js.map": "/EduManager/static/js/732.88920a93.chunk.js.map",
     "103.612e5b3f.chunk.js.map": "/EduManager/static/js/103.612e5b3f.chunk.js.map",
@@ -240,6 +244,6 @@
   },
   "entrypoints": [
     "static/css/main.5af56674.css",
-    "static/js/main.afa48de9.js"
+    "static/js/main.b84d95d8.js"
   ]
 }
