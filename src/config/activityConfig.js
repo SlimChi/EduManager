@@ -508,7 +508,13 @@ export const SPECIAL_ACTIVITIES = {
                             title: 'Exercices',
                             path: 'electricite/ExercicesElectricite',
                             component: 'ExercicesElectricite',
-                        }
+                        },
+                        {
+                            id: 5,
+                            title: 'QCM',
+                            path: 'electricite/ExerciceElectriciteSuite',
+                            component: 'ExerciceElectriciteSuite',
+                        },
                     ],
                 },
             },

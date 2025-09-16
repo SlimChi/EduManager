@@ -106,6 +106,7 @@ import DistinguerAtomes from "./pages/SciencePhysiqueChimie/seconde/chimie/Disti
 import Act1et2Chimie from "./pages/SciencePhysiqueChimie/seconde/chimie/Act1et2Chimie";
 import Exercice6et7StatUneVar from "./pages/Maths/seconde/statistiques/statistiques/Exercice6et7StatUneVar";
 import ExerciceFinStatUneVar from "./pages/Maths/seconde/statistiques/statistiques/ExerciceFinStatUneVar";
+import ExerciceElectriciteSuite from "./pages/SciencePhysiqueChimie/premiere/electricite/ExerciceElectriciteSuite";
 
 const theme = createTheme({
     palette: {
@@ -462,6 +463,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/science/:classId/ProgrammePremierePhysique/activites/electricite/ExercicesElectricite"
                             element={<ExercicesElectricite/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammePremierePhysique/activites/electricite/ExerciceElectriciteSuite"
+                            element={<ExerciceElectriciteSuite/>}
                         />
                         {/* Routes pour les CCF */}
                         <Route path="/ccf" element={<CCFPage/>}/>
