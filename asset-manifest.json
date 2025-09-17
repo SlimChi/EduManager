@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/EduManager/static/css/main.5af56674.css",
-    "main.js": "/EduManager/static/js/main.51017b1c.js",
+    "main.js": "/EduManager/static/js/main.55ae6319.js",
     "static/js/977.7c1b83c7.chunk.js": "/EduManager/static/js/977.7c1b83c7.chunk.js",
     "static/js/732.88920a93.chunk.js": "/EduManager/static/js/732.88920a93.chunk.js",
     "static/js/103.612e5b3f.chunk.js": "/EduManager/static/js/103.612e5b3f.chunk.js",
@@ -39,6 +39,7 @@
     "static/media/trottinette.png": "/EduManager/static/media/trottinette.773f8c5997424ee3b859.png",
     "static/media/bus-mouvement.png": "/EduManager/static/media/bus-mouvement.6c3e42989da931b66056.png",
     "static/media/geek.png": "/EduManager/static/media/geek.609215bcf514e9928d3c.png",
+    "static/media/veliplanchisteImage.png": "/EduManager/static/media/veliplanchisteImage.2fa4f937a36296bc2d7b.png",
     "static/media/reperefocntioncarre.png": "/EduManager/static/media/reperefocntioncarre.425980ebca020f6126dc.png",
     "static/media/5.gif": "/EduManager/static/media/5.238cc8ebf80f9f14c46e.gif",
     "static/media/elevelivre.png": "/EduManager/static/media/elevelivre.f58b79b45ba5f7a47ab1.png",
@@ -72,6 +73,7 @@
     "static/media/14.gif": "/EduManager/static/media/14.2a311ffbd60286861db8.gif",
     "static/media/prisme.png": "/EduManager/static/media/prisme.b1b9baf1fb3b0c3c3914.png",
     "static/media/act4stat.png": "/EduManager/static/media/act4stat.b9e0f9fb7769cf725aa0.png",
+    "static/media/hotelRoom.png": "/EduManager/static/media/hotelRoom.f27ff2e7480f24364c86.png",
     "static/media/delagrave_Gpe_A_B_1er_livre_prof.png": "/EduManager/static/media/delagrave_Gpe_A_B_1er_livre_prof.645b270419545dace213.png",
     "static/media/tour-eiffel.png": "/EduManager/static/media/tour-eiffel.6cd2df7f13fd366ee3d3.png",
     "static/media/fusee-soyouz.png": "/EduManager/static/media/fusee-soyouz.2263ca05e9cda3db5fc0.png",
@@ -236,7 +238,7 @@
     "static/media/KaTeX_Size3-Regular.woff2": "/EduManager/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/EduManager/index.html",
     "main.5af56674.css.map": "/EduManager/static/css/main.5af56674.css.map",
-    "main.51017b1c.js.map": "/EduManager/static/js/main.51017b1c.js.map",
+    "main.55ae6319.js.map": "/EduManager/static/js/main.55ae6319.js.map",
     "977.7c1b83c7.chunk.js.map": "/EduManager/static/js/977.7c1b83c7.chunk.js.map",
     "732.88920a93.chunk.js.map": "/EduManager/static/js/732.88920a93.chunk.js.map",
     "103.612e5b3f.chunk.js.map": "/EduManager/static/js/103.612e5b3f.chunk.js.map",
@@ -244,6 +246,6 @@
   },
   "entrypoints": [
     "static/css/main.5af56674.css",
-    "static/js/main.51017b1c.js"
+    "static/js/main.55ae6319.js"
   ]
 }
