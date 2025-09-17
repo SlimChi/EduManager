@@ -107,6 +107,8 @@ import Act1et2Chimie from "./pages/SciencePhysiqueChimie/seconde/chimie/Act1et2C
 import Exercice6et7StatUneVar from "./pages/Maths/seconde/statistiques/statistiques/Exercice6et7StatUneVar";
 import ExerciceFinStatUneVar from "./pages/Maths/seconde/statistiques/statistiques/ExerciceFinStatUneVar";
 import ExerciceElectriciteSuite from "./pages/SciencePhysiqueChimie/premiere/electricite/ExerciceElectriciteSuite";
+import ActTrajectoireMouvement from "./pages/SciencePhysiqueChimie/seconde/Mecanique/ActTrajectoireMouvement";
+import GestionReservationCoInterv from "./pages/Maths/seconde/cointervention/GestionReservationCoInterv";
 
 const theme = createTheme({
     palette: {
@@ -314,6 +316,10 @@ const MainApp = () => {
                             element={<CalculsCommerciauxCoIntervention4/>}
                         />
                         <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/GestionReservationCoInterv"
+                            element={<GestionReservationCoInterv/>}
+                        />
+                        <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/cointerventionmaintenance2"
                             element={<Cointervention1McdBtp/>}
                         />
@@ -376,6 +382,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/referentiel-meca"
                             element={<Act1ReferentielMeca/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/ActTrajectoireMouvement"
+                            element={<ActTrajectoireMouvement/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/QCMASSP"

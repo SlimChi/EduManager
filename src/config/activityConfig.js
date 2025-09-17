@@ -6,6 +6,7 @@ import BilanStat2Var from "../pages/Maths/première/StatProba/Statistiques/Bilan
 import ExerciceStat2Var from "../pages/Maths/première/StatProba/Statistiques/ExerciceStat2Var";
 import Act3Mecanic from "../pages/SciencePhysiqueChimie/seconde/Mecanique/Act3Mecanic";
 import BilanElectricite from "../pages/SciencePhysiqueChimie/premiere/electricite/BilanElectricite";
+import GestionReservationCoInterv from "../pages/Maths/seconde/cointervention/GestionReservationCoInterv";
 
 export const SPECIAL_ACTIVITIES = {
     math: {
@@ -226,7 +227,13 @@ export const SPECIAL_ACTIVITIES = {
                                 title: 'Co-intervention Calculs commerciaux 4',
                                 path: 'cointervention/cointervention4',
                                 component: 'CalculsCommerciauxCoIntervention4',
-                            }
+                            },
+                            {
+                                id: 5,
+                                title: 'Co-intervention Calculs commerciaux 5',
+                                path: 'cointervention/GestionReservationCoInterv',
+                                component: 'GestionReservationCoInterv',
+                            },
                         ],
                     },
                     maintenances: {
@@ -447,30 +454,37 @@ export const SPECIAL_ACTIVITIES = {
                         },
                         {
                             id: 3,
+                            title: 'Différencier les trajectoires rectilignes et quelconques',
+                            path: 'mecanique/ActTrajectoireMouvement',
+                            component: 'ActTrajectoireMouvement',
+                        },
+
+                        {
+                            id: 4,
                             title: 'Représenter et caractériser une action mécanique',
                             path: 'mecanique/force',
                             component: 'Act1ForceMeca',
                         },
                         {
-                            id: 4,
+                            id: 5,
                             title: 'inventaire des actions mécaniques et conditions d’équilibre',
                             path: 'mecanique/force2',
                             component: 'Act2et3ForceMecanique',
                         },
                         {
-                            id: 5,
+                            id: 6,
                             title: 'Evaluation : Actions mécaniques',
                             path: 'mecanique/EvaluationForce',
                             component: 'EvaluationForce',
                         },
                         {
-                            id: 6,
+                            id: 7,
                             title: 'Représenter et caractériser une action mécanique',
                             path: 'mecanique/EvaluationForce2',
                             component: 'EvaluationMecaniqueForce',
                         },
                         {
-                            id: 7,
+                            id: 8,
                             title: 'QCM : Actions mécaniques',
                             path: 'mecanique/QCMASSP',
                             component: 'PremierCoursASSP',
