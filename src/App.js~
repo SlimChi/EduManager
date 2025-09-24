@@ -108,6 +108,9 @@ import Exercice6et7StatUneVar from "./pages/Maths/seconde/statistiques/statistiq
 import ExerciceFinStatUneVar from "./pages/Maths/seconde/statistiques/statistiques/ExerciceFinStatUneVar";
 import ExerciceElectriciteSuite from "./pages/SciencePhysiqueChimie/premiere/electricite/ExerciceElectriciteSuite";
 import ActTrajectoireMouvement from "./pages/SciencePhysiqueChimie/seconde/Mecanique/ActTrajectoireMouvement";
+import GestionReservationCoInterv from "./pages/Maths/seconde/cointervention/GestionReservationCoInterv";
+import Act3et4Chimie from "./pages/SciencePhysiqueChimie/seconde/chimie/Act3et4Chimie";
+import Act1IndicateurDePosition from "./pages/Maths/seconde/statistiques/statistiques/Act1IndicateurDePosition";
 
 const theme = createTheme({
     palette: {
@@ -215,6 +218,10 @@ const MainApp = () => {
                             element={<ExerciceFinStatUneVar/>}
                         />
                         <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/statistiques/Act1IndicateurDePosition"
+                            element={<Act1IndicateurDePosition/>}
+                        />
+                        <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act1Proba"
                             element={<Act1Proba/>}
                         />
@@ -315,6 +322,10 @@ const MainApp = () => {
                             element={<CalculsCommerciauxCoIntervention4/>}
                         />
                         <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/GestionReservationCoInterv"
+                            element={<GestionReservationCoInterv/>}
+                        />
+                        <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/cointerventionmaintenance2"
                             element={<Cointervention1McdBtp/>}
                         />
@@ -337,6 +348,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/chimie/Act1et2Chimie"
                             element={<Act1et2Chimie/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/chimie/Act3et4Chimie"
+                            element={<Act3et4Chimie/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/acoustique/tp-son"
@@ -377,6 +392,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/referentiel-meca"
                             element={<Act1ReferentielMeca/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/ActPrepaEvalMeca"
+                            element={<ActPrepaEvalMeca/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/ActTrajectoireMouvement"

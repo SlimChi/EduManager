@@ -473,7 +473,7 @@ export const SPECIAL_ACTIVITIES = {
                         },
                         {
                             id: 4,
-                            title: 'PRÉPARATION À L’ÉVALUATION',
+                            title: 'QCM : Actions mécaniques',
                             path: 'mecanique/ActPrepaEvalMeca',
                             component: 'ActPrepaEvalMeca',
                         },

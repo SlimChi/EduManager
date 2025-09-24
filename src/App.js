@@ -109,6 +109,9 @@ import ExerciceFinStatUneVar from "./pages/Maths/seconde/statistiques/statistiqu
 import ExerciceElectriciteSuite from "./pages/SciencePhysiqueChimie/premiere/electricite/ExerciceElectriciteSuite";
 import ActTrajectoireMouvement from "./pages/SciencePhysiqueChimie/seconde/Mecanique/ActTrajectoireMouvement";
 import GestionReservationCoInterv from "./pages/Maths/seconde/cointervention/GestionReservationCoInterv";
+import Act3et4Chimie from "./pages/SciencePhysiqueChimie/seconde/chimie/Act3et4Chimie";
+import Act1IndicateurDePosition from "./pages/Maths/seconde/statistiques/statistiques/Act1IndicateurDePosition";
+import ActPrepaEvalMeca from "./pages/SciencePhysiqueChimie/seconde/Mecanique/ActPrepaEvalMeca";
 
 const theme = createTheme({
     palette: {
@@ -214,6 +217,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/statistiques/exerciceFinStatUneVar"
                             element={<ExerciceFinStatUneVar/>}
+                        />
+                        <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/statistiques/Act1IndicateurDePosition"
+                            element={<Act1IndicateurDePosition/>}
                         />
                         <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/probabilites/Act1Proba"
@@ -344,6 +351,10 @@ const MainApp = () => {
                             element={<Act1et2Chimie/>}
                         />
                         <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/chimie/Act3et4Chimie"
+                            element={<Act3et4Chimie/>}
+                        />
+                        <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/acoustique/tp-son"
                             element={<TPSon/>}
                         />
@@ -382,6 +393,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/referentiel-meca"
                             element={<Act1ReferentielMeca/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/ActPrepaEvalMeca"
+                            element={<ActPrepaEvalMeca/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/ActTrajectoireMouvement"

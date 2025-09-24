@@ -1,0 +1,87 @@
+import React from 'react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import {FaFilePdf, FaPrint} from 'react-icons/fa';
+
+const PrintManager = ({
+                          contentRef,
+                          activityName,
+                          pageCount,
+                          quality = 'hd',
+                      }) => {
+    const exportToPDF = async () => {
+        document.body.classList.add('printing');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pages = contentRef.current.querySelectorAll('.print-page');
+
+        for (let i = 0; i < pages.length; i++) {
+            const page = pages[i];
+
+            // FORCER une largeur fixe pour une capture cohérente
+            const originalWidth = page.style.width;
+            const originalFlex = page.style.flex;
+
+            page.style.width = '210mm'; // Largeur A4
+            page.style.flex = 'none';
+            page.style.display = 'block';
+            page.style.visibility = 'visible';
+            page.style.height = 'auto';
+            page.style.overflow = 'visible';
+
+            // Désactiver les animations et transitions temporairement
+            const originalTransition = page.style.transition;
+            page.style.transition = 'none';
+
+            await new Promise((resolve) => setTimeout(resolve, 500)); // Plus de temps pour le rendu
+
+            const canvas = await html2canvas(page, {
+                scale: quality === '4k' ? 4 : quality === 'hd' ? 2 : 1.5,
+                useCORS: true,
+                logging: false,
+                allowTaint: true,
+                letterRendering: true,
+                scrollX: 0,
+                scrollY: -window.scrollY,
+                windowWidth: 210 * (quality === '4k' ? 4 : quality === 'hd' ? 2 : 1.5), // Largeur cohérente
+                width: 210 * (quality === '4k' ? 4 : quality === 'hd' ? 2 : 1.5),
+                height: page.scrollHeight * (quality === '4k' ? 4 : quality === 'hd' ? 2 : 1.5),
+                ignoreElements: (element) => {
+                    return (
+                        element.classList.contains('no-print') ||
+                        element.tagName.toLowerCase() === 'button'
+                    );
+                },
+            });
+
+            // Restaurer les styles originaux
+            page.style.width = originalWidth;
+            page.style.flex = originalFlex;
+            page.style.transition = originalTransition;
+
+            const imgData = canvas.toDataURL('image/png');
+            const pdfWidth = pdf.internal.pageSize.getWidth() - 20;
+            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+            const yPos = 5;
+
+            pdf.addImage(imgData, 'PNG', 10, yPos, pdfWidth, pdfHeight);
+
+            if (i < pages.length - 1) {
+                pdf.addPage();
+            }
+        }
+
+        document.body.classList.remove('printing');
+        pdf.save(`${activityName}_${new Date().toISOString().slice(0, 10)}.pdf`);
+    };
+
+    return (
+        <div className="print-actions no-print">
+            <button onClick={exportToPDF} className="print-btn pdf-btn no-print">
+                <FaFilePdf/> PDF HD
+            </button>
+        </div>
+    );
+};
+
+export default PrintManager;

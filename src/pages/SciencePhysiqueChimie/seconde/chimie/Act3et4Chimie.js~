@@ -1,0 +1,822 @@
+import React, {useRef, useState} from 'react';
+import {FaCheck, FaFlask, FaAtom, FaWater, FaVial, FaExclamationTriangle} from 'react-icons/fa';
+import '../../../../styles/activites.css';
+import {useLocation, useParams} from 'react-router-dom';
+import BackButton from '../../../../components/navigation/BackButton';
+import PrintManager from '../../../../utils/PrintManager';
+import ModalImage from "../../../../utils/ModalImage";
+
+// Images (à remplacer par les vôtres)
+import eauVolvic from "../../../../assets/geek.png";
+import eauContrex from "../../../../assets/geek.png";
+import testIons from "../../../../assets/hamac.png";
+
+const Act3et4Chimie = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+    const contentRef = useRef();
+
+    // États pour les réponses
+    const [answers, setAnswers] = useState({
+        question1: [],
+        question2: '',
+        question3: [],
+        question4: [],
+        question5: '',
+        question6: [],
+        question7: '',
+        question8: '',
+        question9: [],
+        question10: '',
+        question11: '',
+        question12: '',
+        question13: '',
+        question14: '',
+        question15: '',
+        question16: '',
+        question17: '',
+        question18: '',
+        question19: '',
+        question20: '',
+    });
+
+    const [showCorrections, setShowCorrections] = useState({
+        question1: false,
+        question2: false,
+        question3: false,
+        question4: false,
+        question5: false,
+        question6: false,
+        question7: false,
+        question8: false,
+        question9: false,
+        question10: false,
+        question11: false,
+        question12: false,
+        question13: false,
+        question14: false,
+        question15: false,
+        question16: false,
+        question17: false,
+        question18: false,
+        question19: false,
+        question20: false,
+    });
+
+    // Réponses attendues
+    const correctAnswers = {
+        question1: ['Ca²⁺', 'Fe²⁺'],
+        question2: 'Oxalate d\'ammonium pour Ca²⁺ et hydroxyde de sodium (soude) pour Fe²⁺',
+        question3: ['Lunettes', 'Gants', 'Blouse'],
+        question4: ['Oxalate d\'ammonium', 'Hydroxyde de sodium'],
+        question5: 'Oui, car un précipité blanc se forme avec l\'oxalate d\'ammonium (preuve de Ca²⁺) et un précipité vert se forme avec la soude (preuve de Fe²⁺)',
+        question6: ['Ca²⁺'],
+        question7: 'Volvic',
+        question8: 'Oxalate d\'ammonium',
+        question9: ['2 tubes à essai + porte-tubes', 'Gants', 'Blouse', 'Lunettes', 'Oxalate d\'ammonium'],
+        question10: 'Contrex est calcique car elle forme un précipité blanc avec l\'oxalate d\'ammonium, contrairement à Volvic',
+        question11: 'Volvic',
+        question12: 'Liu a raison car Volvic ne forme pas de précipité avec l\'oxalate d\'ammonium, donc elle n\'est pas calcique',
+        question13: 'Ca²⁺',
+        question14: 'Ca²⁺ (ion calcium)',
+        question15: 'Oxalate d\'ammonium',
+        question16: 'Précipité blanc',
+        question17: 'Volvic',
+        question18: 'Contrex',
+        question19: 'Non, car elle est calcique forme un précipité',
+        question20: 'Oui, car elle ne forme pas de précipité avec '
+};
+
+    // Gestionnaires d'événements
+    const handleInputChange = (field, value) => {
+        setAnswers((prev) => ({...prev, [field]: value}));
+    };
+
+    const handleCheckboxChange = (field, value, isChecked) => {
+        setAnswers((prev) => {
+            const currentValues = prev[field] || [];
+            if (isChecked) {
+                return {...prev, [field]: [...currentValues, value]};
+            } else {
+                return {...prev, [field]: currentValues.filter(item => item !== value)};
+            }
+        });
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false, imageUrl: '', altText: '',
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState((prev) => ({...prev, show: false}));
+    };
+
+    const toggleCorrection = (field) => {
+        setShowCorrections((prev) => ({...prev, [field]: !prev[field]}));
+
+        if (!answers[field] && !showCorrections[field]) {
+            setAnswers((prev) => ({...prev, [field]: correctAnswers[field]}));
+        }
+    };
+
+    if (className === 'Seconde-chimie-act3') {
+        return <div>Cette activité n'est pas disponible pour cette classe.</div>;
+    }
+
+    return (<>
+        <BackButton/>
+        <div className="tp-container" id="chimie-content" ref={contentRef}>
+            <PrintManager
+                contentRef={contentRef}
+                activityName="Chimie_Ions_Eaux_Minerales"
+                pageCount={3}
+                quality="hd"
+            />
+
+            {/* PAGE 1 - ACTIVITÉ 3 */}
+            <div className="print-page" id="page1-start">
+                <section className="tp-section compact">
+                    <div className="math-chapter-box blue" style={{padding: '10px', marginTop: '-10px'}}>
+                        <h3 className="math-chapter-title-test mb-0">Chapitre 2 - Identification des ions dans les solutions médicamenteuses</h3>
+                    </div>
+
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">ACTIVITÉ 3</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaFlask/> <span>💊</span> « Identifier les ions présents dans une solution médicamenteuse »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte">
+                                <h5 className="mb-3 text-primary fw-bold">
+                                    🏥 "Carence en fer et calcium : choisir la bonne eau minérale"
+                                </h5>
+
+                                <p style={{
+                                    textAlign: 'justify',
+                                    textJustify: 'inter-word',
+                                    fontSize: '16px',
+                                    lineHeight: '1.4'
+                                }}>
+                                    L'analyse sanguine de Charlotte montre qu'elle présente une forte carence en fer et en calcium.
+                                    Son médecin lui prescrit du fer à raison d'un comprimé à dissoudre dans un verre d'eau minérale riche en calcium.
+                                    Charlotte choisit comme eau minérale l'eau de Volvic. Comment savoir si cette eau convient à sa pathologie ?
+                                    <br/>
+                                    <span style={{fontStyle: 'italic', color: '#2e7d32'}}>
+                                        "Comment identifier la présence des ions nécessaires dans l'eau minérale ?"
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '250px', cursor: 'pointer', marginTop: '10px'}}>
+                            <img
+                                src={eauVolvic}
+                                alt="Eau de Volvic"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(eauVolvic, 'Eau de Volvic')}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="objectif-box" style={{marginTop: '5px', marginBottom: '5px'}}>
+                        <div className="objectif-title"><strong style={{color: 'orangered'}}> Objectif :</strong> 🎯
+                        </div>
+                        <p>Identifier expérimentalement la présence d'ions calcium et fer dans une solution médicamenteuse.</p>
+                    </div>
+
+                    {/* Section S'approprier */}
+                    <div className="question-card mt-0">
+                        <div className="question-content">
+                            <h4 className="vect-title"
+                                style={{display: 'inline', marginRight: '10px'}}>
+                                <span>S'approprier</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                1. Indiquer quels ions Charlotte doit absorber pour ne plus être en carence (cocher les bonnes réponses) :
+                            </p>
+                            <div style={{display: 'flex', flexWrap: 'wrap', gap: '15px', marginTop: '10px'}}>
+                                {['Cl⁻', 'Ca²⁺', 'SO₄²⁻', 'Fe²⁺', 'Fe³⁺', 'Cu²⁺', 'Zn²⁺', 'Al³⁺'].map(ion => (
+                                    <label key={ion} style={{display: 'flex', alignItems: 'center'}}>
+                                        <input
+                                            type="checkbox"
+                                            checked={answers.question1.includes(ion)}
+                                            onChange={(e) => handleCheckboxChange('question1', ion, e.target.checked)}
+                                            style={{marginRight: '8px'}}
+                                        />
+                                        {ion}
+                                    </label>
+                                ))}
+                            </div>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection('question1')}
+                                style={{marginTop: '10px'}}
+                            >
+                                <FaCheck/> {showCorrections.question1 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>S'approprier</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                2. À l'aide du tableau de caractérisation des ions, quels réactifs utiliser pour prouver la présence des ions nécessaires à Charlotte ?
+                            </p>
+                            <div style={{
+                                marginTop: '15px',
+                                padding: '10px',
+                                background: '#f5f5f5',
+                                borderRadius: '5px'
+                            }}>
+                                <p>Pour Ca²⁺ : ............................................................................................................................................................................................</p>
+                                <p>Pour Fe²⁺ : ............................................................................................................................................................................................</p>
+                            </div>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection('question2')}
+                                style={{marginTop: '10px'}}
+                            >
+                                <FaCheck/> {showCorrections.question2 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>S'approprier</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                3. Quelles précautions individuelles doit-on prendre pour manipuler ces réactifs ?
+                            </p>
+                            <div style={{display: 'flex', flexWrap: 'wrap', gap: '15px', marginTop: '10px'}}>
+                                {['Masque', 'Lunettes', 'Gants', 'Blouse'].map(protection => (
+                                    <label key={protection} style={{display: 'flex', alignItems: 'center'}}>
+                                        <input
+                                            type="checkbox"
+                                            checked={answers.question3.includes(protection)}
+                                            onChange={(e) => handleCheckboxChange('question3', protection, e.target.checked)}
+                                            style={{marginRight: '8px'}}
+                                        />
+                                        {protection}
+                                    </label>
+                                ))}
+                            </div>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection('question3')}
+                                style={{marginTop: '10px'}}
+                            >
+                                <FaCheck/> {showCorrections.question3 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                        </div>
+
+                        {/* Tableau de caractérisation des ions */}
+                        <div style={{
+                            margin: '20px 0',
+                            padding: '15px',
+                            background: '#e8f5e9',
+                            borderRadius: '8px',
+                            border: '1px solid #c8e6c9'
+                        }}>
+                            <h5 style={{textAlign: 'center', color: '#2e7d32', marginBottom: '15px'}}>
+                                Tableau de caractérisation des ions
+                            </h5>
+                            <div className="table-responsive">
+                                <table className="table table-bordered" style={{fontSize: '14px'}}>
+                                    <thead>
+                                    <tr>
+                                        <th>Ion à identifier</th>
+                                        <th>Chlorure Cl⁻</th>
+                                        <th>Calcium Ca²⁺</th>
+                                        <th>Sulfate SO₄²⁻</th>
+                                        <th>Fer II Fe²⁺</th>
+                                        <th>Fer III Fe³⁺</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Réactif</td>
+                                        <td>Nitrate d'argent</td>
+                                        <td>Oxalate d'ammonium</td>
+                                        <td>Chlorure de baryum</td>
+                                        <td>Hydroxyde de sodium (soude)</td>
+                                        <td>Hydroxyde de sodium (soude)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Couleur du précipité</td>
+                                        <td>Blanc (noircit à la lumière)</td>
+                                        <td>Blanc</td>
+                                        <td>Blanc</td>
+                                        <td>Vert</td>
+                                        <td>Rouille</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Réaliser</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                4. Résultats de l'expérience : Quelques gouttes des réactifs appropriés ont été ajoutées :
+                                ...................................... pour détecter le calcium (Ca²⁺) et ...................................... pour détecter le fer (Fe²⁺).
+                            </p>
+                            <div style={{display: 'flex', flexWrap: 'wrap', gap: '15px', marginTop: '10px'}}>
+                                {['Nitrate d\'argent', 'Oxalate d\'ammonium', 'Chlorure de baryum', 'Hydroxyde de sodium'].map(reactif => (
+                                    <label key={reactif} style={{display: 'flex', alignItems: 'center'}}>
+                                        <input
+                                            type="checkbox"
+                                            checked={answers.question4.includes(reactif)}
+                                            onChange={(e) => handleCheckboxChange('question4', reactif, e.target.checked)}
+                                            style={{marginRight: '8px'}}
+                                        />
+                                        {reactif}
+                                    </label>
+                                ))}
+                            </div>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection('question4')}
+                                style={{marginTop: '10px'}}
+                            >
+                                <FaCheck/> {showCorrections.question4 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Valider</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                5. La solution médicamenteuse préparée avec de l'eau de Volvic contient-elle des ions Ca²⁺ et des ions Fe²⁺ ? Justifier la réponse.
+                            </p>
+                            <textarea
+                                className="form-control"
+                                rows="3"
+                                value={answers.question5}
+                                onChange={(e) => handleInputChange('question5', e.target.value)}
+                                style={{marginTop: '10px'}}
+                            ></textarea>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection('question5')}
+                                style={{marginTop: '10px'}}
+                            >
+                                <FaCheck/> {showCorrections.question5 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline', marginRight: '10px'}}>
+                                <span>Communiquer</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify'}}>
+                                6. L'eau minérale choisie par Charlotte est-elle appropriée à sa pathologie ?
+                            </p>
+                            <div style={{display: 'flex', gap: '20px', marginTop: '10px'}}>
+                                <label style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="radio"
+                                        name="question6"
+                                        value="Oui"
+                                        onChange={() => handleInputChange('question6', 'Oui')}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    Oui
+                                </label>
+                                <label style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="radio"
+                                        name="question6"
+                                        value="Non"
+                                        onChange={() => handleInputChange('question6', 'Non')}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    Non
+                                </label>
+                            </div>
+                            <button
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection('question6')}
+                                style={{marginTop: '10px'}}
+                            >
+                                <FaCheck/> {showCorrections.question6 ? 'Masquer la correction' : 'Afficher la correction'}
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {/* PAGE 2 - ACTIVITÉ 4 */}
+            <div className="print-page" id="page2-start">
+                <section className="tp-section compact">
+                    <div className="math-chapter-box blue" style={{padding: '0'}}>
+                        <span style={{marginRight: '10px', fontSize: '30px'}}>💧</span>
+                        <h2 className="math-chapter-title-test">Chimie - Identification d'ions dans une eau</h2>
+                    </div>
+
+                    <div className="activity-header">
+                        <span className="activity-badge">ACTIVITÉ 4</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaVial/> <span>🔍</span> « Identifier un ion dans une eau »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
+                        <div style={{flex: 1, minWidth: '300px'}}>
+                            <div className="renovation-contexte">
+                                <p style={{
+                                    textAlign: 'justify',
+                                    textJustify: 'inter-word',
+                                    fontSize: '15px',
+                                    lineHeight: '1.4'
+                                }}>
+                                    Cyril vient d'être opéré d'un calcul rénal, petit caillou de calcium qui s'est formé dans un de ses reins.
+                                    Son médecin lui déconseille de boire des eaux « calciques », c'est-à-dire très riches en ions calcium.
+                                    <br/>
+                                    Dans le rayon des eaux minérales d'un supermarché, Cyril, accompagné de son amie Liu, hésite entre Volvic et Contrex.
+                                    <br/>
+                                    <strong className="text-primary">
+                                        Comment savoir si une de ces deux eaux minérales est calcique ?
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex-shrink-0"
+                             style={{maxWidth: '250px', cursor: 'pointer'}}>
+                            <img
+                                src={eauContrex}
+                                alt="Eau de Contrex"
+                                className="img-fluid rounded shadow-sm compact-img"
+                                onClick={() => openModal(eauContrex, 'Eau de Contrex')}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Je formule une hypothèse</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            7. Une eau « calcique » est une eau riche en ions (cocher la bonne réponse) :
+                        </p>
+                        <div style={{display: 'flex', flexWrap: 'wrap', gap: '15px', marginTop: '10px'}}>
+                            {['Sodium Na⁺', 'Sulfate SO₄²⁻', 'Calcium Ca²⁺'].map(ion => (
+                                <label key={ion} style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="checkbox"
+                                        checked={answers.question7.includes(ion)}
+                                        onChange={(e) => handleCheckboxChange('question7', ion, e.target.checked)}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    {ion}
+                                </label>
+                            ))}
+                        </div>
+
+                        <p style={{marginTop: '15px'}}>
+                            8. Quelle est l'eau la plus adaptée à l'état de santé de Cyril ?
+                        </p>
+                        <div style={{display: 'flex', gap: '20px', marginTop: '10px'}}>
+                            <label style={{display: 'flex', alignItems: 'center'}}>
+                                <input
+                                    type="radio"
+                                    name="question8"
+                                    value="Contrex"
+                                    onChange={() => handleInputChange('question8', 'Contrex')}
+                                    style={{marginRight: '8px'}}
+                                />
+                                Contrex
+                            </label>
+                            <label style={{display: 'flex', alignItems: 'center'}}>
+                                <input
+                                    type="radio"
+                                    name="question8"
+                                    value="Volvic"
+                                    onChange={() => handleInputChange('question8', 'Volvic')}
+                                    style={{marginRight: '8px'}}
+                                />
+                                Volvic
+                            </label>
+                            <label style={{display: 'flex', alignItems: 'center'}}>
+                                <input
+                                    type="radio"
+                                    name="question8"
+                                    value="Je ne sais pas"
+                                    onChange={() => handleInputChange('question8', 'Je ne sais pas')}
+                                    style={{marginRight: '8px'}}
+                                />
+                                Je ne sais pas
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Je propose un protocole expérimental</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            9. Matériel nécessaire (cocher les éléments nécessaires) :
+                        </p>
+                        <div style={{display: 'flex', flexWrap: 'wrap', gap: '15px', marginTop: '10px'}}>
+                            {['2 tubes à essai + porte-tubes', 'pH-mètre', 'Gants', 'Blouse', 'Lunettes', 'Nitrate d\'argent', 'Oxalate d\'ammonium', 'Chlorure de baryum'].map(materiel => (
+                                <label key={materiel} style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="checkbox"
+                                        checked={answers.question9.includes(materiel)}
+                                        onChange={(e) => handleCheckboxChange('question9', materiel, e.target.checked)}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    {materiel}
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Espace pour image supplémentaire */}
+                    <div style={{
+                        margin: '20px 0',
+                        textAlign: 'center'
+                    }}>
+                        <img
+                            src={testIons}
+                            alt="Test d'identification des ions"
+                            className="img-fluid rounded shadow-sm"
+                            style={{maxWidth: '300px', cursor: 'pointer'}}
+                            onClick={() => openModal(testIons, 'Test d\'identification des ions')}
+                        />
+                        <p style={{fontSize: '14px', color: '#666', marginTop: '8px'}}>
+                            Test d'identification des ions en laboratoire
+                        </p>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Résultat de l'expérience</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            10. Après avoir ajouté quelques gouttes d'oxalate d'ammonium dans deux tubes à essai :
+                        </p>
+                        <ul style={{marginTop: '10px'}}>
+                            <li>Un précipité blanc apparaît dans le tube contenant de l'eau Contrex.</li>
+                            <li>Il n'y a pas de précipité dans le tube contenant de l'eau Volvic.</li>
+                        </ul>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Je valide</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            11. Confirmer ou non l'hypothèse initiale selon les résultats expérimentaux obtenus :
+                        </p>
+                        <textarea
+                            className="form-control"
+                            rows="3"
+                            value={answers.question11}
+                            onChange={(e) => handleInputChange('question11', e.target.value)}
+                            style={{marginTop: '10px'}}
+                        ></textarea>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Je communique</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            12. Cyril a-t-il raison de choisir l'eau Volvic ?
+                        </p>
+                        <textarea
+                            className="form-control"
+                            rows="2"
+                            value={answers.question12}
+                            onChange={(e) => handleInputChange('question12', e.target.value)}
+                            style={{marginTop: '10px'}}
+                        ></textarea>
+                    </div>
+
+                    {/* Questions supplémentaires pour compléter l'activité */}
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Analyser/Raisonner</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            13. Quel ion est responsable de la formation des calculs rénaux ?
+                        </p>
+                        <div style={{display: 'flex', gap: '20px', marginTop: '10px'}}>
+                            {['Na⁺', 'Ca²⁺', 'Cl⁻', 'SO₄²⁻'].map(ion => (
+                                <label key={ion} style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="radio"
+                                        name="question13"
+                                        value={ion}
+                                        onChange={() => handleInputChange('question13', ion)}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    {ion}
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Analyser/Raisonner</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            14. Quel ion caractérise une eau "calcique" ?
+                        </p>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={answers.question14}
+                            onChange={(e) => handleInputChange('question14', e.target.value)}
+                            style={{marginTop: '10px', maxWidth: '300px'}}
+                        />
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Analyser/Raisonner</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            15. Quel réactif permet de détecter spécifiquement les ions calcium ?
+                        </p>
+                        <div style={{display: 'flex', gap: '20px', marginTop: '10px'}}>
+                            {['Nitrate d\'argent', 'Oxalate d\'ammonium', 'Chlorure de baryum', 'Hydroxyde de sodium'].map(reactif => (
+                                <label key={reactif} style={{display: 'flex', alignItems: 'center'}}>
+                                    <input
+                                        type="radio"
+                                        name="question15"
+                                        value={reactif}
+                                        onChange={() => handleInputChange('question15', reactif)}
+                                        style={{marginRight: '8px'}}
+                                    />
+                                    {reactif}
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Analyser/Raisonner</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            16. Quelle observation permet de confirmer la présence d'ions calcium ?
+                        </p>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={answers.question16}
+                            onChange={(e) => handleInputChange('question16', e.target.value)}
+                            style={{marginTop: '10px', maxWidth: '300px'}}
+                        />
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Communiquer</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            17. Quelle eau minérale convient le mieux à Cyril ?
+                        </p>
+                        <div style={{display: 'flex', gap: '20px', marginTop: '10px'}}>
+                            <label style={{display: 'flex', alignItems: 'center'}}>
+                                <input
+                                    type="radio"
+                                    name="question17"
+                                    value="Contrex"
+                                    onChange={() => handleInputChange('question17', 'Contrex')}
+                                    style={{marginRight: '8px'}}
+                                />
+                                Contrex
+                            </label>
+                            <label style={{display: 'flex', alignItems: 'center'}}>
+                                <input
+                                    type="radio"
+                                    name="question17"
+                                    value="Volvic"
+                                    onChange={() => handleInputChange('question17', 'Volvic')}
+                                    style={{marginRight: '8px'}}
+                                />
+                                Volvic
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Communiquer</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            18. Quelle eau est considérée comme "calcique" ?
+                        </p>
+                        <div style={{display: 'flex', gap: '20px', marginTop: '10px'}}>
+                            <label style={{display: 'flex', alignItems: 'center'}}>
+                                <input
+                                    type="radio"
+                                    name="question18"
+                                    value="Contrex"
+                                    onChange={() => handleInputChange('question18', 'Contrex')}
+                                    style={{marginRight: '8px'}}
+                                />
+                                Contrex
+                            </label>
+                            <label style={{display: 'flex', alignItems: 'center'}}>
+                                <input
+                                    type="radio"
+                                    name="question18"
+                                    value="Volvic"
+                                    onChange={() => handleInputChange('question18', 'Volvic')}
+                                    style={{marginRight: '8px'}}
+                                />
+                                Volvic
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Communiquer</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            19. L'eau Contrex est-elle recommandée pour Cyril ?
+                        </p>
+                        <textarea
+                            className="form-control"
+                            rows="2"
+                            value={answers.question19}
+                            onChange={(e) => handleInputChange('question19', e.target.value)}
+                            style={{marginTop: '10px'}}
+                        ></textarea>
+                    </div>
+
+                    <div className="question-content">
+                        <h4 className="vect-title"
+                            style={{display: 'inline', marginRight: '10px'}}>
+                            <span>Communiquer</span>
+                        </h4>
+                        <p style={{display: 'inline', textAlign: 'justify'}}>
+                            20. L'eau Volvic est-elle recommandée pour Cyril ?
+                        </p>
+                        <textarea
+                            className="form-control"
+                            rows="2"
+                            value={answers.question20}
+                            onChange={(e) => handleInputChange('question20', e.target.value)}
+                            style={{marginTop: '10px'}}
+                        ></textarea>
+                    </div>
+
+                    {/* Boutons de correction pour les nouvelles questions */}
+                    <div style={{display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '20px'}}>
+                        {[13, 14, 15, 16, 17, 18, 19, 20].map(qNum => (
+                            <button
+                                key={qNum}
+                                className="correction-btnoptic"
+                                onClick={() => toggleCorrection(`question${qNum}`)}
+                            >
+                                <FaCheck/> Q{qNum} {showCorrections[`question${qNum}`] ? 'Masquer' : 'Afficher'}
+                            </button>
+                        ))}
+                    </div>
+                </section>
+            </div>
+
+            {modalState.show && (<ModalImage
+                imageUrl={modalState.imageUrl}
+                altText={modalState.altText}
+                onClose={closeModal}
+            />)}
+        </div>
+    </>);
+};
+
+export default Act3et4Chimie;
