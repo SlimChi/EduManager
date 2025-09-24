@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/EduManager/static/css/main.5af56674.css",
-    "main.js": "/EduManager/static/js/main.55ae6319.js",
+    "main.js": "/EduManager/static/js/main.e5004019.js",
     "static/js/977.7c1b83c7.chunk.js": "/EduManager/static/js/977.7c1b83c7.chunk.js",
     "static/js/732.88920a93.chunk.js": "/EduManager/static/js/732.88920a93.chunk.js",
     "static/js/103.612e5b3f.chunk.js": "/EduManager/static/js/103.612e5b3f.chunk.js",
@@ -32,6 +32,7 @@
     "static/media/probaAct1.png": "/EduManager/static/media/probaAct1.62ed6eea29890d12e9d5.png",
     "static/media/pomme.png": "/EduManager/static/media/pomme.b31bd189a58265611161.png",
     "static/media/force.png": "/EduManager/static/media/force.0d29a68d4b86781d9834.png",
+    "static/media/mirage-f1.png": "/EduManager/static/media/mirage-f1.c06000689083cc2b5f82.png",
     "static/media/act2fonctioncarre.png": "/EduManager/static/media/act2fonctioncarre.2e211c5772031231f046.png",
     "static/media/chemineecouleur.png": "/EduManager/static/media/chemineecouleur.c16a894e4516b2e84555.png",
     "static/media/1.gif": "/EduManager/static/media/1.440c3a227fcdb5a6ee4b.gif",
@@ -70,6 +71,7 @@
     "static/media/compteurElectrique.png": "/EduManager/static/media/compteurElectrique.8971b18882c5e3f1fe8f.png",
     "static/media/face.png": "/EduManager/static/media/face.064db6aa722f30b927af.png",
     "static/media/cuisine.png": "/EduManager/static/media/cuisine.1a40a5a5a25082e55432.png",
+    "static/media/act1indicposi.png": "/EduManager/static/media/act1indicposi.da935fc88e86f7b27134.png",
     "static/media/14.gif": "/EduManager/static/media/14.2a311ffbd60286861db8.gif",
     "static/media/prisme.png": "/EduManager/static/media/prisme.b1b9baf1fb3b0c3c3914.png",
     "static/media/act4stat.png": "/EduManager/static/media/act4stat.b9e0f9fb7769cf725aa0.png",
@@ -238,7 +240,7 @@
     "static/media/KaTeX_Size3-Regular.woff2": "/EduManager/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/EduManager/index.html",
     "main.5af56674.css.map": "/EduManager/static/css/main.5af56674.css.map",
-    "main.55ae6319.js.map": "/EduManager/static/js/main.55ae6319.js.map",
+    "main.e5004019.js.map": "/EduManager/static/js/main.e5004019.js.map",
     "977.7c1b83c7.chunk.js.map": "/EduManager/static/js/977.7c1b83c7.chunk.js.map",
     "732.88920a93.chunk.js.map": "/EduManager/static/js/732.88920a93.chunk.js.map",
     "103.612e5b3f.chunk.js.map": "/EduManager/static/js/103.612e5b3f.chunk.js.map",
@@ -246,6 +248,6 @@
   },
   "entrypoints": [
     "static/css/main.5af56674.css",
-    "static/js/main.55ae6319.js"
+    "static/js/main.e5004019.js"
   ]
 }
