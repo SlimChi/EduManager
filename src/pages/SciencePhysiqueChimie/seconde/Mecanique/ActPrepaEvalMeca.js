@@ -46,21 +46,21 @@ const ActPrepaEvalMeca = () => {
         question5_2: false
     });
 
-    // Réponses attendues
+// Réponses attendues adaptées selon les corrections
     const correctAnswers = {
-        question1_2: "Dans le référentiel terrestre, la trajectoire des Mirages apparaît comme une ligne droite horizontale lors du passage devant les bâtiments.",
-        question1_3: "Le mouvement semble uniforme car la distance entre les avions reste constante et leur vitesse apparaît régulière sans accélération ni décélération visible.",
-        question2_2a: "La vidéo comporte 120 images (5 secondes × 24 images/seconde).",
-        question2_2b: "Δt = nombre d'images / fréquence = 120 / 24 = 5,00 secondes",
-        question2_3: "v = distance / temps = 500 / 5 = 100 m/s × 3,6 = 360 km/h",
-        question4_1: "Le référentiel d'étude est le référentiel terrestre.",
-        question4_2: "Le système mécanique étudié est le Mirage F1 (ou plus précisément l'extrémité de son aile).",
-        question4_3: "La trajectoire est rectiligne (forme de ligne droite).",
-        question4_4: "Les positions successives sont régulièrement espacées.",
-        question4_5: "La vitesse est constante (mouvement uniforme).",
-        question4_6: "Oui, l'hypothèse est validée car les positions régulièrement espacées indiquent un mouvement rectiligne uniforme.",
-        question5_1: "La trajectoire est rectiligne, comme le montre l'alignement des positions successiques sur une droite dans le logiciel d'analyse vidéo.",
-        question5_2: "Le mouvement est rectiligne uniforme car la trajectoire est droite et les positions sont équidistantes dans des intervalles de temps égaux."
+        question1_2: "Dans le référentiel terrestre, les Mirages se déplacent en ligne droite.",
+        question1_3: "Le mouvement des Mirages est apparemment uniforme car leur vitesse semble constante.",
+        question2_2a: "Il y a 26 images.",
+        question2_2b: "Δt = 26 / 24 = 1,08 s",
+        question2_3: "v = 500 / 1,08 ≃ 463 m/s, soit 1 667 km/h.",
+        question4_1: "Le référentiel utilisé est le référentiel terrestre.",
+        question4_2: "Le système étudié est le Mirage.",
+        question4_3: "La trajectoire du système est une droite.",
+        question4_4: "Les positions successives semblent régulièrement espacées.",
+        question4_5: "La vitesse est constante.",
+        question4_6: "L'hypothèse est validée. Le mouvement est rectiligne et uniforme.",
+        question5_1: "Dans le référentiel terrestre, la trajectoire des Mirages est rectiligne car les points successifs sont alignés.",
+        question5_2: "Il s'agit d'un mouvement rectiligne uniforme."
     };
 
     const [modalState, setModalState] = useState({
