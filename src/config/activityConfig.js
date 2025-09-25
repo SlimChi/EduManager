@@ -241,6 +241,12 @@ export const SPECIAL_ACTIVITIES = {
                                 path: 'cointervention/GestionReservationCoInterv',
                                 component: 'GestionReservationCoInterv',
                             },
+                            {
+                                id: 6,
+                                title: 'Co-intervention Calculs commerciaux 6',
+                                path: 'cointervention/ActCoInterventionCalculCommerciaux',
+                                component: 'ActCoInterventionCalculCommerciaux',
+                            },
                         ],
                     },
                     maintenances: {
@@ -547,6 +553,12 @@ export const SPECIAL_ACTIVITIES = {
                             title: 'QCM',
                             path: 'electricite/ExerciceElectriciteSuite',
                             component: 'ExerciceElectriciteSuite',
+                        },
+                        {
+                            id: 6,
+                            title: 'Evaluation',
+                            path: 'electricite/EvaElectriciteChauffage',
+                            component: 'EvaElectriciteChauffage',
                         },
                     ],
                 },

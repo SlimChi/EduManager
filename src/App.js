@@ -112,6 +112,9 @@ import GestionReservationCoInterv from "./pages/Maths/seconde/cointervention/Ges
 import Act3et4Chimie from "./pages/SciencePhysiqueChimie/seconde/chimie/Act3et4Chimie";
 import Act1IndicateurDePosition from "./pages/Maths/seconde/statistiques/statistiques/Act1IndicateurDePosition";
 import ActPrepaEvalMeca from "./pages/SciencePhysiqueChimie/seconde/Mecanique/ActPrepaEvalMeca";
+import EvaElectriciteChauffage from "./pages/SciencePhysiqueChimie/premiere/electricite/EvaElectriciteChauffage";
+import ActCoInterventionCalculCommerciaux
+    from "./pages/Maths/seconde/cointervention/ActCoInterventionCalculCommerciaux";
 
 const theme = createTheme({
     palette: {
@@ -323,6 +326,10 @@ const MainApp = () => {
                             element={<CalculsCommerciauxCoIntervention4/>}
                         />
                         <Route
+                            path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/ActCoInterventionCalculCommerciaux"
+                            element={<ActCoInterventionCalculCommerciaux/>}
+                        />
+                        <Route
                             path="/programmes/math/:classId/ProgrammeSecondeMaths/activites/cointervention/GestionReservationCoInterv"
                             element={<GestionReservationCoInterv/>}
                         />
@@ -488,6 +495,10 @@ const MainApp = () => {
                         <Route
                             path="/programmes/science/:classId/ProgrammePremierePhysique/activites/electricite/ExercicesElectricite"
                             element={<ExercicesElectricite/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammePremierePhysique/activites/electricite/EvaElectriciteChauffage"
+                            element={<EvaElectriciteChauffage/>}
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammePremierePhysique/activites/electricite/ExerciceElectriciteSuite"
