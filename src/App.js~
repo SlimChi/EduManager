@@ -118,8 +118,6 @@ import ActCoInterventionCalculCommerciaux
 import Act2IndicateurDeDisp from "./pages/Maths/seconde/statistiques/statistiques/Act2IndicateurDeDisp";
 import ActCoInterventionCalculCommerciaux2
     from "./pages/Maths/seconde/cointervention/ActCoInterventionCalculCommerciaux2";
-import ActCoInterventionCalculCommerciaux3
-    from "./pages/Maths/seconde/cointervention/ActCoInterventionCalculCommerciaux3";
 
 const theme = createTheme({
     palette: {

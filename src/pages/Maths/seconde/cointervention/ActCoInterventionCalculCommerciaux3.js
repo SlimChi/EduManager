@@ -1,0 +1,1005 @@
+import React, {useRef, useState} from 'react';
+import {
+    FaCalculator,
+    FaFileInvoice,
+    FaPercent,
+    FaMoneyBillWave,
+    FaCheck,
+    FaChartLine,
+    FaRunning,
+    FaTools,
+    FaLaptop,
+    FaPiggyBank
+} from 'react-icons/fa';
+import '../../../../styles/activites.css';
+import {useLocation, useParams} from "react-router-dom";
+import BackButton from "../../../../components/navigation/BackButton";
+import PrintManager from "../../../../utils/PrintManager";
+import Automatismes2 from "../../../../config/Automatismes2";
+import ModalImage from "../../../../utils/ModalImage";
+import AutoEvaluationGrid2 from "../../../../config/AutoEvaluationGrid2";
+import AutoEvaluationGrid from "../../../../config/AutoEvaluationGrid";
+
+const ActCoInterventionCalculCommerciaux3 = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+
+    const [answers, setAnswers] = useState({
+        // Exercice 1 - Magasin de sport
+        ex1_chaussures_reduction: '',
+        ex1_chaussures_prix_reduit: '',
+        ex1_chaussures_prix_final: '',
+        ex1_chaussures_unite: '',
+        ex1_ballon_reduction: '',
+        ex1_ballon_prix_reduit: '',
+        ex1_ballon_prix_final: '',
+        ex1_ballon_unite: '',
+        ex1_survetement_reduction: '',
+        ex1_survetement_prix_reduit: '',
+        ex1_survetement_prix_final: '',
+        ex1_survetement_unite: '',
+        ex1_raquette_reduction: '',
+        ex1_raquette_prix_reduit: '',
+        ex1_raquette_prix_final: '',
+        ex1_raquette_unite: '',
+        ex1_coefficient: '',
+        ex1_ttc_explication: '',
+        ex1_afficher_ttc: '',
+
+        // Exercice 2 - Bricolage
+        ex2_planche_total: '',
+        ex2_planche_remise: '',
+        ex2_planche_apres_remise: '',
+        ex2_planche_tva: '',
+        ex2_planche_ttc: '',
+        ex2_peinture_total: '',
+        ex2_peinture_remise: '',
+        ex2_peinture_apres_remise: '',
+        ex2_peinture_tva: '',
+        ex2_peinture_ttc: '',
+        ex2_visserie_total: '',
+        ex2_visserie_remise: '',
+        ex2_visserie_apres_remise: '',
+        ex2_visserie_tva: '',
+        ex2_visserie_ttc: '',
+        ex2_total_global: '',
+        ex2_remise_client: '',
+        ex2_coefficient_tva: '',
+
+        // Exercice 3 - Matériel informatique
+        ex3_ordi_prix_vente: '',
+        ex3_ordi_remise: '',
+        ex3_ordi_final: '',
+        ex3_ordi_total: '',
+        ex3_imprimante_prix_vente: '',
+        ex3_imprimante_remise: '',
+        ex3_imprimante_final: '',
+        ex3_imprimante_total: '',
+        ex3_logiciel_prix_vente: '',
+        ex3_logiciel_remise: '',
+        ex3_logiciel_final: '',
+        ex3_logiciel_total: '',
+        ex3_marge_importance: '',
+        ex3_maintenance_utilite: '',
+
+        // Exercice 4 - Banque
+        ex4_placement1_interet: '',
+        ex4_placement1_valeur: '',
+        ex4_placement2_interet: '',
+        ex4_placement2_valeur: '',
+        ex4_placement3_interet: '',
+        ex4_placement3_valeur: '',
+        ex4_placement4_interet: '',
+        ex4_placement4_valeur: '',
+        ex4_difference_interet: '',
+        ex4_double_capital: ''
+    });
+
+    const [showCorrections, setShowCorrections] = useState({});
+
+    // Réponses attendues
+    const correctAnswers = {
+        // Exercice 1
+        ex1_chaussures_reduction: "9,00 €",
+        ex1_chaussures_prix_reduit: "81,00 €",
+        ex1_chaussures_prix_final: "97,20 €",
+        ex1_chaussures_unite: "97,20 €",
+        ex1_ballon_reduction: "10,00 €",
+        ex1_ballon_prix_reduit: "40,00 €",
+        ex1_ballon_prix_final: "48,00 €",
+        ex1_ballon_unite: "48,00 €",
+        ex1_survetement_reduction: "18,00 €",
+        ex1_survetement_prix_reduit: "102,00 €",
+        ex1_survetement_prix_final: "122,40 €",
+        ex1_survetement_unite: "122,40 €",
+        ex1_raquette_reduction: "45,00 €",
+        ex1_raquette_prix_reduit: "135,00 €",
+        ex1_raquette_prix_final: "162,00 €",
+        ex1_raquette_unite: "162,00 €",
+        ex1_coefficient: "Coefficient réduction = 1 - (taux/100). Ex: 10% → 0,90 ; 20% → 0,80 ; 15% → 0,85 ; 25% → 0,75",
+        ex1_ttc_explication: "Le prix TTC est plus élevé car il inclut la Taxe sur la Valeur Ajoutée (TVA) qui s'ajoute au prix HT après réduction.",
+        ex1_afficher_ttc: "Afficher le prix TTC est plus transparent pour le client qui connaît ainsi le prix final à payer, sans surprise.",
+
+        // Exercice 2
+        ex2_planche_total: "120,00 €",
+        ex2_planche_remise: "12,00 €",
+        ex2_planche_apres_remise: "108,00 €",
+        ex2_planche_tva: "21,60 €",
+        ex2_planche_ttc: "129,60 €",
+        ex2_peinture_total: "132,00 €",
+        ex2_peinture_remise: "13,20 €",
+        ex2_peinture_apres_remise: "118,80 €",
+        ex2_peinture_tva: "23,76 €",
+        ex2_peinture_ttc: "142,56 €",
+        ex2_visserie_total: "40,00 €",
+        ex2_visserie_remise: "4,00 €",
+        ex2_visserie_apres_remise: "36,00 €",
+        ex2_visserie_tva: "7,20 €",
+        ex2_visserie_ttc: "43,20 €",
+        ex2_total_global: "315,36 €",
+        ex2_remise_client: "La remise commerciale récompense la fidélité du client et encourage les achats répétés.",
+        ex2_coefficient_tva: "Coefficient TVA 20% = 1,20",
+
+        // Exercice 3
+        ex3_ordi_prix_vente: "650,00 €",
+        ex3_ordi_remise: "32,50 €",
+        ex3_ordi_final: "617,50 €",
+        ex3_ordi_total: "667,50 €",
+        ex3_imprimante_prix_vente: "280,00 €",
+        ex3_imprimante_remise: "28,00 €",
+        ex3_imprimante_final: "252,00 €",
+        ex3_imprimante_total: "282,00 €",
+        ex3_logiciel_prix_vente: "450,00 €",
+        ex3_logiciel_remise: "0,00 €",
+        ex3_logiciel_final: "450,00 €",
+        ex3_logiciel_total: "470,00 €",
+        ex3_marge_importance: "Une marge suffisante couvre les frais fixes (loyer, salaires) et assure la rentabilité de l'entreprise.",
+        ex3_maintenance_utilite: "La maintenance garantit le bon fonctionnement du matériel et évite les pannes coûteuses à long terme.",
+
+        // Exercice 4
+        ex4_placement1_interet: "120,00 €",
+        ex4_placement1_valeur: "2 120,00 €",
+        ex4_placement2_interet: "600,00 €",
+        ex4_placement2_valeur: "5 600,00 €",
+        ex4_placement3_interet: "800,00 €",
+        ex4_placement3_valeur: "8 800,00 €",
+        ex4_placement4_interet: "500,00 €",
+        ex4_placement4_valeur: "10 500,00 €",
+        ex4_difference_interet: "L'intérêt simple est le gain généré, la valeur acquise est le capital initial + les intérêts.",
+        ex4_double_capital: "Avec 5% annuel, il faut environ 14 ans pour doubler un capital (règle de 72 : 72/5 = 14,4 ans)."
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false,
+        imageUrl: '',
+        altText: ''
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState(prev => ({...prev, show: false}));
+    };
+
+    const handleInputChange = (field, value) => {
+        setAnswers(prev => ({
+            ...prev,
+            [field]: value
+        }));
+    };
+
+    const contentRef = useRef();
+
+    const toggleCorrection = (field) => {
+        setShowCorrections(prev => ({
+            ...prev,
+            [field]: !prev[field]
+        }));
+
+        if (!answers[field] && !showCorrections[field]) {
+            setAnswers(prev => ({
+                ...prev,
+                [field]: correctAnswers[field]
+            }));
+        }
+    };
+
+    const CorrectionButton = ({field}) => (
+        <button
+            onClick={() => toggleCorrection(field)}
+            style={{
+                padding: '3px 8px',
+                fontSize: '12px',
+                backgroundColor: showCorrections[field] ? '#e74c3c' : '#2ecc71',
+                color: 'white',
+                border: 'none',
+                borderRadius: '3px',
+                cursor: 'pointer',
+                marginTop: '5px'
+            }}
+        >
+            <FaCheck style={{marginRight: '3px', fontSize: '13px'}}/>
+            {showCorrections[field] ? '✕ Cacher' : '✓ Vérifier'}
+        </button>
+    );
+
+    if (className === 'ClasseNonDisponible') {
+        return <div>Cette activité n'est pas disponible pour cette classe.</div>;
+    }
+
+    return (
+        <>
+            <BackButton/>
+            <div className="tp-container" id="cointer-calculs-content" ref={contentRef}>
+                <PrintManager
+                    contentRef={contentRef}
+                    activityName="CoInter_Calculs_Commerciaux_Sport"
+                    pageCount={4}
+                    quality="hd"
+                />
+
+                {/* PAGE 1 - Exercice 1 */}
+                <div className="print-page">
+                    <div className="activity-header mt-0">
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaCalculator/> « Calculs Commerciaux - Sports, Bricolage & Finance »
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* EXERCICE 1 */}
+                    <div className="question-card mt-3 mb-0" style={{
+                        backgroundColor: '#ffffff',
+                        border: '2px solid #e74c3c',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                    }}>
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{color: '#e74c3c'}}>
+                                <FaRunning/>
+                                <span>Exercice 1 : Calculs de Prix et Pourcentages (Magasin de sport)</span>
+                            </h4>
+
+                            <div style={{
+                                backgroundColor: '#fff0f0',
+                                padding: '10px',
+                                borderRadius: '6px',
+                                marginBottom: '15px',
+                                fontSize: '13px',
+                                lineHeight: '1.4'
+                            }}>
+                                <strong>Contexte :</strong> Vous êtes employé dans un magasin de sport. Pendant les
+                                promotions,
+                                vous devez calculer les nouveaux prix des articles avec remise, puis ajouter la TVA.
+                                <br/><strong>Objectif :</strong> Savoir appliquer un pourcentage de réduction et
+                                calculer un prix final TTC.
+                            </div>
+
+                            <table style={{
+                                width: '100%',
+                                borderCollapse: 'collapse',
+                                fontSize: '11px',
+                                marginBottom: '15px'
+                            }}>
+                                <thead>
+                                <tr style={{backgroundColor: '#f8f9fa'}}>
+                                    <th style={{
+                                        border: '1px solid #ddd',
+                                        padding: '6px',
+                                        fontWeight: 'bold'
+                                    }}>Article
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px', fontWeight: 'bold'}}>Prix
+                                        initial (€)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px', fontWeight: 'bold'}}>Taux de
+                                        réduction (%)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px', fontWeight: 'bold'}}>Montant
+                                        réduction (€)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px', fontWeight: 'bold'}}>Prix
+                                        après réduction (€)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px', fontWeight: 'bold'}}>TVA (%)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px', fontWeight: 'bold'}}>Prix
+                                        final TTC (€)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px', fontWeight: 'bold'}}>Prix par
+                                        unité (€)
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {[
+                                    {article: "Chaussures running", prix: 90, reduction: 10, tva: 20},
+                                    {article: "Ballon de basket", prix: 50, reduction: 20, tva: 20},
+                                    {article: "Survêtement", prix: 120, reduction: 15, tva: 20},
+                                    {article: "Raquette de tennis", prix: 180, reduction: 25, tva: 20}
+                                ].map((item, index) => (
+                                    <tr key={index}>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            fontWeight: 'bold'
+                                        }}>{item.article}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.prix}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.reduction}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex1_${item.article.toLowerCase().split(' ')[0]}_reduction`, e.target.value)}/>
+                                            {showCorrections[`ex1_${item.article.toLowerCase().split(' ')[0]}_reduction`] &&
+                                                <div style={{
+                                                    color: '#27ae60',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '8px'
+                                                }}>{correctAnswers[`ex1_${item.article.toLowerCase().split(' ')[0]}_reduction`]}</div>}
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex1_${item.article.toLowerCase().split(' ')[0]}_prix_reduit`, e.target.value)}/>
+                                            {showCorrections[`ex1_${item.article.toLowerCase().split(' ')[0]}_prix_reduit`] &&
+                                                <div style={{
+                                                    color: '#27ae60',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '8px'
+                                                }}>{correctAnswers[`ex1_${item.article.toLowerCase().split(' ')[0]}_prix_reduit`]}</div>}
+                                        </td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.tva}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex1_${item.article.toLowerCase().split(' ')[0]}_prix_final`, e.target.value)}/>
+                                            {showCorrections[`ex1_${item.article.toLowerCase().split(' ')[0]}_prix_final`] &&
+                                                <div style={{
+                                                    color: '#27ae60',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '8px'
+                                                }}>{correctAnswers[`ex1_${item.article.toLowerCase().split(' ')[0]}_prix_final`]}</div>}
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex1_${item.article.toLowerCase().split(' ')[0]}_unite`, e.target.value)}/>
+                                            {showCorrections[`ex1_${item.article.toLowerCase().split(' ')[0]}_unite`] &&
+                                                <div style={{
+                                                    color: '#27ae60',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '8px'
+                                                }}>{correctAnswers[`ex1_${item.article.toLowerCase().split(' ')[0]}_unite`]}</div>}
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+
+                            {/* Questions Exercice 1 */}
+                            <div style={{marginBottom: '15px'}}>
+                                <p style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '5px'}}>1. Calculez le
+                                    coefficient multiplicateur de réduction pour chaque article.</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '40px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <input type="text" style={{width: '100%', border: 'none', fontSize: '10px'}}
+                                           onChange={(e) => handleInputChange('ex1_coefficient', e.target.value)}/>
+                                    {showCorrections.ex1_coefficient && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex1_coefficient}</div>}
+                                </div>
+                                <CorrectionButton field="ex1_coefficient"/>
+                            </div>
+
+                            <div style={{marginBottom: '15px'}}>
+                                <p style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '5px'}}>2. Pourquoi le
+                                    prix TTC est-il toujours plus élevé que le prix HT après réduction ?</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '40px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <textarea
+                                        style={{width: '100%', border: 'none', fontSize: '10px', minHeight: '35px'}}
+                                        onChange={(e) => handleInputChange('ex1_ttc_explication', e.target.value)}/>
+                                    {showCorrections.ex1_ttc_explication && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex1_ttc_explication}</div>}
+                                </div>
+                                <CorrectionButton field="ex1_ttc_explication"/>
+                            </div>
+
+                            <div>
+                                <p style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '5px'}}>3. Quel est
+                                    l'intérêt pour le commerçant d'afficher le prix TTC plutôt que le prix HT ?</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '40px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <textarea
+                                        style={{width: '100%', border: 'none', fontSize: '10px', minHeight: '35px'}}
+                                        onChange={(e) => handleInputChange('ex1_afficher_ttc', e.target.value)}/>
+                                    {showCorrections.ex1_afficher_ttc && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex1_afficher_ttc}</div>}
+                                </div>
+                                <CorrectionButton field="ex1_afficher_ttc"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="question-card mt-3 mb-0" style={{
+                        backgroundColor: '#ffffff',
+                        border: '2px solid #3498db',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                    }}>
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{color: '#3498db'}}>
+                                <FaTools/> <span>Exercice 2 : Compléter un Bon de Commande (Bricolage)</span>
+                            </h4>
+
+                            <div style={{
+                                backgroundColor: '#f0f8ff',
+                                padding: '10px',
+                                borderRadius: '6px',
+                                marginBottom: '15px',
+                                fontSize: '13px',
+                                lineHeight: '1.4'
+                            }}>
+                                <strong>Contexte :</strong> Vous travaillez dans un magasin de bricolage. Un client
+                                commande
+                                plusieurs articles et vous devez compléter le bon de commande.
+                                <br/><strong>Objectif :</strong> Compléter un tableau de commande avec remises, TVA et
+                                frais de livraison.
+                            </div>
+
+                            <table style={{
+                                width: '100%',
+                                borderCollapse: 'collapse',
+                                fontSize: '11px',
+                                marginBottom: '15px'
+                            }}>
+                                <thead>
+                                <tr style={{backgroundColor: '#e3f2fd'}}>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Produit</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Quantité</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Prix unitaire (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Total HT (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Remise (10%) (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Frais de livraison (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Total après remise (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>TVA (20%) (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Total TTC (€)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {[
+                                    {produit: 'Planche bois', qte: 8, prix: 15.00, livraison: 10},
+                                    {produit: 'Peinture (pot)', qte: 6, prix: 22.00, livraison: 8},
+                                    {produit: 'Visserie (boîte)', qte: 10, prix: 4.00, livraison: 5}
+                                ].map((item, index) => (
+                                    <tr key={item.produit}>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            fontWeight: 'bold'
+                                        }}>{item.produit}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.qte}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.prix.toFixed(2)}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex2_${item.produit.toLowerCase().split(' ')[0]}_total`, e.target.value)}/>
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex2_${item.produit.toLowerCase().split(' ')[0]}_remise`, e.target.value)}/>
+                                        </td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.livraison}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex2_${item.produit.toLowerCase().split(' ')[0]}_apres_remise`, e.target.value)}/>
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex2_${item.produit.toLowerCase().split(' ')[0]}_tva`, e.target.value)}/>
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex2_${item.produit.toLowerCase().split(' ')[0]}_ttc`, e.target.value)}/>
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+
+                            <div style={{marginBottom: '15px'}}>
+                                <p style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '5px'}}>1. Complétez la
+                                    colonne "Total après remise" et calculez le total TTC global :</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '25px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <input type="text" style={{width: '100%', border: 'none', fontSize: '10px'}}
+                                           onChange={(e) => handleInputChange('ex2_total_global', e.target.value)}/>
+                                    {showCorrections.ex2_total_global && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex2_total_global}</div>}
+                                </div>
+                                <CorrectionButton field="ex2_total_global"/>
+                            </div>
+
+                            <div style={{marginBottom: '15px'}}>
+                                <p style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '5px'}}>2. À quoi sert la
+                                    remise commerciale pour un client fidèle ?</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '40px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <textarea
+                                        style={{width: '100%', border: 'none', fontSize: '10px', minHeight: '35px'}}
+                                        onChange={(e) => handleInputChange('ex2_remise_client', e.target.value)}/>
+                                    {showCorrections.ex2_remise_client && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex2_remise_client}</div>}
+                                </div>
+                                <CorrectionButton field="ex2_remise_client"/>
+                            </div>
+
+                            <div>
+                                <p style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '5px'}}>3. Calculez le
+                                    coefficient multiplicateur de la TVA :</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '25px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <input type="text" style={{width: '100%', border: 'none', fontSize: '10px'}}
+                                           onChange={(e) => handleInputChange('ex2_coefficient_tva', e.target.value)}/>
+                                    {showCorrections.ex2_coefficient_tva && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex2_coefficient_tva}</div>}
+                                </div>
+                                <CorrectionButton field="ex2_coefficient_tva"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* PAGE 2 - Exercice 3 */}
+                <div className="print-page">
+                    <div className="question-card mt-3 mb-0" style={{
+                        backgroundColor: '#ffffff',
+                        border: '2px solid #9b59b6',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                    }}>
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{color: '#9b59b6'}}>
+                                <FaLaptop/> <span>Exercice 3 : Rédiger un Devis (Matériel informatique)</span>
+                            </h4>
+
+                            <div style={{
+                                backgroundColor: '#f8f0ff',
+                                padding: '10px',
+                                borderRadius: '6px',
+                                marginBottom: '15px',
+                                fontSize: '13px',
+                                lineHeight: '1.4'
+                            }}>
+                                <strong>Contexte :</strong> Une entreprise vous demande un devis pour l'installation de
+                                matériel
+                                informatique. Vous devez calculer le prix de vente avec marge, puis appliquer une remise
+                                et
+                                ajouter la maintenance annuelle.
+                                <br/><strong>Objectif :</strong> Réaliser un devis professionnel en intégrant marge,
+                                remise et frais supplémentaires.
+                            </div>
+
+                            <table style={{
+                                width: '100%',
+                                borderCollapse: 'collapse',
+                                fontSize: '11px',
+                                marginBottom: '15px'
+                            }}>
+                                <thead>
+                                <tr style={{backgroundColor: '#f3e5f5'}}>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Produit</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Prix d'achat (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Marge (%)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Prix de vente (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Taux de remise (%)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Remise (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Prix final HT (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Maintenance annuelle (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Coût total (€)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {[
+                                    {produit: 'Ordinateur', achat: 500, marge: 30, remise: 5, maintenance: 50},
+                                    {produit: 'Imprimante', achat: 200, marge: 40, remise: 10, maintenance: 30},
+                                    {produit: 'Logiciel', achat: 300, marge: 50, remise: 0, maintenance: 20}
+                                ].map((item, index) => (
+                                    <tr key={item.produit}>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            fontWeight: 'bold'
+                                        }}>{item.produit}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.achat}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.marge}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex3_${item.produit.toLowerCase()}_prix_vente`, e.target.value)}/>
+                                        </td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.remise}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex3_${item.produit.toLowerCase()}_remise`, e.target.value)}/>
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex3_${item.produit.toLowerCase()}_final`, e.target.value)}/>
+                                        </td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.maintenance}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex3_${item.produit.toLowerCase()}_total`, e.target.value)}/>
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+
+                            <div style={{marginBottom: '15px'}}>
+                                <p style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '5px'}}>1. Pourquoi
+                                    est-il important de conserver une marge suffisante, même si un client négocie une
+                                    remise ?</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '60px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <textarea
+                                        style={{width: '100%', border: 'none', fontSize: '10px', minHeight: '50px'}}
+                                        onChange={(e) => handleInputChange('ex3_marge_importance', e.target.value)}/>
+                                    {showCorrections.ex3_marge_importance && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex3_marge_importance}</div>}
+                                </div>
+                                <CorrectionButton field="ex3_marge_importance"/>
+                            </div>
+
+                            <div>
+                                <p style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '5px'}}>2. Comment
+                                    expliquer au client l'utilité d'inclure les frais de maintenance dans le devis ?</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '60px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <textarea
+                                        style={{width: '100%', border: 'none', fontSize: '10px', minHeight: '50px'}}
+                                        onChange={(e) => handleInputChange('ex3_maintenance_utilite', e.target.value)}/>
+                                    {showCorrections.ex3_maintenance_utilite && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex3_maintenance_utilite}</div>}
+                                </div>
+                                <CorrectionButton field="ex3_maintenance_utilite"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="question-card mt-3 mb-0" style={{
+                        backgroundColor: '#ffffff',
+                        border: '2px solid #27ae60',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                    }}>
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{color: '#27ae60'}}>
+                                <FaPiggyBank/> <span>Exercice 4 : Calcul d'Intérêts et Valeur acquise (Banque)</span>
+                            </h4>
+
+                            <div style={{
+                                backgroundColor: '#f0fff4',
+                                padding: '10px',
+                                borderRadius: '6px',
+                                marginBottom: '15px',
+                                fontSize: '13px',
+                                lineHeight: '1.4'
+                            }}>
+                                <strong>Contexte :</strong> Vous conseillez un client qui souhaite placer son argent.
+                                Vous devez calculer les intérêts simples et la valeur acquise.
+                                <br/><strong>Objectif :</strong> Apprendre à calculer un intérêt simple et une valeur
+                                acquise.
+                            </div>
+
+                            <table style={{
+                                width: '100%',
+                                borderCollapse: 'collapse',
+                                fontSize: '11px',
+                                marginBottom: '15px'
+                            }}>
+                                <thead>
+                                <tr style={{backgroundColor: '#e8f5e8'}}>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Capital investi (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Taux annuel (%)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Durée</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Intérêt simple (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '5px'}}>Valeur acquise (€)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {[
+                                    {capital: 2000, taux: 3.0, duree: "2 ans"},
+                                    {capital: 5000, taux: 4.0, duree: "3 ans"},
+                                    {capital: 8000, taux: 2.5, duree: "4 ans"},
+                                    {capital: 10000, taux: 5.0, duree: "1 an"}
+                                ].map((item, index) => (
+                                    <tr key={index}>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.capital.toLocaleString()}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.taux}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '5px',
+                                            textAlign: 'center'
+                                        }}>{item.duree}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex4_placement${index + 1}_interet`, e.target.value)}/>
+                                            {showCorrections[`ex4_placement${index + 1}_interet`] &&
+                                                <div style={{
+                                                    color: '#27ae60',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '8px'
+                                                }}>{correctAnswers[`ex4_placement${index + 1}_interet`]}</div>}
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '5px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '9px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex4_placement${index + 1}_valeur`, e.target.value)}/>
+                                            {showCorrections[`ex4_placement${index + 1}_valeur`] &&
+                                                <div style={{
+                                                    color: '#27ae60',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '8px'
+                                                }}>{correctAnswers[`ex4_placement${index + 1}_valeur`]}</div>}
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+
+                            <div style={{marginBottom: '15px'}}>
+                                <p style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '5px'}}>1. Quelle est la
+                                    différence entre intérêt simple et valeur acquise ?</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '40px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <textarea
+                                        style={{width: '100%', border: 'none', fontSize: '10px', minHeight: '35px'}}
+                                        onChange={(e) => handleInputChange('ex4_difference_interet', e.target.value)}/>
+                                    {showCorrections.ex4_difference_interet && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex4_difference_interet}</div>}
+                                </div>
+                                <CorrectionButton field="ex4_difference_interet"/>
+                            </div>
+
+                            <div>
+                                <p style={{fontSize: '12px', fontWeight: 'bold', marginBottom: '5px'}}>2. Comment
+                                    déterminer la durée nécessaire pour doubler un capital avec un taux de 5% annuel
+                                    ?</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '40px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <textarea
+                                        style={{width: '100%', border: 'none', fontSize: '10px', minHeight: '35px'}}
+                                        onChange={(e) => handleInputChange('ex4_double_capital', e.target.value)}/>
+                                    {showCorrections.ex4_double_capital && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex4_double_capital}</div>}
+                                </div>
+                                <CorrectionButton field="ex4_double_capital"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Aide - Formules */}
+                    <div className="question-card mt-3" style={{
+                        backgroundColor: '#f8f9fa',
+                        border: '2px dashed #7f8c8d',
+                        borderRadius: '12px',
+                        padding: '15px'
+                    }}>
+                        <h5 style={{color: '#2c3e50', marginBottom: '10px'}}>📝 Aide – Formules de calcul</h5>
+                        <div style={{fontSize: '12px', lineHeight: '1.7'}}>
+                            <strong>Calculer une réduction :</strong> Prix après réduction = Prix initial × (1 – taux de
+                            réduction ÷ 100)<br/>
+                            <strong>Coefficient multiplicateur de réduction :</strong> = 1 – (taux de réduction ÷
+                            100)<br/>
+                            <strong>TVA :</strong> Montant TVA = Total HT × (taux ÷ 100)<br/>
+                            <strong>Prix TTC :</strong> = Prix HT × (1 + taux TVA ÷ 100)<br/>
+                            <strong>Marge :</strong> Prix de vente = Prix d'achat × (1 + taux de marge ÷ 100)<br/>
+                            <strong>Intérêt simple :</strong> I = Capital × Taux × Durée (en années)<br/>
+                            <strong>Valeur acquise :</strong> C + I
+                        </div>
+                    </div>
+                </div>
+
+                {modalState.show && (
+                    <ModalImage
+                        imageUrl={modalState.imageUrl}
+                        altText={modalState.altText}
+                        onClose={closeModal}
+                    />
+                )}
+            </div>
+        </>
+    );
+};
+
+export default ActCoInterventionCalculCommerciaux3;

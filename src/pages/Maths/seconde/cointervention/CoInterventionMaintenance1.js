@@ -189,7 +189,7 @@ const CoInterventionMaintenance1 = () => {
                                 </div>
                                 <div className="answer-area">
                                         <textarea
-                                            className="answer-input"
+                                            className="answer-input2"
                                             value={answers.q2}
                                             onChange={(e) => handleInputChange('q2', e.target.value)}
                                             style={{minHeight: '38px', height: 'auto'}}
@@ -215,7 +215,7 @@ const CoInterventionMaintenance1 = () => {
 
                                 <div className="answer-area">
                                         <textarea
-                                            className="answer-input"
+                                            className="answer-input2"
                                             value={answers.q3}
                                             onChange={(e) => handleInputChange('q3', e.target.value)}
                                             style={{minHeight: '38px', height: 'auto'}}
@@ -267,7 +267,7 @@ const CoInterventionMaintenance1 = () => {
 
                                 <div className="answer-area">
                                         <textarea
-                                            className="answer-input"
+                                            className="answer-input2"
                                             value={answers.q4}
                                             onChange={(e) => handleInputChange('q4', e.target.value)}
                                             rows={4}
@@ -290,7 +290,7 @@ const CoInterventionMaintenance1 = () => {
                                 <BlockMath math="P = \pi \times D"/>
                                 <div className="answer-area">
                                         <textarea
-                                            className="answer-input"
+                                            className="answer-input2"
                                             value={answers.q5}
                                             onChange={(e) => handleInputChange('q5', e.target.value)}
                                             rows={4}
@@ -311,7 +311,7 @@ const CoInterventionMaintenance1 = () => {
                                 <p>Calculer la longueur L, en cm, correspondant à dix périmètres.</p>
                                 <div className="answer-area">
                                         <textarea
-                                            className="answer-input"
+                                            className="answer-input2"
                                             value={answers.q6}
                                             onChange={(e) => handleInputChange('q6', e.target.value)}
                                             rows={4}
@@ -335,7 +335,7 @@ const CoInterventionMaintenance1 = () => {
                                         Quelle est sa longueur en mm? (1 pouce = 25,4 mm)</p>
                                     <div className="answer-area">
                                             <textarea
-                                                className="answer-input"
+                                                className="answer-input2"
                                                 value={answers.q7_1}
                                                 onChange={(e) => handleInputChange('q7_1', e.target.value)}
                                                 rows={3}
@@ -355,7 +355,7 @@ const CoInterventionMaintenance1 = () => {
                                         de 35 mm de diamètre.</p>
                                     <div className="answer-area">
                                             <textarea
-                                                className="answer-input"
+                                                className="answer-input2"
                                                 value={answers.q7_2}
                                                 onChange={(e) => handleInputChange('q7_2', e.target.value)}
                                                 rows={3}
@@ -370,7 +370,7 @@ const CoInterventionMaintenance1 = () => {
                                         masse d'huile?</p>
                                     <div className="answer-area">
                                             <textarea
-                                                className="answer-input"
+                                                className="answer-input2"
                                                 value={answers.q7_3}
                                                 onChange={(e) => handleInputChange('q7_3', e.target.value)}
                                                 rows={3}
@@ -384,7 +384,7 @@ const CoInterventionMaintenance1 = () => {
                                         120 cm par 80 cm. Calculer son périmètre.</p>
                                     <div className="answer-area">
                                             <textarea
-                                                className="answer-input"
+                                                className="answer-input2"
                                                 value={answers.q7_4}
                                                 onChange={(e) => handleInputChange('q7_4', e.target.value)}
                                                 rows={3}
@@ -399,7 +399,7 @@ const CoInterventionMaintenance1 = () => {
                                         trajet (en minutes)?</p>
                                     <div className="answer-area">
                                             <textarea
-                                                className="answer-input"
+                                                className="answer-input2"
                                                 value={answers.q7_5}
                                                 onChange={(e) => handleInputChange('q7_5', e.target.value)}
                                                 rows={3}
@@ -413,7 +413,7 @@ const CoInterventionMaintenance1 = () => {
                                         Quelle sera sa consommation pour un trajet de 350 km?</p>
                                     <div className="answer-area">
                                             <textarea
-                                                className="answer-input"
+                                                className="answer-input2"
                                                 value={answers.q7_6}
                                                 onChange={(e) => handleInputChange('q7_6', e.target.value)}
                                                 rows={3}

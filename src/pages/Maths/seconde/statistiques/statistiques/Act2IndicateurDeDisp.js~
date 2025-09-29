@@ -1,0 +1,682 @@
+import React, {useRef, useState} from 'react';
+import {FaChartBar, FaPrint, FaCheck, FaCalculator, FaSwimmer} from 'react-icons/fa';
+import {BsFillQuestionCircleFill} from 'react-icons/bs';
+import {IoMdSchool} from 'react-icons/io';
+import '../../../../../styles/activites.css';
+import {useLocation, useParams} from "react-router-dom";
+import diagrammeImage from '../../../../../assets/histo.png';
+import BackButton from "../../../../../components/navigation/BackButton";
+import PrintManager from "../../../../../utils/PrintManager";
+import Automatismes from "../../../../../config/Automatismes";
+import {FcBullish} from "react-icons/fc";
+import stat1act3 from "../../../../../assets/act1indicposi.png";
+import ModalImage from "../../../../../utils/ModalImage";
+import Automatismes2 from "../../../../../config/Automatismes2";
+
+const Act2IndicateurDeDisp = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+
+    const [answers, setAnswers] = useState({
+        question1: '',
+        question2a: '',
+        question2b: '',
+        question3a: '',
+        question3b: '',
+        question4a: '',
+        question4b: '',
+        question5: ''
+    });
+
+    const [showCorrections, setShowCorrections] = useState({
+        question1: false,
+        question2a: false,
+        question2b: false,
+        question3a: false,
+        question3b: false,
+        question4a: false,
+        question4b: false,
+        question5: false
+    });
+
+    // Réponses attendues avec calculs détaillés
+    const correctAnswers = {
+        question1: "JO 2012 : 8 nageurs (7 temps + 1 disqualifié)\nJO 2016 : 8 nageurs",
+        question2a: "Les indicateurs qui renseignent sur la rapidité sont la moyenne et la médiane.",
+        question2b: "Non, on ne peut pas en déduire clairement la finale la plus rapide car la moyenne et la médiane ne donnent pas la même indication (2012: moyenne 10,14 > médiane 9,88; 2016: moyenne 9,94 = médiane 9,94).",
+        question3a: "Les indicateurs qui permettent de savoir quelle finale a été la plus serrée sont l'écart interquartile (Q3 - Q1) et l'écart type σ.",
+        question3b: "Oui, la finale de 2016 est la plus serrée car ses indicateurs de dispersion sont plus faibles (écart interquartile: 0,07 s vs 0,23 s; écart type: 0,08 s vs 0,76 s).",
+        question4a: "Après suppression du temps aberrant (11,99 s) en 2012:\n- Moyenne = 9,83 s\n- Médiane = 9,84 s\n- Q3 - Q1 = 0,19 s\n- Écart type = 0,12 s",
+        question4b: "Les indicateurs les plus modifiés sont la moyenne (10,14 → 9,83) et l'écart type (0,76 → 0,12).",
+        question5: "Problématique:\n• Finale la plus rapide: 2012 (après suppression du temps aberrant ou en considérant la médiane)\n• Finale la plus serrée: 2016 (écart interquartile et écart type plus faibles)"
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false,
+        imageUrl: '',
+        altText: ''
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState(prev => ({...prev, show: false}));
+    };
+
+    const handleInputChange = (field, value) => {
+        setAnswers(prev => ({
+            ...prev,
+            [field]: value
+        }));
+    };
+
+    const contentRef = useRef();
+
+    const toggleCorrection = (field) => {
+        setShowCorrections(prev => ({
+            ...prev,
+            [field]: !prev[field]
+        }));
+
+        if (!answers[field] && !showCorrections[field]) {
+            setAnswers(prev => ({
+                ...prev,
+                [field]: correctAnswers[field]
+            }));
+        }
+    };
+
+    if (className === 'Secondeastat-une-variableact3') {
+        return <div>Cette activité n'est pas disponible pour cette classe.</div>;
+    }
+
+    return (
+        <>
+            <BackButton/>
+            <div className="tp-container" id="stat-act2-content" ref={contentRef}>
+                <PrintManager
+                    contentRef={contentRef}
+                    activityName="Indicateurs_Dispersion_Act2"
+                    pageCount={2}
+                    quality="hd"
+                />
+
+                {/* PAGE 1 */}
+                <div className="print-page">
+                    <div style={{marginTop: '-10px'}}>
+                        <Automatismes2/>
+                    </div>
+                    <div className="activity-header mt-0">
+                        <span className="activity-badge">ACTIVITÉ 2</span>
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaCalculator/> <FaSwimmer/> « Comparer des séries statistiques avec des indicateurs »
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-start flex-wrap" style={{gap: '20px'}}>
+                        <div style={{flex: 1, minWidth: '350px'}}>
+                            <div className="renovation-contexte">
+                                <h5 className="mb-3 text-primary fw-bold">
+                                    🏊‍♂️ "Finales du 100 m nage libre aux JO"
+                                </h5>
+
+                                <p style={{textAlign: 'justify', fontSize: '11px', lineHeight: '1.3'}}>
+                                    Michael Phelps est l'un des plus grands nageurs de l'histoire, avec de nombreux titres olympiques.
+                                    Lors des Jeux Olympiques de 2012 et 2016, les finales du 100 m nage libre ont offert un spectacle exceptionnel.
+                                    Les temps (en secondes) réalisés par les nageurs lors de ces finales sont rassemblés ci-dessous :
+                                </p>
+
+                                <div className="data-grid-container mt-3 mb-3">
+                                    <div className="data-series">
+                                        <h6 style={{fontSize: '11px', color: '#2c3e50', marginBottom: '8px'}}>JO 2012 :</h6>
+                                        <div className="data-grid-single-line" style={{
+                                            display: 'flex',
+                                            flexWrap: 'wrap',
+                                            gap: '2px',
+                                            justifyContent: 'flex-start'
+                                        }}>
+                                            {['9,63', '9,75', '9,79', '9,88', '9,94', '9,98', '11,99', 'Disqualifié'].map((val, i) => (
+                                                <span key={i} className="data-cell-single" style={{
+                                                    padding: '4px 8px',
+                                                    backgroundColor: i === 6 ? '#ffebee' : '#e9ecef',
+                                                    borderRadius: '4px',
+                                                    fontSize: '11px',
+                                                    fontWeight: 'bold',
+                                                    border: i === 6 ? '1px solid #e74c3c' : 'none'
+                                                }}>{val}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div className="data-series mt-2">
+                                        <h6 style={{fontSize: '11px', color: '#2c3e50', marginBottom: '8px'}}>JO 2016 :</h6>
+                                        <div className="data-grid-single-line" style={{
+                                            display: 'flex',
+                                            flexWrap: 'wrap',
+                                            gap: '2px',
+                                            justifyContent: 'flex-start'
+                                        }}>
+                                            {['9,81', '9,89', '9,91', '9,93', '9,94', '9,96', '10,04', '10,06'].map((val, i) => (
+                                                <span key={i} className="data-cell-single" style={{
+                                                    padding: '4px 8px',
+                                                    backgroundColor: '#e9ecef',
+                                                    borderRadius: '4px',
+                                                    fontSize: '11px',
+                                                    fontWeight: 'bold'
+                                                }}>{val}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="problematique-box" style={{
+                                    marginTop: '10px',
+                                    padding: '12px',
+                                    backgroundColor: '#e8f4fd',
+                                    border: '1px solid #b3d9ff',
+                                    borderRadius: '8px'
+                                }}>
+                                    <h6 style={{fontSize: '11px', color: '#2c3e50', marginBottom: '5px'}}>
+                                        <strong>Problématique :</strong>
+                                    </h6>
+                                    <p style={{fontSize: '11px', margin: '0', color: '#2c3e50'}}>
+                                        • Quelle finale a été la plus rapide ?<br/>
+                                        • Quelle finale a été la plus serrée (temps les moins dispersés) ?
+                                    </p>
+                                </div>
+
+                                <div className="objectif-box" style={{
+                                    marginTop: '10px',
+                                    padding: '12px',
+                                    backgroundColor: '#fff3cd',
+                                    border: '1px solid #ffeaa7',
+                                    borderRadius: '8px'
+                                }}>
+                                    <div className="objectif-title" style={{fontSize: '11px', color: '#856404'}}>
+                                        <strong style={{color: 'orangered'}}>Objectif :</strong> 🎯 Comparer des séries statistiques à l'aide des indicateurs de position et de dispersion.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* TABLEAU DES DONNÉES STATISTIQUES */}
+                        <div className="flex-shrink-0" style={{minWidth: '300px'}}>
+                            <div className="stat-table-container" style={{
+                                backgroundColor: '#f8f9fa',
+                                padding: '12px',
+                                borderRadius: '8px',
+                                border: '1px solid #dee2e6'
+                            }}>
+                                <h6 style={{fontSize: '11px', textAlign: 'center', marginBottom: '10px', color: '#2c3e50'}}>
+                                    <strong>Données statistiques</strong>
+                                </h6>
+                                <table style={{width: '100%', fontSize: '10px', borderCollapse: 'collapse'}}>
+                                    <thead>
+                                    <tr style={{backgroundColor: '#4a90e2', color: 'white'}}>
+                                        <th style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>Finale</th>
+                                        <th style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>Moyenne</th>
+                                        <th style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>Médiane</th>
+                                        <th style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>Q1</th>
+                                        <th style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>Q3</th>
+                                        <th style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>Q3 – Q1</th>
+                                        <th style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>Écart type σ</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center', fontWeight: 'bold'}}>JO 2012</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>10,14 s</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>9,88 s</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>9,75 s</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>9,98 s</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>0,23 s</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>0,76 s</td>
+                                    </tr>
+                                    <tr>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center', fontWeight: 'bold'}}>JO 2016</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>9,94 s</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>9,94 s</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>9,89 s</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>9,96 s</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>0,07 s</td>
+                                        <td style={{padding: '6px', border: '1px solid #dee2e6', textAlign: 'center'}}>0,08 s</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Section S'approprier */}
+                    <div className="question-card mt-1 mb-0" style={{
+                        backgroundColor: '#ffffff',
+                        border: '2px solid #4a90e2',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                    }}>
+                        <div className="question-content">
+                            <h4 className="vect-title2">
+                                <span>1) S'APPROPRIER</span>
+                            </h4>
+
+                            {/* Question 1 */}
+                            <div className="question-item" style={{
+                                display: 'flex',
+                                alignItems: 'flex-start',
+                                gap: '10px',
+                                flexWrap: 'wrap',
+                                padding: '10px',
+                                backgroundColor: '#f8f9fa',
+                                borderRadius: '8px',
+                                borderLeft: '4px solid #4a90e2'
+                            }}>
+                                <div style={{flex: 1, minWidth: '250px'}}>
+                                    <p style={{margin: '0', fontSize: '11px', fontWeight: 'bold', color: '#2c3e50'}}>
+                                        Combien de nageurs ont participé à chaque finale ?
+                                    </p>
+                                    <div className="answer-line" style={{
+                                        borderBottom: '1px dashed #ccc',
+                                        marginTop: '8px',
+                                        paddingBottom: '4px',
+                                        minHeight: '40px'
+                                    }}>
+                                        {showCorrections.question1 && (
+                                            <span style={{color: '#27ae60', fontWeight: 'bold', fontSize: '11px'}}>
+                                                {correctAnswers.question1}
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question1')}
+                                        style={{
+                                            padding: '4px 8px',
+                                            fontSize: '11px',
+                                            backgroundColor: showCorrections.question1 ? '#e74c3c' : '#2ecc71',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '4px',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        <FaCheck style={{marginRight: '4px'}}/>
+                                        {showCorrections.question1 ? '✕ Cacher' : '✓ Voir'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{display: 'inline'}}>
+                                <span>2) RÉALISER</span>
+                            </h4>
+                            <p style={{display: 'inline', textAlign: 'justify', fontSize: '11px', color: '#7f8c8d'}}>
+                                Complétez le tableau ci-dessus avec les indicateurs de position et de dispersion (arrondir à 0,01 s).
+                            </p>
+
+                            {/* Question 2a */}
+                            <div className="question-item" style={{
+                                padding: '10px',
+                                backgroundColor: 'rgba(255,250,240,0.1)',
+                                borderRadius: '8px',
+                                borderLeft: '4px solid #e67e22',
+                                marginTop: '15px',
+                                pageBreakInside: 'avoid'
+                            }}>
+                                <p style={{margin: '0', fontSize: '11px', fontWeight: 'bold', color: '#2c3e50'}}>
+                                    a) Analyser/Raisonner : Quels indicateurs renseignent sur la rapidité des finales ?
+                                </p>
+                                <div className="answer-line" style={{
+                                    borderBottom: '1px dashed #ccc',
+                                    marginTop: '8px',
+                                    paddingBottom: '4px',
+                                    minHeight: '40px'
+                                }}>
+                                    {showCorrections.question2a && (
+                                        <span style={{color: '#27ae60', fontWeight: 'bold', fontSize: '11px'}}>
+                                            {correctAnswers.question2a}
+                                        </span>
+                                    )}
+                                </div>
+                                <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question2a')}
+                                        style={{
+                                            padding: '4px 8px',
+                                            fontSize: '11px',
+                                            backgroundColor: showCorrections.question2a ? '#e74c3c' : '#2ecc71',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '4px',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        <FaCheck style={{marginRight: '4px'}}/>
+                                        {showCorrections.question2a ? '✕ Cacher' : '✓ Voir'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Question 2b */}
+                            <div className="question-item" style={{
+                                padding: '10px',
+                                backgroundColor: 'rgba(255,250,240,0.1)',
+                                borderRadius: '8px',
+                                borderLeft: '4px solid #e67e22',
+                                marginTop: '10px',
+                                pageBreakInside: 'avoid'
+                            }}>
+                                <p style={{margin: '0', fontSize: '11px', fontWeight: 'bold', color: '#2c3e50'}}>
+                                    b) Valider : Pouvez-vous en déduire la finale la plus rapide ? Justifiez.
+                                </p>
+                                <div className="answer-line" style={{
+                                    borderBottom: '1px dashed #ccc',
+                                    marginTop: '8px',
+                                    paddingBottom: '4px',
+                                    minHeight: '40px'
+                                }}>
+                                    {showCorrections.question2b && (
+                                        <span style={{color: '#27ae60', fontWeight: 'bold', fontSize: '11px'}}>
+                                            {correctAnswers.question2b}
+                                        </span>
+                                    )}
+                                </div>
+                                <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question2b')}
+                                        style={{
+                                            padding: '4px 8px',
+                                            fontSize: '11px',
+                                            backgroundColor: showCorrections.question2b ? '#e74c3c' : '#2ecc71',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '4px',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        <FaCheck style={{marginRight: '4px'}}/>
+                                        {showCorrections.question2b ? '✕ Cacher' : '✓ Voir'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Question 3a */}
+                            <div className="question-item" style={{
+                                padding: '10px',
+                                backgroundColor: 'rgba(255,250,240,0.1)',
+                                borderRadius: '8px',
+                                borderLeft: '4px solid #e67e22',
+                                marginTop: '10px',
+                                pageBreakInside: 'avoid'
+                            }}>
+                                <p style={{margin: '0', fontSize: '11px', fontWeight: 'bold', color: '#2c3e50'}}>
+                                    a) Analyser/Raisonner : Quels indicateurs permettent de savoir quelle finale a été la plus serrée ?
+                                </p>
+                                <div className="answer-line" style={{
+                                    borderBottom: '1px dashed #ccc',
+                                    marginTop: '8px',
+                                    paddingBottom: '4px',
+                                    minHeight: '40px'
+                                }}>
+                                    {showCorrections.question3a && (
+                                        <span style={{color: '#27ae60', fontWeight: 'bold', fontSize: '11px'}}>
+                                            {correctAnswers.question3a}
+                                        </span>
+                                    )}
+                                </div>
+                                <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question3a')}
+                                        style={{
+                                            padding: '4px 8px',
+                                            fontSize: '11px',
+                                            backgroundColor: showCorrections.question3a ? '#e74c3c' : '#2ecc71',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '4px',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        <FaCheck style={{marginRight: '4px'}}/>
+                                        {showCorrections.question3a ? '✕ Cacher' : '✓ Voir'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Question 3b */}
+                            <div className="question-item" style={{
+                                padding: '10px',
+                                backgroundColor: 'rgba(255,250,240,0.1)',
+                                borderRadius: '8px',
+                                borderLeft: '4px solid #e67e22',
+                                marginTop: '10px',
+                                pageBreakInside: 'avoid'
+                            }}>
+                                <p style={{margin: '0', fontSize: '11px', fontWeight: 'bold', color: '#2c3e50'}}>
+                                    b) Valider : Pouvez-vous en déduire la finale la plus serrée ? Justifiez.
+                                </p>
+                                <div className="answer-line" style={{
+                                    borderBottom: '1px dashed #ccc',
+                                    marginTop: '8px',
+                                    paddingBottom: '4px',
+                                    minHeight: '40px'
+                                }}>
+                                    {showCorrections.question3b && (
+                                        <span style={{color: '#27ae60', fontWeight: 'bold', fontSize: '11px'}}>
+                                            {correctAnswers.question3b}
+                                        </span>
+                                    )}
+                                </div>
+                                <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question3b')}
+                                        style={{
+                                            padding: '4px 8px',
+                                            fontSize: '11px',
+                                            backgroundColor: showCorrections.question3b ? '#e74c3c' : '#2ecc71',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '4px',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        <FaCheck style={{marginRight: '4px'}}/>
+                                        {showCorrections.question3b ? '✕ Cacher' : '✓ Voir'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* PAGE 2 */}
+                <div className="print-page">
+                    <div className="question-card mt-1 mb-0" style={{
+                        backgroundColor: '#ffffff',
+                        border: '2px solid #4a90e2',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                    }}>
+                        <div className="question-content">
+                            <h4 className="vect-title2">
+                                <span>4) ANALYSER AVEC TEMPS ABERRANT</span>
+                            </h4>
+                            <p style={{textAlign: 'justify', fontSize: '11px', color: '#7f8c8d', marginBottom: '15px'}}>
+                                Lors de la finale de 2012, un nageur a eu un incident et a terminé en 11,99 s, un temps aberrant.
+                                Pour comparer correctement les finales, on supprime cette valeur.
+                            </p>
+
+                            {/* Question 4a */}
+                            <div className="question-item" style={{
+                                padding: '10px',
+                                backgroundColor: 'rgba(255,250,240,0.1)',
+                                borderRadius: '8px',
+                                borderLeft: '4px solid #e67e22',
+                                marginTop: '10px',
+                                pageBreakInside: 'avoid'
+                            }}>
+                                <p style={{margin: '0', fontSize: '11px', fontWeight: 'bold', color: '#2c3e50'}}>
+                                    a) Réaliser : Recalculez les indicateurs de 2012 (arrondir à 0,01 s) :
+                                </p>
+                                <div className="answer-line" style={{
+                                    borderBottom: '1px dashed #ccc',
+                                    marginTop: '8px',
+                                    paddingBottom: '4px',
+                                    minHeight: '60px'
+                                }}>
+                                    {showCorrections.question4a && (
+                                        <span style={{color: '#27ae60', fontWeight: 'bold', fontSize: '11px'}}>
+                                            {correctAnswers.question4a}
+                                        </span>
+                                    )}
+                                </div>
+                                <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question4a')}
+                                        style={{
+                                            padding: '4px 8px',
+                                            fontSize: '11px',
+                                            backgroundColor: showCorrections.question4a ? '#e74c3c' : '#2ecc71',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '4px',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        <FaCheck style={{marginRight: '4px'}}/>
+                                        {showCorrections.question4a ? '✕ Cacher' : '✓ Voir'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Question 4b */}
+                            <div className="question-item" style={{
+                                padding: '10px',
+                                backgroundColor: 'rgba(255,250,240,0.1)',
+                                borderRadius: '8px',
+                                borderLeft: '4px solid #e67e22',
+                                marginTop: '10px',
+                                pageBreakInside: 'avoid'
+                            }}>
+                                <p style={{margin: '0', fontSize: '11px', fontWeight: 'bold', color: '#2c3e50'}}>
+                                    b) Valider : Quels indicateurs sont les plus modifiés ?
+                                </p>
+                                <div className="answer-line" style={{
+                                    borderBottom: '1px dashed #ccc',
+                                    marginTop: '8px',
+                                    paddingBottom: '4px',
+                                    minHeight: '40px'
+                                }}>
+                                    {showCorrections.question4b && (
+                                        <span style={{color: '#27ae60', fontWeight: 'bold', fontSize: '11px'}}>
+                                            {correctAnswers.question4b}
+                                        </span>
+                                    )}
+                                </div>
+                                <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question4b')}
+                                        style={{
+                                            padding: '4px 8px',
+                                            fontSize: '11px',
+                                            backgroundColor: showCorrections.question4b ? '#e74c3c' : '#2ecc71',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '4px',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        <FaCheck style={{marginRight: '4px'}}/>
+                                        {showCorrections.question4b ? '✕ Cacher' : '✓ Voir'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Question 5 */}
+                            <div className="question-item" style={{
+                                padding: '10px',
+                                backgroundColor: 'rgba(255,250,240,0.1)',
+                                borderRadius: '8px',
+                                borderLeft: '4px solid #e67e22',
+                                marginTop: '15px',
+                                pageBreakInside: 'avoid'
+                            }}>
+                                <p style={{margin: '0', fontSize: '11px', fontWeight: 'bold', color: '#2c3e50'}}>
+                                    5) Valider – Communiquer : Répondez à la problématique.
+                                </p>
+                                <div className="answer-line" style={{
+                                    borderBottom: '1px dashed #ccc',
+                                    marginTop: '8px',
+                                    paddingBottom: '4px',
+                                    minHeight: '60px'
+                                }}>
+                                    {showCorrections.question5 && (
+                                        <span style={{color: '#27ae60', fontWeight: 'bold', fontSize: '11px'}}>
+                                            {correctAnswers.question5}
+                                        </span>
+                                    )}
+                                </div>
+                                <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '8px'}}>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question5')}
+                                        style={{
+                                            padding: '4px 8px',
+                                            fontSize: '11px',
+                                            backgroundColor: showCorrections.question5 ? '#e74c3c' : '#2ecc71',
+                                            color: 'white',
+                                            border: 'none',
+                                            borderRadius: '4px',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        <FaCheck style={{marginRight: '4px'}}/>
+                                        {showCorrections.question5 ? '✕ Cacher' : '✓ Voir'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="conclusion-box mt-3" style={{
+                        padding: '15px',
+                        backgroundColor: '#d4edda',
+                        border: '1px solid #c3e6cb',
+                        borderRadius: '8px'
+                    }}>
+                        <h6 style={{fontSize: '11px', color: '#155724', marginBottom: '8px'}}>
+                            <strong>📝 Conclusion :</strong>
+                        </h6>
+                        <p style={{fontSize: '11px', color: '#155724', margin: '0'}}>
+                            Cette activité montre l'importance de choisir les bons indicateurs statistiques selon le contexte.
+                            La moyenne est sensible aux valeurs extrêmes, tandis que la médiane est plus robuste.
+                            Pour mesurer la dispersion, l'écart interquartile et l'écart type sont complémentaires.
+                        </p>
+                    </div>
+                </div>
+
+                {modalState.show && (
+                    <ModalImage
+                        imageUrl={modalState.imageUrl}
+                        altText={modalState.altText}
+                        onClose={closeModal}
+                    />
+                )}
+            </div>
+        </>
+    );
+};
+
+export default Act2IndicateurDeDisp;

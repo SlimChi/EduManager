@@ -1,0 +1,944 @@
+import React, {useRef, useState} from 'react';
+import {FaCalculator, FaFileInvoice, FaPercent, FaMoneyBillWave, FaCheck, FaChartLine} from 'react-icons/fa';
+import '../../../../styles/activites.css';
+import {useLocation, useParams} from "react-router-dom";
+import BackButton from "../../../../components/navigation/BackButton";
+import PrintManager from "../../../../utils/PrintManager";
+import Automatismes2 from "../../../../config/Automatismes2";
+import ModalImage from "../../../../utils/ModalImage";
+import AutoEvaluationGrid2 from "../../../../config/AutoEvaluationGrid2";
+import AutoEvaluationGrid from "../../../../config/AutoEvaluationGrid";
+
+const ActCoInterventionCalculCommerciaux2 = () => {
+    const {classId} = useParams();
+    const location = useLocation();
+    const className = location.state?.className || '';
+
+    const [answers, setAnswers] = useState({
+        // Exercice 1 - Ventes de matériel électronique
+        ex1_art1_reduction: '', ex1_art1_prix_reduit: '', ex1_art1_prix_final: '', ex1_art1_marge: '',
+        ex1_art2_reduction: '', ex1_art2_prix_reduit: '', ex1_art2_prix_final: '', ex1_art2_marge: '',
+        ex1_art3_reduction: '', ex1_art3_prix_reduit: '', ex1_art3_prix_final: '', ex1_art3_marge: '',
+        ex1_art4_reduction: '', ex1_art4_prix_reduit: '', ex1_art4_prix_final: '', ex1_art4_marge: '',
+        ex1_coefficient: '',
+        ex1_client_reponse: '',
+
+        // Exercice 2 - Facture services informatiques
+        ex2_consult_total: '', ex2_consult_tva: '', ex2_consult_ttc: '', ex2_consult_marge: '',
+        ex2_formation_total: '', ex2_formation_tva: '', ex2_formation_ttc: '', ex2_formation_marge: '',
+        ex2_maintenance_total: '', ex2_maintenance_tva: '', ex2_maintenance_ttc: '', ex2_maintenance_marge: '',
+        ex2_total_ht: '', ex2_total_tva: '', ex2_total_ttc: '', ex2_total_marge: '',
+        ex2_coefficient_tva: '',
+
+        // Exercice 3 - Devis projet web
+        ex3_site_prix_vente: '', ex3_site_remise: '', ex3_site_final: '', ex3_site_rentabilite: '',
+        ex3_app_prix_vente: '', ex3_app_remise: '', ex3_app_final: '', ex3_app_rentabilite: '',
+        ex3_seo_prix_vente: '', ex3_seo_remise: '', ex3_seo_final: '', ex3_seo_rentabilite: '',
+        ex3_negociation: '',
+        ex3_explication_couts: '',
+
+        // Exercice 4 - Investissements technologiques
+        ex4_invest1: '', ex4_invest2: '', ex4_invest3: '', ex4_invest4: '',
+        ex4_roi_calcul: '',
+        ex4_explication: ''
+    });
+
+    const [showCorrections, setShowCorrections] = useState({});
+
+    // Réponses attendues
+    const correctAnswers = {
+        // Exercice 1
+        ex1_art1_reduction: "75,00 €",
+        ex1_art1_prix_reduit: "425,00 €",
+        ex1_art1_prix_final: "467,50 €",
+        ex1_art1_marge: "127,50 €",
+        ex1_art2_reduction: "120,00 €",
+        ex1_art2_prix_reduit: "680,00 €",
+        ex1_art2_prix_final: "748,00 €",
+        ex1_art2_marge: "204,00 €",
+        ex1_art3_reduction: "45,00 €",
+        ex1_art3_prix_reduit: "255,00 €",
+        ex1_art3_prix_final: "280,50 €",
+        ex1_art3_marge: "76,50 €",
+        ex1_art4_reduction: "90,00 €",
+        ex1_art4_prix_reduit: "510,00 €",
+        ex1_art4_prix_final: "561,00 €",
+        ex1_art4_marge: "153,00 €",
+        ex1_coefficient: "Coefficient réduction = 1 - (taux/100). Ex: 15% → 0,85",
+        ex1_client_reponse: "La TVA s'applique sur le prix après réduction. Notre marge est calculée sur le prix d'achat pour couvrir les frais et assurer la pérennité de l'entreprise.",
+
+        // Exercice 2
+        ex2_consult_total: "2 400,00 €",
+        ex2_consult_tva: "480,00 €",
+        ex2_consult_ttc: "2 880,00 €",
+        ex2_consult_marge: "960,00 €",
+        ex2_formation_total: "1 800,00 €",
+        ex2_formation_tva: "360,00 €",
+        ex2_formation_ttc: "2 160,00 €",
+        ex2_formation_marge: "720,00 €",
+        ex2_maintenance_total: "3 000,00 €",
+        ex2_maintenance_tva: "600,00 €",
+        ex2_maintenance_ttc: "3 600,00 €",
+        ex2_maintenance_marge: "1 200,00 €",
+        ex2_total_ht: "7 200,00 €",
+        ex2_total_tva: "1 440,00 €",
+        ex2_total_ttc: "8 640,00 €",
+        ex2_total_marge: "2 880,00 €",
+        ex2_coefficient_tva: "Coefficient TVA 20% = 1,20",
+
+        // Exercice 3
+        ex3_site_prix_vente: "4 800,00 €",
+        ex3_site_remise: "480,00 €",
+        ex3_site_final: "4 320,00 €",
+        ex3_site_rentabilite: "35%",
+        ex3_app_prix_vente: "9 000,00 €",
+        ex3_app_remise: "900,00 €",
+        ex3_app_final: "8 100,00 €",
+        ex3_app_rentabilite: "40%",
+        ex3_seo_prix_vente: "2 400,00 €",
+        ex3_seo_remise: "360,00 €",
+        ex3_seo_final: "2 040,00 €",
+        ex3_seo_rentabilite: "30%",
+        ex3_negociation: "Je propose une remise raisonnable tout en expliquant la valeur ajoutée de nos services et la qualité de notre travail.",
+        ex3_explication_couts: "Nos prix incluent le développement, les tests, la formation et le support technique pour garantir votre satisfaction.",
+
+        // Exercice 4
+        ex4_invest1: "1 650,00 €",
+        ex4_invest2: "2 887,50 €",
+        ex4_invest3: "4 125,00 €",
+        ex4_invest4: "3 025,00 €",
+        ex4_roi_calcul: "ROI = (Bénéfice net / Investissement) × 100. Ex: (1650/15000)×100 = 11%",
+        ex4_explication: "L'intérêt simple se calcule sur le capital initial uniquement, tandis que l'intérêt composé s'applique sur le capital accumulé avec les intérêts précédents, ce qui génère une croissance exponentielle."
+    };
+
+    const [modalState, setModalState] = useState({
+        show: false,
+        imageUrl: '',
+        altText: ''
+    });
+
+    const openModal = (imageUrl, altText) => {
+        setModalState({show: true, imageUrl, altText});
+    };
+
+    const closeModal = () => {
+        setModalState(prev => ({...prev, show: false}));
+    };
+
+    const handleInputChange = (field, value) => {
+        setAnswers(prev => ({
+            ...prev,
+            [field]: value
+        }));
+    };
+
+    const contentRef = useRef();
+
+    const toggleCorrection = (field) => {
+        setShowCorrections(prev => ({
+            ...prev,
+            [field]: !prev[field]
+        }));
+
+        if (!answers[field] && !showCorrections[field]) {
+            setAnswers(prev => ({
+                ...prev,
+                [field]: correctAnswers[field]
+            }));
+        }
+    };
+
+    const CorrectionButton = ({field}) => (
+        <button
+            onClick={() => toggleCorrection(field)}
+            style={{
+                padding: '3px 8px',
+                fontSize: '12px',
+                backgroundColor: showCorrections[field] ? '#e74c3c' : '#2ecc71',
+                color: 'white',
+                border: 'none',
+                borderRadius: '3px',
+                cursor: 'pointer',
+                marginTop: '5px'
+            }}
+        >
+            <FaCheck style={{marginRight: '3px', fontSize: '13px'}}/>
+            {showCorrections[field] ? '✕ Cacher' : '✓ Vérifier'}
+        </button>
+    );
+
+    if (className === 'ClasseNonDisponible') {
+        return <div>Cette activité n'est pas disponible pour cette classe.</div>;
+    }
+
+    return (
+        <>
+            <BackButton/>
+            <div className="tp-container" id="cointer-calculs-content" ref={contentRef}>
+                <PrintManager
+                    contentRef={contentRef}
+                    activityName="CoInter_Calculs_Commerciaux"
+                    pageCount={4}
+                    quality="hd"
+                />
+
+                {/* PAGE 1 - Exercice 1 */}
+                <div className="print-page">
+
+                    <div style={{marginTop: '-10px'}}>
+                        <Automatismes2/>
+                    </div>
+
+                    <div className="activity-header mt-0">
+                        <div className="activity-title">
+                            <span className="course-title">
+                                <FaCalculator/> « Calculs Commerciaux - Ventes et Rentabilité »
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* EXERCICE 1 */}
+                    <div className="question-card mt-3 mb-0" style={{
+                        backgroundColor: '#ffffff',
+                        border: '2px solid #e67e22',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                    }}>
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{color: '#e67e22'}}>
+                                <FaPercent/> <span>Exercice 1 : Ventes de Matériel Électronique</span>
+                            </h4>
+
+                            <div style={{
+                                backgroundColor: '#fffaf0',
+                                padding: '10px',
+                                borderRadius: '6px',
+                                marginBottom: '15px',
+                                fontSize: '13px',
+                                lineHeight: '1.4'
+                            }}>
+                                <strong>Contexte :</strong> Vous êtes responsable des ventes dans un magasin
+                                d'électronique.
+                                Pendant les soldes, vous devez calculer les nouveaux prix des articles après réduction,
+                                ajouter la TVA et calculer la marge bénéficiaire.
+                                <br/><strong>Objectif :</strong> Maîtriser le calcul des prix, taxes et marges dans un
+                                contexte commercial réel.
+                            </div>
+
+                            <table style={{
+                                width: '100%',
+                                borderCollapse: 'collapse',
+                                fontSize: '12px',
+                                marginBottom: '15px'
+                            }}>
+                                <thead>
+                                <tr style={{backgroundColor: '#f8f9fa'}}>
+                                    <th style={{
+                                        border: '1px solid #ddd',
+                                        padding: '8px',
+                                        fontWeight: 'bold'
+                                    }}>Article
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '8px', fontWeight: 'bold'}}>Prix
+                                        d'achat (€)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '8px', fontWeight: 'bold'}}>Marge
+                                        initiale (%)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '8px', fontWeight: 'bold'}}>Prix
+                                        initial (€)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '8px', fontWeight: 'bold'}}>Réduction
+                                        (%)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '8px', fontWeight: 'bold'}}>Montant
+                                        réduction (€)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '8px', fontWeight: 'bold'}}>Prix
+                                        après réduction (€)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '8px', fontWeight: 'bold'}}>TVA (%)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '8px', fontWeight: 'bold'}}>Prix
+                                        final TTC (€)
+                                    </th>
+                                    <th style={{border: '1px solid #ddd', padding: '8px', fontWeight: 'bold'}}>Marge
+                                        finale (€)
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {[
+                                    {article: "Ordinateur portable", achat: 300, marge: 40, reduction: 15, tva: 20},
+                                    {article: "Tablette tactile", achat: 400, marge: 40, reduction: 15, tva: 20},
+                                    {
+                                        article: "Smartphone haut de gamme",
+                                        achat: 150,
+                                        marge: 40,
+                                        reduction: 15,
+                                        tva: 20
+                                    },
+                                    {article: "Écran 4K 32\"", achat: 300, marge: 40, reduction: 15, tva: 20}
+                                ].map((item, index) => (
+                                    <tr key={index}>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            fontWeight: 'bold'
+                                        }}>{item.article}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.achat}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.marge}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px', textAlign: 'center'}}>
+                                            {(item.achat * (1 + item.marge / 100)).toFixed(2)}
+                                        </td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.reduction}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex1_art${index + 1}_reduction`, e.target.value)}/>
+                                            {showCorrections[`ex1_art${index + 1}_reduction`] &&
+                                                <div style={{
+                                                    color: '#27ae60',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '9px'
+                                                }}>{correctAnswers[`ex1_art${index + 1}_reduction`]}</div>}
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex1_art${index + 1}_prix_reduit`, e.target.value)}/>
+                                            {showCorrections[`ex1_art${index + 1}_prix_reduit`] &&
+                                                <div style={{
+                                                    color: '#27ae60',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '9px'
+                                                }}>{correctAnswers[`ex1_art${index + 1}_prix_reduit`]}</div>}
+                                        </td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.tva}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex1_art${index + 1}_prix_final`, e.target.value)}/>
+                                            {showCorrections[`ex1_art${index + 1}_prix_final`] &&
+                                                <div style={{
+                                                    color: '#27ae60',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '9px'
+                                                }}>{correctAnswers[`ex1_art${index + 1}_prix_final`]}</div>}
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex1_art${index + 1}_marge`, e.target.value)}/>
+                                            {showCorrections[`ex1_art${index + 1}_marge`] &&
+                                                <div style={{
+                                                    color: '#27ae60',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '9px'
+                                                }}>{correctAnswers[`ex1_art${index + 1}_marge`]}</div>}
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+
+                            {/* Questions Exercice 1 */}
+                            <div style={{marginBottom: '15px'}}>
+                                <p style={{fontSize: '13px', fontWeight: 'bold', marginBottom: '5px'}}>1. Calculez le
+                                    coefficient multiplicateur correspondant à la réduction de 15%.</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '40px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <input type="text" style={{width: '100%', border: 'none', fontSize: '10px'}}
+                                           onChange={(e) => handleInputChange('ex1_coefficient', e.target.value)}/>
+                                    {showCorrections.ex1_coefficient && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex1_coefficient}</div>}
+                                </div>
+                                <CorrectionButton field="ex1_coefficient"/>
+                            </div>
+
+                            <div>
+                                <p style={{fontSize: '13px', fontWeight: 'bold', marginBottom: '5px'}}>2. Comment
+                                    expliquez-vous à un client que malgré la réduction, votre entreprise maintient une
+                                    marge bénéficiaire nécessaire ?</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '60px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <textarea
+                                        style={{width: '100%', border: 'none', fontSize: '10px', minHeight: '50px'}}
+                                        onChange={(e) => handleInputChange('ex1_client_reponse', e.target.value)}/>
+                                    {showCorrections.ex1_client_reponse && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex1_client_reponse}</div>}
+                                </div>
+                                <CorrectionButton field="ex1_client_reponse"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* PAGE 2 - Exercice 2 */}
+                <div className="print-page">
+                    <div className="question-card mt-3 mb-0" style={{
+                        backgroundColor: '#ffffff',
+                        border: '2px solid #3498db',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                    }}>
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{color: '#3498db'}}>
+                                <FaFileInvoice/> <span>Exercice 2 : Facture de Services Informatiques</span>
+                            </h4>
+
+                            <div style={{
+                                backgroundColor: '#f0f8ff',
+                                padding: '10px',
+                                borderRadius: '6px',
+                                marginBottom: '15px',
+                                fontSize: '13px',
+                                lineHeight: '1.4'
+                            }}>
+                                <strong>Contexte :</strong> Vous êtes consultant en informatique et devez établir une
+                                facture
+                                pour différents services rendus à une entreprise cliente.
+                                <br/><strong>Objectif :</strong> Maîtriser la facturation professionnelle avec calcul
+                                des marges.
+                            </div>
+
+                            <table style={{
+                                width: '100%',
+                                borderCollapse: 'collapse',
+                                fontSize: '12px',
+                                marginBottom: '15px'
+                            }}>
+                                <thead>
+                                <tr style={{backgroundColor: '#e3f2fd'}}>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Service</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Heures</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Taux horaire HT (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Total HT (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Coûts (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Marge (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>TVA (%)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Montant TVA (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Total TTC (€)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {[
+                                    {service: 'Consulting stratégique', heures: 16, taux: 150, couts: 600},
+                                    {service: 'Formation équipe', heures: 12, taux: 150, couts: 450},
+                                    {service: 'Maintenance système', heures: 20, taux: 150, couts: 750}
+                                ].map((item, index) => (
+                                    <tr key={item.service}>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            fontWeight: 'bold'
+                                        }}>{item.service}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.heures}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.taux}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex2_${item.service.toLowerCase().split(' ')[0]}_total`, e.target.value)}/>
+                                        </td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.couts}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex2_${item.service.toLowerCase().split(' ')[0]}_marge`, e.target.value)}/>
+                                        </td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>20
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex2_${item.service.toLowerCase().split(' ')[0]}_tva`, e.target.value)}/>
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex2_${item.service.toLowerCase().split(' ')[0]}_ttc`, e.target.value)}/>
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                                <tfoot>
+                                <tr style={{backgroundColor: '#f8f9fa', fontWeight: 'bold'}}>
+                                    <td style={{border: '1px solid #ddd', padding: '6px'}} colSpan="3">TOTAL GENERAL
+                                    </td>
+                                    <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                        <input type="text" style={{
+                                            width: '100%',
+                                            border: 'none',
+                                            textAlign: 'center',
+                                            fontSize: '10px'
+                                        }}
+                                               onChange={(e) => handleInputChange('ex2_total_ht', e.target.value)}/>
+                                    </td>
+                                    <td style={{border: '1px solid #ddd', padding: '6px', textAlign: 'center'}}>1 800
+                                    </td>
+                                    <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                        <input type="text" style={{
+                                            width: '100%',
+                                            border: 'none',
+                                            textAlign: 'center',
+                                            fontSize: '10px'
+                                        }}
+                                               onChange={(e) => handleInputChange('ex2_total_marge', e.target.value)}/>
+                                    </td>
+                                    <td style={{border: '1px solid #ddd', padding: '6px'}}></td>
+                                    <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                        <input type="text" style={{
+                                            width: '100%',
+                                            border: 'none',
+                                            textAlign: 'center',
+                                            fontSize: '10px'
+                                        }}
+                                               onChange={(e) => handleInputChange('ex2_total_tva', e.target.value)}/>
+                                    </td>
+                                    <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                        <input type="text" style={{
+                                            width: '100%',
+                                            border: 'none',
+                                            textAlign: 'center',
+                                            fontSize: '10px'
+                                        }}
+                                               onChange={(e) => handleInputChange('ex2_total_ttc', e.target.value)}/>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                            <div style={{marginBottom: '15px'}}>
+                                <p style={{fontSize: '13px', fontWeight: 'bold', marginBottom: '5px'}}>1. Calculez le
+                                    coefficient multiplicateur de la TVA à 20% :</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '25px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <input type="text" style={{width: '100%', border: 'none', fontSize: '10px'}}
+                                           onChange={(e) => handleInputChange('ex2_coefficient_tva', e.target.value)}/>
+                                    {showCorrections.ex2_coefficient_tva && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex2_coefficient_tva}</div>}
+                                </div>
+                                <CorrectionButton field="ex2_coefficient_tva"/>
+                            </div>
+
+                            <div>
+                                <p style={{fontSize: '13px', fontWeight: 'bold', marginBottom: '5px'}}>2. Quel est le
+                                    taux de marge global sur cette facture ?</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '25px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <input type="text" style={{width: '100%', border: 'none', fontSize: '10px'}}
+                                           onChange={(e) => handleInputChange('ex2_taux_marge', e.target.value)}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* PAGE 3 - Exercice 3 */}
+                <div className="print-page">
+                    <div className="question-card mt-3 mb-0" style={{
+                        backgroundColor: '#ffffff',
+                        border: '2px solid #9b59b6',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                    }}>
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{color: '#9b59b6'}}>
+                                <FaMoneyBillWave/> <span>Exercice 3 : Devis pour Projet Web</span>
+                            </h4>
+
+                            <div style={{
+                                backgroundColor: '#f8f0ff',
+                                padding: '10px',
+                                borderRadius: '6px',
+                                marginBottom: '15px',
+                                fontSize: '13px',
+                                lineHeight: '1.4'
+                            }}>
+                                <strong>Contexte :</strong> Vous êtes développeur web indépendant et devez établir un
+                                devis
+                                pour un client souhaitant plusieurs services digitaux.
+                                <br/><strong>Objectif :</strong> Apprendre à construire un devis professionnel avec
+                                calcul de rentabilité.
+                            </div>
+
+                            <table style={{
+                                width: '100%',
+                                borderCollapse: 'collapse',
+                                fontSize: '12px',
+                                marginBottom: '15px'
+                            }}>
+                                <thead>
+                                <tr style={{backgroundColor: '#f3e5f5'}}>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Prestation</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Coût de revient (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Marge (%)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Prix de vente HT (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Remise client (%)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Montant remise (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Prix final HT (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Taux de rentabilité (%)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {[
+                                    {prestation: 'Site vitrine', cout: 3000, marge: 60, remise: 10},
+                                    {prestation: 'Application mobile', cout: 6000, marge: 50, remise: 10},
+                                    {prestation: 'Référencement SEO', cout: 1500, marge: 60, remise: 15}
+                                ].map((item, index) => (
+                                    <tr key={item.prestation}>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            fontWeight: 'bold'
+                                        }}>{item.prestation}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.cout.toLocaleString()}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.marge}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex3_${item.prestation.toLowerCase().split(' ')[0]}_prix_vente`, e.target.value)}/>
+                                        </td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.remise}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex3_${item.prestation.toLowerCase().split(' ')[0]}_remise`, e.target.value)}/>
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex3_${item.prestation.toLowerCase().split(' ')[0]}_final`, e.target.value)}/>
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex3_${item.prestation.toLowerCase().split(' ')[0]}_rentabilite`, e.target.value)}/>
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+
+                            {/* Questions Exercice 3 */}
+                            <div style={{marginBottom: '15px'}}>
+                                <p style={{fontSize: '13px', fontWeight: 'bold', marginBottom: '5px'}}>1. Le client
+                                    demande une remise supplémentaire. Comment négociez-vous tout en préservant votre
+                                    rentabilité ?</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '60px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <textarea
+                                        style={{width: '100%', border: 'none', fontSize: '10px', minHeight: '50px'}}
+                                        onChange={(e) => handleInputChange('ex3_negociation', e.target.value)}/>
+                                    {showCorrections.ex3_negociation && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex3_negociation}</div>}
+                                </div>
+                                <CorrectionButton field="ex3_negociation"/>
+                            </div>
+
+                            <div>
+                                <p style={{fontSize: '13px', fontWeight: 'bold', marginBottom: '5px'}}>2. Comment
+                                    justifiez-vous vos prix auprès d'un client qui les trouve élevés ?</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '60px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <textarea
+                                        style={{width: '100%', border: 'none', fontSize: '10px', minHeight: '50px'}}
+                                        onChange={(e) => handleInputChange('ex3_explication_couts', e.target.value)}/>
+                                    {showCorrections.ex3_explication_couts && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex3_explication_couts}</div>}
+                                </div>
+                                <CorrectionButton field="ex3_explication_couts"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* PAGE 4 - Exercice 4 */}
+                <div className="print-page">
+                    <div className="question-card mt-3 mb-0" style={{
+                        backgroundColor: '#ffffff',
+                        border: '2px solid #27ae60',
+                        borderRadius: '12px',
+                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                    }}>
+                        <div className="question-content">
+                            <h4 className="vect-title" style={{color: '#27ae60'}}>
+                                <FaChartLine/> <span>Exercice 4 : Investissements Technologiques</span>
+                            </h4>
+
+                            <div style={{
+                                backgroundColor: '#f0fff4',
+                                padding: '10px',
+                                borderRadius: '6px',
+                                marginBottom: '15px',
+                                fontSize: '13px',
+                                lineHeight: '1.4'
+                            }}>
+                                <strong>Contexte :</strong> Vous êtes analyste financier dans une entreprise
+                                technologique
+                                et devez évaluer différents investissements potentiels.
+                                <br/><strong>Objectif :</strong> Maîtriser les calculs d'intérêts simples et le retour
+                                sur investissement.
+                            </div>
+
+                            <table style={{
+                                width: '100%',
+                                borderCollapse: 'collapse',
+                                fontSize: '12px',
+                                marginBottom: '15px'
+                            }}>
+                                <thead>
+                                <tr style={{backgroundColor: '#e8f5e8'}}>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Projet d'investissement</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Capital investi (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Taux annuel (%)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Durée</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Intérêt simple (€)</th>
+                                    <th style={{border: '1px solid #ddd', padding: '6px'}}>Retour sur investissement
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {[
+                                    {projet: "Cloud Computing", capital: 15000, taux: 4},
+                                    {projet: "Cybersécurité", capital: 25000, taux: 3.5},
+                                    {projet: "IA et Machine Learning", capital: 30000, taux: 5},
+                                    {projet: "Transformation digitale", capital: 20000, taux: 2.75}
+                                ].map((item, index) => (
+                                    <tr key={index}>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            fontWeight: 'bold'
+                                        }}>{item.projet}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.capital.toLocaleString()}</td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center'
+                                        }}>{item.taux}</td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px', textAlign: 'center'}}>11
+                                            mois
+                                        </td>
+                                        <td style={{border: '1px solid #ddd', padding: '6px'}}>
+                                            <input type="text" style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                textAlign: 'center',
+                                                fontSize: '10px'
+                                            }}
+                                                   onChange={(e) => handleInputChange(`ex4_invest${index + 1}`, e.target.value)}/>
+                                            {showCorrections[`ex4_invest${index + 1}`] &&
+                                                <div style={{
+                                                    color: '#27ae60',
+                                                    fontWeight: 'bold',
+                                                    fontSize: '9px'
+                                                }}>{correctAnswers[`ex4_invest${index + 1}`]}</div>}
+                                        </td>
+                                        <td style={{
+                                            border: '1px solid #ddd',
+                                            padding: '6px',
+                                            textAlign: 'center',
+                                            fontSize: '10px'
+                                        }}>
+                                            À calculer
+                                        </td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+
+                            <div style={{marginBottom: '15px'}}>
+                                <p style={{fontSize: '13px', fontWeight: 'bold', marginBottom: '5px'}}>1. Calculez le
+                                    retour sur investissement (ROI) pour le projet "Cloud Computing" :</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '40px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <input type="text" style={{width: '100%', border: 'none', fontSize: '10px'}}
+                                           onChange={(e) => handleInputChange('ex4_roi_calcul', e.target.value)}/>
+                                    {showCorrections.ex4_roi_calcul && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '10px'
+                                    }}>{correctAnswers.ex4_roi_calcul}</div>}
+                                </div>
+                                <CorrectionButton field="ex4_roi_calcul"/>
+                            </div>
+
+                            <div>
+                                <p style={{fontSize: '13px', fontWeight: 'bold', marginBottom: '5px'}}>2. Expliquez la
+                                    différence entre intérêt simple et intérêt composé à un investisseur novice :</p>
+                                <div style={{
+                                    border: '1px dashed #ccc',
+                                    padding: '8px',
+                                    minHeight: '80px',
+                                    borderRadius: '4px'
+                                }}>
+                                    <textarea
+                                        style={{width: '100%', border: 'none', fontSize: '12px', minHeight: '70px'}}
+                                        onChange={(e) => handleInputChange('ex4_explication', e.target.value)}/>
+                                    {showCorrections.ex4_explication && <div style={{
+                                        color: '#27ae60',
+                                        fontWeight: 'bold',
+                                        fontSize: '12px'
+                                    }}>{correctAnswers.ex4_explication}</div>}
+                                </div>
+                                <CorrectionButton field="ex4_explication"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style={{marginTop: '10px'}}><AutoEvaluationGrid/></div>
+                </div>
+
+                {modalState.show && (
+                    <ModalImage
+                        imageUrl={modalState.imageUrl}
+                        altText={modalState.altText}
+                        onClose={closeModal}
+                    />
+                )}
+            </div>
+        </>
+    );
+};
+
+export default ActCoInterventionCalculCommerciaux2;

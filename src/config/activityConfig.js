@@ -70,6 +70,12 @@ export const SPECIAL_ACTIVITIES = {
                                 path: 'statistiques/Act1IndicateurDePosition',
                                 component: 'Act1IndicateurDePosition',
                             },
+                            {
+                                id: 10,
+                                title: 'Comparer des séries statistiques avec des indicateurs',
+                                path: 'statistiques/Act2IndicateurDeDisp',
+                                component: 'Act2IndicateurDeDisp',
+                            },
                         ],
 
                     },
@@ -246,6 +252,18 @@ export const SPECIAL_ACTIVITIES = {
                                 title: 'Co-intervention Calculs commerciaux 6',
                                 path: 'cointervention/ActCoInterventionCalculCommerciaux',
                                 component: 'ActCoInterventionCalculCommerciaux',
+                            },
+                            {
+                                id: 7,
+                                title: 'Co-intervention Calculs commerciaux 7',
+                                path: 'cointervention/ActCoInterventionCalculCommerciaux2',
+                                component: 'ActCoInterventionCalculCommerciaux2',
+                            },
+                            {
+                                id: 8,
+                                title: 'Co-intervention Calculs commerciaux 8',
+                                path: 'cointervention/ActCoInterventionCalculCommerciaux3',
+                                component: 'ActCoInterventionCalculCommerciaux3',
                             },
                         ],
                     },
