@@ -8,6 +8,7 @@ import Act3Mecanic from "../pages/SciencePhysiqueChimie/seconde/Mecanique/Act3Me
 import BilanElectricite from "../pages/SciencePhysiqueChimie/premiere/electricite/BilanElectricite";
 import GestionReservationCoInterv from "../pages/Maths/seconde/cointervention/GestionReservationCoInterv";
 import Act3et4Chimie from "../pages/SciencePhysiqueChimie/seconde/chimie/Act3et4Chimie";
+import EvaluationMeca from "../pages/SciencePhysiqueChimie/seconde/Mecanique/EvaluationMeca";
 
 export const SPECIAL_ACTIVITIES = {
     math: {
@@ -503,30 +504,36 @@ export const SPECIAL_ACTIVITIES = {
                         },
                         {
                             id: 5,
+                            title: 'ÉVALUATION',
+                            path: 'mecanique/EvaluationMeca',
+                            component: 'EvaluationMeca',
+                        },
+                        {
+                            id: 6,
                             title: 'Représenter et caractériser une action mécanique',
                             path: 'mecanique/force',
                             component: 'Act1ForceMeca',
                         },
                         {
-                            id: 6,
+                            id: 7,
                             title: 'inventaire des actions mécaniques et conditions d’équilibre',
                             path: 'mecanique/force2',
                             component: 'Act2et3ForceMecanique',
                         },
                         {
-                            id: 7,
+                            id: 8,
                             title: 'Evaluation : Actions mécaniques',
                             path: 'mecanique/EvaluationForce',
                             component: 'EvaluationForce',
                         },
                         {
-                            id: 8,
+                            id: 9,
                             title: 'Représenter et caractériser une action mécanique',
                             path: 'mecanique/EvaluationForce2',
                             component: 'EvaluationMecaniqueForce',
                         },
                         {
-                            id: 9,
+                            id: 10,
                             title: 'QCM : Actions mécaniques',
                             path: 'mecanique/QCMASSP',
                             component: 'PremierCoursASSP',

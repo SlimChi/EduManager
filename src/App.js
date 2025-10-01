@@ -121,6 +121,7 @@ import ActCoInterventionCalculCommerciaux2
 import ActCoInterventionCalculCommerciaux3
     from "./pages/Maths/seconde/cointervention/ActCoInterventionCalculCommerciaux3";
 import ActTransportEnergie from "./pages/SciencePhysiqueChimie/premiere/electricite/ActTransportEnergie";
+import EvaluationMeca from "./pages/SciencePhysiqueChimie/seconde/Mecanique/EvaluationMeca";
 
 const theme = createTheme({
     palette: {
@@ -449,7 +450,12 @@ const MainApp = () => {
                         />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/EvaluationForce"
-                            element={<EvaluationForce/>}/>
+                            element={<EvaluationForce/>}
+                        />
+                        <Route
+                            path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/EvaluationMeca"
+                            element={<EvaluationMeca/>}
+                        />
                         <Route
                             path="/programmes/science/:classId/ProgrammeSecondePhysique/activites/mecanique/EvaluationForce2"
                             element={<EvaluationMecaniqueForce/>}/>

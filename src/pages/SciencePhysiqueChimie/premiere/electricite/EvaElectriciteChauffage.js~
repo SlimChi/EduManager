@@ -408,7 +408,7 @@ const EvaElectriciteChauffage = () => {
 
                                 </div>
                                 <div className="flex-shrink-0" style={{
-                                    maxWidth: '350px',
+                                    maxWidth: '300px',
                                     minWidth: '150px',
                                     cursor: 'pointer',
                                     marginLeft: '30%'

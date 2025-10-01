@@ -580,7 +580,7 @@ export const SPECIAL_ACTIVITIES = {
                         },
                         {
                             id: 7,
-                            title: 'Evaluation',
+                            title: 'Transporter l\'énergie sous forme électrique',
                             path: 'electricite/ActTransportEnergie',
                             component: 'ActTransportEnergie',
                         }
