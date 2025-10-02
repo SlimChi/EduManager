@@ -598,6 +598,10 @@ const Act2et3ForceMecanique = () => {
                             </div>)}
                         </div>
                     </div>
+
+                    <footer className="tp-footer">
+                        <p>S.CHIHATI - Conditions d'équilibre d'un solide</p>
+                    </footer>
                 </section>
             </div>
 

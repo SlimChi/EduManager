@@ -531,36 +531,36 @@ const Act1ForceMeca = () => {
 
                             </div>
                         </div>
-
-                    </div>
-                </section>
-            </div>
-            <div className="print-page" id="page3-start">
-                <section className="tp-section compact">
-                    <div className="question-content">
-                        <div className="d-flex align-items-center gap-3">
-                            <h4 className="vect-title mb-0"><span>Appliquer</span></h4>
-                            <p className="mb-0">Calculer le poids d'un objet de masse 2,5 kg sur Terre (g = 9,81 N/kg)
-                                :</p>
-                        </div>
-                        <div>
-                            <div className="answer-area">
+                        <div className="question-content">
+                            <div class="d-flex align-items-center gap-3">
+                                <h4 className="vect-title mb-0"><span>Appliquer</span></h4>
+                                <p class="mb-0">Calculer le poids d'un objet de masse 2,5 kg sur Terre (g = 9,81 N/kg)
+                                    :</p>
+                            </div>
+                            <div>
+                                <div className="answer-area">
                                     <textarea
                                         className="answer-input"
                                         value={answers.question10}
                                         onChange={(e) => handleInputChange('question10', e.target.value)}
                                         rows={1}
                                     />
-                                <button
-                                    className="correction-btnoptic"
-                                    onClick={() => toggleCorrection('question10')}
-                                >
-                                    <FaCheck/> {showCorrections.question10 ? 'Masquer' : 'Afficher'} correction
-                                </button>
+                                    <button
+                                        className="correction-btnoptic"
+                                        onClick={() => toggleCorrection('question10')}
+                                    >
+                                        <FaCheck/> {showCorrections.question10 ? 'Masquer' : 'Afficher'} correction
+                                    </button>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
+                </section>
+            </div>
+            <div className="print-page" id="page3-start">
+                <section className="tp-section compact">
+
                     <p style={{marginBottom: '10px'}}>En tenant compte de la variabilité des
                         mesures, peut-on dire que le rapport
                         Poids/Masse est
