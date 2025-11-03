@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/EduManager/static/css/main.5af56674.css",
-    "main.js": "/EduManager/static/js/main.de63d426.js",
+    "main.js": "/EduManager/static/js/main.f5d539a1.js",
     "static/js/977.7c1b83c7.chunk.js": "/EduManager/static/js/977.7c1b83c7.chunk.js",
     "static/js/732.88920a93.chunk.js": "/EduManager/static/js/732.88920a93.chunk.js",
     "static/js/103.612e5b3f.chunk.js": "/EduManager/static/js/103.612e5b3f.chunk.js",
@@ -100,6 +100,7 @@
     "static/media/menutable.jpg": "/EduManager/static/media/menutable.b0e6581adb1bccf596f8.jpg",
     "static/media/solMurForce.png": "/EduManager/static/media/solMurForce.ff83c5c425f660609e4d.png",
     "static/media/act5stat.png": "/EduManager/static/media/act5stat.06c2c289e5a1ebd75327.png",
+    "static/media/speedtest.png": "/EduManager/static/media/speedtest.b81fcf7ac9c2158b5716.png",
     "static/media/imageenrais.jpg": "/EduManager/static/media/imageenrais.547906cbf257e0113c16.jpg",
     "static/media/shrek.jpg": "/EduManager/static/media/shrek.d988b1d7465ec3d29544.jpg",
     "static/media/electromenager.jpg": "/EduManager/static/media/electromenager.a07c432ff0337381c517.jpg",
@@ -123,6 +124,7 @@
     "static/media/delagrave-spe_2_nb.png": "/EduManager/static/media/delagrave-spe_2_nb.d25f1378ace57114ec18.png",
     "static/media/Maths_Tle_C.png": "/EduManager/static/media/Maths_Tle_C.9e06b242edb24f510047.png",
     "static/media/schema_transfo_blanc.png": "/EduManager/static/media/schema_transfo_blanc.ae5a7f96e46a37bf771d.png",
+    "static/media/speedtest2.png": "/EduManager/static/media/speedtest2.9dfc195c24a8df9de6a6.png",
     "static/media/pneuindic.png": "/EduManager/static/media/pneuindic.473d225f9fcaeee67dd9.png",
     "static/media/escalator.png": "/EduManager/static/media/escalator.020f46378abe1c300ff3.png",
     "static/media/pictogrammeOptic.png": "/EduManager/static/media/pictogrammeOptic.4911f8509304724b536f.png",
@@ -171,6 +173,7 @@
     "static/media/objetForceEva.png": "/EduManager/static/media/objetForceEva.9e3bc95a5ccf6eb4e083.png",
     "static/media/KaTeX_Typewriter-Regular.ttf": "/EduManager/static/media/KaTeX_Typewriter-Regular.c5c02d763c89380dcb4e.ttf",
     "static/media/KaTeX_Main-Regular.woff2": "/EduManager/static/media/KaTeX_Main-Regular.f650f111a3b890d116f1.woff2",
+    "static/media/listefichier.png": "/EduManager/static/media/listefichier.7c26e568ef1da7bb3d4f.png",
     "static/media/KaTeX_Main-Bold.woff2": "/EduManager/static/media/KaTeX_Main-Bold.39890742bc957b368704.woff2",
     "static/media/KaTeX_SansSerif-Bold.ttf": "/EduManager/static/media/KaTeX_SansSerif-Bold.5b49f4993ae22d7975b4.ttf",
     "static/media/laserExercice.png": "/EduManager/static/media/laserExercice.7b044a1d780c2a19e543.png",
@@ -203,11 +206,13 @@
     "static/media/KaTeX_Typewriter-Regular.woff": "/EduManager/static/media/KaTeX_Typewriter-Regular.4c6b94fd1d07f8beff7c.woff",
     "static/media/optictp2.png": "/EduManager/static/media/optictp2.1c942fdbb43b8b669864.png",
     "static/media/shemafraiseuse2.png": "/EduManager/static/media/shemafraiseuse2.699972d08459464ed565.png",
+    "static/media/tutovideo.png": "/EduManager/static/media/tutovideo.82c68f0fd66f6ce3fd33.png",
     "static/media/circuit-electrique2.png": "/EduManager/static/media/circuit-electrique2.749f87af771b57afb939.png",
     "static/media/adhestat.png": "/EduManager/static/media/adhestat.2391ff33e28b23db6361.png",
     "static/media/KaTeX_SansSerif-Bold.woff": "/EduManager/static/media/KaTeX_SansSerif-Bold.b9cd458ac6d5889ff9c3.woff",
     "static/media/KaTeX_SansSerif-Italic.woff": "/EduManager/static/media/KaTeX_SansSerif-Italic.8d593cfaa96238d5e2f8.woff",
     "static/media/logolycee.jpg": "/EduManager/static/media/logolycee.4ba6a9b57062560b291d.jpg",
+    "static/media/fichierTelecharger.png": "/EduManager/static/media/fichierTelecharger.cecef6dcdb128980449b.png",
     "static/media/etiquetteprofondeur.png": "/EduManager/static/media/etiquetteprofondeur.114dfa4b7befcb8a0b4e.png",
     "static/media/KaTeX_Typewriter-Regular.woff2": "/EduManager/static/media/KaTeX_Typewriter-Regular.c295e7f71970f03c0549.woff2",
     "static/media/lampe65w.png": "/EduManager/static/media/lampe65w.4067a6b335c9581f46ea.png",
@@ -249,7 +254,7 @@
     "static/media/KaTeX_Size3-Regular.woff2": "/EduManager/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
     "index.html": "/EduManager/index.html",
     "main.5af56674.css.map": "/EduManager/static/css/main.5af56674.css.map",
-    "main.de63d426.js.map": "/EduManager/static/js/main.de63d426.js.map",
+    "main.f5d539a1.js.map": "/EduManager/static/js/main.f5d539a1.js.map",
     "977.7c1b83c7.chunk.js.map": "/EduManager/static/js/977.7c1b83c7.chunk.js.map",
     "732.88920a93.chunk.js.map": "/EduManager/static/js/732.88920a93.chunk.js.map",
     "103.612e5b3f.chunk.js.map": "/EduManager/static/js/103.612e5b3f.chunk.js.map",
@@ -257,6 +262,6 @@
   },
   "entrypoints": [
     "static/css/main.5af56674.css",
-    "static/js/main.de63d426.js"
+    "static/js/main.f5d539a1.js"
   ]
 }
